@@ -14,7 +14,7 @@ Abstraction can be achieved using
 
 An abstract class is a class that cannot be instantiated on its own and may contain abstract methods (methods without a body) that are meant to be implemented by its subclasses.
 
-[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Core%20Java/oopsConcept/AbstractionExample.java)
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Core%20Java/oopsConcept/OopsConcept.AbstractionExample.java)
 
 2.) Using Interface:
 
@@ -22,7 +22,7 @@ Interfaces:
 
 An interface in Java is a collection of abstract methods. A class can implement multiple interfaces.
 
-[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Core%20Java/oopsConcept/AbstractionExampleUsingInterface.java)
+[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Core%20Java/oopsConcept/OopsConcept.AbstractionExampleUsingInterface.java)
 
 
 
@@ -61,7 +61,7 @@ In Java, a "HAS-A" relationship refers to a form of association between classes,
 
 Here are the key points about the HAS-A relationship:
 
-### Composition:
+### OopsConcept.Composition:
     - The HAS-A relationship is achieved through composition, where one class contains an object of another class as a member variable.
     - The class that contains the object is often referred to as the "container" or "composite" class, and the class being contained is referred to as the "component" or "part" class.
     - Without Existing the container object if there is no chance of existing contained object. The relationship between container object and contained object is called composition which is a strong association.
@@ -74,7 +74,7 @@ class Engine {
 }
 
 class Car {
-    private Engine engine;  // Composition: Car HAS-A relationship with Engine
+    private Engine engine;  // OopsConcept.Composition: Car HAS-A relationship with Engine
 
     public Car(Engine engine) {
         this.engine = engine;
@@ -90,7 +90,7 @@ class Car {
 Without an existing car, the engine cannot exist. The **`Car`** manages the creation and destruction of the **`Engine`**, and the lifecycle of the **`Engine`** is tightly bound to the lifecycle of the **`Car`**. This is a clear example of a strong association through composition.
 
 
-# Aggregation
+# OopsConcept.Aggregation
 
 Without an existing container object, if there is a chance of the existing contained object, such a type of relationship is called aggregation."
 

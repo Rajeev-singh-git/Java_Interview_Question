@@ -1,3 +1,4 @@
+package OopsConcept;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +75,7 @@ public class Aggregation {
 		departments.add(CSE);
 		departments.add(EE);
 		
-		// creating an instance of Institute.
+		// creating an instance of OopsConcept.Institute.
 		Institute institute = new Institute("BITS", departments);
 		System.out.println("Total students in institute are: "+ institute.getTotalStudentsInInstitute());
 	}

@@ -1,3 +1,5 @@
+package OopsConcept;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +48,7 @@ public class Composition {
        List<State> state = india.getStateList();
 
        for(State st : state){
-           System.out.println("State : "+ st.state + ", Capital :"+ st.capital );
+           System.out.println("OopsConcept.State : "+ st.state + ", Capital :"+ st.capital );
 
        }
 
@@ -54,15 +56,15 @@ public class Composition {
 
 }
 
-/*Composition Relationship:
+/*OopsConcept.Composition Relationship:
 
-The India class has a "HAS-A" relationship with the State class, indicating a composition relationship.
-The India class contains a list of State objects, forming a "whole-part" relationship.
+The OopsConcept.India class has a "HAS-A" relationship with the OopsConcept.State class, indicating a composition relationship.
+The OopsConcept.India class contains a list of OopsConcept.State objects, forming a "whole-part" relationship.
 Lifecycle Dependency:
 
-The lifecycle of the State objects is tied to the lifecycle of the India object. If there is no India, the State objects would not exist in the context of this design.
+The lifecycle of the OopsConcept.State objects is tied to the lifecycle of the OopsConcept.India object. If there is no OopsConcept.India, the OopsConcept.State objects would not exist in the context of this design.
 Container Object:
 
-India is the container object, managing a collection of State objects.
+OopsConcept.India is the container object, managing a collection of OopsConcept.State objects.
 
  */

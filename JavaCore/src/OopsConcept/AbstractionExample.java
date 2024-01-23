@@ -1,4 +1,6 @@
-// Abstract class representing a Shape
+package OopsConcept;
+
+// Abstract class representing a OopsConcept.Shape
 abstract class Shape {
     // Abstract method to calculate the area
     public abstract double calculateArea();
@@ -7,7 +9,7 @@ abstract class Shape {
     public abstract void displayInfo();
 }
 
-// Concrete class representing a Circle
+// Concrete class representing a OopsConcept.Circle
 class Circle extends Shape {
     private double radius;
 
@@ -25,11 +27,11 @@ class Circle extends Shape {
     // Implementation of abstract method to display information
     @Override
     public void displayInfo() {
-        System.out.println("Circle - Radius: " + radius);
+        System.out.println("OopsConcept.Circle - Radius: " + radius);
     }
 }
 
-// Concrete class representing a Square
+// Concrete class representing a OopsConcept.Square
 class Square extends Shape {
     private double side;
 
@@ -47,7 +49,7 @@ class Square extends Shape {
     // Implementation of abstract method to display information
     @Override
     public void displayInfo() {
-        System.out.println("Square - Side: " + side);
+        System.out.println("OopsConcept.Square - Side: " + side);
     }
 }
 
@@ -63,10 +65,10 @@ public class AbstractionExample {
         Shape shape2 = square;
 
         // Calling methods without knowing the specific implementation
-        System.out.println("Area of Circle: " + shape1.calculateArea());    // Area of Circle: 78.53981633974483
-        shape1.displayInfo();                                               // Circle - Radius: 5.0
+        System.out.println("Area of OopsConcept.Circle: " + shape1.calculateArea());    // Area of OopsConcept.Circle: 78.53981633974483
+        shape1.displayInfo();                                               // OopsConcept.Circle - Radius: 5.0
 
-        System.out.println("Area of Square: " + shape2.calculateArea());    // Area of Square: 16.0
-        shape2.displayInfo();                                               // Square - Side: 4.0
+        System.out.println("Area of OopsConcept.Square: " + shape2.calculateArea());    // Area of OopsConcept.Square: 16.0
+        shape2.displayInfo();                                               // OopsConcept.Square - Side: 4.0
     }
 }

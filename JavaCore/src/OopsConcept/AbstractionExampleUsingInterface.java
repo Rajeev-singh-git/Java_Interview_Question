@@ -1,3 +1,5 @@
+package OopsConcept;
+
 // Interface defining abstraction
 interface Printable {
     // Abstract method (to be implemented by classes that implement this interface)
