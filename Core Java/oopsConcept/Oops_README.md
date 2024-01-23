@@ -33,6 +33,18 @@ The binding of data and the methods that operate on that data into a single unit
 1. **`Private Fields:`** The attributes of a class are often declared as private, meaning they can only be accessed within the class itself.
 2. **`Public Methods` (Getters and Setters):** Public methods are provided to allow controlled access to the private attributes. These methods are often referred to as getter methods (for retrieving the values) and setter methods (for modifying the values).
 
+
+## Inheritance
+
+Inheritance in object-oriented programming allows a child class  to access the properties (fields and methods) of a parent class.  This enables the child class to reuse, extend, and build upon the functionality provided by the parent class.
+
+Inheritance in object-oriented programming establishes an "is-a" relationship between the subclass and the superclass. This relationship is implemented in Java using the **`extends`** keyword.
+
+
+
+- **`IS-A Relationship:`** Inheritance represents an "is-a" relationship, meaning that a subclass is a specialized version of its superclass.
+- **`extends` Keyword in Java:** The **`extends`** keyword is used to create a subclass that inherits from a superclass.
+
 ## Polymorphism concept
 
 In an interface, the JVM determines the exact method to call based on the object's type at runtime, not the reference type.
