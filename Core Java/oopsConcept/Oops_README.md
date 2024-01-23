@@ -45,6 +45,50 @@ Inheritance in object-oriented programming establishes an "is-a" relationship be
 - **`IS-A Relationship:`** Inheritance represents an "is-a" relationship, meaning that a subclass is a specialized version of its superclass.
 - **`extends` Keyword in Java:** The **`extends`** keyword is used to create a subclass that inherits from a superclass.
 
+
+
+### Why java won't provide support for multiple inheritance?
+
+**Diamond Problem:**
+
+- Multiple inheritance introduces the "diamond problem," a situation where a class inherits from two classes that have a common ancestor. This creates ambiguity when the compiler tries to resolve which version of a method or field to use.
+- Resolving the diamond problem becomes complex and can lead to unpredictable behavior. Java's design emphasizes simplicity and avoiding such complexities.
+
+
+## HAS-A Relationship
+
+In Java, a "HAS-A" relationship refers to a form of association between classes, where one class contains an instance of another class as a member or field. This relationship is based on composition, and it is often used to represent a stronger relationship than a simple "uses" or "knows" relationship.
+
+Here are the key points about the HAS-A relationship:
+
+### Composition:
+    - The HAS-A relationship is achieved through composition, where one class contains an object of another class as a member variable.
+    - The class that contains the object is often referred to as the "container" or "composite" class, and the class being contained is referred to as the "component" or "part" class.
+    - Without Existing the container object if there is no chance of existing contained object. The relationship between container object and contained object is called composition which is a strong association.
+
+### **Code Example:**
+
+```java
+class Engine {
+    // Engine-related code
+}
+
+class Car {
+    private Engine engine;  // Composition: Car HAS-A relationship with Engine
+
+    public Car(Engine engine) {
+        this.engine = engine;
+    }
+
+    // Other car-related code
+}
+```
+
+- The **`Car`** class is the container object.
+- The **`Engine`** class is the contained object.
+
+Without an existing car, the engine cannot exist. The **`Car`** manages the creation and destruction of the **`Engine`**, and the lifecycle of the **`Engine`** is tightly bound to the lifecycle of the **`Car`**. This is a clear example of a strong association through composition.
+
 ## Polymorphism concept
 
 In an interface, the JVM determines the exact method to call based on the object's type at runtime, not the reference type.
