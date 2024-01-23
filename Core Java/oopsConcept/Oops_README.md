@@ -14,7 +14,7 @@ Abstraction can be achieved using
 
 An abstract class is a class that cannot be instantiated on its own and may contain abstract methods (methods without a body) that are meant to be implemented by its subclasses.
 
-Code
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Core%20Java/oopsConcept/AbstractionExample.java)
 
 2.) Using Interface:
 
@@ -22,7 +22,7 @@ Interfaces:
 
 An interface in Java is a collection of abstract methods. A class can implement multiple interfaces.
 
-Code
+[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Core%20Java/oopsConcept/AbstractionExampleUsingInterface.java)
 
 ## Polymorphism concept
 
