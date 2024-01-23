@@ -12,3 +12,4 @@ Interf I2 = new Demo2();
 I2.methodOne();  // This calls the methodOne implementation in Demo2 class
 ```
 
+[Complete Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Interf.java)
