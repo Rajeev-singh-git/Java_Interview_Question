@@ -89,6 +89,17 @@ class Car {
 
 Without an existing car, the engine cannot exist. The **`Car`** manages the creation and destruction of the **`Engine`**, and the lifecycle of the **`Engine`** is tightly bound to the lifecycle of the **`Car`**. This is a clear example of a strong association through composition.
 
+
+# Aggregation
+
+Without an existing container object, if there is a chance of the existing contained object, such a type of relationship is called aggregation."
+
+In other words, the lifecycle of the contained object is not strictly tied to the lifecycle of the container object in aggregation. The contained object can exist on its own or be associated with multiple containers. This weaker relationship provides more flexibility and independence between the objects involved in the aggregation.
+
+
+
+
+
 ## Polymorphism concept
 
 In an interface, the JVM determines the exact method to call based on the object's type at runtime, not the reference type.
