@@ -34,33 +34,33 @@ public class IterateArrayList {
 
         System.out.println("*******************Retrieve an element at index 2**************************");
         // retrieve an element (at a specified index) from a given array list.
-        System.out.println(colorList.get(2));
+        System.out.println(colorList.get(2));           // Blue
 
 
 
         System.out.println("******************* update an array element by the given element **************************");
 
         colorList.set(2,"Brown");
-        System.out.println(colorList);
+        System.out.println(colorList);                  // [Pink, Red, Brown, Black]
 
 
 
         System.out.println("******************* remove the third element from an array list **************************");
         colorList.remove(3);
-        System.out.println(colorList);
+        System.out.println(colorList);                  // [Pink, Red, Brown]
 
 
 
         System.out.println("*******************  Search the value Red **************************");
         if(colorList.contains("Red")){
-            System.out.println("Found");
+            System.out.println("Found");                        //   Found
         }else{
             System.out.println("Not Found");
         }
 
         System.out.println("*******************  Sort array list  **************************");
         Collections.sort(colorList);
-        System.out.println(colorList);
+        System.out.println(colorList);                     //   [Brown, Pink, Red]
 
         System.out.println("*******************  Copy one array list into another  **************************");
 

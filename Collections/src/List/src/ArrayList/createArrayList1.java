@@ -13,7 +13,7 @@ public class createArrayList1 {
         colorList.add("Blue");
         colorList.add("Black");
 
-        System.out.println(colorList);
+        System.out.println(colorList);    // [Red, Blue, Black]
 
     }
 
