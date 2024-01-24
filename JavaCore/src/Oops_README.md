@@ -131,6 +131,42 @@ There are two main types of polymorphism in Java: compile-time polymorphism (als
 
    Method resolution in method overloading is determined at compile-time based on the reference type of the object (also known as static or compile-time polymorphism). This means that the compiler decides which method to call by examining the reference type of the object at compile time.
 
+
+2. **Runtime Polymorphism (Method Overriding):**
+   - Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
+   - The decision on which method to call is made at runtime based on the actual type of the object.
+   - To achieve runtime polymorphism, you use the **`@Override`** annotation in the subclass to indicate that the method is intended to override a method in the superclass.
+   - Example:
+
+    ```java
+    javaCopy code
+    class Animal {
+        void sound() {
+            System.out.println("Animal makes a sound");
+        }
+    }
+    
+    class Dog extends Animal {
+        @Override
+        void sound() {
+            System.out.println("Dog barks");
+        }
+    }
+    
+    class Cat extends Animal {
+        @Override
+        void sound() {
+            System.out.println("Cat meows");
+        }
+    }
+    
+    ```
+
+   In this example, both **`Dog`** and **`Cat`** classes override the **`sound`** method from the **`Animal`** class. The specific implementation is determined at runtime based on the actual object type.
+
+
+Polymorphism in Java helps achieve flexibility and extensibility in code, making it easier to work with diverse types of objects in a unified manner.
+
 In an interface, the JVM determines the exact method to call based on the object's type at runtime, not the reference type.
 
 ```java
