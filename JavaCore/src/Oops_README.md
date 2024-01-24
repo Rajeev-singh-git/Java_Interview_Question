@@ -104,6 +104,33 @@ In other words, the lifecycle of the contained object is not strictly tied to th
 
 ## Polymorphism concept
 
+Polymorphism, meaning "many forms," is a powerful concept in Java that allows you to treat objects of different types in the same way. It enhances code flexibility and reusability, making your programs cleaner and more efficient.
+
+There are two main types of polymorphism in Java: compile-time polymorphism (also known as static or method overloading) and runtime polymorphism (also known as dynamic or method overriding).
+
+1. **Compile-time Polymorphism (Method Overloading):**
+    - Method overloading occurs when a class has multiple methods with the same name but different parameters (number, type, or order of parameters).
+    - The decision on which method to call is made at compile time based on the method signature.
+    - Example:
+
+    ```java
+    
+    public class Calculator {
+        public int add(int a, int b) {
+            return a + b;
+        }
+    
+        public double add(double a, double b) {
+            return a + b;
+        }
+    }
+    
+    ```
+
+   In this example, there are two **`add`** methods with different parameter types, allowing the same method name to be used for both integers and doubles.
+
+   Method resolution in method overloading is determined at compile-time based on the reference type of the object (also known as static or compile-time polymorphism). This means that the compiler decides which method to call by examining the reference type of the object at compile time.
+
 In an interface, the JVM determines the exact method to call based on the object's type at runtime, not the reference type.
 
 ```java
