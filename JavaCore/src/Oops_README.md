@@ -167,14 +167,30 @@ There are two main types of polymorphism in Java: compile-time polymorphism (als
 
 Polymorphism in Java helps achieve flexibility and extensibility in code, making it easier to work with diverse types of objects in a unified manner.
 
+
+### Can we override static method in java explain with proper simple example?
+
+**No, static methods cannot be overridden in Java.** Here's a clear explanation and an example to illustrate why:
+
+**Key Concepts:**
+
+- **Static Methods:** Belong to the class itself, not individual objects. They're called directly using the class name, not on instances of the class.
+- **Overriding:** Redefining a method in a subclass to provide a specialized implementation for that subclass. Relies on dynamic binding at runtime to determine which method to call based on the object's actual type.
+
+**Why Static Methods Can't Be Overridden:**
+
+- **Static Binding:** Static methods are bound to their implementation at compile time, meaning the compiler decides which method to call based on the type of the reference variable used to call it, not the object's actual type.
+- **Dynamic Binding:** Overriding requires dynamic binding, where the specific method to call is determined at runtime based on the object's type. This allows for polymorphism, where different objects can respond differently to the same message.
+
+
 In an interface, the JVM determines the exact method to call based on the object's type at runtime, not the reference type.
 
 ```java
-Interf I = new Demo();
-I.methodOne();  // This calls the methodOne implementation in Demo class
+OopsConcept.Interf I = new OopsConcept.Demo();
+I.methodOne();  // This calls the methodOne implementation in OopsConcept.Demo class
 
-Interf I2 = new Demo2();
-I2.methodOne();  // This calls the methodOne implementation in Demo2 class
+OopsConcept.Interf I2 = new OopsConcept.Demo2();
+I2.methodOne();  // This calls the methodOne implementation in OopsConcept.Demo2 class
 ```
 
-[Complete Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Interf.java)
+[Complete Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/OopsConcept.Interf.java)

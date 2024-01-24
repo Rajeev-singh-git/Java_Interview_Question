@@ -1,3 +1,5 @@
+package OopsConcept;
+
 public interface Interf {
 
     public void methodOne();
@@ -15,7 +17,7 @@ class Demo2 implements Interf{
 
     @Override
     public void methodOne() {
-        System.out.println("Method one executed from Demo 2 class");    // Method one executed from Demo 2 class
+        System.out.println("Method one executed from OopsConcept.Demo 2 class");    // Method one executed from OopsConcept.Demo 2 class
     }
 }
 
