@@ -207,8 +207,15 @@ I2.methodOne();  // This calls the methodOne implementation in OopsConcept.Demo2
 | Overriding is also considered as Runtime Polymorphism (or) Dynamic Polymorphism (or) late binding. | Method hiding is also considered as compile time polymorphism (or) static polymorphism (or) early binding. |
 | [Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverloadingExample.java) | [Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/MethodHiding.java) |
 
+
+
+
 ## Overriding with respect to var-arg method.
 
 A var-arg method should be overriden with  var-arg method only. If we are trying to override with normal method then it will become overloading not overriding.
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverridingVarAgMethod.java)
+
+
+
+![Screenshot 2024-02-16 234543](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/1b23160d-d395-475f-adae-018124b4c748)
