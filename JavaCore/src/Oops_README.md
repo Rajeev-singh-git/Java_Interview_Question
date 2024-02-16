@@ -197,3 +197,16 @@ I2.methodOne();  // This calls the methodOne implementation in OopsConcept.Demo2
 ```
 
 [Complete Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Interf.java)
+
+## Method Hiding
+
+| Method Overriding | Method Hiding |
+| --- | --- |
+| Both Parent and Child class method should be non-static. | Both Parent and Child class method should be static. |
+| Method Resolution is always taken care by JVM based on runtime objects. | Method Resolution is always taken care by compiler based on reference type. |
+| Overriding is also considered as Runtime Polymorphism (or) Dynamic Polymorphism (or) late binding. | Method hiding is also considered as compile time polymorphism (or) static polymorphism (or) early binding. |
+| Example | Example |
+
+## Overriding with respect to var-arg method.
+
+A var-arg method should be overriden with  var-arg method only. If we are trying to override with normal method then it will become overloading not overriding.
