@@ -219,3 +219,98 @@ A var-arg method should be overriden with  var-arg method only. If we are trying
 
 
 ![Screenshot 2024-02-16 234543](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/1b23160d-d395-475f-adae-018124b4c748)
+
+
+# Constructor
+
+Whenever an object is created in java, some piece of code will be automatically executed to perform initialization of the object. This piece of code which did initialization is called Constructor.
+
+Main Objective of constructor is to perform initialization.
+
+```java
+class Student {
+    String name;
+    int rollno;
+
+    // Constructor to initialize name and rollno
+    Student(String name, int rollno) {
+        this.name = name; 
+        this.rollno = rollno;
+    }
+
+    // Main method where objects are created
+    public static void main(String[] args) {
+        // Creating student objects with different names and roll numbers
+        Student s1 = new Student("vijayabhaskar", 101);
+        Student s2 = new Student("bhaskar", 102);
+    }
+}
+```
+
+## Constructor vs Instance Block
+
+Both Constructor and instance block will be executed automatically for every object creation, but instance block 1st followed by the constructor.
+
+Other than initialization, if we want to perform any activity for each created object, we should define that in instance block.
+
+Instance blocks can take arguments, whereas constructor can not take arguments, so we can not replace one concept by other.
+
+Code Example :→
+
+```java
+class Test {
+    static int count = 0; // Static variable to count instances of Test
+
+    {
+        count++; // Instance initialization block increments count whenever an instance is created
+    }
+
+    Test() {
+        // Default constructor
+    }
+
+    Test(int i) {
+        // Parameterized constructor
+    }
+
+    public static void main(String[] args) {
+        // Creating instances of Test class
+        Test t1 = new Test();
+        Test t2 = new Test(10);
+        Test t3 = new Test();
+
+        // Printing the value of count, which should be 3 since three instances are created
+        System.out.println(count); // Output: 3
+    }
+}
+```
+
+## Rules to write Constructor :→
+
+1. Name of the Constructor and Name of the class must be same.
+2. Return type concept is not applicable for constructor. If we are declaring return type for constructor we won’t get compile time or Runtime error simply it will be treated as a method.
+3. Although having the same name for a method and a class is allowed, it is not recommended.
+4. The only applicable modifier for constructor are public, default, private, protected.
+
+## Default Constructor :→
+
+- For every class in java including abstract class constructor concept is applicable.
+- If we are not writing constructor, then compiler will generate default constructor.
+- Hence every class either contain compiler generated constructor or programmer written constructor but not both simultaneously.
+
+### Prototype of Default Constructor :→
+
+1. It is always no argument constructor.
+2. The access modifier of the default constructor is same as class modifier. (This
+   rule is applicable only for public and default).
+3. Default constructor contains only one line. super(); it is a no argument call to
+   super class constructor.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/9e26684d-4046-4ea4-9cf0-7423baa27c33/Untitled.png)
+
+## Super() vs this()
+
+1. First line inside constructor should be either super() or this(), if we are not writing anything compiler will generate super().
+2. We should take super() or this() only in first line of Constructor, if we are taking anywhere else it will cause compile time error.
+3. Super() or this() can be used only inside constructor ,using them anywhere else will result in a compile-time error
+4. We can call a constructor directly from other constructor only.
