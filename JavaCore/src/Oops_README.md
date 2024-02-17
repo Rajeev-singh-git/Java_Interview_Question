@@ -306,7 +306,8 @@ class Test {
 3. Default constructor contains only one line. super(); it is a no argument call to
    super class constructor.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/9e26684d-4046-4ea4-9cf0-7423baa27c33/Untitled.png)
+![Screenshot 2024-02-17 140907](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/c013800f-33dc-4136-b20e-fbf8620fc36b)
+
 
 ## Super() vs this()
 
@@ -314,3 +315,8 @@ class Test {
 2. We should take super() or this() only in first line of Constructor, if we are taking anywhere else it will cause compile time error.
 3. Super() or this() can be used only inside constructor ,using them anywhere else will result in a compile-time error
 4. We can call a constructor directly from other constructor only.
+
+![Screenshot 2024-02-17 143913](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/deb1dafc-2f29-4a02-a010-f6a4091b143a)
+
+![Screenshot 2024-02-17 143532](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4bd6c50c-e5b8-4b29-bfda-b22ebade5701)
+
