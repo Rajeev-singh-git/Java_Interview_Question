@@ -320,3 +320,134 @@ class Test {
 
 ![Screenshot 2024-02-17 143532](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4bd6c50c-e5b8-4b29-bfda-b22ebade5701)
 
+## Overloaded Constructors :→
+
+A class can contain more than one constructor and all these constructors having the same name but different arguments and hence these constructors are considered as overloaded constructors.
+
+```java
+class Test { 
+    Test(double d) { 
+        System.out.println("double-argument constructor"); 
+    } 
+
+    Test(int i) { 
+        this(10.5); // Calls the double-argument constructor
+        System.out.println("int-argument constructor"); 
+    } 
+
+    Test() { 
+        this(10); // Calls the int-argument constructor
+        System.out.println("no-argument constructor"); 
+    } 
+
+    public static void main(String[] args) { 
+        Test t1 = new Test(); // Calls no-argument constructor, int-argument constructor, and double-argument constructor
+        Test t2 = new Test(10); // Calls int-argument constructor and double-argument constructor
+        Test t3 = new Test(10.5); // Calls double-argument constructor
+    } 
+}
+```
+
+1. Parent class constructor by default won't available to the Child. Hence
+   Inheritance concept is not applicable for constructors and hence overriding
+   concept also not applicable to the constructors. But constructors can be
+   overloaded.
+2. We can take constructor in any java class including abstract class also but we
+   can't take constructor inside interface.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/5bc9e33f-edd9-40cd-b1b8-db493611258e/Untitled.png)
+
+### We can't create object for abstract class but abstract class can contain constructor what is the need ?
+
+Abstract class constructor will be executed for every child class object creation to perform initialization of child class object only.
+
+### Which of the following statement is true ?
+
+1. Whenever we are creating child class object then automatically parent class
+   object will be created.(false)
+2. Whenever we are creating child class object then parent class constructor will be executed.(true)
+
+```java
+abstract class Parent {
+    Parent() {
+        System.out.println(this.hashCode()); // Outputs hash code of Child object
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println(this.hashCode()); // Outputs hash code of Child object
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        Child c = new Child();
+        System.out.println(c.hashCode()); // Outputs hash code of Child object
+    }
+}
+```
+
+### Note :→
+
+1. Compiler will check whether the programmer wrote any constructor or not. If he didn't write at least one constructor then compiler will generate default constructor.
+2. If the programmer wrote any constructor then compiler will check whether he wrote super() or this() in the 1st line or not. If his not writing any of these compiler will always write (generate) super().
+3. Compiler will check is there any chance of recursive constructor invocation. If there is a possibility then compiler will raise compile time error.
+
+```java
+class Test {
+    Test(int i) {
+        this(); // Calls the no-argument constructor, leading to recursive invocation
+    }
+ 
+    Test() {
+        this(10); // Calls the parameterized constructor, leading to recursive invocation
+    }
+ 
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
+}
+
+//CE : recursive constructor invocation
+```
+
+Correct Code : →
+
+```java
+class Test {
+    Test(int i) {
+        this(); // Calls the no-argument constructor
+    }
+ 
+    Test() {
+        // No recursive constructor invocation here
+    }
+ 
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
+}
+```
+
+- If the Parent class contains any argument constructors while writing Child
+  classes we should takes special care with respect to constructors.
+- Whenever we are writing any argument constructor it is highly recommended to write no argument constructor also.
+- If the Parent class contains any argument constructors while writing Child
+  classes we should takes special care with respect to constructors.
+
+```java
+class Parent {
+    Parent() throws java.io.IOException {
+    }
+}
+
+class Child extends Parent {
+    Child() throws Exception {
+        super(); // Calls the parent class constructor
+    }
+}
+```
+
+# Singleton Class
+
