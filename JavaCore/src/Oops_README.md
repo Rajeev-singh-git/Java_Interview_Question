@@ -355,7 +355,8 @@ class Test {
 2. We can take constructor in any java class including abstract class also but we
    can't take constructor inside interface.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/5bc9e33f-edd9-40cd-b1b8-db493611258e/Untitled.png)
+![Screenshot 2024-02-19 134501](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e33ea274-2ab6-4b4f-a152-9751fea1e7ec)
+
 
 ### We can't create object for abstract class but abstract class can contain constructor what is the need ?
 
