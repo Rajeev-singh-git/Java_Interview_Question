@@ -606,23 +606,26 @@ To resolve this issue, you can either:
 
    ## Type Casting Syntax
 
-   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/0d4d5f65-c9a1-4f98-8a29-a2088480ef72/Untitled.png)
+   ![Screenshot 2024-02-19 181822](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e3b60918-568d-4f28-8d98-ae1372eb9746)
+
 
    Rule 1 : The type of "d" and "c" must have some relationship [either Child to Parent (or) Parent to Child (or) same type] otherwise we will get compile time error saying inconvertible types.
 
-   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/418942db-a472-460a-8d17-04aadbabbea4/Untitled.png)
+
+![Screenshot 2024-02-19 182020](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/0c9b1fed-f640-4314-88a1-c2f8d4340f82)
 
    Rule 2: "C" must be either same (or) derived type of "A" otherwise we will get compile time error saying incompatible types.
    Found: C
    Required: A
+![Screenshot 2024-02-19 182107](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f6567961-8393-415d-9ab1-2c5817d41875)
 
-   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/7a32b505-f9f9-4f53-b37d-01097dd5bd39/Untitled.png)
 
    ## Runtime Checking
 
    The underlying object type of "d" must be either same (or) derived type of "C" otherwise we will get runtime exception saying ClassCastException.
 
-   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/4f752f68-63d2-4802-965a-503ee2f2122c/Untitled.png)
+  ![Screenshot 2024-02-19 182638](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/cc7637b2-23ad-46bf-8934-2fa1c8bec501)
+
 
    Through Type Casting we are not create any new objects for the existing objects we are providing another type of reference variable(mostly Parent type).
 
@@ -667,7 +670,7 @@ To resolve this issue, you can either:
 
    For every component we have to maintain a clear well defined functionality such type of component is said to be follow high cohesion.
 
-   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/0592ae05-92ec-4a53-a57c-f5127c908c84/Untitled.png)
+![Screenshot 2024-02-19 183928](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/7085dc39-adcb-4335-9714-0665167569eb)
 
    High cohesion is always good programming practice because it has several advantages.
 
