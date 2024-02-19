@@ -515,6 +515,8 @@ constructor will be executed but parent object won't be created.
 2. Execution of static variable assignments and static block from top to bottom.
 3. Execution of main method.
 
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/staticControlFlow.java)
+
 ## RIWO state
 
 RIWO concept (Read Indirectly Write Out) refers to a specific state that a static variable experiences during initialization. Here's what you need to know:
@@ -608,6 +610,8 @@ Whenever we are creating child class object the following sequence of events wil
 4. Execution of instance variable assignments and instance blocks in Child class.
 5. Execution of Child class constructor.
    Note: Object creation is the most costly operation in java and hence if there is no specific requirement never recommended to crate objects.
+
+   [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/instanceControlFlow.java)
 
 We can't access instance variables directly from static area because at the time of execution of static area JVM may not identify those members.
 
