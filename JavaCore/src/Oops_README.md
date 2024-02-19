@@ -452,3 +452,11 @@ class Child extends Parent {
 
 # Singleton Class
 
+- Factory methods are typically invoked using the class name, rather than through the constructor. This allows for more flexibility in object creation and enables certain design patterns, like the Factory Method pattern.
+- **Examples**:
+   - **`Runtime.getRuntime()`**: Returns the current **`Runtime`** object, allowing access to the runtime environment.
+   - **`DateFormat.getInstance()`**: Returns a **`DateFormat`** object based on the default locale and time zone, providing a convenient way to obtain a date format instance.
+- **Usage**:
+   - Factory methods are useful when object creation needs to adhere to certain constraints or conditions.
+   - They can encapsulate complex instantiation logic or enforce specific rules during object creation.
+   - Factory methods are often used in conjunction with design patterns such as the Factory Method pattern or the Singleton pattern.
