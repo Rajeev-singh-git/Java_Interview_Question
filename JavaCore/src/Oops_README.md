@@ -479,3 +479,200 @@ class Child extends Parent {
 2. Execution of static variable assignments and static block from top to bottom.
 3. Execution of main method.
 
+## RIWO state
+
+RIWO concept (Read Indirectly Write Out) refers to a specific state that a static variable experiences during initialization. Here's what you need to know:
+
+**When does RIWO occur?**
+
+- RIWO arises when a static variable is declared but **before it is assigned a value**.
+- This typically happens within static blocks or before the declaration of the main method in a class.
+- During this phase, the variable exists in memory but cannot be directly accessed using its name.
+
+**Why is RIWO important?**
+
+- RIWO ensures initialization safety for static variables.
+- Without it, you could potentially read an uninitialized value, leading to unpredictable behavior or errors.
+- By restricting direct access, RIWO forces explicit initialization before usage.
+
+**How do you access a variable in RIWO state?**
+
+- Since direct access is not allowed, you need to use an **indirect method call** to initialize the variable.
+- This usually involves a method defined within the same class that assigns a value to the variable.
+
+**Example:**
+
+**Java**
+
+```java
+class MyClass {
+    static int value; // Declared but not yet initialized
+
+    static void initialize() {
+        value = 10; // Indirectly assigning a value
+    }
+
+    public static void main(String[] args) {
+        // RIWO state: accessing `value` directly here would cause an error
+        //System.out.println(value);
+
+        initialize(); // Indirectly write to the variable
+
+        // Now, value can be accessed and used normally
+        System.out.println(value); // Output: 10
+    }
+}
+
+```
+
+**Key points to remember:**
+
+- RIWO is a temporary state for static variables during initialization.
+- Avoid directly accessing static variables before they are assigned a value.
+- Use indirect methods within the class to properly initialize them.
+- Understanding RIWO ensures safe and correct use of static variables in Java.
+
+## Static control flow parent to child relationship :→
+
+Whenever we are executing Child class the following sequence of events will be
+performed automatically.
+
+1. Identification of static members from Parent to Child.
+2. Execution of static variable assignments and static blocks from Parent to
+   Child
+3. Execution of Child class main() method.
+   Note : When ever we are loading child class automatically the parent class will be loaded but when ever we are loading parent class the child class won't be loaded automatically.
+
+## Static block
+
+- **Execution Time**: Static blocks are executed at the time of class loading. This makes them suitable for performing activities that need to be done during class initialization.
+- **Multiple Static Blocks**: Within a class, you can have multiple static blocks, and they will be executed in the order they appear, from top to bottom.
+- **Example 1**: Loading native libraries is a common activity that needs to be done at the time of class loading. Defining this activity inside a static block ensures it's executed when the class is loaded.
+- **Example 2**: JDBC driver classes often contain a static block to register the driver with the **`DriverManager`**. This registration is essential for JDBC functionality and is typically done automatically without the programmer needing to explicitly register the driver.
+
+## Instance Control Flow
+
+Whenever we are executing a java class static control flow will be executed. In the Static control flow whenever we are creating an object the following sequence of events will be performed automatically.
+
+1. Identification of instance members from top to bottom.
+2. Execution of instance variable assignments and instance blocks from top to
+   bottom.
+3. Execution of constructor.
+   Note: static control flow is one time activity and it will be executed at the time of class loading.
+   But instance control flow is not one time activity for every object creation it will be executed.
+
+
+## Instance control flow in Parent to Child relationship
+
+Whenever we are creating child class object the following sequence of events will be executed automatically.
+
+1. Identification of instance members from Parent to Child.
+2. Execution of instance variable assignments and instance block only in Parent class.
+3. Execution of Parent class constructor.
+4. Execution of instance variable assignments and instance blocks in Child class.
+5. Execution of Child class constructor.
+   Note: Object creation is the most costly operation in java and hence if there is no specific requirement never recommended to crate objects.
+
+We can't access instance variables directly from static area because at the time of execution of static area JVM may not identify those members.
+
+ But from the instance area we can access instance members directly.
+ Static members we can access from anywhere directly because these are
+identified already at the time of class loading only.
+
+# Type Casting :→
+
+In java, Parent class reference can be used to hold Child class object but by using that reference we can't call Child specific methods.
+
+```java
+Object o = new String("ashok"); // Valid
+System.out.println(o.hashCode()); // Valid
+System.out.println(o.length()); // Compile-time error
+```
+
+To resolve this issue, you can either:
+
+1. Cast the **`o`** reference to the **`String`** type before calling the **`length()`** method:
+
+    ```java
+    System.out.println(((String) o).length());
+    ```
+
+2. Declare the **`o`** reference variable as a **`String`** type:
+
+    ```java
+    String o = new String("ashok");
+    System.out.println(o.length());
+    ```
+
+   ## Type Casting Syntax
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/0d4d5f65-c9a1-4f98-8a29-a2088480ef72/Untitled.png)
+
+   Rule 1 : The type of "d" and "c" must have some relationship [either Child to Parent (or) Parent to Child (or) same type] otherwise we will get compile time error saying inconvertible types.
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/418942db-a472-460a-8d17-04aadbabbea4/Untitled.png)
+
+   Rule 2: "C" must be either same (or) derived type of "A" otherwise we will get compile time error saying incompatible types.
+   Found: C
+   Required: A
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/7a32b505-f9f9-4f53-b37d-01097dd5bd39/Untitled.png)
+
+   ## Runtime Checking
+
+   The underlying object type of "d" must be either same (or) derived type of "C" otherwise we will get runtime exception saying ClassCastException.
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/4f752f68-63d2-4802-965a-503ee2f2122c/Untitled.png)
+
+   Through Type Casting we are not create any new objects for the existing objects we are providing another type of reference variable(mostly Parent type).
+
+    ```java
+    package OopsConcept;
+    
+    public class TypeCasting {
+    }
+    
+    class Parent1{
+    
+        public void methodOne(){
+            System.out.println("Parent Class : A");
+        }
+    }
+    
+    class Child1 extends Parent1{
+        public void methodOne(){
+            System.out.println("Child Class : B");
+        }
+    
+        public void methodTwo(){
+            System.out.println("Child Class : C");
+        }
+    
+        public static void main(String[] args){
+            Child1 c1 = new Child1();
+            c1.methodOne();  //Child Class : B
+            c1.methodTwo();  //Child Class : C
+            ((Parent1)c1).methodOne(); //Child Class : B
+        }
+    }
+    
+    /*
+    Child Class : B
+    Child Class : C
+    Child Class : B
+    */
+    ```
+
+   # Cohesion
+
+   For every component we have to maintain a clear well defined functionality such type of component is said to be follow high cohesion.
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/0592ae05-92ec-4a53-a57c-f5127c908c84/Untitled.png)
+
+   High cohesion is always good programming practice because it has several advantages.
+
+    1. Without effecting remaining components we can modify any component hence enhancement will become very easy.
+    2. It improves maintainability of the application.
+    3. It promotes reusability of the application.(where ever validation is required we can reuse the same validate servlet without rewriting )
+
+   Note: It is highly recommended to follow loosely coupling and high cohesion
