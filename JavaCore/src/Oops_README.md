@@ -452,14 +452,50 @@ class Child extends Parent {
 
 # Singleton Class
 
-- Factory methods are typically invoked using the class name, rather than through the constructor. This allows for more flexibility in object creation and enables certain design patterns, like the Factory Method pattern.
-- **Examples**:
-   - **`Runtime.getRuntime()`**: Returns the current **`Runtime`** object, allowing access to the runtime environment.
-   - **`DateFormat.getInstance()`**: Returns a **`DateFormat`** object based on the default locale and time zone, providing a convenient way to obtain a date format instance.
-- **Usage**:
-   - Factory methods are useful when object creation needs to adhere to certain constraints or conditions.
-   - They can encapsulate complex instantiation logic or enforce specific rules during object creation.
-   - Factory methods are often used in conjunction with design patterns such as the Factory Method pattern or the Singleton pattern.
+If the requirement is same then instead of creating a separate object for every person we will create only one object and we can share that object for every required person we can achieve this by using singleton classes. That is the main advantages of singleton classes are Performance will be improved and memory utilization will be improved.
+
+### Creation of our own Singleton Class
+
+We can create our own singleton classes for this we have to use private constructor, static variable and factory method.
+
+```java
+class Test {
+    private static Test t = null;
+
+    private Test() {
+        // Private constructor prevents external instantiation
+    }
+
+    public static Test getTest() {
+        if (t == null) {
+            t = new Test();
+        }
+        return t;
+    }
+}
+
+class Client {
+    public static void main(String[] args) {
+        System.out.println(Test.getTest().hashCode()); // Outputs hash code of the singleton instance
+        System.out.println(Test.getTest().hashCode()); // Outputs the same hash code as the previous call
+        System.out.println(Test.getTest().hashCode()); // Outputs the same hash code as the previous calls
+        System.out.println(Test.getTest().hashCode()); // Outputs the same hash code as the previous calls
+    }
+}
+```
+
+### We are not allowed to create child class but class is not final , How it is Possible ?
+
+By declaring all constructor private. We can't create child class for this class
+
+```java
+class Parent {
+ private Parent() { 
+ }
+```
+
+Note : When ever we are creating child class object automatically parent class
+constructor will be executed but parent object won't be created.
 
 # Factory Method
 
