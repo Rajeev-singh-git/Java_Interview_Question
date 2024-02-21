@@ -34,8 +34,8 @@ And each independent part is called a "Thread".
 
 # The ways to define instantiate and start a new Thread
 
-1. By extending Thread class.
-2. By implementing Runnable interface.
+1. By extending Thread class.  [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyThread.java)
+2. By implementing Runnable interface. [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyThread.java)
 
 ## Case 1: Thread Scheduler
 
