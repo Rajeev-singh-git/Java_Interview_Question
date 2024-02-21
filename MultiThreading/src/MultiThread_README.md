@@ -181,6 +181,12 @@ Runnable interface present in java.lang.pkg and contains only one method run().
 
  [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyRunnable.java)
 
+```java
+MyRunnable r = new MyRunnable();
+Thread t1 = new Thread()
+Thread t2 = new Thread(r);
+```
+
 ## Case 1: `t1.start();`
 
 A new Thread will be created which is responsible for the execution of Thread class run()method.
