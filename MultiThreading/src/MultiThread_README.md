@@ -181,3 +181,66 @@ Runnable interface present in java.lang.pkg and contains only one method run().
 
  [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyRunnable.java)
 
+## Case 1: `t1.start();`
+
+A new Thread will be created which is responsible for the execution of Thread class run()method.
+Output:
+main thread
+main thread
+main thread
+main thread
+main thread
+
+## Case 2: `t1.run();`
+
+No new Thread will be created but Thread class run() method will be executed just like a normal method call.
+Output:
+main thread
+main thread
+main thread
+
+## Case 3: `t2.start():`
+
+New Thread will be created which is responsible for the execution of MyRunnable run() method.
+Output:
+main thread
+
+## Case 4: `t2.run();`
+
+No new Thread will be created and MyRunnable run() method will be executed just like a normal method call.
+Output:
+child Thread
+child Thread
+child Thread
+child Thread
+child Thread
+
+## Case 5: `r.start();`
+
+We will get compile time error saying start()method is not available in MyRunnable class.
+Output:
+Compile time error
+E:\SCJP>javac ThreadDemo.java
+ThreadDemo.java:18: cannot find symbol
+Symbol: method start()
+Location: class MyRunnable
+
+## Case 6: `r.run();`
+
+No new Thread will be created and MyRunnable class run() method will be executed just like a normal method call.
+
+Output:
+child Thread
+child Thread
+child Thread
+
+# Best approach to define a Thread:
+
+ Among the 2 ways of defining a Thread, implements Runnable approach is
+always recommended.
+ In the 1st approach our class should always extends Thread class there is no
+chance of extending any other class hence we are missing the benefits of
+inheritance.
+ But in the 2nd approach while implementing Runnable interface we can extend
+some other class also. Hence implements Runnable mechanism is recommended
+to define a Thread
