@@ -35,7 +35,7 @@ And each independent part is called a "Thread".
 # The ways to define instantiate and start a new Thread
 
 1. By extending Thread class.  [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyThread.java)
-2. By implementing Runnable interface. [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyThread.java)
+2. By implementing Runnable interface. [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyRunnable.java)
 
 ## Case 1: Thread Scheduler
 
@@ -152,7 +152,7 @@ Note : It is never recommended to override start() method.
 
 ## Life Cycle of the Thread
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/e9af192b-f39f-490b-8e65-0e55de46d363/Untitled.png)
+![Screenshot 2024-02-21 154125](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/681d86c3-7461-4613-a02e-e82e7df5ea24)
 
 - Once we created a Thread object then the Thread is said to be in new state or born state.
 - Once we call start() method then the Thread will be entered into Ready or
@@ -175,3 +175,9 @@ t.start();//we will get R.E saying: IllegalThreadStateException
 
 We can define a Thread even by implementing Runnable interface also.
 Runnable interface present in java.lang.pkg and contains only one method run().
+
+![Screenshot 2024-02-21 154444](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/3f09f6cb-9812-4f8b-8bcd-76703f876c79)
+
+
+ [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyRunnable.java)
+
