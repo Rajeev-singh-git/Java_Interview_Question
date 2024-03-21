@@ -41,7 +41,8 @@ If we want to get data for future uses, we have to keep it in Secondary memory u
 
 Data in Hard disk is stored in file which is smallest storage unit and in DB in table form.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/c3d21907-7e8a-4e9c-b8a1-1c113798fdb2/Untitled.png)
+
+![FileInput](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/1129d47f-08f6-4a22-8bf6-074e311088b3)
 
 # What is Persistency?
 
