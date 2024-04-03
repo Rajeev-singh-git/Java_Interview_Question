@@ -291,6 +291,10 @@ Main problem with fileWriter is we have to insert line separator manually, which
 
 ## Program to read data from a file named "Rajeev.txt" using the **`FileReader`** class
 
+### Approach 1 : →
+
+Read one character from the file, again go to the file and read, repeat the process
+
 ```java
 import java.io.*;
 
@@ -311,3 +315,209 @@ class Test
 	}
 } 
 ```
+
+### Approach 2 : →
+
+For larger files, the this program may have better performance as it reads the entire content into memory in one go, whereas the first (approach 1) program reads characters one by one which might result in more frequent disk I/O operations.
+
+Read one character in a file, store in an array, continue the reading…
+
+```java
+import java.io.*;
+
+class Test
+{
+
+	public static void main(String [] args) throws Exception
+	{   
+		File f =  new File("Rajeev.txt");
+		FileReader f1 = new FileReader(f);
+		
+		char [] ch = new char[(int)f.length()];
+		
+		//read one character and store it inside char[]
+		f1.read(ch);
+
+		for(char data:ch)
+			System.out.print(data);
+
+  f1.close();
+	}
+} 
+```
+
+Analogy :→ Take one popcorn from the kitchen eat again go to the kitchen take another and eat or better take all popcorns in a container and then sit and eat.
+
+## Why FileWriter and FileReader is not recommended?
+
+1. While writing data by FileWriter compulsory we should insert line separator (\n) manually which is bigger headache to the programmer.
+2. While reading data by FileReader we have to read character by character instead of line by line which is not convenient to the programmer.
+3. Assume we need to search for a 10 digit mobile no present in a file called “mobile.txt”.
+
+   → Since we can read only character just to search one mobile no 10 searching and to search 10,000  mobile no need to read 1 cr times, so performance is very low.
+
+4. To overcome these limitations we should go for BufferedWriter and BufferedReader concept.
+
+
+# BufferedWriter Overview
+
+BufferedWriter is a class in Java used for efficiently writing text data to a file. It improves performance by buffering data internally before writing it to the underlying file system, making it particularly useful for frequent write operations.
+
+## Introduction
+
+BufferedWriter cannot directly open or communicate with a file; instead, it requires a Writer object like FileWriter as its base. This buffering mechanism significantly enhances write performance, especially for small frequent writes.
+
+- BufferedWriter improves performance over FileWriter for small frequent writes.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/eebd8b7b-8069-4f15-87c8-ca1f3a7ed493/Untitled.png)
+
+## Constructor
+
+```java
+BufferedWriter bw = new BufferedWriter(Writer w);
+BufferedWriter bw = new BufferedWriter(Writer w,int buffersize);
+```
+
+Which of the following declarations are valid?
+
+```java
+//Invalid: BufferedWriter cannot directly open files
+BufferedWriter bw = new BufferedWriter("abc.txt"); 
+
+//Valid: Creates BufferedWriter with default buffer size using a FileWriter
+BufferedWriter bw = new BufferedWriter(new File("abc.txt")); 
+
+//Valid: Allows specifying buffer size
+BufferedWriter bw = new BufferedWriter(new FileWriter("abc.txt"));
+
+//Valid: But creates unnecessary nesting of BufferedWriter
+BufferedWriter bw = new BufferedWriter(new BufferedWriter(new FileWriter("abc.txt")));
+```
+
+## Methods
+
+```java
+write(int): Writes a single character (represented by its ASCII value) to the file.
+write(char[] ch): Writes an array of characters to the file.
+write(String s): Writes a String to the file.
+newLine(): Inserts a new line character (often \n) into the file.
+flush(): Forces all buffered data to be written to the file immediately.
+close(): Closes the BufferedWriter and the underlying Writer object (like FileWriter), releasing resources.
+```
+
+## **BufferedWriter vs FileWriter:**
+
+When compared to FileWriter, which of the following capabilities are  available as a method in BufferedWriter?
+
+1. Writing data to the file.
+2. Closing the Writer
+3. Flush the Writer
+4. Inserting newline character.
+
+Ans ⇒ 4. Inserting new line characater
+
+- Both FileWriter and BufferedWriter can write data to a file.
+- BufferedWriter provides additional methods like `newLine()` and improved performance for frequent writes due to buffering.
+
+## **Example: Writing Data to a Text File**
+
+The following Java program demonstrates how to use BufferedWriter to write data to a text file named "April3.txt":
+
+```java
+import java.io.*;
+
+class Test {
+    public static void main(String [] args) throws Exception {   
+        // Create a FileWriter object to write to the file "April3.txt".
+        // The second argument 'true' specifies that the FileWriter should append data to the file if it already exists.
+        FileWriter fw = new FileWriter("April3.txt", true);
+
+        // Create a BufferedWriter object which wraps the FileWriter object for efficient writing of text to the file.
+        BufferedWriter bw = new BufferedWriter(fw);
+         
+        // Write an integer value 105 to the file. This will write the character corresponding to the ASCII value 105, which is 'i'.
+        bw.write(105);
+
+        // Write the string "Rajeev" to the file.
+        bw.write("Rajeev");
+
+        // Write a newline character to the file.
+        bw.newLine();
+
+        // Write an array of characters {'J','A','V','A'} to the file.
+        char[] ch = {'J','A','V','A'};
+        bw.write(ch);
+
+        // Write the string "unicorn" to the file.
+        bw.write("unicorn");
+
+        // Flush the BufferedWriter to ensure that any buffered data is written to the file immediately.
+        bw.flush();
+
+        // Close the BufferedWriter. This will automatically close the underlying FileWriter as well.
+        bw.close();
+    }
+}
+
+```
+
+### Output : →
+
+```java
+new file "April3.text" will be created with content
+
+iRajeev
+JAVA
+unicorn
+
+```
+
+## **Example: Reading Data from a Text File**
+
+We can read data from a text file using BufferedReader. Here's how:
+
+```java
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+class Test {
+
+    public static void main(String[] args) throws IOException {   
+        // Create a FileReader object to read from the file "April3.txt".
+        FileReader fr = new FileReader("April3.txt");
+
+        // Create a BufferedReader object which wraps the FileReader object for efficient reading of text from the file.
+        BufferedReader br = new BufferedReader(fr);
+         
+        // Read the first line of the file.
+        String line = br.readLine();
+		
+        // Loop until the end of file (line is null).
+		while(line != null) {
+            // Print the current line.
+			System.out.println(line);
+            // Read the next line from the file.
+			line = br.readLine();
+		}
+
+        // Close the BufferedReader. This will automatically close the underlying FileReader as well.
+		br.close();
+	}
+} 
+
+```
+
+## Limitation :
+
+- Only one character at a time can be written at a time.
+- While string data can be written, BufferedWriter does not support writing boolean, integer, or other data types directly. Attempting to write integer values will result in the corresponding ASCII character being printed instead.
+- To Overcome the limitation of writing any type, of data we need to use “PrintWriter”.
+
+### More Limitations :→
+
+1. **Buffer Size Limitation**: BufferedWriter relies on buffering to improve performance. However, if the buffer size is not managed properly, it can lead to issues such as memory overhead or inefficient write operations.
+2. **Not Suitable for Large Files**: BufferedWriter may not be suitable for handling large files, as buffering all the data in memory before writing it to the file can consume a significant amount of memory.
+3. **Concurrency Issues**: BufferedWriter is not thread-safe, meaning it may cause issues in concurrent or multi-threaded environments if not used properly with appropriate synchronization mechanisms.
+4. **File System Limitations**: BufferedWriter's performance may vary depending on the underlying file system's capabilities and limitations. For example, it may encounter issues with file size limits or file system permissions.
+5. **Platform Dependence**: BufferedWriter's behavior may differ across different platforms (e.g., Windows, Linux, macOS) due to differences in file system implementations and Java Virtual Machine (JVM) behavior.
