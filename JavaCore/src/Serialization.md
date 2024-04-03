@@ -369,7 +369,8 @@ BufferedWriter cannot directly open or communicate with a file; instead, it requ
 
 - BufferedWriter improves performance over FileWriter for small frequent writes.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/eebd8b7b-8069-4f15-87c8-ca1f3a7ed493/Untitled.png)
+![BufferReader](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/98d07d95-3c4f-4db7-8cb9-c8f4235b0b6a)
+
 
 ## Constructor
 
