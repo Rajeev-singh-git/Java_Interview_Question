@@ -522,3 +522,100 @@ class Test {
 3. **Concurrency Issues**: BufferedWriter is not thread-safe, meaning it may cause issues in concurrent or multi-threaded environments if not used properly with appropriate synchronization mechanisms.
 4. **File System Limitations**: BufferedWriter's performance may vary depending on the underlying file system's capabilities and limitations. For example, it may encounter issues with file size limits or file system permissions.
 5. **Platform Dependence**: BufferedWriter's behavior may differ across different platforms (e.g., Windows, Linux, macOS) due to differences in file system implementations and Java Virtual Machine (JVM) behavior.
+
+# PrintWriter
+
+**`PrintWriter`** is a class in Java that provides enhanced capabilities for writing text data to files or other output destinations. Unlike **`FileWriter`** and **`BufferedWriter`**, **`PrintWriter`** allows you to write data of different types (such as integers, doubles, booleans, and strings) directly to the output.
+
+## **Constructors :**
+
+1. `PrintWriter(String name)`: Creates a `PrintWriter` associated with a new file specified by the `name` string.
+2. `PrintWriter(File f)`: Similar to the first one, but takes a `File` object instead of a string.
+3. `PrintWriter(Writer w)`: Creates a `PrintWriter` that writes to an existing `Writer` object. This allows flexibility in output destinations.
+
+## **Methods :**
+
+1. Writes a single character represented by the Unicode value **`ch`** to the output.
+2. **`write(char[] ch)`**
+   - Writes an array of characters **`ch`** to the output.
+3. **`write(String s)`**
+   - Writes a string **`s`** to the output.
+4. **`flush()`**
+   - Flushes the stream, forcing any buffered output to be written out.
+5. **`close()`**
+   - Closes the **`PrintWriter`**, flushing any buffered output and releasing associated resources.
+6. **`print(char ch)`**
+   - Prints a single character **`ch`** to the output.
+7. **`print(int i)`**
+   - Prints an integer **`i`** to the output.
+8. **`print(double d)`**
+   - Prints a double **`d`** to the output.
+9. **`print(boolean b)`**
+   - Prints a boolean **`b`** to the output.
+10. **`print(String s)`**
+   - Prints a string **`s`** to the output.
+11. **`println(char ch)`**
+   - Prints a single character **`ch`** to the output followed by a newline.
+12. **`println(int i)`**
+   - Prints an integer **`i`** to the output followed by a newline.
+13. **`println(double d)`**
+   - Prints a double **`d`** to the output followed by a newline.
+14. **`println(boolean b)`**
+   - Prints a boolean **`b`** to the output followed by a newline.
+15. **`println(String s)`**
+   - Prints a string **`s`** to the output followed by a newline.
+
+### **Additional Notes**
+
+- **`PrintWriter`** is often used for writing formatted text to files or network connections.
+- It provides convenient methods (**`print`** and **`println`**) for writing different data types without explicitly converting them to strings.
+- Remember to flush or close the **`PrintWriter`** after writing to ensure that all data is properly written and resources are released.
+
+### *Example: Writing Data to a Text File using PrintWriter**
+
+```java
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+// Import statements for file handling classes
+
+public class Test {
+    public static void main(String[] args) throws IOException {
+        // Main method
+        
+        // Step 1: Create a FileWriter to write to "April6.txt"
+        FileWriter fw = new FileWriter("April6.txt");
+
+        // Step 2: Create a PrintWriter to write to the FileWriter
+        PrintWriter out = new PrintWriter(fw);
+
+        // Writing methods to output data to the file
+        out.write(100);  // Write the Unicode value of 100 (character 'd')
+        out.write('\n'); // Write a newline character
+        
+        out.println(100); // Write the integer 100
+        out.println
+
+```
+
+### Note :→
+
+What is the difference between write(100) and print(100)?
+=> In the case of write(100) the corresponding character "d" will be added to the File
+=> In the case of print(100) "100" value will be added directly to the File.
+Note 1:
+
+1. The most enhanced Reader to read character data from the File is BufferedReader.
+2. The most enhanced Writer to write character data to the File is PrintWriter.
+
+Note 2:
+
+1.  In general we can use Readers and Writers to handle character data. Where          as we can use InputStreams and OutputStreams to handle  binary data(like images, audio files, video files etc).
+
+2. We can use OutputStream to write binary data to the File and we can use
+   InputStream to read binary data from the File.
+
+                       Character Data => Reader and Writer
+    
+                    Binary Data => InputStream and OutputStream
