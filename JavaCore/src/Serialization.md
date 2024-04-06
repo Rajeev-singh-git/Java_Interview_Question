@@ -638,3 +638,276 @@ Note 2:
 
    ![Diagram](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/76249a82-e644-4b64-9091-f6123e45f049)
 
+
+## Program
+
+1.) Write a program to copy content of file1.txt and file2.txt to a new file i.e..file3.txt.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/b6a21483-3c9d-49ce-b1d4-75332b541e80/Untitled.png)
+
+```java
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+
+import java.io.BufferedReader;
+
+class Test
+{
+
+	public static void main(String [] args) throws Exception
+	{   
+		PrintWriter pw = new PrintWriter("file3.txt");
+
+		BufferedReader br = new BufferedReader(new FileReader("file1.txt"));
+		String line = br.readLine();
+
+		while(line != null){
+                 pw.println(line);
+				 line = br.readLine();
+		}
+
+		
+	    br = new BufferedReader(new FileReader("file2.txt"));
+        line = br.readLine();
+
+		while(line != null){
+                 pw.println(line);
+				 line = br.readLine();
+		}
+
+		pw.flush();
+    br.close();
+		pw.close();
+
+	}
+} 
+
+```
+
+Output : →
+
+new file i.e.. file3.txt will be created with output content of both file1 and file2.
+
+```java
+new file i.e.. file3.txt will be created with output content of both file1 and file2.
+aaa
+bbb
+ccc
+111
+222
+333
+```
+
+2.)Write a program to copy alternate line from file1 and file2 to file3.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/3be0fe39-a9c0-4121-8228-4034bf4654ee/Untitled.png)
+
+```java
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+
+import java.io.BufferedReader;
+
+class Test
+{
+
+	public static void main(String [] args) throws Exception
+	{   
+		PrintWriter pw = new PrintWriter("file3.txt");
+
+		BufferedReader br1 = new BufferedReader(new FileReader("file1.txt"));
+		String line1 = br1.readLine();
+
+		BufferedReader br2 = new BufferedReader(new FileReader("file2.txt"));
+        String line2 = br2.readLine();
+
+		while(line1 != null  || line2 != null){
+
+			if(line1!=null){
+				pw.println(line1);
+				line1 = br1.readLine();
+			 }
+			 if(line2!=null){
+				pw.println(line2);
+				line2 = br2.readLine();
+			 }
+		}
+
+		pw.flush();
+        br1.close();
+		br2.close();
+		pw.close();
+
+		System.out.println("Open file3.txt to see the result");
+
+	}
+} 
+
+```
+
+Output :→
+
+new file i.e.. file3.txt will be created with output content of both file1 and file2 on alternate line.
+
+```java
+aaa
+111
+bbb
+222
+ccc
+333
+```
+
+3.) Write a program to perform extraction of mobile number only if there is no duplicates.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/e3b8fad4-3722-4874-9b81-007cd71d6916/Untitled.png)
+
+```java
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+
+class Test
+{
+
+	public static void main(String [] args) throws Exception
+	{   
+
+		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+		PrintWriter pw = new PrintWriter("output.txt");
+
+		String target = br.readLine();
+
+		while(target != null){
+            boolean isAvailable = false;
+
+			BufferedReader br1 = new BufferedReader(new FileReader("output.txt"));
+			String line = br1.readLine();
+
+			while(line!=null){
+				
+				if(line.equals(target))
+				{
+				    isAvailable  = true;
+					break;
+				}
+                line = br1.readLine();
+			}
+
+			if(isAvailable == false){
+				pw.println(target);
+				pw.flush();
+			}
+
+			target = br.readLine();
+		}
+
+		br.close();
+		pw.close();
+
+		System.out.println("Open output.txt to see the result");
+
+	}
+} 
+```
+
+3.) Write a program to remove duplicates from the file.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/b1e412d5-579b-4201-8192-bb639333ae75/Untitled.png)
+
+```java
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+
+class Test
+{
+
+	public static void main(String [] args) throws Exception
+	{   
+
+		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+		PrintWriter pw = new PrintWriter("output.txt");
+
+		String target = br.readLine();
+
+		while(target != null){
+            boolean isAvailable = false;
+
+			BufferedReader br1 = new BufferedReader(new FileReader("delete.txt"));
+			String line = br1.readLine();
+
+			while(line!=null){
+				
+				if(line.equals(target))
+				{
+				    isAvailable  = true;
+					break;
+				}
+                line = br1.readLine();
+			}
+
+			if(isAvailable == false){
+				pw.println(target);
+				pw.flush();
+			}
+
+			target = br.readLine();
+		}
+
+		br.close();
+		pw.close();
+
+		System.out.println("Open output.txt to see the result");
+
+	}
+} 
+
+```
+
+4.) Write a code to read the data from the file and identify which data is of larger in length( assuming the data is String).
+
+```java
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+
+class Test
+{
+
+	public static void main(String [] args) throws Exception
+	{   
+
+		BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+		String data = br.readLine();
+
+		int maxLength = 0;
+        String result = "";
+		while( data!=null){
+			int resultLength = data.length();
+
+			if(maxLength<resultLength){
+				maxLength = resultLength;
+				result=data;
+			}
+			data = br.readLine();
+
+		}
+
+		System.out.println("The maxLength string data in a file is :: "+result);
+		System.out.println("The Length of string  is :: "+maxLength);
+
+	}
+} 
+
+```
