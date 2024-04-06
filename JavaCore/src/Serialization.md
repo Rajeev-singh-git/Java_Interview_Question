@@ -574,28 +574,40 @@ class Test {
 ### *Example: Writing Data to a Text File using PrintWriter**
 
 ```java
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.FileReader;
 import java.io.IOException;
-
-// Import statements for file handling classes
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.BufferedReader;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        // Main method
-        
+        // Main method that demonstrates using PrintWriter to write data to a file
+
         // Step 1: Create a FileWriter to write to "April6.txt"
         FileWriter fw = new FileWriter("April6.txt");
 
         // Step 2: Create a PrintWriter to write to the FileWriter
         PrintWriter out = new PrintWriter(fw);
 
-        // Writing methods to output data to the file
-        out.write(100);  // Write the Unicode value of 100 (character 'd')
-        out.write('\n'); // Write a newline character
+        // Writing Unicode character corresponding to the value 100
+        out.write(100);  // Writes the Unicode character 'd' (Unicode value 100)
+        out.write('\n'); // Writes a newline character
         
-        out.println(100); // Write the integer 100
-        out.println
+        // Using println to write different types of data
+        out.println(100); // Writes the integer 100
+        out.println(true); // Writes the boolean value true
+        out.println('c');  // Writes the character 'c'
+        out.println("DenisRitchie"); // Writes the string "DenisRitchie"
+
+        // Step 3: Flush the PrintWriter to ensure all buffered data is written to the file
+        out.flush();
+
+        // Step 4: Close the PrintWriter and underlying FileWriter to release resources
+        out.close();
+    }
+}
+
 
 ```
 
