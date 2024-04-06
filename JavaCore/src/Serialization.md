@@ -643,7 +643,8 @@ Note 2:
 
 1.) Write a program to copy content of file1.txt and file2.txt to a new file i.e..file3.txt.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/b6a21483-3c9d-49ce-b1d4-75332b541e80/Untitled.png)
+
+![p1 txt](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/bdd9d035-b580-4b62-b57f-99257d60bd7f)
 
 ```java
 import java.io.FileReader;
@@ -702,7 +703,8 @@ ccc
 
 2.)Write a program to copy alternate line from file1 and file2 to file3.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/3be0fe39-a9c0-4121-8228-4034bf4654ee/Untitled.png)
+
+![P2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/200c88c0-6bf3-4804-9148-c3cdfabf41dc)
 
 ```java
 import java.io.FileReader;
@@ -764,7 +766,8 @@ ccc
 
 3.) Write a program to perform extraction of mobile number only if there is no duplicates.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/e3b8fad4-3722-4874-9b81-007cd71d6916/Untitled.png)
+![p3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f07eb9d5-a45e-4395-9065-6bb526378c82)
+
 
 ```java
 import java.io.FileReader;
@@ -819,7 +822,8 @@ class Test
 
 3.) Write a program to remove duplicates from the file.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/b1e412d5-579b-4201-8192-bb639333ae75/Untitled.png)
+![p4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/18f73ee8-3d9c-46bb-a7f2-419b29749f25)
+
 
 ```java
 import java.io.FileReader;
