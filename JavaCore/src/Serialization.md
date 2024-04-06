@@ -631,3 +631,10 @@ Note 2:
                        Character Data => Reader and Writer
     
                     Binary Data => InputStream and OutputStream
+
+
+
+
+
+   ![Diagram](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/76249a82-e644-4b64-9091-f6123e45f049)
+
