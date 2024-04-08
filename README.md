@@ -6,7 +6,7 @@
 
 [1.) Serialization_Basic](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/Serialization.md)
 
-[2.) Serialization_Basic]()
+[2.) Serialization](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/Serialization2.md)
 
 [Threads](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MultiThread_README.md)
 
