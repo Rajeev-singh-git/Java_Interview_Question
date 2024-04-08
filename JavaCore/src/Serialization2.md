@@ -5,7 +5,8 @@ Serialization  refers to the process of converting java object into a format tha
 By using `FileOutputStream` and `ObjectOutputStream` classes we can achieve
 serialization process.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/ad952199-f11e-42f4-af34-1b2bf8f0b4a2/Untitled.png)
+![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/0411d5fb-d44a-428a-9ccf-baca2a8883ac)
+
 
 # Deserialization
 
@@ -16,7 +17,8 @@ It is the process of converting an object from file supported form (or) network 
 By using `FileInputStream` and `ObjectInputStream` classes we can achieve
 DeSerialization.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/a68e4f44-41e3-4ca6-ad52-ddb7dfc79cdd/Untitled.png)
+
+![s2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/6b11d23a-c6bd-432c-b5c5-0fbd0af62450)
 
 Analogy : Big balloon can’t be transported to a long distance, it can burst and occupy large space. But if we take air out of it, it can be transported easily. After reaching the destination again we can fill air and make it big and use it as we want.
 
@@ -180,7 +182,8 @@ class Test
 5. If we attempt to serialize a non-serializable object, we will receive a `RuntimeException` with the message "`NotSerializableException`".
 6. The order of serialization and deserialization must be maintained. If we serialize the **`Dog`** object first, then we should deserialize the **`Dog`** object first as well, not the **`Cat`** object first followed by the **`Dog`** object; otherwise, we will encounter an **`Exception in thread “main” java.lang.ClassCastException`**.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/6cf64aa7-7bf3-4d6b-89b0-4b4b27a0d5e3/Untitled.png)
+![s3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/442ccf30-327b-4ab3-8530-36f9e37ac66a)
+
 
 # Transient
 
@@ -360,7 +363,8 @@ De-Serialization Ended ...
 
 If we don’t know order of object , how can we deserialize the object?
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/eb7327b9-dce1-4a6e-a1d5-612acf983016/Untitled.png)
+
+![s4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/1a5a1c57-6dc8-4e81-8e9e-fb1b19e7f03b)
 
 ```java
 Object o = oos.readObject();
@@ -379,7 +383,8 @@ if(o instanceof Rat)
 
 - Whenever we serialize an object, the set of all objects reachable from that object will be automatically serialized. This group of objects is known as the object graph in serialization.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/a848762f-a50a-457f-be42-9aa166ea2877/Untitled.png)
+![s5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/6ea16680-c3aa-4fca-95d9-105e9496a823)
+
 
 - In the object graph, every object should implement Serializable; otherwise, we will encounter a runtime exception, specifically a “`NotSerializableException`”.
 
@@ -503,7 +508,8 @@ De-Serialization Ended ...
 
 When using transient in serialization, loss of data may happen.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/1d823ed9-9302-4da5-96e1-dd4e5ed79b9a/Untitled.png)
+![s6](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f8c2ebea-e228-4dbd-bdad-7868bfc644d2)
+
 
 Serialization Example with Transient Keyword
 
@@ -567,7 +573,8 @@ Using default serialization with transient fields introduces the risk of informa
 
 To recover from this information loss, consider implementing customized serialization. By customizing the serialization process, you can ensure that essential data, such as passwords, is properly handled and not lost during object serialization and deserialization.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/f514eeb8-bd9d-483f-bdae-c5895440a5c3/Untitled.png)
+![s8](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b8bba257-a788-46b1-a98d-ce7edbdd1bc0)
+
 
 Custom Serialization example
 
