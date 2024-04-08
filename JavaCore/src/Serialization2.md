@@ -568,3 +568,164 @@ Using default serialization with transient fields introduces the risk of informa
 To recover from this information loss, consider implementing customized serialization. By customizing the serialization process, you can ensure that essential data, such as passwords, is properly handled and not lost during object serialization and deserialization.
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/f514eeb8-bd9d-483f-bdae-c5895440a5c3/Untitled.png)
+
+Custom Serialization example
+
+```java
+import java.io.*; // Import necessary classes for IO operations
+
+// Serializable class representing an Account
+class Account implements Serializable {
+    String username = "Rajeev";
+    transient String password = "singh"; // 'transient' keyword to exclude 'password' from serialization
+
+    // Custom serialization logic
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        System.out.println("writeObject method is called...");
+        oos.defaultWriteObject(); // Serialize the default fields of the object
+        String encypwd = "123" + password; // Encrypt the password
+        oos.writeObject(encypwd); // Write the encrypted password to the ObjectOutputStream
+    }
+
+    // Custom deserialization logic
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        System.out.println("readObject method is called...");
+        ois.defaultReadObject(); // Deserialize the default fields of the object
+        String encypwd = (String) ois.readObject(); // Read the encrypted password
+        password = encypwd.substring(3); // Decrypt the password
+    }
+}
+
+// Main class 'Test' to demonstrate serialization and deserialization
+class Test {
+    public static void main(String[] args) throws Exception {
+        Account account = new Account(); // Create an instance of Account
+
+        System.out.println("Serialization Started ...");
+        String fileName = "abcd.ser";
+        FileOutputStream fos = new FileOutputStream(fileName); // Create FileOutputStream for serialization
+        ObjectOutputStream oos = new ObjectOutputStream(fos); // Create ObjectOutputStream
+        oos.writeObject(account); // Serialize the 'account' object
+        oos.close(); // Close the ObjectOutputStream
+        System.out.println("Serialization Ended ...");
+
+        // Wait for user input (for demonstration purposes)
+        System.in.read();
+
+        System.out.println("De-Serialization Started ...");
+        FileInputStream fis = new FileInputStream(fileName); // Create FileInputStream for deserialization
+        ObjectInputStream ois = new ObjectInputStream(fis); // Create ObjectInputStream
+        Account acc = (Account) ois.readObject(); // Deserialize the object
+        ois.close(); // Close the ObjectInputStream
+        System.out.println("Username is :: " + acc.username);
+        System.out.println("Password is :: " + acc.password); // Display deserialized username and password
+        System.out.println("De-Serialization Ended ...");
+    }
+}
+
+```
+
+Output : →
+
+```java
+Serialization Started ...
+writeObject method is called...
+Serialization Ended ...
+
+De-Serialization Started ...
+readObject method is called...
+Username is :: Rajeev
+Password is :: singh
+De-Serialization Ended ...
+ 
+```
+
+## **Custom Serialization Methods in Java**
+
+When serializing an **`Account`** object in Java, the JVM (Java Virtual Machine) checks for the presence of a **`writeObject()`** method within the **`Account`** class. The purpose of this method is to allow customization of the serialization process.
+
+### **Behavior Based on `writeObject()`**
+
+- **Default Serialization**: If the **`Account`** class does not define a **`writeObject()`** method, the JVM automatically performs default serialization.
+- **Custom Serialization**: If the **`Account`** class contains a **`writeObject()`** method, the JVM executes this method during serialization. This allows for custom logic to be applied before or instead of the default serialization process.
+
+### **Similar Rule for `readObject()`**
+
+The same principle applies to the **`readObject()`** method within the **`Account`** class. If this method is defined, the JVM will execute it during deserialization, enabling custom logic to be implemented for object reconstruction.
+
+Code :→
+
+```java
+import java.io.*; // Import necessary classes for IO operations
+
+// Serializable class representing an Account
+class Account implements Serializable {
+    String username = "Rajeev";
+    transient String password = "singh"; // 'transient' keyword to exclude 'password' from serialization
+	transient int pin = 4444; //loss of information
+
+    // Custom serialization logic
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        System.out.println("writeObject method is called...");
+        oos.defaultWriteObject(); // Serialize the default fields of the object
+        String encypwd = "123" + password; // Encrypt the password
+		int encypin = 1111 + pin;
+        oos.writeObject(encypwd); // Write the encrypted password to the ObjectOutputStream
+		oos.writeInt(encypin);
+    }
+
+    // Custom deserialization logic
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        System.out.println("readObject method is called...");
+        ois.defaultReadObject(); // Deserialize the default fields of the object
+        String encypwd = (String) ois.readObject(); // Read the encrypted password
+		int encypin = ois.readInt();
+        password = encypwd.substring(3); // Decrypt the password
+		pin = encypin - 1111;
+    }
+}
+
+// Main class 'Test' to demonstrate serialization and deserialization
+class Test {
+    public static void main(String[] args) throws Exception {
+        Account account = new Account(); // Create an instance of Account
+
+        System.out.println("Serialization Started ...");
+        String fileName = "abcd.ser";
+        FileOutputStream fos = new FileOutputStream(fileName); // Create FileOutputStream for serialization
+        ObjectOutputStream oos = new ObjectOutputStream(fos); // Create ObjectOutputStream
+        oos.writeObject(account); // Serialize the 'account' object
+        oos.close(); // Close the ObjectOutputStream
+        System.out.println("Serialization Ended ...");
+
+        // Wait for user input (for demonstration purposes)
+        System.in.read();
+
+        System.out.println("De-Serialization Started ...");
+        FileInputStream fis = new FileInputStream(fileName); // Create FileInputStream for deserialization
+        ObjectInputStream ois = new ObjectInputStream(fis); // Create ObjectInputStream
+        Account acc = (Account) ois.readObject(); // Deserialize the object
+        ois.close(); // Close the ObjectInputStream
+        System.out.println("Username is :: " + acc.username);
+        System.out.println("Password is :: " + acc.password); // Display deserialized username and password
+		System.out.println("Pin is :: " + acc.pin);
+        System.out.println("De-Serialization Ended ...");
+    }
+}
+
+```
+
+Output :→
+
+```java
+Serialization Started ...
+writeObject method is called...
+Serialization Ended ...
+
+De-Serialization Started ...
+readObject method is called...
+Username is :: Rajeev
+Password is :: singh
+Pin is :: 4444
+De-Serialization Ended ...
+```
