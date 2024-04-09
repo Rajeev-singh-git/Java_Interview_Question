@@ -736,3 +736,318 @@ Password is :: singh
 Pin is :: 4444
 De-Serialization Ended ...
 ```
+
+
+
+# **Serialization Inheritance in Java**
+
+### **Case 1:**
+
+If a parent class implements the **`Serializable`** interface, then automatically every child class inheriting from this parent class also implements **`Serializable`** by default. This means that the Serializable nature is inherited from the parent to the child classes.
+
+```java
+import java.io.*; // Import necessary classes for IO operations
+
+class Animal implements Serializable{
+	 int i =10;
+}
+class Dog extends Animal
+{
+	int j =20;
+}
+
+// Main class 'Test' to demonstrate serialization and deserialization
+class Test {
+    public static void main(String[] args) throws Exception {
+       
+	    Dog d = new Dog();
+
+        System.out.println("Serialization Started ...");
+        String fileName = "abcd.ser";
+        FileOutputStream fos = new FileOutputStream(fileName); // Create FileOutputStream for serialization
+        ObjectOutputStream oos = new ObjectOutputStream(fos); // Create ObjectOutputStream
+        oos.writeObject(d); // Serialize the 'account' object
+        System.out.println("Serialization Ended ...");
+
+        System.out.println("******************************");
+
+        System.out.println("De-Serialization Started ...");
+        FileInputStream fis = new FileInputStream(fileName); // Create FileInputStream for deserialization
+        ObjectInputStream ois = new ObjectInputStream(fis); // Create ObjectInputStream
+        Dog d1 = (Dog)ois.readObject(); // Deserialize the object
+		System.out.println(d1.i + "====>" +d1.j);
+        System.out.println("De-Serialization Ended ...");
+    }
+}
+
+```
+
+Output :→
+
+```java
+Serialization Started ...
+Serialization Ended ...
+******************************
+De-Serialization Started ...
+10====>20
+De-Serialization Ended ...
+```
+
+### **Case 2:**
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/3e99d594-9ac4-4295-bed6-d44a9794cde7/Untitled.png)
+
+1. **Serialization with Child Class Implementing Serializable**:
+   Even if a parent class does not implement **`Serializable`**, we can still serialize an object of a child class if the child class itself implements the **`Serializable`** interface.
+2. **Handling Non-Serializable Parent Class Variables**:
+   During serialization, the JVM ignores the values of instance variables inherited from a non-Serializable parent class. Instead, the JVM saves default values for these variables to the file.
+3. **Deserialization Handling of Non-Serializable Parent Classes**:
+   During deserialization, the JVM checks if any parent class is non-Serializable. If a parent class is non-Serializable, the JVM creates a separate object for each non-Serializable parent and shares its instance variables with the current object.
+4. **Creating Non-Serializable Parent Objects**:
+   To create an object for a non-Serializable parent class during deserialization, the JVM always calls the no-argument constructor (default constructor) of that non-Serializable parent class. Therefore, every non-Serializable parent class must include a no-argument constructor; otherwise, a runtime exception **`InvalidClassException`** will occur.
+
+Code :→
+
+```java
+import java.io.*; // Import necessary classes for IO operations
+
+class Animal{
+	 int i =10;
+
+	 Animal(){
+		System.out.println("Animal Constructor called");
+	 }
+}
+class Dog extends Animal  implements Serializable
+{
+	int j =20;
+	 Dog(){
+		System.out.println("Animal Constructor called");
+	 }
+}
+
+// Main class 'Test' to demonstrate serialization and deserialization
+class Test {
+    public static void main(String[] args) throws Exception {
+       
+	    Dog d = new Dog();
+		  d.i = 888;
+		  d.j = 999;
+
+        System.out.println("Serialization Started ...");
+        String fileName = "abcd.ser";
+        FileOutputStream fos = new FileOutputStream(fileName); // Create FileOutputStream for serialization
+        ObjectOutputStream oos = new ObjectOutputStream(fos); // Create ObjectOutputStream
+        oos.writeObject(d); // Serialize the 'account' object
+        System.out.println("Serialization Ended ...");
+
+        System.out.println("******************************");
+
+        System.out.println("De-Serialization Started ...");
+        FileInputStream fis = new FileInputStream(fileName); // Create FileInputStream for deserialization
+        ObjectInputStream ois = new ObjectInputStream(fis); // Create ObjectInputStream
+        Dog d1 = (Dog)ois.readObject(); // Deserialize the object
+	    	System.out.println(d1.i + "====>" +d1.j);
+        System.out.println("De-Serialization Ended ...");
+    }
+}
+
+```
+
+Output : →
+
+```java
+Animal Constructor called
+Animal Constructor called
+Serialization Started ...
+Serialization Ended ...
+******************************
+De-Serialization Started ...
+Animal Constructor called
+10====>999
+De-Serialization Ended ...
+```
+
+### Serialization Behavior:→
+
+- When serializing an object of a child class that implements **`Serializable`**, the serialization process includes all fields of the child class, including those inherited from its non-Serializable parent class.
+- However, if a field in the child class originates from a non-Serializable parent class, the value of this field is not saved during serialization. Instead, the JVM saves default values for these non-Serializable parent class fields.
+
+### Deserialization Behavior:→
+
+- During deserialization of an object, if any parent class (up the inheritance chain) is non-Serializable, the JVM handles this scenario by creating separate instances of each non-Serializable parent class and then linking them appropriately to reconstruct the object.
+- The process involves invoking the no-argument constructor (default constructor) of each non-Serializable parent class to initialize these parent class instances.
+
+Same code without no argument constructor
+
+```java
+import java.io.*; // Import necessary classes for IO operations
+
+class Animal{
+	 int i =10;
+
+	 Animal(int i){
+		System.out.println("Animal Constructor called");
+	 }
+}
+class Dog extends Animal  implements Serializable
+{
+	int j =20;
+
+	 Dog(){
+		super(10);
+		System.out.println("Animal Constructor called");
+	 }
+}
+
+// Main class 'Test' to demonstrate serialization and deserialization
+class Test {
+    public static void main(String[] args) throws Exception {
+       
+	    Dog d = new Dog();
+		   d.i = 888;
+		   d.j = 999;
+
+        System.out.println("Serialization Started ...");
+        String fileName = "abcd.ser";
+        FileOutputStream fos = new FileOutputStream(fileName); // Create FileOutputStream for serialization
+        ObjectOutputStream oos = new ObjectOutputStream(fos); // Create ObjectOutputStream
+        oos.writeObject(d); // Serialize the 'account' object
+        System.out.println("Serialization Ended ...");
+
+        System.out.println("******************************");
+
+        System.out.println("De-Serialization Started ...");
+        FileInputStream fis = new FileInputStream(fileName); // Create FileInputStream for deserialization
+        ObjectInputStream ois = new ObjectInputStream(fis); // Create ObjectInputStream
+        Dog d1 = (Dog)ois.readObject(); // Deserialize the object
+		    System.out.println(d1.i + "====>" +d1.j);
+        System.out.println("De-Serialization Ended ...");
+    }
+}
+
+```
+
+Output →
+
+```java
+Animal Constructor called
+Animal Constructor called
+Serialization Started ...
+Serialization Ended ...
+******************************
+De-Serialization Started ...
+Exception in thread "main" java.io.InvalidClassException: Dog; no valid constructor
+        at java.base/java.io.ObjectStreamClass$ExceptionInfo.newInvalidClassException(ObjectStreamClass.java:172)
+        at java.base/java.io.ObjectStreamClass.checkDeserialize(ObjectStreamClass.java:791)
+        at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2249)
+        at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1760)
+        at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:538)
+        at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:496)
+        at Test.main(Test.java:40)
+```
+
+# Externalization **(1.1 Version)**
+
+- **Default Serialization Limitations**:
+  With default serialization, the JVM handles everything automatically, and the programmer has limited control over the serialization process.
+- **Serialization of Entire Objects**:
+  Default serialization saves the entire object, which can become inefficient and lead to performance issues when only part of the object needs to be serialized.
+- **Advantages of Externalization**:
+  Externalization provides a solution to these issues by giving full control to the programmer. The JVM does not interfere with the serialization process.
+- **Flexible Object Storage**:
+  The key advantage of externalization over serialization is the ability to save either the entire object or specific parts of it based on specific requirements.
+- **Implementing Externalizable Interface**:
+  To enable externalization for any object, the corresponding class must implement the **`Externalizable`** interface.
+- **Relationship with Serializable**:
+  The **`Externalizable`** interface extends the **`Serializable`** interface and defines two methods:
+    - **`void writeExternal(ObjectOutput out) throws IOException`**: This method is executed during serialization, allowing the programmer to write custom code to save required variables to the output stream.
+    - **`void readExternal(ObjectInput in) throws IOException, ClassNotFoundException`**: This method is executed during deserialization, allowing the programmer to read required variables from the input stream and assign them to the current object.
+- **Deserialization Process**:
+  During deserialization, the JVM creates a new separate object using the public no-argument constructor of the class. The JVM then calls the **`readExternal()`** method to populate the object with data from the input stream.
+- **Requirement for Public No-arg Constructor**:
+  Every class that implements **`Externalizable`** must provide a public no-argument constructor. Failure to do so will result in a **`RuntimeException`** with an **`InvalidClassException`** indicating the missing constructor.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/32d70a2b-354d-4635-ab04-2ea9f8663d6a/Untitled.png)
+
+Code :→
+
+```java
+import java.io.*; // Import necessary classes for IO operations
+
+class Demo implements Externalizable
+{
+	String name;
+	int i;
+	int j;
+
+	public Demo(){
+		System.out.println("public zero argument constructor is called");
+	}
+
+	public Demo(String name, int i, int j){
+		this.name = name;
+		this.i = i;
+		this.j = j;
+
+	}
+
+  public  void writeExternal(ObjectOutput oo) throws java.io.IOException{
+	    System.out.println("writeExternal() is called for Serilization...");
+
+		// Participating Variables 
+		oo.writeObject(name);
+		oo.writeInt(i);
+  }
+
+  public  void readExternal(ObjectInput oi) throws IOException, ClassNotFoundException{
+	   System.out.println("readExternal() is called for DeSerilization...");
+
+	   // Retrieving participated variables 
+		name = (String)oi.readObject();
+		i =  oi.readInt();
+  }
+  
+
+	
+}
+
+// Main class 'Test' to demonstrate serialization and deserialization
+class Test {
+    public static void main(String[] args) throws Exception {
+       
+	    Demo d1 = new Demo("sachin",10,100);
+
+        System.out.println("Externialization Started ...");
+        String fileName = "abcd.ser";
+        FileOutputStream fos = new FileOutputStream(fileName); // Create FileOutputStream for serialization
+        ObjectOutputStream oos = new ObjectOutputStream(fos); // Create ObjectOutputStream
+        oos.writeObject(d1); 
+        System.out.println("Externialization Ended ...");
+
+        System.out.println("******************************");
+
+        System.out.println("De-Externialization Started ...");
+        FileInputStream fis = new FileInputStream(fileName); // Create FileInputStream for deserialization
+        ObjectInputStream ois = new ObjectInputStream(fis); // Create ObjectInputStream
+        Demo d2 = (Demo)ois.readObject();
+		System.out.println(d2.name+ "--->" +d2.i+ "---->"+ d2.j);
+        System.out.println("De-Externialization Ended ...");
+    }
+}
+
+```
+
+Output :→
+
+```java
+Externialization Started ...
+writeExternal() is called for Serilization...
+Externialization Ended ...
+******************************
+De-Externialization Started ...
+public zero argument constructor is called
+readExternal() is called for DeSerilization...
+sachin--->10---->0
+De-Externialization Ended ...
+```
