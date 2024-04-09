@@ -795,7 +795,8 @@ De-Serialization Ended ...
 
 ### **Case 2:**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/3e99d594-9ac4-4295-bed6-d44a9794cde7/Untitled.png)
+![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/d0f6b524-ffd2-4b9f-afe7-bab4cc6cb563)
+
 
 1. **Serialization with Child Class Implementing Serializable**:
    Even if a parent class does not implement **`Serializable`**, we can still serialize an object of a child class if the child class itself implements the **`Serializable`** interface.
@@ -967,8 +968,8 @@ Exception in thread "main" java.io.InvalidClassException: Dog; no valid construc
   During deserialization, the JVM creates a new separate object using the public no-argument constructor of the class. The JVM then calls the **`readExternal()`** method to populate the object with data from the input stream.
 - **Requirement for Public No-arg Constructor**:
   Every class that implements **`Externalizable`** must provide a public no-argument constructor. Failure to do so will result in a **`RuntimeException`** with an **`InvalidClassException`** indicating the missing constructor.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/32d70a2b-354d-4635-ab04-2ea9f8663d6a/Untitled.png)
+  
+![s2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4763b33a-3fab-4964-88f8-75029909dd4b)
 
 Code :→
 
