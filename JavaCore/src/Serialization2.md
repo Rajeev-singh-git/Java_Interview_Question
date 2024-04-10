@@ -1052,3 +1052,112 @@ readExternal() is called for DeSerilization...
 sachin--->10---->0
 De-Externialization Ended ...
 ```
+# **Serialization vs Externalization**
+
+## **Serialization**
+
+Serialization is used for default serialization where everything is taken care of by the JVM, and the programmer has minimal control.
+
+1. Serialization saves the entire object by default; it is not possible to save only part of the object.
+2. Serialization is suitable for saving the entire object to a file.
+3. Performance is relatively lower compared to other serialization methods.
+4. The **`Serializable`** interface does not contain any methods; it is a marker interface.
+5. Serializable classes are not required to have a public no-arg constructor.
+6. The **`transient`** keyword plays a role in serialization by excluding variables from being serialized.
+
+## **Externalization**
+
+Externalization is used for customized serialization where everything is controlled by the programmer, and the JVM has no direct involvement.
+
+1. Externalization allows saving either the entire object or part of the object based on requirements.
+2. Externalization is suitable for saving specific parts of the object.
+3. Performance is relatively higher compared to default serialization methods.
+4. The **`Externalizable`** interface contains two methods: **`writeExternal()`** and **`readExternal()`**.
+5. It is not a marker interface; it requires explicit method implementations.
+6. Externalizable classes must have a public no-arg constructor; otherwise, it will result in a **`RuntimeException`** ("InvalidClassException").
+7. The **`transient`** keyword does not play any role in Externalization; all fields are subject to serialization.
+
+# **serialVersionUID**
+
+The **`serialVersionUID`** is a unique identifier used internally by the JVM for Serialization and Deserialization processes.
+
+1. **Usage in Serialization and Deserialization**:
+    - During serialization, the JVM saves the **`serialVersionUID`** along with the object.
+    - During deserialization, the JVM compares the **`serialVersionUID`** of the serialized object with the local class. If they match, deserialization proceeds; otherwise, a **`RuntimeException`** ("InvalidClassException") is thrown.
+2. **Default `serialVersionUID` Handling**:
+    - After serializing an object, if the **`.class`** file is modified, deserialization cannot occur due to a mismatch in **`serialVersionUID`**. This mismatch leads to an **`InvalidClassException`** during deserialization.
+    - Both the sender and receiver should use the same JVM version to avoid compatibility issues. Differences in **`serialVersionUID`** due to JVM incompatibility result in **`InvalidClassException`** during deserialization.
+3. **Custom `serialVersionUID`**:
+    - To address these issues, it's recommended to define a custom **`serialVersionUID`** explicitly.
+    - By specifying our own **`serialVersionUID`**, we ensure consistent serialization/deserialization behavior across different JVM versions and prevent unexpected exceptions.
+
+   ### **Example: Serialization and Deserialization with `serialVersionUID`**
+
+   Dog.java
+
+    ```java
+    import java.io.Serializable;
+    
+    public class Dog implements Serializable {
+        private static final long serialVersionUID = 1L;
+        int i = 10;
+        int j = 20;
+    }
+    
+    ```
+
+   Sender.java
+
+    ```java
+    import java.io.FileOutputStream;
+    import java.io.IOException;
+    import java.io.ObjectOutputStream;
+    
+    public class Sender {
+        public static void main(String[] args) throws IOException {
+            Dog d = new Dog();
+            FileOutputStream fos = new FileOutputStream("abc.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(d);
+            oos.close();
+            fos.close();
+        }
+    }
+    
+    ```
+
+   ReceiverApp,java
+
+    ```java
+    import java.io.FileInputStream;
+    import java.io.IOException;
+    import java.io.ObjectInputStream;
+    
+    public class ReceiverApp {
+        public static void main(String[] args) throws IOException, ClassNotFoundException {
+            FileInputStream fis = new FileInputStream("abc.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Dog d2 = (Dog) ois.readObject();
+            ois.close();
+            fis.close();
+            System.out.println(d2.i + "=====>" + d2.j);
+        }
+    }
+    
+    ```
+
+   ### **Explanation:**
+
+    - **Dog Class**:
+        - Implements **`Serializable`** with a defined **`serialVersionUID`**.
+        - Contains fields **`i`** and **`j`** to be serialized.
+    - **Sender Class (`Sender.java`)**:
+        - Serializes an instance of **`Dog`** and writes it to a file (**`abc.ser`**).
+    - **ReceiverApp Class (`ReceiverApp.java`)**:
+        - Deserializes the **`Dog`** object from **`abc.ser`** and prints its fields **`i`** and **`j`**.
+
+   ### **Notes:**
+
+    - After serialization (**`Sender`**), changes to **`Dog.class`** won't prevent deserialization (**`ReceiverApp`**) due to the use of **`serialVersionUID`**.
+    - You can configure a custom **`serialVersionUID`** to manage versioning and ensure compatibility across different JVM versions.
+    - Some IDEs automatically generate explicit **`serialVersionUID`** to facilitate versioning and serialization/deserialization consistency.
