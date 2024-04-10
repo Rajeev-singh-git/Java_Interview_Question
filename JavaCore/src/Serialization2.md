@@ -1052,6 +1052,10 @@ readExternal() is called for DeSerilization...
 sachin--->10---->0
 De-Externialization Ended ...
 ```
+
+![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/864b3c02-e356-4d21-8307-454319954ab3)
+
+
 # **Serialization vs Externalization**
 
 ## **Serialization**
