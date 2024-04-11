@@ -1165,3 +1165,68 @@ The **`serialVersionUID`** is a unique identifier used internally by the JVM for
     - After serialization (**`Sender`**), changes to **`Dog.class`** won't prevent deserialization (**`ReceiverApp`**) due to the use of **`serialVersionUID`**.
     - You can configure a custom **`serialVersionUID`** to manage versioning and ensure compatibility across different JVM versions.
     - Some IDEs automatically generate explicit **`serialVersionUID`** to facilitate versioning and serialization/deserialization consistency.
+
+
+# StringTokenzier
+
+StringTokenizer`** is a class provided in the **`java.util`** package.
+It is used to split an entire string into multiple tokens based on a delimiter that we specify.
+
+Example Usage :→
+
+```java
+    
+
+    import java.util.*;
+
+    public class Test {
+        public static void main(String[] args) {
+            // Creating a StringTokenizer with default delimiter (space)
+            StringTokenizer stk = new StringTokenizer("Rajeev Kumar Singh");
+            System.out.println(stk);
+
+            // Counting the number of tokens
+            int tokenCount = stk.countTokens();
+            System.out.println("Number of tokens: " + tokenCount);
+
+            // Iterating through tokens using while loop
+            while (stk.hasMoreTokens()) {
+                String data = stk.nextToken();
+                System.out.println(data);
+            }
+
+            // Creating a StringTokenizer with a custom delimiter ('$')
+            StringTokenizer stk2 = new StringTokenizer("Rajeev$Kumar$Singh");
+            System.out.println(stk2);
+
+            // Counting the number of tokens
+            int tokenCount2 = stk2.countTokens();
+            System.out.println("Number of tokens: " + tokenCount2);
+
+            // Creating a StringTokenizer with a specified delimiter ('$')
+            StringTokenizer stk3 = new StringTokenizer("Rajeev$Kumar$Singh", "$");
+            System.out.println(stk3);
+
+            // Counting the number of tokens
+            int tokenCount3 = stk3.countTokens();
+            System.out.println("Number of tokens: " + tokenCount3);
+        }
+    }
+
+   
+
+```
+Output :
+
+```java
+
+    java.util.StringTokenizer@4517d9a3
+    Number of tokens: 3
+    Rajeev
+    Kumar
+    Singh
+    java.util.StringTokenizer@5b2133b1
+    Number of tokens: 1
+    java.util.StringTokenizer@72ea2f77
+    Number of tokens: 3
+```
