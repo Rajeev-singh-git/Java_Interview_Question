@@ -162,6 +162,13 @@ If the hashcode is a large integer but the hashmap's internal array has a size o
 - **Use built-in functions:** Many programming languages offer built-in hash functions specifically designed for different data types. These functions are usually more efficient and reliable than simple division.
 - **Adapt based on data:** If you have specific knowledge about your data distribution, you can design a custom hashing strategy that takes advantage of those properties.
 
+# **Complexity of HashMap in Java**
+
+HashMap provides constant time complexity for basic operations, get and put if the hash function is properly written and it disperses the elements properly among the buckets. Iteration over HashMap depends on the capacity of HashMap and the number of key-value pairs. Basically, it is directly proportional to the capacity + size. Capacity is the number of buckets in HashMap. So it is not a good idea to keep a high number of buckets in HashMap initially.
+
+![h1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/02616baf-5131-49ac-b8ea-828219937c4e)
+
+
 # **HashMap vs. Hashtable in Java**
 
 | Feature | HashMap | Hashtable |
