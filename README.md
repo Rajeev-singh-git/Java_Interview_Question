@@ -16,4 +16,4 @@
 
  1.) [Hash Map](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/HashMap_README.md)
  
- 2.) [Set, HashMap Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/edit/main/Collections/src/Map/HashMap_Interview_Question.md) 
+ 2.) [Set, HashMap Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/HashMap_Interview_Question.md) 
