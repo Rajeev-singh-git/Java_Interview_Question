@@ -79,7 +79,8 @@ int threshold = (int) (capacity * loadFactor);
 
 If null value is entered in key, it get stored at bucket or index 0.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/9a49d616-e126-4366-b097-58b1b70f1b98/Untitled.png)
+![h2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/5fa39ba3-67f6-4426-87f7-c673765cd953)
+
 
 # Keys in HashMap
 
