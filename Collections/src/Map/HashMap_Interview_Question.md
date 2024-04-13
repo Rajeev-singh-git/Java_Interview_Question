@@ -314,7 +314,8 @@ System.out.println(new String("Ramya").hashCode());  //78727046
 
 Each object has its own distinct memory location in the heap, and the memory allocated for one object doesn't overlap with the memory allocated for another object. This separation ensures that each object has its own space and can hold its specific data.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/0cd220aa-f01c-4b44-bf9e-742e0d52f7b8/Untitled.png)
+![h3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f0251325-ba7d-49f8-901d-9356721f0af2)
+
 
 **While it's common to associate hash codes with object addresses, it's crucial to clarify that modern hash code implementations in Java typically don't directly use object addresses.** Here's a more accurate explanation:
 
