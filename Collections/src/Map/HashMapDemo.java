@@ -40,6 +40,12 @@ public class HashMapDemo {
 
         System.out.println(m);      //{Vishnu=3, Shyam=2, Ganesh=4, Ram=1}
 
+        System.out.println(m.containsKey("Shyam"));  //true
+
+        m.remove("Shyam");
+
+        System.out.println(m.containsKey("Shyam"));  // false
+
 
     }
 }

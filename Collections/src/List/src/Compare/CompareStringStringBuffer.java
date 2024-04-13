@@ -7,7 +7,7 @@ import java.util.TreeSet;
 If 2 obj have same length then consider the alphabetical order.
 */
 
-/* For default natural Sorting Order Objects need to be homogenous and  Comparable (String abd all wrapper class).
+/* For default natural Sorting Order Objects need to be homogenous and  Comparable (String and all wrapper class).
 If we are defining our own sorting order by Comparator than "Object need not be homogenous and comparable".
 
  */
