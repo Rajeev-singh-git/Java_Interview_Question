@@ -1,19 +1,30 @@
-#  HashMap
+#  HashMap in Java
 
-# HashMap
+In Java, HashMap is a part of Java’s collection since Java 1.2. This class is found in java.util package. It provides the basic implementation of the Map interface of Java. HashMap in Java stores the data in (Key, Value) pairs, and you can access them by an index of another type (e.g. an Integer). One object is used as a key (index) to another object (value). If you try to insert the duplicate key in HashMap, it will replace the element of the corresponding key. 
 
-**`HashMap`** is a class that implements the **`Map`** interface from the Java Collections Framework. It stores key-value pairs and provides constant-time performance for basic operations like get and put, assuming that the hash function disperses the elements properly among the buckets.
+# What is HashMap
+
+**`HashMap`** is a class that implements the **`Map`** interface from the Java Collections Framework. It stores key-value pairs and provides constant-time performance for basic operations like get and put, assuming that the hash function disperses the elements properly among the buckets. This class makes no guarantees as to the order of the map. To use this class and its methods, you need to import java.util.HashMap package or its superclass.
 
 ## Key Points
 
 1. **Key-Value Pairs**: HashMap stores data in the form of key-value pairs. Each key is unique and can map to at most one value.
 2. **Hashing**: HashMap uses a hash table to store the key-value pairs. It uses the hashCode() method of the keys to determine their storage location in the hash table.
 3. **Performance**: HashMap offers constant-time performance for basic operations like get and put, on average. However, the performance can degrade to O(n) in the worst case if there are too many hash collisions.
-4. **Null Keys and Values**: HashMap allows one null key and multiple null values. Null keys are stored at the 0th index of the array.
+4. **Null Keys and Values**: HashMap allows one null key and multiple null values. Null keys are stored at the 0th index of the array. 
 5. **Fail-Fast Iterator**: The iterators returned by HashMap are fail-fast, meaning they throw a ConcurrentModificationException if the map is structurally modified at any time after the iterator is created.
 6. **Not Synchronized**: HashMap is not synchronized by default. If multiple threads access a HashMap concurrently and at least one of the threads modifies the map structurally, it must be synchronized externally.
 7. **Iterating Over Entries**: HashMap provides methods to iterate over its entries, such as keySet(), values(), and entrySet().
-8.  **Order**: Doesn't maintain insertion order of elements.
+8.  **Order**: Doesn't maintain insertion order of elements.  it is based on the hash code of the keys
+9.  The underlying data structure is a Hashtable.
+10. It is best suited for search operations.
+11. It implements Serializable and Cloneable interfaces but does not support random access.
+
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/HashMapDemo.java)
+    
+![HashMapinJava](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b9bbffac-7132-4d45-9504-5964b1247f4f)
+
+
 
 ## **Use Cases:**
 
