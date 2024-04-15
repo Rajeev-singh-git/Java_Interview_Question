@@ -3,16 +3,30 @@
 
 ## Abstraction
 
-Abstraction is a process of hiding the internal implementation details and showing only functionality to the user. Another way, it shows only essential things to the user and hides the internal details
+Abstraction is the process of hiding complex internal implementation details of a system and showing only the functionality to the user. Another way, it shows only essential things to the user and hides the internal details.
+
+Abstraction involves showing only the necessary features of an object or system while concealing the implementation details. It allows users to interact with high-level functionalities without needing to understand how those functionalities are implemented internally.
 
 
-Ex : ATM GUI screen only highlights 
+Ex : An ATM graphical user interface (GUI) screen is an example of abstraction. It presents only the essential options and information to the user (such as balance inquiry, withdrawal, deposit) while hiding the complex processes happening behind the scenes.
 
 Abstraction can be achieved using
 
 1.) Abstract Classes:
 
-An abstract class is a class that cannot be instantiated on its own and may contain abstract methods (methods without a body) that are meant to be implemented by its subclasses.
+An abstract class in Java is a class that cannot be instantiated directly (i.e., you cannot create objects of an abstract class). It may contain abstract methods (methods without a body) that must be implemented by its subclasses. Abstract classes provide a way to define common methods and properties that can be shared by multiple subclasses.
+
+``
+abstract class Shape {
+    abstract void draw(); // Abstract method (does not have a body)
+}
+
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+``
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExample.java)
 
