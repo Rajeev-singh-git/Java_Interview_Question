@@ -87,14 +87,16 @@ It defines a set of classes and interfaces that allow us to work with collection
 1. `List` is a child interface of `Collection`.
 2. Use the `List` interface in Java when you want to represent a group of individual objects as a single entity where ***`duplicates are allowed, and the insertion order of elements must be preserved`***.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/22fb806f-f5ae-44da-a2bb-b41d8b41868d/Untitled.png)
+![c1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/a62d7aa4-b963-49ab-bd18-1ac5dcb4fbbe)
+
 
 ## Set Interface
 
 1. `Set` is a child interface of `Collection`.
 2. Use the `Set` interface in Java when you want to represent a group of individual objects as a single entity ***`where duplicates are not allowed, and the insertion order of elements is not preserved`***.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/f87e24bc-b985-4d9b-93cc-a04483d940b0/Untitled.png)
+![c2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/31767a76-1865-4d5d-bbdd-b7294571e608)
+
 
 ### SortedSet Interface
 
@@ -111,7 +113,8 @@ It defines a set of classes and interfaces that allow us to work with collection
 1. `Queue` is a child interface of `Collection`.
 2. Use the `Queue` interface in Java when you want to represent a collection of individual objects that follow the FIFO (First-In-First-Out) order, suitable for scenarios where objects need to be processed in a specific sequence.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/281187bf-25ae-4b47-962a-e4e6161488f2/Untitled.png)
+![c3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/85eb55f6-fd52-4aa4-9fec-f8dc3271aa6e)
+
 
 Note: All the above interfaces (Collection, List, Set, SortedSet, NavigableSet, and
 Queue) meant for representing a group of individual objects.
@@ -123,7 +126,8 @@ If we want to represent a group of objects as key-value pairs then we should go 
 2. Use the `Map` interface in Java when you want to represent a group of objects as key-value pairs. This allows efficient storage and retrieval of data using unique keys.
 3. In a `Map`, duplicate keys are not allowed, but values can be duplicated. Each key in a map is associated with a unique value.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/b09b283a-ee6b-4b3a-8702-8127566543c0/Untitled.png)
+![c4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/8b7558c6-4f3c-44dc-92b3-0539f4cac7d2)
+
 
 ## Sorted Map
 
@@ -154,12 +158,13 @@ In collection framework the following are legacy characters.
 5. Hashtable(C)
 6. Properties(C
 
-# Diagram
+# In-Detail
 
-[Collection Interface](https://www.notion.so/Collection-Interface-cd98829d3b5b48c5aa4bd465561246da?pvs=21)
+[Collection Interface]()
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/eacac71b-b815-4cdd-ada2-dd387d485869/Untitled.png)
+![c5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b6d65cab-7c75-48b1-9232-c093f8b9fea2)
 
-[Map Interface](https://www.notion.so/Map-Interface-a334147ec52b402ab4ad36928a14f501?pvs=21)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/1b573774-bb66-4723-8318-dd02b55ec57f/Untitled.png)
+[Map Interface]()
+
+![c6](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/2feddfb1-71d6-490e-bbf8-967029dbe129)
