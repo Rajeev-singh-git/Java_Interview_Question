@@ -47,13 +47,12 @@ To overcome the above limitations we should go for collections concept.
 
 | Arrays | Collections |
 | --- | --- |
-|  1.) Arrays are fixed in size.  | 1.) Collections are growable in nature. 
-|
+|  1.) Arrays are fixed in size.  | 1.) Collections are growable in nature. |
 |  2.) Arrays are not recommended for memory efficiency.  | 2.) Collections are highly recommended for memory efficiency. |
-| 3.) Arrays are recommended for better performance. |  3.) Collections are not recommended for optimal performance.  |
+| 3.) Arrays are recommended for better performance. |  3.) Collections are not recommended for optimal performance. |
 | 4.) Arrays can hold only homogeneous data type elements. | 4.) Collections can hold both homogeneous and heterogeneous elements. |
 | 5.) Arrays do not have an underlying data structure, and hence lack ready-made method support. |  5.) Every collection class is implemented based on some standard data structure, providing ready-made method support. | |
-|  6.) Arrays can hold both primitive and object types |  6.) Collections can only hold objects but not primitives.  |
+|  6.) Arrays can hold both primitive and object types |  6.) Collections can only hold objects but not primitives. |
 
 # Collection
 
