@@ -12,7 +12,7 @@
 
 [Java 8](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/Java%208_README.md)
 
-[Collection](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/Collections)
+[Collection](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/Collections_README.md)
 
  1.) [Hash Map](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/HashMap_README.md)
  
