@@ -300,7 +300,7 @@ Returns true if the stack is empty; otherwise, returns false.
 Returns the 1-based position of the element o in the stack (topmost element is position 1), or -1 if the element is not found.
 ```
 
-[Code Example : Vector](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Collection_Interface/List/Vector/StackDemo.java)
+[Code Example : Stack](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Collection_Interface/List/Vector/StackDemo.java)
 
 
 # The 3 cursor of Java
@@ -603,9 +603,11 @@ public class SortedSetExample {
 [Code Example -> TreeSet](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Collection_Interface/Set/src/TreeSetDemo.java)
 
  Exception in thread "main" java.lang.ClassCastException: java.lang.StringBuffer cannot be cast to java.lang.Comparable
+
  If we are depending on default natural sorting order compulsory the objects should be homogeneous and Comparable otherwise we will get ClassCastException.
+
  An object is said to be Comparable if and only if the corresponding class
 implements Comparable interface.
- String class and all wrapper classes implements Comparable interface but
-StringBuffer class doesn't implement Comparable interface hence in the above
+
+ String class and all wrapper classes implements Comparable interface but StringBuffer class doesn't implement Comparable interface hence in the above
 program we are getting ClassCastException.
