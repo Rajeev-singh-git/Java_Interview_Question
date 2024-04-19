@@ -160,7 +160,7 @@ In collection framework the following are legacy characters.
 
 # In-Detail
 
-[Collection Interface]()
+[Collection Interface](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Collection_Interface/Collection-Interface-README.md)
 
 ![c5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b6d65cab-7c75-48b1-9232-c093f8b9fea2)
 
