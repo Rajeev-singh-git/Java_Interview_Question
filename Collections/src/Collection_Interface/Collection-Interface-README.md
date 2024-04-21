@@ -580,7 +580,7 @@ public class SortedSetExample {
 - **Duplicates:** Not allowed
 - **Insertion Order:** Not preserved; based on natural or customized sorting order
 - **Heterogeneous Objects:** Not allowed; may result in **`ClassCastException`**
-- **Null Insertion:** Possible (only once)
+- **Null Insertion:** Not Possible Post 1.7 V
 
 ### Constructors:
 

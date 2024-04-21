@@ -1,5 +1,3 @@
-package Compare;
-
 import java.util.Comparator;
 import java.util.TreeSet;
 

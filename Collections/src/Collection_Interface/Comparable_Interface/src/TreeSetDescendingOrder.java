@@ -1,5 +1,3 @@
-package Compare;
-
 import java.util.Comparator;
 import java.util.TreeSet;
 
@@ -43,3 +41,12 @@ class MyComparator implements Comparator<Object>{
 
     }
 }
+
+/*
+- At line "1" if we are not passing Comparator object then JVM will always  calls compareTo()
+  method which is meant for default natural sorting order(ascending order)
+  hence in this case the output is [0, 5, 10, 15, 20].
+- At line "1" if we are passing Comparator object then JVM calls compare() method of MyComparator
+  class which is meant for customized sorting order(descending order) hence in this case the
+  output is [20, 15, 10, 5, 0].
+ */
