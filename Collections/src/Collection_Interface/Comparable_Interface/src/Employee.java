@@ -81,3 +81,10 @@ class MyCom implements Comparator<Object>{
 
     }
 }
+
+/*  Output : ->
+
+[Employee{name='Rajveer', eid=100}, Employee{name='Sher Singh', eid=200}, Employee{name='Abhishek', eid=300}, Employee{name='Venki', eid=400}, Employee{name='Brajesh', eid=500}]
+[Employee{name='Abhishek', eid=300}, Employee{name='Brajesh', eid=500}, Employee{name='Rajveer', eid=100}, Employee{name='Sher Singh', eid=200}, Employee{name='Venki', eid=400}]
+
+ */

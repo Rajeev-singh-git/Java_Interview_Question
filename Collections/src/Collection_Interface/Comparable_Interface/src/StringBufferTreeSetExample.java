@@ -16,7 +16,7 @@ public class StringBufferTreeSetExample {
 
         // Print elements of the TreeSet (automatically sorted)
         for (StringBuffer sb : treeSet) {
-            System.out.println(sb);
+            System.out.print(sb + " ");  // Apple Banana Mango Orange Pineapple
         }
 
     }

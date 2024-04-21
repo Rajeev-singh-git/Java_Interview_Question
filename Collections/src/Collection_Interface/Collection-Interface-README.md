@@ -611,3 +611,368 @@ implements Comparable interface.
 
  String class and all wrapper classes implements Comparable interface but StringBuffer class doesn't implement Comparable interface hence in the above
 program we are getting ClassCastException.
+
+### Comparison of Set implemented classes
+
+| Property | HashSet | LinkedHashSet | TreeSet |
+| --- | --- | --- | --- |
+| Underlying Data Structure | Hashtable | LinkedList + Hashtable | Balanced Tree |
+| Insertion Order | Not preserved | Preserved | Not preserved (by default) |
+| Duplicate Objects | Not allowed | Not allowed | Not allowed |
+| Sorting Order | Not applicable | Not applicable | Applicable |
+| Heterogeneous Objects | Allowed | Allowed | Not allowed |
+| Null Insertion | Allowed | Allowed | In Java 1.6 and earlier versions, TreeSet allowed null elements. However, starting from Java 7 (version 1.7), TreeSet no longer permits null elements |
+
+# Comparable Interface
+
+The **`Comparable`** interface is present in the **`java.lang`** package and is used to define the natural ordering of objects.
+
+It contains a single method **`compareTo()`** that allows objects to be compared with each other for the purpose of ordering.
+
+- Compares the current object (**`this`**) with the specified object **`obj`** for ordering.
+- Returns a negative integer, zero, or a positive integer as **`this`** object is less than, equal to, or greater than **`obj`**.
+
+```java
+obj1.compareTo(obj2);
+```
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/53b72538-c199-4d5d-9c8f-a636026686e9/Untitled.png)
+
+Code
+
+```java
+public class ComparableInterfaceEx1 {
+
+    public static void main(String[] args){
+
+        System.out.println("A".compareTo("Z"));     // -25
+        System.out.println("Z".compareTo("A"));     // 15
+        System.out.println("Z".compareTo("Z"));     // 0
+        System.out.println("Z".compareTo("z"));     // -32
+
+    }
+}
+```
+
+If we are depending on default natural sorting order then internally JVM will use
+compareTo() method to arrange objects in sorting order.
+
+## compareTo() method Analysis
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/b3755d0e-298f-4423-a600-49e3d5bf6b08/Untitled.png)
+
+- If the default sorting order does not meet requirements, developers can define custom sorting using a **`Comparator`** object.
+- The **`Comparable`** interface is used for implementing default natural sorting order.
+- The **`Comparator`** interface is used for implementing customized sorting orders.
+
+## Comparator Interface
+
+The **`Comparator`** interface, found in the **`java.util`** package, defines the following two methods:
+
+1. **`compare(Object obj1, Object obj2)`**: This method compares two objects for order. It returns a negative integer, zero, or a positive integer if the first object is less than, equal to, or greater than the second object, respectively.
+
+```java
+public int compare(Object obj1, Object obj2);
+```
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/15f92fd9-175c-4dcc-badf-8339f2309772/Untitled.png)
+
+1. **`equals(Object obj)`**: This method checks if the current **`Comparator`** is equal to another object.
+
+```java
+public boolean equals(Object obj);
+```
+
+- **Implementation of `compare()` Method**: When implementing the **`Comparator`** interface, developers need to provide implementation only for the **`compare()`** method.
+- **Optional Implementation of `equals()` Method**: Implementing the **`equals()`** method is optional since it is already inherited from the **`Object`** class.
+
+Code Example :→ Program to insert integer objects into the TreeSet where the Sorting order is Descending order.
+
+```java
+import java.util.Comparator;
+import java.util.TreeSet;
+
+public class TreeSetDescendingOrder {
+
+    public static void  main(String[]args){
+
+        TreeSet<Integer> t = new TreeSet<>(new MyComparator());
+        t.add(10);
+        t.add(6);
+        t.add(20);
+        t.add(19);
+        t.add(39);
+
+        System.out.println(t);   // [39, 20, 19, 10, 6]
+
+    }
+
+}
+
+class MyComparator implements Comparator<Object>{
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        Integer i1 = (Integer) o1;
+        Integer i2 = (Integer) o2;
+
+        // Implementation 1
+//        if(i1<i2)
+//            return +1;
+//        else if(i1>i2)
+//            return -1;
+//        else
+//            return 0;
+
+        // Alternative implementation
+  //      return -i1.compareTo(i2);     [39, 20, 19, 10, 6]
+  //      return i1.compareTo(i2);      [6, 10, 19, 20, 39]
+           return i2.compareTo(i1);    // [39, 20, 19, 10, 6]
+   }
+}
+```
+
+- At line "1" if we are not passing Comparator object then JVM will always calls compareTo() method which is meant for default natural sorting order(ascending order)hence in this case the output is [0, 5, 10, 15, 20].
+- At line "1" if we are passing Comparator object then JVM calls compare() method of MyComparator class which is meant for customized sorting order(descending order) hence in this case the output is [20, 15, 10, 5, 0].
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/c72741a6-a2ff-4483-998c-e3f35da8c3c0/Untitled.png)
+
+Code Example : Program to insert String Objects into the TreeSet where the sorting order is reverse of alphabetical order.
+
+```java
+import java.util.Comparator;
+import java.util.TreeSet;
+
+public class TreeSetStringReverseSorting {
+
+    public static void main(String[] args){
+        TreeSet<String> alphabet = new TreeSet<>(new MyComp());
+        alphabet.add("A");
+        alphabet.add("B");
+        alphabet.add("C");
+        alphabet.add("D");
+
+        System.out.println(alphabet);            // [D, C, B, A]
+    }
+}
+
+class MyComp implements Comparator<Object>{
+
+    @Override
+    public int compare(Object obj1, Object obj2){
+        String s1 = obj1.toString();
+        String s2 = (String) obj2;
+
+        return -s1.compareTo(s2);
+    }
+}
+
+```
+
+Code Example : Program to insert StringBuffer Objects into the TreeSet where the sorting order is alphabetical order.
+
+```java
+import java.util.Comparator;
+import java.util.TreeSet;
+
+public class StringBufferTreeSetExample {
+
+    public static void main(String [] args){
+
+        TreeSet<StringBuffer> treeSet = new TreeSet<>(new StringBufferComparator());
+
+        // Add StringBuffer objects to the TreeSet
+        treeSet.add(new StringBuffer("Apple"));
+        treeSet.add(new StringBuffer("Orange"));
+        treeSet.add(new StringBuffer("Banana"));
+        treeSet.add(new StringBuffer("Mango"));
+        treeSet.add(new StringBuffer("Pineapple"));
+
+        // Print elements of the TreeSet (automatically sorted)
+        for (StringBuffer sb : treeSet) {
+            System.out.print(sb + " ");  // Apple Banana Mango Orange Pineapple
+        }
+
+    }
+}
+
+// Custom Comparator for StringBuffer based on alphabetical order of their string representation
+class StringBufferComparator implements Comparator<StringBuffer>{
+
+    @Override
+    public int compare(StringBuffer sb1, StringBuffer sb2) {
+        return sb1.toString().compareTo(sb2.toString());
+    }
+}
+```
+
+1. **Customized Sorting with Comparator**:
+   - When you define your own customized sorting using a **`Comparator`** , it is not mandatory for the objects being sorted to implement the **`Comparable`** interface. The **`Comparator`** interface allows you to define a separate class that specifies the criteria for sorting, independent of the object's inherent comparison logic.
+   - Classes like **`Integer`**, **`String`**, etc., have a default natural sorting order (**`Comparable`**).
+   - For example, **`StringBuffer`** does not implement the **`Comparable`** interface, but you can still sort a list of **`StringBuffer`** objects by providing a custom **`Comparator`** that defines how these objects should be compared and ordered.
+
+2. **Default Natural Sorting Order with Comparable**:
+   - For default natural sorting order (i.e., sorting based on the inherent natural order of objects), the objects must be homogeneous (i.e., of the same type) and must implement the **`Comparable`** interface.
+   - Homogeneous means that the objects being sorted must belong to the same type or share a common supertype that implements **`Comparable`**. This requirement ensures that Java can invoke the **`compareTo`** method to determine the natural order of the objects.
+   - For instance, if you have a list of **`String`** objects and you want to sort them in their default (lexicographical) order, each **`String`** object automatically implements **`Comparable<String>`**, allowing Java to sort them using their inherent comparison logic.
+
+
+Code : Program to insert String and StringBuffer objects into the TreeSet
+where the sorting order is increasing length order. If 2 objects having the same length then consider they alphabetical order.
+
+```java
+import java.util.Comparator;
+import java.util.TreeSet;
+
+/* Insert String and StringBuffer Object into the TreeSet where sorting order is increasing length order.
+If 2 obj have same length then consider the alphabetical order.
+*/
+
+/* For default natural Sorting Order Objects need to be homogenous and  Comparable (String and all wrapper class).
+If we are defining our own sorting order by Comparator than "Object need not be homogenous and comparable".
+
+ */
+
+public class CompareStringStringBuffer {
+
+    public static void main (String[]args) {
+        TreeSet<Object> treeSet = new TreeSet<>(new CustomComparator());
+
+        treeSet.add("A");
+        treeSet.add("ABC");
+        treeSet.add(new StringBuffer("BACK"));
+        treeSet.add(new StringBuffer("SEE"));
+        treeSet.add("ABCD");
+
+        System.out.println(treeSet); //[A, ABC, SEE, ABCD, BACK]
+    }
+}
+
+class CustomComparator implements Comparator<Object>{
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        String s1 = o1.toString();
+        String s2 = o2.toString();
+        int i1 = s1.length();
+        int i2 = s2.length();
+
+        if(i1<i2)
+            return -1;
+        else if(i1>i2)
+            return +1;
+        else
+          return    s1.compareTo(s2);
+    }
+}
+
+```
+
+If you rely on the default natural sorting order, objects must be homogeneous (of the same class) and implement the **`Comparable`** interface. Otherwise, you'll encounter a **`ClassCastException`**. When defining your own sorting with a **`Comparator`**, objects don't necessarily need to be homogeneous, but they must be comparable according to the criteria specified in the **`Comparator`**.
+
+**Custom Classes (e.g., `Customer`, `Student`, `Employee`):**
+
+- Implement **`Comparable`** in custom classes to provide a default natural sorting order.
+- Users can use **`Comparator`** to define alternative sorting orders based on specific criteria.
+
+Code Example
+
+```java
+import java.util.Comparator;
+import java.util.TreeSet;
+
+public class Employee implements Comparable<Object>{
+
+    String name;
+    int eid;
+
+    Employee(String name, int eid){
+        this.name = name;
+        this.eid = eid;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", eid=" + eid +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        int eid1 = this.eid;
+        int eid2 = ((Employee)o).eid;
+
+        if(eid1<eid2)
+            return -1;
+        else if (eid1>eid2)
+         return +1;
+        else
+            return 0;
+    }
+}
+
+class Comp{
+
+    public static void main(String[] args){
+
+        Employee e1 = new Employee("Rajveer",100);
+        Employee e2 = new Employee("Sher Singh",200);
+        Employee e3 = new Employee("Abhishek",300);
+        Employee e4 = new Employee("Venki",400);
+        Employee e5 = new Employee("Brajesh",500);
+
+        TreeSet<Employee> employeeList = new TreeSet<>();
+
+        employeeList.add(e1);
+        employeeList.add(e2);
+        employeeList.add(e3);
+        employeeList.add(e4);
+        employeeList.add(e5);
+
+        System.out.println(employeeList);
+
+        TreeSet<Employee> employeeList2 = new TreeSet<>(new MyCom());
+
+        employeeList2.add(e1);
+        employeeList2.add(e2);
+        employeeList2.add(e3);
+        employeeList2.add(e4);
+        employeeList2.add(e5);
+
+        System.out.println(employeeList2);
+    }
+
+}
+
+class MyCom implements Comparator<Object>{
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        String s1 = ((Employee)o1).name;
+        Employee e2 = (Employee)o2;
+        String s2 = e2.name;
+
+        return s1.compareTo(s2);
+
+    }
+}
+
+/*  Output : ->
+
+[Employee{name='Rajveer', eid=100}, Employee{name='Sher Singh', eid=200}, Employee{name='Abhishek', eid=300}, Employee{name='Venki', eid=400}, Employee{name='Brajesh', eid=500}]
+[Employee{name='Abhishek', eid=300}, Employee{name='Brajesh', eid=500}, Employee{name='Rajveer', eid=100}, Employee{name='Sher Singh', eid=200}, Employee{name='Venki', eid=400}]
+
+ */
+```
+
+### Comparable vs Comparator
+
+| Aspect | Comparable | Comparator |
+| --- | --- | --- |
+| Purpose | Default natural sorting order | Customized sorting order |
+| Package | java.lang | java.util |
+| Methods | Contains only one method.  compareTo(Object obj) | ContainsTwo method.            1.) compare(T obj1, T obj2), 2.)equals(Object obj) |
+| Usage | Implement in classes for natural order | Implement as standalone for custom sorting |
+| Implementers | String Classes , and all Wrapper classes implements Comparable interface. | Only specialized classes (Collator, RuleBasedCollator) used in GUI |
