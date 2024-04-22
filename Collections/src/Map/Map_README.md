@@ -7,11 +7,12 @@ The **`Map`** interface in Java is used to represent a collection of objects as 
 - **Duplicate Keys**: Not allowed, but values can be duplicated.
 - **Entry**: Each key-value pair in a **`Map`** is referred to as one entry.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/bbd9311f-7b54-4346-959e-a62694b81933/Untitled.png)
+![c1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/7ec820c4-81a4-44d7-9910-5264db93fa12)
+
 
 Map is considered as collection of Entry Object.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/e15cb0d0-6490-4249-8f7a-46161cb3ed32/Untitled.png)
+![c2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b6ca4b51-caf5-4322-94f9-b85d87dd2f03)
 
 **`Map`** is not a child interface of **`Collection`**, so Collection methods cannot be applied directly to **`Map`**.
 
@@ -42,94 +43,9 @@ System.out.println(map); // {100=ashok}
 
 **Note**: The **`Map`** interface provides powerful methods for manipulating key-value data, enabling efficient storage, retrieval, and modification of mappings. Implementations of **`Map`** include **`HashMap`**, **`TreeMap`**, **`LinkedHashMap`**, and others, each with specific characteristics suitable for different use cases.
 
-Example Code : →
+[Example Code : →](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/MapMethodDemo.java)
 
-```java
-package Map;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-public class MapMethodDemo {
-
-    public static void main(String [] args){
-
-        // Create a HashMap
-        Map<String, String> fruits = new HashMap<>();
-
-        // 1. put(key, value) - Add entries
-        fruits.put("Apple", "Red");
-        fruits.put("Banana", "Yellow");
-        fruits.put("Orange", "Orange"); // Overwrites existing "Orange" with no value
-
-        // Print the Map
-        System.out.println("Fruits Map: " + fruits);
-
-        // 14. putAll(Map m) - Add entries from another Map
-        Map<String, String> moreFruits = new HashMap<>();
-        moreFruits.put("Grape", "Purple");
-        moreFruits.put("Mango", "Yellow");
-        fruits.putAll(moreFruits);
-        System.out.println("Fruits Map after putAll: " + fruits);
-
-        // 15. get(key) - Retrieve value by key
-        String appleColor = fruits.get("Apple");
-        System.out.println("Color of Apple: " + appleColor);
-
-        // 16. remove(key) - Remove entry and return value
-        String removedFruit = fruits.remove("Banana");
-        System.out.println("Removed fruit: " + removedFruit);
-        System.out.println("Fruits Map after remove: " + fruits);
-
-        // 17. containsKey(key) - Check if key exists
-        boolean hasMango = fruits.containsKey("Mango");
-        System.out.println("Does map contain 'Mango' key? " + hasMango);
-
-        // 18. containsValue(value) - Check if value exists
-        boolean hasYellowFruit = fruits.containsValue("Yellow");
-        System.out.println("Does map contain a fruit with value 'Yellow'? " + hasYellowFruit);
-
-        // 19. isEmpty() - Check if map is empty
-        boolean isEmpty = fruits.isEmpty();
-        System.out.println("Is the map empty? " + isEmpty);
-
-        // 20. size() - Get the number of entries
-        int mapSize = fruits.size();
-        System.out.println("Number of entries in the map: " + mapSize);
-
-        // 21. keySet() - Get a set of all keys
-        // (Cannot modify the original map through the keySet)
-        if (!fruits.isEmpty()) { // Avoid potential exception on empty map
-            Set<String> fruitKeys = fruits.keySet();
-            System.out.println("Set of keys: " + fruitKeys);
-        }
-
-        // 22. values() - Get a collection of all values
-        // (Cannot modify the original map through the values collection)
-        if (!fruits.isEmpty()) { // Avoid potential exception on empty map
-            Collection<String> fruitValues = fruits.values();
-            System.out.println("Collection of values: " + fruitValues);
-        }
-
-        // 23. entrySet() - Get a set of all key-value pairs (Entry objects)
-        // (Can modify the original map through the entrySet)
-        if (!fruits.isEmpty()) { // Avoid potential exception on empty map
-            Set<Map.Entry<String, String>> entries = fruits.entrySet();
-            for (Map.Entry<String, String> entry : entries) {
-                System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-            }
-        }
-
-        // 24. clear() - Remove all entries
-        fruits.clear();
-        System.out.println("Fruits Map after clear: " + fruits);
-
-    }
-}
-
-```
 
 ### Entry Interface
 
@@ -190,40 +106,9 @@ Key: two, Value: 2
 
 To obtain a synchronized version of a **`HashMap`** object, you can use the **`synchronizedMap`** method provided by the **`Collections`** class. This method wraps your existing **`HashMap`** instance with a synchronized wrapper, ensuring thread safety when multiple threads access the map concurrently.
 
-Code : → Synchronized version of HashMap
+[Code : → Synchronized version of HashMap](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/SynchronizedHashMapExample.java)
 
-```java
-package Map;
 
-import java.util.*;
-
-public class SynchronizedHashMapExample {
-
-    public static void main(String[] args) {
-        // Create a HashMap
-        Map<String, String> hashMap = new HashMap<>();
-
-        // Add elements to the HashMap
-        hashMap.put("key1", "value1");
-        hashMap.put("key2", "value2");
-
-        // Obtain synchronized version of the HashMap
-        Map<String, String> synchronizedHashMap = Collections.synchronizedMap(hashMap);
-
-        // Now synchronizedHashMap is thread-safe for concurrent access
-        // You can perform operations on synchronizedHashMap in a multi-threaded environment
-        synchronizedHashMap.put("key3", "value3");
-
-        // Iterate over synchronizedHashMap (safely in a multi-threaded context)
-        synchronized (synchronizedHashMap) {
-            for (Map.Entry<String, String> entry : synchronizedHashMap.entrySet()) {
-                System.out.println(entry.getKey() + " : " + entry.getValue());
-            }
-        }
-    }
-}
-
-```
 
 • **ConcurrentHashMap:** If you need a more efficient concurrent map implementation with better performance than a synchronized `HashMap`, consider using `ConcurrentHashMap` from the `java.util.concurrent` package. It's designed for concurrent access without explicit synchronization.
 
@@ -255,44 +140,8 @@ It is exactly same as HashMap except the following differences :
 
 Note: In general we can use LinkedHashSet and LinkedHashMap for implementing cache applications.
 
-Code Example
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/LinkedHashMapDemo.java)
 
-```java
-package Map;
-
-import java.util.*;
-
-public class LinkedHashMapDemo {
-    public static void main(String[] args) {
-        // Creating a LinkedHashMap to store student names and their corresponding scores
-        LinkedHashMap<String, Integer> studentScores = new LinkedHashMap<>();
-
-        // Adding some entries to the LinkedHashMap
-        studentScores.put("Alice", 85);
-        studentScores.put("Bob", 90);
-        studentScores.put("Charlie", 78);
-        studentScores.put("David", 95);
-
-        // Iterating over the LinkedHashMap using a for-each loop
-        System.out.println("Student Scores:");
-        for (Map.Entry<String, Integer> entry : studentScores.entrySet()) {
-            String studentName = entry.getKey();
-            int score = entry.getValue();
-            System.out.println(studentName + ": " + score);
-        }
-
-        // Accessing a specific value by key
-        String nameToFind = "Charlie";
-        if (studentScores.containsKey(nameToFind)) {
-            int charlieScore = studentScores.get(nameToFind);
-            System.out.println(nameToFind + "'s score is: " + charlieScore);
-        } else {
-            System.out.println(nameToFind + " not found in the map.");
-        }
-    }
-}
-
-```
 
 ## IdentityHashMap
 
@@ -301,51 +150,10 @@ It is exactly same as HashMap except the following differences:
 - In **`HashMap`**, duplicate keys are identified using the **`.equals()`** method, which compares keys based on content.
 - In **`IdentityHashMap`**, duplicate keys are identified using **`==`** (double equal operator), which compares keys based on reference.
 
-```java
-package Map;
+  [code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/IdentityHashMapDemo.java)
 
-import java.util.*;
 
-public class IdentityHashMapDemo {
 
-    public static void main(String[] args) {
-        // Using HashMap
-        HashMap<String, String> hashMap = new HashMap<>();
-        String key1 = new String("key");
-        String key2 = new String("key");
-
-        hashMap.put(key1, "value1");
-        hashMap.put(key2, "value2");
-
-        System.out.println(hashMap);
-
-        System.out.println("HashMap size: " + hashMap.size()); // Output: 2
-
-        // Using IdentityHashMap
-        Map<String, String> identityHashMap = new IdentityHashMap<>();
-        String key3 = new String("key");
-        String key4 = new String("key");
-
-        identityHashMap.put(key3, "value1");
-        identityHashMap.put(key4, "value2");
-
-        System.out.println("IdentityHashMap size: " + identityHashMap.size()); // Output: 2
-
-        System.out.println(identityHashMap);
-
-        // Checking entries in HashMap
-        for (Map.Entry<String, String> entry : hashMap.entrySet()) {
-            System.out.println("HashMap Key: " + entry.getKey() + ", Value: " + entry.getValue());
-        }
-
-        // Checking entries in IdentityHashMap
-        for (Map.Entry<String, String> entry : identityHashMap.entrySet()) {
-            System.out.println("IdentityHashMap Key: " + entry.getKey() + ", Value: " + entry.getValue());
-        }
-    }
-}
-
-```
 
 ## WeakHashMap
 
@@ -401,115 +209,7 @@ class Temp
 3.  **`TreeMap t = TreeMap(SortedMap m)`**: Creates a **`TreeMap`** with the same mappings as the specified **`SortedMap`**, sorted according to the natural ordering of its keys.
 4.  **`TreeMap t= new TreeMap(Map m)`**: Creates a **`TreeMap`** with the same mappings as the specified **`Map`**, sorted according to the natural ordering of its keys.
 
-Code : TreeMap using Natural Sorting Order
+[Code : TreeMap using Natural Sorting Order](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/TreeMapExample.java)
 
-```java
-package Map;
 
-import java.util.*;
-
-public class TreeMapExample {
-
-    public static void main(String[] args) {
-        // Creating a TreeMap to store student grades (String key, Integer value)
-        TreeMap<String, Integer> studentGrades = new TreeMap<>();
-
-        // Adding entries to the TreeMap
-        studentGrades.put("Alice", 85);
-        studentGrades.put("Bob", 90);
-        studentGrades.put("Charlie", 78);
-        studentGrades.put("David", 95);
-
-        // Displaying the TreeMap (automatically sorted by keys)
-        System.out.println("Student Grades (Sorted by Name):");
-        for (Map.Entry<String, Integer> entry : studentGrades.entrySet()) {
-            System.out.println("Name: " + entry.getKey() + ", Grade: " + entry.getValue());
-        }
-
-        // Retrieving and updating values based on keys
-        String studentName = "Charlie";
-        if (studentGrades.containsKey(studentName)) {
-            int charlieGrade = studentGrades.get(studentName);
-            System.out.println(studentName + "'s Grade: " + charlieGrade);
-
-            // Update Charlie's grade
-            studentGrades.put(studentName, 80);
-            System.out.println("Updated " + studentName + "'s Grade: " + studentGrades.get(studentName));
-        } else {
-            System.out.println(studentName + " not found in the TreeMap.");
-        }
-    }
-}
-
-/*  Output : ->
-Student Grades (Sorted by Name):
-Name: Alice, Grade: 85
-Name: Bob, Grade: 90
-Name: Charlie, Grade: 78
-Name: David, Grade: 95
-Charlie's Grade: 78
-Updated Charlie's Grade: 80
-
- */
-```
-
-Code : TreeMap using Customized Sorting Order
-
-```java
-package Map;
-
-import java.util.Comparator;
-import java.util.Map;
-import java.util.TreeMap;
-
-public class TreeMapComparatorExample {
-    public static void main(String[] args) {
-        // Creating a TreeMap to store student grades (String key, Integer value)
-        TreeMap<String, Integer> studentGrades = new TreeMap<>(new MyComp());
-
-        // Adding entries to the TreeMap
-        studentGrades.put("Alice", 85);
-        studentGrades.put("Bob", 90);
-        studentGrades.put("Charlie", 78);
-        studentGrades.put("David", 95);
-
-        // Displaying the TreeMap (automatically sorted by keys)
-        System.out.println("Student Grades (Sorted by Name):");
-        for (Map.Entry<String, Integer> entry : studentGrades.entrySet()) {
-            System.out.println("Name: " + entry.getKey() + ", Grade: " + entry.getValue());
-        }
-
-        // Retrieving and updating values based on keys
-        String studentName = "Charlie";
-        if (studentGrades.containsKey(studentName)) {
-            int charlieGrade = studentGrades.get(studentName);
-            System.out.println(studentName + "'s Grade: " + charlieGrade);
-
-            // Update Charlie's grade
-            studentGrades.put(studentName, 80);
-            System.out.println("Updated " + studentName + "'s Grade: " + studentGrades.get(studentName));
-        } else {
-            System.out.println(studentName + " not found in the TreeMap.");
-        }
-    }
-}
-
-class MyComp implements Comparator<String>{
-
-    @Override
-    public int compare(String s1, String s2) {
-         return s2.compareTo(s1);
-    }
-}
-
-/* Output : ->
-Student Grades (Sorted by Name):
-Name: David, Grade: 95
-Name: Charlie, Grade: 78
-Name: Bob, Grade: 90
-Name: Alice, Grade: 85
-Charlie's Grade: 78
-Updated Charlie's Grade: 80
-
- */
-```
+[Code : TreeMap using Customized Sorting Order](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/TreeMapComparatorExample.java)
