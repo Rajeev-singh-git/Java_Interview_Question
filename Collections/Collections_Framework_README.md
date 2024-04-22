@@ -165,6 +165,6 @@ In collection framework the following are legacy characters.
 ![c5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b6d65cab-7c75-48b1-9232-c093f8b9fea2)
 
 
-[Map Interface]()
+[Map Interface](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/Map_README.md)
 
 ![c6](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/2feddfb1-71d6-490e-bbf8-967029dbe129)
