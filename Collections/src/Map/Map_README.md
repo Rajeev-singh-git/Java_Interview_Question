@@ -150,7 +150,7 @@ It is exactly same as HashMap except the following differences:
 - In **`HashMap`**, duplicate keys are identified using the **`.equals()`** method, which compares keys based on content.
 - In **`IdentityHashMap`**, duplicate keys are identified using **`==`** (double equal operator), which compares keys based on reference.
 
-  [code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/IdentityHashMapDemo.java)
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/IdentityHashMapDemo.java)
 
 
 
