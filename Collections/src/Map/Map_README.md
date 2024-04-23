@@ -377,7 +377,8 @@ rag
 
 The **`NavigableMap`** interface  extends the **`SortedMap`** interface and provides methods for navigating and manipulating sorted maps based on key order.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/347d25a1-d6c2-4bbf-8dca-cae83435fb22/Untitled.png)
+![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/ce847f30-6312-4c6b-9737-052e5b301f46)
+
 
 ### **Key Methods**
 
@@ -397,4 +398,4 @@ The **`NavigableMap`** interface  extends the **`SortedMap`** interface and prov
    - Returns a **`NavigableMap`** containing the entries of the original map in reverse order.
 
 
-Code Example
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/NavigableMapDemo.java)
