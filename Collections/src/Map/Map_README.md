@@ -373,3 +373,28 @@ password
 venki
 rag
 ```
+## Navigable Map
+
+The **`NavigableMap`** interface  extends the **`SortedMap`** interface and provides methods for navigating and manipulating sorted maps based on key order.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/347d25a1-d6c2-4bbf-8dca-cae83435fb22/Untitled.png)
+
+### **Key Methods**
+
+1. **`ceilingKey(e)`**:
+   - Returns the least key greater than or equal to the specified key **`e`**.
+2. **`higherKey(e)`**:
+   - Returns the least key strictly greater than the specified key **`e`**.
+3. **`floorKey(e)`**:
+   - Returns the greatest key less than or equal to the specified key **`e`**.
+4. **`lowerKey(e)`**:
+   - Returns the greatest key strictly less than the specified key **`e`**.
+5. **`pollFirstEntry()`**:
+   - Removes and returns the entry associated with the lowest key in the map.
+6. **`pollLastEntry()`**:
+   - Removes and returns the entry associated with the highest key in the map.
+7. **`descendingMap()`**:
+   - Returns a **`NavigableMap`** containing the entries of the original map in reverse order.
+
+
+Code Example
