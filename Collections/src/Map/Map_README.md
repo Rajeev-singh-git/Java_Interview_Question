@@ -213,3 +213,164 @@ class Temp
 
 
 [Code : TreeMap using Customized Sorting Order](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Map/TreeMapComparatorExample.java)
+
+## HashTable
+
+1. The underlying data structure is Hashtable.
+2. Insertion order is not preserved and it is based on hash code of the keys.
+3. Heterogeneous objects are allowed for both keys and values.
+4. Null key (or) null value is not allowed otherwise we will get NullPointerException.
+5. Duplicate keys are not allowed but values can be duplicated.
+6. Every method present inside Hashtable is syncronized and hence Hashtable objet is Thread-safe.
+
+### Constructor
+
+1. **`HashTable h  = new Hashtable()`**: Creates an empty **`Hashtable`** object with a default initial capacity of 11 and a default fill ratio (load factor) of 0.75.
+2. **`HashTable h = new Hashtable(int initialCapacity)`**: Creates an empty **`Hashtable`** object with the specified initial capacity and the default fill ratio (load factor) of 0.75.
+3. **`HashTable h = new Hashtable(int initialCapacity, float loadFactor)`**: Creates an empty **`Hashtable`** object with the specified initial capacity and load factor (fill ratio).
+4. **`HashTable h = new Hashtable(Map m)`**: Creates a **`Hashtable`** with the same mappings as the specified **`Map`**. The initial capacity of the **`Hashtable`** is set to twice the size of the specified map or 11 (whichever is greater), and the default load factor (0.75) is used.
+
+Code Example
+
+```java
+package Map;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashTableDemo {
+
+    public static void main(String [] args){
+
+        Map<Temporary, String> h = new HashMap<>();
+
+        h.put(new Temporary(5), "A");
+        h.put(new Temporary(2), "B");
+        h.put(new Temporary(6), "C");
+        h.put(new Temporary(15), "D");
+        h.put(new Temporary(23), "E");
+        h.put(new Temporary(16), "F");
+
+        System.out.println(h); //{6=C, 16=F, 5=A, 15=D, 2=B, 23=E}
+
+    }
+}
+
+class Temporary{
+    int i;
+
+    Temporary(int i){
+        this.i =i;
+    }
+
+    @Override
+    public int hashCode() {
+        return i;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(i);
+    }
+}
+
+```
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/c2589ef6-e057-4f26-81b3-61168fc0cd49/Untitled.png)
+
+- Total 11 boxes are there because default initial capacity is of HashTable is 11.
+- Each key is stored to their corresponding box no. Ex : Key 6 is stored in box no 6, key 15 is stored in box 4 because box no 15 is not there. So, it follow rule 15 % 11. 15 is divided by total no of box and whatever the remainder comes, key is stored into that box number. Here 4 is remainder, so key 15 is added to remainder box number 4.
+- While printing preference will be top to bottom and  right to left in same box.
+
+### Properties
+
+1. Properties class is the child class of Hashtable.
+2. In our program if anything which changes frequently like DBUserName, Password etc., such type of values not recommended to hardcode in java application because for every change we have to recompile, rebuild and redeploy the application and even server restart also required sometimes it creates a big business impact to the client.
+3. Such type of variable  we have to hardcode in property files and we have to read the values from the property files into java application.
+4. The main advantage in this approach is if there is any change in property files automatically those changes will be available to java application just redeployment is enough.
+5. By using Properties object we can read and hold properties from property files into java application.
+
+### Constructor
+
+```java
+Properties p = new Properties();
+```
+
+In properties both key and value "should be String type only”.
+
+Methods
+
+1. **`String getProperty(String propertyName)`**
+    - Returns the value associated with the specified **`propertyName`**.
+2. **`String setProperty(String propertyName, String propertyValue)`**
+    - Sets a new property with the specified **`propertyName`** and **`propertyValue`**.
+3. **`Enumeration propertyNames()`**
+    - Returns an enumeration of all the property names in this **`Properties`** object.
+4. **`void load(InputStream is) throws IOException`**
+    - Loads properties from the given **`InputStream`** into this **`Properties`** object.
+5. **`void store(OutputStream os, String comment) throws IOException`**
+    - Stores the properties represented by this **`Properties`** object into the specified **`OutputStream`**, along with an optional comment.
+
+Code
+
+```java
+import java.util.*;
+import java.io.*;
+
+public class PropertiesFileDemo {
+
+    public static void main(String[] args) throws Exception {
+
+        // Create a Properties object
+        Properties p = new Properties();
+
+        // Load properties from the file "abc.properties"
+        FileInputStream fis = new FileInputStream("abc.properties");
+        p.load(fis);
+        fis.close(); // Close the input stream
+
+        // Print all properties
+        System.out.println("Properties loaded from abc.properties:");
+        System.out.println(p);
+
+        // Get a specific property value
+        String venkiValue = p.getProperty("venki");
+        System.out.println("Value of 'venki': " + venkiValue);
+
+        // Set a new property
+        p.setProperty("rag", "181818");
+
+         // Get a specific property value
+         String ragValue = p.getProperty("rag");
+         System.out.println("Value of 'rag': " + ragValue);
+
+        // Enumerate through all property names
+        System.out.println("All property names:");
+        Enumeration<?> e = p.propertyNames();
+        while (e.hasMoreElements()) {
+            String propertyName = (String) e.nextElement();
+            System.out.println(propertyName);
+        }
+
+        // Store the updated properties back to the file
+        FileOutputStream fos = new FileOutputStream("abc.properties");
+        p.store(fos, "Updated by Ashok for SCJP demo class");
+        fos.close(); // Close the output stream
+    }   
+}
+```
+
+Output :
+
+```java
+Properties loaded from abc.properties:
+{password=tiger,, venki=999, nag=181818, user=scott, }
+Value of 'venki': 999
+Value of 'rag': 181818
+All property names:
+user
+nag
+password
+venki
+rag
+```
