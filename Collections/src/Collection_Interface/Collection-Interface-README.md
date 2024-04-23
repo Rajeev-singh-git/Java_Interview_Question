@@ -573,6 +573,33 @@ public class SortedSetExample {
 }
 
 ```
+### NavigableSet :
+
+The **`NavigableSet`** interface in Java extends the **`SortedSet`** interface and provides additional methods for navigating and manipulating sorted sets with respect to their elements' natural order or custom ordering defined by a **`Comparator`**.
+
+1. It is the child interface of SortedSet.
+2. It provides several methods for navigation purposes.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/f77430ec-a637-4c1a-ac88-21cee5b930f3/Untitled.png)
+
+Methods :→
+
+1. **`ceiling(e)`**:
+   - Returns the lowest element in the set that is greater than or equal to the specified element **`e`**.
+2. **`higher(e)`**:
+   - Returns the lowest element in the set that is strictly greater than the specified element **`e`**.
+3. **`floor(e)`**:
+   - Returns the highest element in the set that is less than or equal to the specified element **`e`**.
+4. **`lower(e)`**:
+   - Returns the highest element in the set that is strictly less than the specified element **`e`**.
+5. **`pollFirst()`**:
+   - Removes and returns the first (lowest) element of the set.
+6. **`pollLast()`**:
+   - Removes and returns the last (highest) element of the set.
+7. **`descendingSet()`**:
+   - Returns a **`NavigableSet`** containing the elements of the original set in reverse order.
+
+Code : NavigableSet Demo
 
 ## TreeSet
 
@@ -739,3 +766,87 @@ If you rely on the default natural sorting order, objects must be homogeneous (o
 | Methods | Contains only one method.  compareTo(Object obj) | ContainsTwo method.            1.) compare(T obj1, T obj2), 2.)equals(Object obj) |
 | Usage | Implement in classes for natural order | Implement as standalone for custom sorting |
 | Implementers | String Classes , and all Wrapper classes implements Comparable interface. | Only specialized classes (Collator, RuleBasedCollator) used in GUI |
+
+
+# Queue Interface
+
+The **`Queue`** interface in Java provides methods for managing a collection of elements based on the FIFO (First-In-First-Out) principle.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/a281af1b-3793-4f04-88ae-d0dfadec3999/Untitled.png)
+
+1. Queue is child interface of Collections.
+2. If we want to represent a group of individual objects prior (happening before something else) to processing then we should go for Queue interface.
+3. Usually Queue follows first in first out(FIFO) order but based on our requirement we can implement our own order also.
+4. From 1.5v onwards LinkedList also implements Queue interface.
+5. LinkedList based implementation of Queue always follows first in first out order. Assume we have to send sms for one lakh mobile numbers , before sending messages we have to store all mobile numbers into Queue so that for the first inserted number first message will be triggered(FIFO).
+
+### **Methods**
+
+1. **`boolean offer(Object o)`**
+   - Adds the specified **`Object`** to the queue. Returns **`true`** if the operation was successful.
+2. **`Object poll()`**
+   - Retrieves and removes the head of the queue. Returns **`null`** if the queue is empty.
+3. **`Object remove()`**
+   - Retrieves and removes the head of the queue. Throws **`NoSuchElementException`** if the queue is empty.
+4. **`Object peek()`**
+   - Retrieves, but does not remove, the head of the queue. Returns **`null`** if the queue is empty.
+5. **`Object element()`**
+   - Retrieves the head of the queue. Throws **`NoSuchElementException`** if the queue is empty.
+
+
+## PriorityQueue
+
+The **`PriorityQueue`** in Java is a data structure that represents a group of individual objects prior to processing according to some priority. It offers flexibility in specifying the priority order, which can be either the default natural sorting order (for comparable objects) or a custom sorting order defined by a **`Comparator`** object.
+
+1. PriorityQueue is a data structure to represent a group of individual objects prior to processing according to some priority.
+2. The priority order can be either default natural sorting order (or) customized
+   sorting order specified by Comparator object.
+3. If we are depending on default natural sorting order then the objects must be homogeneous and Comparable otherwise we will get ClassCastException.
+4. If we are defining our own customized sorting order by Comparator then the objects need not be homogeneous and Comparable.
+5. Duplicate objects are not allowed.
+6. Insertion order is not preserved but all objects will be inserted according to some priority.
+7. Null is not allowed even as the 1st element for empty PriorityQueue.Otherwise we will get the "NullPointerException".
+
+### Constructors:
+
+1. **`PriorityQueue q = newPriorityQueue()`**
+   - Creates an empty **`PriorityQueue`** with a default initial capacity of 11 and default natural sorting order.
+2. **`PriorityQueue q = PriorityQueue(int initialCapacity, Comparator comparator)`**
+   - Creates an empty **`PriorityQueue`** with the specified initial capacity and custom comparator for ordering.
+3. **`PriorityQueue q = new PriorityQueue(int initialCapacity)`**
+   - Creates an empty **`PriorityQueue`** with the specified initial capacity and default natural sorting order.
+4. **`PriorityQueue q = new PriorityQueue(Collection c)`**
+   - Creates a **`PriorityQueue`** containing the elements of the specified collection, sorted according to their natural ordering.
+5. **`PriorityQueue q = new PriorityQueue(SortedSet s)`**
+   - Creates a **`PriorityQueue`** containing the elements of the specified sorted set, sorted according to their natural ordering.
+
+```java
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
+public class PriorityQueueDemo2 {
+
+    public static void main(String [] args){
+
+        PriorityQueue <String> pq = new PriorityQueue<>(new MyCom());
+
+        pq.offer("Z");
+        pq.offer("L");
+        pq.offer("A");
+        pq.offer("B");
+
+        System.out.println(pq); // [Z, L, A, B]
+
+    }
+}
+
+class MyCom implements Comparator<String>
+{
+
+    @Override
+    public int compare(String o1, String o2) {
+        return o2.compareTo(o1);
+    }
+}
+```
+
