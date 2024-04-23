@@ -187,63 +187,13 @@ Collections class defines the following methods to sort elements of a List.
 
 - To sort the elements of list according to customized sorting order.
 
-Code : Sort the element of list according to natural sorting order.
+[Code : Sort the element of list according to natural sorting order](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/CollectionDemo.java)
 
-```java
-import java.util.*;
 
-public class CollectionDemo {
 
-    public static void main(String [] args){
+[Code : Sort the element of list according to customized sorting order](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/CollectionsDemo2.java)
 
-        ArrayList<String> al = new ArrayList<>();
-        al.add("Z");
-        al.add("B");
-        al.add("A");
 
-        System.out.println("Before Sorting : "+al); // [Z, B, A]
-
-        Collections.sort(al);
-
-        System.out.println("After Sorting : "+al);  //[A, B, Z]
-    }
-}
-```
-
-Code : Sort the element of list according to customized sorting order.
-
-```java
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
-public class CollectionsDemo2 {
-
-    public static void main(String[] args) {
-
-        ArrayList<String> al = new ArrayList<>();
-        al.add("Z");
-        al.add("B");
-        al.add("A");
-
-        System.out.println("Before Sorting : " + al); // [Z, B, A]
-
-        Collections.sort(al, new MyComparator());
-
-        System.out.println("After Sorting : " + al); // [A, B, Z]
-    }
-}
-
-class MyComparator implements Comparator<String> {
-
-    @Override
-    public int compare(String o1, String o2) {
-        // Implement custom comparison logic here
-        return o1.compareTo(o2); // Default behavior: sort strings lexicographically
-    }
-}
-
-```
 
 ## Searching the Elements of a List :
 
@@ -257,7 +207,7 @@ Collections class defines the following methods to search the elements of a List
 
 - If the List is sorted according to Comparator then we have to use this method.
 
-Code : Search Element of a List using BS for natural Sorting
+[Code : Search Element of a List using BS for natural Sorting](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/CollectionsSearchDemo.java)
 
 ```java
 import java.util.ArrayList;
@@ -283,9 +233,10 @@ public class CollectionsSearchDemo {
 }
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/91d39a0b-b072-44f0-9fbd-481056c9f87a/Untitled.png)
+![c1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/0a77e733-6627-48a5-8741-841b7815e00c)
 
-Code : Search Element of a List using BS for customized sorting
+
+[Code : Search Element of a List using BS for customized sorting](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/CollectionSearchDemo2.java)
 
 ```java
 import java.util.ArrayList;
@@ -322,7 +273,8 @@ class MyComp implements Comparator<Integer>{
 }
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/2e43f478-3f5f-448e-bbdd-5e0f0f070b63/Untitled.png)
+![c2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/9e06732b-3f2d-40ff-bb26-14efc67fdc25)
+
 
 Code : To reverse element of  a list
 
