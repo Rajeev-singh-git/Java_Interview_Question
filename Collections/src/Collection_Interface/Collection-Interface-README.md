@@ -580,7 +580,8 @@ The **`NavigableSet`** interface in Java extends the **`SortedSet`** interface a
 1. It is the child interface of SortedSet.
 2. It provides several methods for navigation purposes.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/f77430ec-a637-4c1a-ac88-21cee5b930f3/Untitled.png)
+
+![c2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/eb127fc7-02c5-4415-92d0-7206ef622cae)
 
 Methods :→
 
@@ -599,7 +600,7 @@ Methods :→
 7. **`descendingSet()`**:
    - Returns a **`NavigableSet`** containing the elements of the original set in reverse order.
 
-Code : NavigableSet Demo
+[Code : NavigableSet Demo](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Collection_Interface/Set/src/NavigableSetDemo.java)
 
 ## TreeSet
 
@@ -772,7 +773,8 @@ If you rely on the default natural sorting order, objects must be homogeneous (o
 
 The **`Queue`** interface in Java provides methods for managing a collection of elements based on the FIFO (First-In-First-Out) principle.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/a281af1b-3793-4f04-88ae-d0dfadec3999/Untitled.png)
+![c1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/7595df70-68d0-4288-8d6c-00460fa53a3d)
+
 
 1. Queue is child interface of Collections.
 2. If we want to represent a group of individual objects prior (happening before something else) to processing then we should go for Queue interface.
