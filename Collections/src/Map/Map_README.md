@@ -275,8 +275,7 @@ class Temporary{
 }
 
 ```
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/c2589ef6-e057-4f26-81b3-61168fc0cd49/Untitled.png)
+![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/bc2b5ca3-6081-4903-8a40-5c35294d7b96)
 
 - Total 11 boxes are there because default initial capacity is of HashTable is 11.
 - Each key is stored to their corresponding box no. Ex : Key 6 is stored in box no 6, key 15 is stored in box 4 because box no 15 is not there. So, it follow rule 15 % 11. 15 is divided by total no of box and whatever the remainder comes, key is stored into that box number. Here 4 is remainder, so key 15 is added to remainder box number 4.
