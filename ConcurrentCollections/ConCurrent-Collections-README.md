@@ -41,7 +41,9 @@ Some commonly used concurrent collections in Java include **`ConcurrentHashMap`*
 
 # ConcurrntMap
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/70d6055b-0938-41c4-818f-cd67a1b64b2e/Untitled.png)
+
+![a1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/5d4e72e8-24ff-4e7c-b3e4-86f2d6267f64)
+
 
 It defines 3 specific methods.
 
@@ -235,6 +237,9 @@ public class MyThread extends Thread{
 
 # CopyOnWriteArrayList
 
+![a2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/735e2bcf-a854-4a9e-b035-607a1cd911dc)
+
+
 - `CopyOnWriteArrayList` is a thread-safe alternative to `ArrayList`. It achieves this by creating a copy of the underlying array whenever a modification (add, set, remove) occurs.
 - This copy is used for updates, while the original array remains unchanged. Threads performing read operations continue to access the original array, unaffected by concurrent modifications.
 
@@ -341,7 +346,9 @@ public class CopyOnWriteArrayListExample {
 
 # CopyOnWriteArraySet :
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/08ab2875-bcbb-4a1c-ba09-0c8acbb71882/Untitled.png)
+
+
+![a3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/c7f68df8-ed68-4d3d-8f8c-02c3b35763db)
 
 
 
@@ -432,7 +439,8 @@ System.out.println(list); // [1, 2, 3, 4]
 
 # Enum with Collection
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/bca08a0a-b4b0-4506-9d8c-c1448bbc4110/Untitled.png)
+![a4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/a0e48959-0509-4e13-9eb0-0bda6c83e9bd)
+
 
 ### **EnumSet:**
 
@@ -476,6 +484,8 @@ EnumMap doesn’t contain any New Methods. We have to Use General Map Methods on
 
 ### **EnumSet Example:**
 
+[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/ConcurrentCollections/src/Enum/EnumSetExample.java)
+
 ```java
 
 import java.util.EnumSet;
@@ -500,6 +510,8 @@ public class EnumSetExample {
 ```
 
 ### **EnumMap Example:**
+
+[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/ConcurrentCollections/src/Enum/EnumMapExample.java)
 
 ```java
 
@@ -538,3 +550,7 @@ public class EnumMapExample {
 - **`EnumSet`** is designed for set operations (collections of unique enum constants), while **`EnumMap`** is designed for mapping enum keys to values.
 - Both collections ensure performance benefits and type safety by leveraging the ordinal order of enum constants.
 - They are powerful tools for representing and working with enum-based data structures in Java applications. Choose **`EnumSet`** for sets of enum constants and **`EnumMap`** for mappings with enum keys. Use them when dealing with fixed, predefined sets of elements represented by enums to leverage their benefits in terms of performance and type safety.
+
+
+
+[All Code used](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/ConcurrentCollections/src)
