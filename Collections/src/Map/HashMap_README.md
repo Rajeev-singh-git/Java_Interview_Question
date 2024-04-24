@@ -180,6 +180,6 @@ HashMap provides constant time complexity for basic operations, get and put if t
 | Iteration | Uses Iterator | Uses both Iterator and Enumeration (recommended to use Iterator) |
 | Inheritance | Extends AbstractMap class | Extends legacy Dictionary class |
 | Use Cases | Non-threaded applications where performance is crucial | Multithreaded applications requiring thread safety |
-| Alternatives | ConcurrentHashMap (thread-safe HashMap with better concurrency), LinkedHashMap (predictable iteration order) | N/A |
+| Alternatives | ConcurrentHashMapDemo (thread-safe HashMap with better concurrency), LinkedHashMap (predictable iteration order) | N/A |
 
 

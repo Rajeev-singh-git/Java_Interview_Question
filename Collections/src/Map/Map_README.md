@@ -110,7 +110,7 @@ To obtain a synchronized version of a **`HashMap`** object, you can use the **`s
 
 
 
-• **ConcurrentHashMap:** If you need a more efficient concurrent map implementation with better performance than a synchronized `HashMap`, consider using `ConcurrentHashMap` from the `java.util.concurrent` package. It's designed for concurrent access without explicit synchronization.
+• **ConcurrentHashMapDemo:** If you need a more efficient concurrent map implementation with better performance than a synchronized `HashMap`, consider using `ConcurrentHashMapDemo` from the `java.util.concurrent` package. It's designed for concurrent access without explicit synchronization.
 
 ### HashMap Constructor
 
