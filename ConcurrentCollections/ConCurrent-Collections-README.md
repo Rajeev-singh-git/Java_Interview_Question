@@ -551,6 +551,48 @@ public class EnumMapExample {
 - Both collections ensure performance benefits and type safety by leveraging the ordinal order of enum constants.
 - They are powerful tools for representing and working with enum-based data structures in Java applications. Choose **`EnumSet`** for sets of enum constants and **`EnumMap`** for mappings with enum keys. Use them when dealing with fixed, predefined sets of elements represented by enums to leverage their benefits in terms of performance and type safety.
 
+# Queue
 
+**Queues in Java**
+
+- **Queue:** A fundamental data structure that follows the First-In-First-Out (FIFO) principle. Elements are inserted at the back (tail) and removed from the front (head). It's a child interface of `Collection` and is suitable for representing a sequence of items to be processed in order.
+- **PriorityQueue:** An implementation of `Queue` that prioritizes elements based on a natural ordering or a custom comparator. High-priority elements are removed first. It's ideal for scenarios where elements need processing based on urgency or importance.
+
+**BlockingQueue: Thread-Safe Queues for Producer-Consumer Problems**
+
+- **BlockingQueue:** A specialized interface (not a child of `Queue`) residing in the `java.util.concurrent` package. It offers thread-safe queue operations with blocking behavior.
+- **Thread Safety:** Ensures that multiple threads can access and modify the queue concurrently without data corruption.
+- **Blocking Mechanism:**
+    - `put()` blocks the producer thread if the queue is full, waiting until space becomes available.
+    - `take()` blocks the consumer thread if the queue is empty, waiting until an element is added.
+- **Producer-Consumer Pattern:** Well-suited for scenarios where one thread (producer) creates items and inserts them into the queue, while another thread (consumer) retrieves and processes them. The blocking mechanism ensures efficient coordination.
+
+**TransferQueue: Synchronization for Message Passing**
+
+- **TransferQueue:** Extends `BlockingQueue` and provides an additional method `transfer()`.
+- **`transfer()`:** Blocks the producer thread not only until space is available but also until a consumer thread is ready to receive the element. This enforces strict message passing, ensuring an item is not added unless a consumer is present to handle it.
+- **Message Passing Applications:** Useful for scenarios where guaranteed delivery of messages is crucial, such as in inter-thread communication or distributed systems.
+
+**Deque: Double-Ended Queues for Flexibility**
+
+- **Deque:** Represents a queue where insertion and removal can occur from both ends (front and back). It also extends `Collection`.
+- **Double-Ended Operations:** Provides methods for `addFirst()`, `addLast()`, `removeFirst()`, and `removeLast()` alongside standard queue operations.
+- **Flexibility:** Offers greater control over element positioning and retrieval compared to regular queues.
+    - Example: A backtracking algorithm could use a `Deque` to store and restore intermediate states.
+
+**BlockingDeque: Blocking Double-Ended Queues**
+
+- **BlockingDeque:** Combines functionalities of `BlockingQueue` and `Deque`.
+- **Thread-Safe Blocking Operations:** Inherits blocking behavior from `BlockingQueue` for thread-safe access.
+- **Double-Ended Access:** Provides methods like `putFirst()`, `takeFirst()`, `putLast()`, and `takeLast()` for flexible insertion and removal from both ends.
+- **Complex Producer-Consumer Scenarios:** Useful when you need thread-safe blocking operations on a double-ended queue, enabling fine-grained control and potentially different priorities for insertion and removal.
+
+**Key Points:**
+
+- Use `Queue` and `PriorityQueue` for simple FIFO or priority-based ordering.
+- Employ `BlockingQueue` for thread-safe queue operations with producer-consumer patterns.
+- Leverage `TransferQueue` for synchronized message passing scenarios.
+- Utilize `Deque` when double-ended access is required.
+- Opt for `BlockingDeque` for thread-safe double-ended queues with blocking behavior.
 
 [All Code used](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/ConcurrentCollections/src)
