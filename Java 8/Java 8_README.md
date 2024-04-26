@@ -392,7 +392,7 @@ class ThreadDemo {
 
 ```
 
-All Codes
+[All Codes](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/Java%208/src/Code/Functional)
 
 ## Anonymous inner classes Vs Lambda Expressions:
 
