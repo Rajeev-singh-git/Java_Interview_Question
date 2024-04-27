@@ -1,12 +1,19 @@
 # Example Programs using Predicate:
 
 [1. Check length of the String.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateCheckLength.java)
+
 [2. Check if list is Empty.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateIsEmpty.java)
+
 [3. Check if Integer is greater.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateIsGreater.java)
+
 [4. Code using Predicate Joining.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateJoining.java)
+
 [5. Check if name starts with K.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateNameStartWithK.java)
+
 [6. Remove null and Empty String.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateRemoveNullEmptyStrings.java)
+
 [7. Authenticate User](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateUserAuthentication.java)
+
 [8. Check if allowed in Pub.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/PredicateIsAllowedInPub.java)
 
 [All Codes](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/Java%208/src/Code/Predicate)
