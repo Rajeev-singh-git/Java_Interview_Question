@@ -1,4 +1,4 @@
-package Code.Functional;
+package Code.Lambda;
 
 interface intera{
  public void sum(int a, int b);

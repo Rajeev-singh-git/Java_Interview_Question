@@ -1,4 +1,4 @@
-package Code.Basic;
+package Code.Predicate;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 //Check whether the given collection is empty or not
-public class PredicateEx3 {
+public class PredicateIsEmpty {
 
     public static  void main(String[]args){
         Predicate<Collection<?>> checkEmpty = Collection::isEmpty;

@@ -1,9 +1,9 @@
-package Code.Basic;
+package Code.Predicate;
 
 import java.util.function.Predicate;
 
 //Check the length of given string is greater than 3 or not
-public class PredicateEx2 {
+public class PredicateCheckLength {
 
     public static  void main(String[]args){
         Predicate<String> checkLength = (str) -> str.length()>3;

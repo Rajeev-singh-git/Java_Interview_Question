@@ -1,4 +1,4 @@
-package Code.Functional;
+package Code.Lambda;
 
 interface interr3{
     public int square(int x);

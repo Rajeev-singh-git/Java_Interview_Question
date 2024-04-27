@@ -1,4 +1,4 @@
-package Code.Functional;
+package Code.Lambda;
 
 class MyRunnable implements Runnable{
 

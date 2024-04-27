@@ -1,9 +1,9 @@
-package Code.Basic;
+package Code.Predicate;
 
 import java.util.function.Predicate;
 
 // Write a program by joining predicate into a single predicate , use method and(), or(), negate()
-public class PredicateEx4 {
+public class PredicateJoining {
 
     public static void main(String[]args){
         int [] arr = {2,8,10,15,20,25,30,36,39};
@@ -27,9 +27,10 @@ public class PredicateEx4 {
     public static void m1(Predicate<Integer> p, int[]arr){
         for(int x1:arr){
             if(p.test(x1)) {
-                System.out.println(x1);
+                System.out.print(x1 + " ");
             }
         }
+        System.out.println();
     }
 
 }

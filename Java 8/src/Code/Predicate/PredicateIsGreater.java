@@ -1,9 +1,9 @@
-package Code.Basic;
+package Code.Predicate;
 
 import java.util.function.Predicate;
 
 // Programme to check whether the given integer is greater than 10 or not
-public class PredicateEx1 {
+public class PredicateIsGreater {
 
     public static void main(String[]args){
         Predicate<Integer> isGreaterThan10 = num -> (num>10);

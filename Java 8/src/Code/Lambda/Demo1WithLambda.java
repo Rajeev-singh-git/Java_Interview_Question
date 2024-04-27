@@ -1,4 +1,4 @@
-package Code.Functional;
+package Code.Lambda;
 
 interface Inter{
     public void methodOne();

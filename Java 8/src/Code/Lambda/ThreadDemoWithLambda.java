@@ -1,4 +1,4 @@
-package Code.Functional;
+package Code.Lambda;
 
 public class ThreadDemoWithLambda {
 
