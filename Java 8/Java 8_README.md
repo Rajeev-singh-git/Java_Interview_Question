@@ -816,14 +816,19 @@ f1.compose(f2): First, function f2 will be applied, and then for the result, fun
 
 #### Code Example
 
-Calculate Grade of Student Using Function.
-Calculate Length using Function.
-Count Space using Function.
-Remove Space in String using Function.
-Function Chaining Demo 1.
-Function Chaining Demo 2.
+[Calculate Grade of Student Using Function.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Function/calculateGradeFunction.java)
 
-All Function Codes
+[Calculate Length using Function.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Function/CalculateLengthFunction.java)
+
+[Count Space using Function.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Function/countSpacesFunction.java)
+
+[Remove Space in String using Function.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Function/RemoveSpaceFunction.java)
+
+[Function Chaining Demo 1.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Function/FunctionChaining.java)
+
+[Function Chaining Demo 2.](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Function/FunctionChainingDemo2.java)
+
+[All Function Codes](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/Java%208/src/Code/Function)
 
 
 ## Difference between predicate and Function
