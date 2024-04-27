@@ -783,11 +783,10 @@ class Test {
 - It is a functional interface containing only one method, **`apply()`**.
 
     ```java
-    javaCopy code
-    interface Function<T, R> {
+    interface Function<T, R> 
+  {
         R apply(T t);
     }
-    
     ```
 
 
@@ -806,6 +805,26 @@ class Test {
 ```
 
 Note: Function is a functional interface and hence can refer to lambda expressions.
+
+### Function Chaining:
+
+We can combine multiple functions together to form more complex functions. For this, the Function interface defines the following two default methods:
+
+f1.andThen(f2): First, function f1 will be applied, and then for the result, function f2 will be applied.
+
+f1.compose(f2): First, function f2 will be applied, and then for the result, function f1 will be applied.
+
+#### Code Example
+
+Calculate Grade of Student Using Function.
+Calculate Length using Function.
+Count Space using Function.
+Remove Space in String using Function.
+Function Chaining Demo 1.
+Function Chaining Demo 2.
+
+All Function Codes
+
 
 ## Difference between predicate and Function
 
