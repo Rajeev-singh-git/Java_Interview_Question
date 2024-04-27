@@ -772,6 +772,7 @@ class Test {
 }
 
 ```
+[Predicate In-Detail](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/Predicates_README.md)
 
 # Functions
 
