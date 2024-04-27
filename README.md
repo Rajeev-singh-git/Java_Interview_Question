@@ -12,6 +12,8 @@
 
 [Java 8](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/Java%208_README.md)
 
+    [Predicate] (https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/Predicates_README.md)
+
 [Collection Framework](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/Collections_Framework_README.md)
 
   [Collection Interface](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Collections/src/Collection_Interface/Collection-Interface-README.md)
