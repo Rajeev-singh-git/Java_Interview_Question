@@ -1,4 +1,4 @@
-package Code.Basic;
+package Code.Stream;
 
 import java.util.ArrayList;
 import java.util.List;
