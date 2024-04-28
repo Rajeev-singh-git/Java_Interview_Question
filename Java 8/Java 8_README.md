@@ -1358,3 +1358,177 @@ public class LeapYear {
 ```
 
 [All Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/Java%208/src/Code/Basic)
+
+
+# Consumer
+
+Sometimes, our requirement is to provide some input value, perform a certain operation, but not return anything. In such cases, we should use the **`Consumer`** interface. It can be used to consume objects and perform certain operations.
+
+The **`Consumer`** functional interface contains one abstract method: **`accept`**.
+
+```java
+interface Consumer<T> {
+    void accept(T t);
+}
+```
+
+Here's a demonstration program for **`Consumer`**:
+
+```java
+import java.util.function.Consumer;
+
+class Test {
+    public static void main(String[] args) {
+        Consumer<String> c = s -> System.out.println(s);
+        c.accept("Hello");
+        c.accept("DURGASOFT");
+    }
+}
+
+```
+
+Output :→
+
+```java
+Hello
+DURGASOFT
+```
+
+[Demo Program]([Java_Interview_Question/Java 8/src/Code/Consumer/ConsumerDemo1.java at main · Rajeev-singh-git/Java_Interview_Question (github.com)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Consumer/ConsumerDemo1.java))
+
+[Display Movie Info]([Java_Interview_Question/Java 8/src/Code/Consumer/ConsumerDisplayMovieInfo.java at main · Rajeev-singh-git/Java_Interview_Question (github.com)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Consumer/ConsumerDisplayMovieInfo.java))
+
+## Consumer Chaining
+
+Just like Predicate Chaining and Function Chaining, Consumer Chaining is also possible. For this, the Consumer Functional Interface contains the default method **`andThen()`**.
+
+c1.andThen(c2).andThen(c3).accept(s);
+
+[Consumer Chaining Demo Program]([Java_Interview_Question/Java 8/src/Code/Consumer/ConsumerChainingDemo.java at main · Rajeev-singh-git/Java_Interview_Question (github.com)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Consumer/ConsumerChainingDemo.java))
+
+# Supplier
+
+Sometimes, our requirement is to obtain a value based on some operation, such as supplying a Student object, generating a random name, generating a random OTP, supplying a random password, etc. For such requirements, we should use a Supplier.
+
+A Supplier can be used to supply items or objects. It does not take any input and always supplies objects.
+
+The Supplier Functional Interface contains only one method: **`get()`**.
+
+```java
+interface Supplier<R> {
+    R get();
+}
+```
+
+The Supplier Functional Interface does not contain any default or static methods.
+
+[Program to Generate Random Number]([Java_Interview_Question/Java 8/src/Code/Supplier/SupplierGenerateRandomName.java at main · Rajeev-singh-git/Java_Interview_Question (github.com)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Supplier/SupplierGenerateRandomName.java))
+
+[Program to Generate Random Password]([Java_Interview_Question/Java 8/src/Code/Supplier/SupplierRandomPassword.java at main · Rajeev-singh-git/Java_Interview_Question (github.com)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Supplier/SupplierRandomPassword.java))
+
+[Program to Generate System Date]([Java_Interview_Question/Java 8/src/Code/Supplier/SupplierSystemDate.java at main · Rajeev-singh-git/Java_Interview_Question (github.com)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Supplier/SupplierSystemDate.java))
+
+# Comparison table for Predicate, Function, Consumer, and Supplier:
+
+| Property | Predicate | Function | Consumer | Supplier |
+| --- | --- | --- | --- | --- |
+| Purpose | To take some input and perform some conditional checks | To take some input and perform required operation and return the result | To consume some input and perform required operation. It won’t return anything. | To supply some value based on our requirement |
+| Interface Declaration | java interface Predicate<T> { ::::::::::::: } | java interface Function<T, R> { ::::::::::::: } | java interface Consumer<T> { ::::::::::::: } | java interface Supplier<R> { ::::::::::::: } |
+| Single Abstract Method (SAM) | public boolean test(T t); | public R apply(T t); | public void accept(T t); | public R get(); |
+| Default Methods | and(), or(), negate() | andThen(), compose() | andThen() | - |
+| Static Method | isEqual() | identify() | - | - |
+
+# Two-Argument (Bi) Functional Interfaces:
+
+Normal functional interfaces like Predicate, Function, and Consumer can accept only one input argument. However, there are scenarios where our programming requirements dictate the need to accept two input arguments. In such cases, we turn to two-argument functional interfaces. The following functional interfaces are designed to handle two input arguments:
+
+1. BiPredicate
+2. BiFunction
+3. BiConsumer
+
+## 1.) BiPredicate:
+
+The BiPredicate functional interface is similar to Predicate but can accept two input arguments instead of one. It is used when we need to perform a conditional check based on two input arguments.
+
+```java
+interface BiPredicate<T1, T2> {
+    public boolean test(T1 t1, T2 t2);
+    // Additional default methods: and(), or(), negate()
+    }
+```
+
+Example usage of BiPredicate to check if the sum of two given integers is even or not:
+
+```java
+
+import java.util.function.*;
+
+class Test {
+    public static void main(String[] args) {
+        BiPredicate<Integer, Integer> p = (a, b) -> (a + b) % 2 == 0;
+        System.out.println(p.test(10, 20)); // Output: true
+        System.out.println(p.test(15, 20)); // Output: false
+    }
+}
+```
+
+In this example, the BiPredicate **`p`** checks if the sum of two integers is even by applying the condition **`(a + b) % 2 == 0`**. It returns **`true`** if the condition is met and **`false`** otherwise.
+
+## 2.) BiFunction:
+
+Normal functions can take only one input argument and perform the required operation, returning the result, which need not necessarily be of boolean type. However, there are instances where our programming requirements necessitate the need to accept two input values, perform the necessary operation, and return the result. In such cases, we turn to BiFunction.
+
+BiFunction behaves similarly to Function but accepts two input arguments instead of one.
+
+```java
+interface BiFunction<T, U, R> {
+    public R apply(T t, U u);
+    // Default method andThen()
+}
+```
+
+Example usage of BiFunction to find the product of two given integers:
+
+```java
+
+import java.util.function.*;
+
+class Test {
+    public static void main(String[] args) {
+        BiFunction<Integer, Integer, Integer> f = (a, b) -> a * b;
+        System.out.println(f.apply(10, 20)); // Output: 200
+        System.out.println(f.apply(100, 200)); // Output: 20000
+    }
+}
+```
+
+In this example, the BiFunction **`f`** takes two integers as input and returns their product. The **`apply`** method computes the product of the two integers **`a`** and **`b`** and returns the result.
+
+## 3.) BiConsumer
+
+Normal Consumer can take only one input argument, perform the required operation, and won't return any result.
+But sometimes our programming requirement is to accept two input values, perform the required operation, and not return any result. In such cases, we should use BiConsumer.
+BiConsumer is exactly the same as Consumer, except that it takes two input arguments.
+
+```java
+
+interface BiConsumer<T, U> {
+    void accept(T t, U u);
+    //default method andThen()
+}
+```
+
+Program that accepts two String values and prints the result of their concatenation using BiConsumer:
+
+```java
+javaCopy code
+class Test {
+    public static void main(String[] args) {
+        BiConsumer<String, String> c = (s1, s2) -> System.out.println(s1 + s2);
+        c.accept("Rajeev", "Singh");
+    }
+}
+
+```
+
+Output: RajeevSingh
