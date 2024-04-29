@@ -31,7 +31,8 @@ Table summarizing the key differences:
 
 Once a string object is created in Java, its content cannot be modified. Any attempt to modify the string results in the creation of a new string object with the modified content.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/f57917f3-d6e6-45e3-8b91-b569440c7149/Untitled.png)
+![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/efcf1a75-0f6f-4f46-a12b-5b9493d78341)
+
 
 # == Operator vs equals method
 
@@ -127,7 +128,8 @@ Once a string object is created in Java, its content cannot be modified. Any att
 - Heap: Multiple objects with the same content can exist.
 - SCP: Only one object with the same content will be stored, and the same object will be reused when the content matches.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/bb0ed545-767b-449a-a503-27b8c00f84ff/Untitled.png)
+![s2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/194a48bd-7e6e-4749-945f-b5c676dee3b9)
+
 
 ### Example 1 :
 
@@ -147,7 +149,8 @@ In total, there are three objects created:
 - Two objects on the heap (**`s3`** and **`s4`**).
 - One object in the SCP (shared by **`s1`** and **`s2`**).
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/44f90b36-e9e8-48b7-883a-5c06235aa43f/Untitled.png)
+
+![s3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/16ead566-572e-4698-bc2d-cdcdc2de1f24)
 
 ## Example 2 :
 
@@ -169,7 +172,8 @@ In total, there are three objects created:
 - `concat()`  creates a new String object and doesn't modify the original String.
 - However, like before, this new object is not assigned to any variable and is eligible for garbage collection. No change is made to s2.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/48bcc85b-4490-4841-b82a-c285225ba60b/Untitled.png)
+![s4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/eec2faa9-3b8c-48e5-a93f-7509e297be17)
+
 
 ## Example 3
 
@@ -191,5 +195,4 @@ In total, there are three objects created:
         String s9 = s8 +"change me";
         System.out.println(s4==s9);             //true
 ```
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/79d6d6f1-e21a-4afa-a684-23f9f53fb333/Untitled.png)
+![s5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/069a4f77-0a5e-4a7d-99bc-6e125adfa7bb)
