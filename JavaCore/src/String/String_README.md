@@ -196,3 +196,179 @@ In total, there are three objects created:
         System.out.println(s4==s9);             //true
 ```
 ![s5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/069a4f77-0a5e-4a7d-99bc-6e125adfa7bb)
+
+
+# Importance of String Constant Pool (SCP)
+
+1. **Performance and Memory Utilization: By storing unique string literals in the SCP and allowing multiple references to point to the same object, Java optimizes memory usage. This prevents unnecessary duplication of string objects, leading to more efficient memory utilization, especially in scenarios where the same string is used multiple times.**
+2. **Immutability and Consistency: Java strings are immutable, meaning their values cannot be changed after they are created. This ensures consistency and predictability in the program's behavior. When a string is shared among multiple references in the SCP, any attempt to modify its content through one reference will result in the creation of a new string object with the modified content. This preserves the integrity of the original string and prevents unintended side effects in other parts of the program.**
+3. **Thread Safety: Immutable strings are inherently thread-safe, making them ideal for concurrent programming. Multiple threads can safely access and use shared string objects from the SCP without the risk of concurrent modification, simplifying multi-threaded development and reducing the need for explicit synchronization.**
+4. **String Interning: Java provides a mechanism for string interning, allowing developers to explicitly place strings into the SCP. This can be useful for optimizing memory usage and improving performance in scenarios where a large number of string objects are created.**
+
+## Advantage and Dis-advantage of SCP
+
+| Advantage of SCP | Disadvantage of SCP |
+| --- | --- |
+| Same object can be used multiple times instead of creating new object. | By attempting to change the object's content through one reference, all remaining references to the same object will be affected. Immutability was introduced to prevent unintended modifications. |
+| Memory will be saved |  |
+| Performance will be improved |  |
+
+## Questions
+
+### Why SCP concept is only applicable for string object but not for StringBuffer?
+
+1. **Immutability:**
+  - Strings in Java are immutable, meaning their content cannot be changed after creation. This characteristic makes them ideal candidates for the SCP. Since the content remains fixed, the SCP can store a single copy and allow multiple references to point to it.
+  - StringBuffer objects, on the other hand, are mutable. Their content can be modified after creation using methods like `append` or `insert`. This mutability makes it impractical to store them in the SCP because the content could potentially change, requiring updates to all references pointing to the same object.
+2. **Performance Optimization:**
+  - The SCP is designed to optimize memory usage and performance for frequently used string literals. String objects are often used for storing text and messages, making them prime candidates for this optimization.
+  - StringBuffer objects are primarily used for constructing strings that are modified frequently. The overhead of managing multiple references in the SCP wouldn't be beneficial in this scenario.
+3. **Thread Safety:**
+  - Immutable strings are inherently thread-safe because their content cannot be accidentally modified by multiple threads. This makes them suitable for concurrent programming environments where the SCP can be accessed by multiple threads simultaneously.
+  - StringBuffer objects are mutable and require synchronization mechanisms like synchronized methods to ensure thread safety when accessed by multiple threads. This eliminates the advantage of pre-storing them in the SCP.
+
+In summary, the SCP is designed to leverage the immutability of String objects for efficient memory management and performance optimization in common string usage scenarios. StringBuffer objects, with their mutability and focus on string construction, don't benefit from this approach.
+
+### Why String Objects are immutable wheras StringBuffer objects are mutable?
+
+In String because of SCP, same object can be used by multiple reference.By attempting to change the object's content through one reference, all remaining references to the same object will be affected. Immutability was introduced to prevent unintended modifications.
+
+In stringBuffer there is no SOP, so each time new object is created.
+
+### Except String, are any other object immutable in java?
+
+In Java, besides **`String`**, several other objects are immutable. These include:
+
+1. Wrapper classes (e.g., **`Integer`**, **`Double`**, **`Boolean`**, etc.)
+2. **`BigInteger`**
+3. **`BigDecimal`**
+4. **`LocalDate`**, **`LocalTime`**, **`LocalDateTime`**, and other classes from the **`java.time`** package
+5. **`Duration`** and **`Period`** from the **`java.time`** package
+
+# String Constructors
+
+1. **`String s = new String();`**: Creates an empty string object.
+2. **`String s = new String(String literal);`**: Creates a string object with the content of the specified string literal.
+3. **`String s = new String(StringBuilder sb);`**: Creates a string object with the content of the specified **`StringBuilder`** object.
+4. **`String s = new String(StringBuffer sb);`**: Creates a string object with the content of the specified **`StringBuffer`** object.
+5. **`String s = new String(char[] ch);`**: Creates a string object with the content of the specified character array.
+6. **`String s = new String(byte[] b);`**: Creates a string object with the content of the specified byte array, using the platform's default charset.
+
+# Important Methods
+
+Certainly, here are the method names along with example code:
+
+1. **`isEmpty()`:** Checks whether the string is empty or not.
+
+    ```java
+    javaCopy code
+    String s = "";
+    System.out.println(s.isEmpty()); // True
+    
+    String s = "Rajeev";
+    System.out.println(s.isEmpty()); // False
+    
+    ```
+
+2.  **`charAt(int index)`:** Returns the character at the specified index in the string.
+
+```java
+String str = "Hello";
+char ch = str.charAt(0); // Retrieves the character at index 0
+System.out.println(ch); // Output: H
+```
+
+1. **`concat(String str)`:** Concatenates the specified string to the end of this string.
+
+```java
+String str1 = "Hello";
+String str2 = " World";
+String result = str1.concat(str2); // Concatenates two strings
+System.out.println(result); // Output: Hello World
+```
+
+1.  **`equals(Object obj)`:** Compares this string to the specified object.
+
+```java
+String str1 = "Hello";
+String str2 = "Hello";
+boolean isEqual = str1.equals(str2); // Checks if two strings are equal
+System.out.println(isEqual); // Output: true
+```
+
+5.  **`equalsIgnoreCase(String anotherString)`:** Compares this **`String`** to another **`String`**, ignoring case considerations.
+
+```java
+
+String str1 = "Hello";
+String str2 = "hello";
+boolean isEqual = str1.equalsIgnoreCase(str2); // Ignores case while checking equality
+System.out.println(isEqual); // Output: true
+```
+
+1. **`length()`:** Returns the length of this string.
+
+```java
+String str = "Hello";
+int len = str.length(); // Gets the length of the string
+System.out.println(len); // Output: 5
+```
+
+7.  **`replace(char oldChar, char newChar)`:** Returns a new string resulting from replacing all occurrences of **`oldChar`** in this string with **`newChar`**.
+
+```java
+
+String str = "Hello";
+String replaced = str.replace('l', 'p'); // Replaces 'l' with 'p'
+System.out.println(replaced); // Output: Heppo
+
+```
+
+1. **`substring(int beginIndex)`:** Returns a new string that is a substring of this string, starting from the specified index.
+
+```java
+String str = "Hello World";
+String subStr = str.substring(6); // Retrieves substring starting from index 6
+System.out.println(subStr); // Output: World
+```
+
+9 . **`substring(int beginIndex, int endIndex)`:** Returns a new string that is a substring of this string, starting from the specified **`beginIndex`** and ending at **`endIndex-1`**.
+
+```java
+String str = "Hello World";
+String subStr = str.substring(6, 11); // Retrieves substring from index 6 to 10
+System.out.println(subStr); // Output: World
+
+```
+
+1.  **`indexOf(int ch)`:** Returns the index within this string of the first occurrence of the specified character.
+
+```java
+String str = "Hello World";
+int index = str.indexOf('o'); // Finds the index of 'o'
+System.out.println(index); // Output: 4
+```
+
+1.  **`lastIndexOf(int ch)`:** Returns the index within this string of the last occurrence of the specified character.
+
+```java
+String str = "Hello World";
+int lastIndex = str.lastIndexOf('o'); // Finds the last index of 'o'
+System.out.println(lastIndex); // Output: 7
+```
+
+12.  **`toLowerCase()`:** Converts all of the characters in this **`String`** to lower case.
+
+```java
+String str = "HELLO";
+String lowerCase = str.toLowerCase(); // Converts string to lowercase
+System.out.println(lowerCase); // Output: hello
+```
+
+13.  **`toUpperCase()`:** Converts all of the characters in this **`String`** to upper case.
+
+```java
+String str = "hello";
+String upperCase = str.toUpperCase(); // Converts string to uppercase
+System.out.println(upperCase); // Output: HELLO
+```
