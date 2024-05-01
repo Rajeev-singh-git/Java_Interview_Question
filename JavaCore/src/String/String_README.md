@@ -372,3 +372,396 @@ String str = "hello";
 String upperCase = str.toUpperCase(); // Converts string to uppercase
 System.out.println(upperCase); // Output: HELLO
 ```
+
+14. `**trim()**` : Removes leading and trailing whitespace
+
+```java
+String str = "   Hello   ";
+String trimmed = str.trim(); // 
+System.out.println(trimmed); // Output: Hello
+```
+
+# Important Conclusion about String Immutability
+
+Immutability : Once object is created, we cannot change it’s content. If we perform any change with those changes a new object will be created.
+
+```java
+ 	      String s1 = new String("spring");
+        String s2 = s1.toUpperCase();
+        String s3 = s1.toLowerCase();
+
+        System.out.println(s1==s2);  //false
+        System.out.println(s1==s3);  //true
+```
+
+- While assigning value to S2 String, the content changed from lowercase to Uppercase, so internally s2 will point to new content in the heap area.
+- While assigning value to s3, there is no change in content of s1 since it’s already in small case so both will refer to same memory address.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/85b8e7d7-60d5-4b74-a553-8eed2f171536/Untitled.png)
+
+# Creating Our won immutable class
+
+```java
+package String;
+
+final class ImmutableClass {
+
+    private int i;
+
+    ImmutableClass(int i){
+        this.i=i;
+    }
+
+    public ImmutableClass modify(int i){
+        if(this.i==i){
+            return this;
+        }else{
+            return new ImmutableClass(i);
+        }
+   }
+
+   public static void main(String []args){
+        ImmutableClass i1 = new ImmutableClass(10);
+        ImmutableClass i2 = i1.modify(100);
+        ImmutableClass i3 = i1.modify(10);
+
+        System.out.println(i1==i2);  // false
+        System.out.println(i1==i3);  // true
+   }
+
+}
+
+```
+
+# Final vs Immutability
+
+- Immutability concerns the object itself, ensuring that its state cannot be changed after creation.
+- Final applies to reference variables, preventing them from being reassigned to a new object.
+- Code Example:
+
+    ```java
+    class Test {
+        public static void main(String[] args) {
+            final StringBuffer sb = new StringBuffer("Durga");
+            sb.append("Software");
+            System.out.println(sb);
+            //sb = new StringBuffer("ravi") // final variable reference can't be reassigned
+        }
+    }
+    ```
+
+- In this example, **`sb`** is a final reference to a **`StringBuffer`** object. While **`sb`** cannot be reassigned to a new object due to the **`final`** keyword, the content of the **`StringBuffer`** object itself can still be modified.
+- Therefore, **`final`** prevents reassignment of the reference variable, but it doesn't inherently ensure immutability of the object it references.
+- Immutability, on the other hand, focuses on the object's state, aiming to maintain its integrity throughout its lifetime.
+- By combining **`final`** with immutability techniques, such as encapsulation and avoiding mutator methods, a more robust and predictable codebase can be achieved.
+- **Use `final` when:**
+  - You want to prevent accidental reassignment of a reference variable.
+  - The variable holds a constant value.
+- **Use immutability when:**
+  - You want an object's state to be fixed after creation.
+  - This can improve thread safety and reasoning about code behavior.
+
+# Question
+
+Code 1:
+
+```java
+public class Test
+{
+	public static void main(String[] args)
+	 {
+	  String ta = "A";
+	  ta = ta.concat("B");
+	  String tb ="C";
+	  ta=ta.concat(tb);
+	  ta.replace("C","D");
+	  ta=ta.concat(tb);
+	  System.out.println(ta);
+	  }
+}
+```
+
+What will be the output?
+
+```java
+ABCC
+```
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/7a1f0093-4fe8-4485-8a28-ed4c5bdbc976/Untitled.jpeg)
+
+Code 2:
+
+```java
+public class Test
+{
+	public static void main(String[] args)
+	 {
+	  String str = " ";
+	  str.trim();
+	  System.out.println(str.equals(""));
+	   System.out.println(str.isEmpty());
+	  }
+}
+```
+
+Output : →
+
+```java
+False
+False
+```
+
+Code 3:
+
+```java
+public class Test
+{
+	public static void main(String[] args)
+	 {
+	  String str = "Hello World";
+	  str.trim();
+	  int i1  = s.indexOf(" ");
+	  System.out.println(i1);
+	 }
+}
+```
+
+What will be output?
+
+```java
+5
+```
+
+Code 4:
+
+```java
+public class Test
+{
+	public static void main(String[] args)
+	 {
+	  String s1 = "Java";
+	  String s2 = new Striing("java");
+	  //Line 1
+	  {
+	  System.out.println("Equal");
+	  }else
+	  {
+	  System.out.println("Not Equal");
+	  }
+	 }
+}
+```
+
+To print “Equal”, which code fragment should be inserted at line 1?
+
+```java
+A.) String s3=s2;
+    if(s1==s3);
+    
+B.) if(s1.equalsIgnoreCase(s2));
+
+C.) String s3 = s2;
+    if(s1.equals(s3);
+    
+D.) if(s1.toLowerCase()==s2.toLowerCase()) 
+```
+
+Ans - > B
+
+# StringBuffer
+
+## Why StringBuffer?
+
+- **StringBuffer** is recommended when the content undergoes frequent changes. Unlike **`String`**, where every modification creates a new object due to its immutability, **`StringBuffer`** allows for efficient updates by modifying the existing object.
+- With **`String`**, each modification operation results in the creation of a new string object, which can be inefficient and lead to unnecessary memory allocation and garbage collection overhead.
+- In contrast, **`StringBuffer`** provides a mutable sequence of characters, allowing for in-place modifications without creating new objects for every change. This improves performance and memory utilization, especially in scenarios where the content is dynamically changing, such as string concatenation within loops or when building strings incrementally.
+- Therefore, **`StringBuffer`** is preferred when you need to perform multiple modifications to the content without incurring the overhead of creating new string objects each time.
+
+## StringBuffer Constructor
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/6f46472d-b2f2-4820-8fe4-863f61ce368b/Untitled.jpeg)
+
+1. Default Capacity: 16
+
+If StringBuffer reaches its full capacity (16 characters) and new characters need to be added, a new object is internally created.The capacity of the new object is calculated as **`(Current Capacity + 1) * 2`**.This resizing process occurs each time the current capacity is exceeded.
+
+Example:
+
+```java
+StringBuffer sb = new StringBuffer();
+System.out.println(sb.capacity());    // Output: 16
+
+sb.append("ABCDEFGHIJKlMNO");
+System.out.println(sb.capacity());   // Output: 16
+
+sb.append("PQ");
+System.out.println(sb.capacity());   // Output: 34
+```
+
+1. **`StringBuffer sb = new StringBuffer(int initialCapacity);`**
+  - Allows declaration of capacity as per requirement.
+2. **`StringBuffer sb = new StringBuffer(String s)`**
+  - Creates a StringBuffer with equivalent content to the provided string.
+  - Capacity of the StringBuffer is set to **`s.length() + 16`**.
+
+   Example:
+
+    ```java
+    
+    StringBuffer sb = new StringBuffer("Raj");
+    System.out.println(sb.capacity()); // Output: 21
+    ```
+
+
+# Important methods of StringBuffer
+
+1. **`public int length()`**
+  - Returns the length (number of characters) of the current StringBuffer object.
+
+    ```java
+    StringBuffer sb = new StringBuffer("Hello");
+    System.out.println("Length: " + sb.length()); // Output: 
+    ```
+
+2. **`public int capacity()`**
+  - Returns the current capacity (allocated size) of the StringBuffer object.
+
+    ```java
+    System.out.println("Capacity: " + sb.capacity()); // Output: 2
+    ```
+
+3. **`public char charAt(int index)`**
+  - Returns the character at the specified index within the StringBuffer object.
+
+    ```java
+    System.out.println("Character at index 1: " + sb.charAt(1)); // Output: e
+    ```
+
+4. **`public void setCharAt(int index, char newChar)`**
+  - Sets the character at the specified index to the new specified character.
+
+    ```java
+    sb.setCharAt(0, 'h');
+    System.out.println("After setCharAt: " + sb); // Output: hello
+    ```
+
+5. **`public StringBuffer append(String s)`**
+  - Appends the specified string to the end of the StringBuffer object.
+
+    ```java
+    sb.append(" World");
+    System.out.println("After append: " + sb); // Output: hello World
+    ```
+
+6. **`public StringBuffer insert(int index, String s)`**
+  - Inserts the specified string into the StringBuffer object at the specified index.
+
+    ```java
+    sb.insert(6, ", ");
+    System.out.println("After insert: " + sb); // Output: hello, Worl
+    ```
+
+7. **`public StringBuffer delete(int begin, int end)`**
+  - Deletes characters from the StringBuffer object starting from the **`begin`** index (inclusive) to the **`end`** index (exclusive).
+
+    ```java
+    sb.delete(6, 8);
+    System.out.println("After delete: " + sb); // Output: helloWorld
+    ```
+
+8. **`public StringBuffer deleteCharAt(int index)`**
+  - Deletes the character at the specified index from the StringBuffer object.
+
+    ```java
+    sb.deleteCharAt(5);
+    System.out.println("After deleteCharAt: " + sb); // Output: helloorld
+    ```
+
+9. **`public StringBuffer reverse()`**
+  - Reverses the sequence of characters in the StringBuffer object.
+
+    ```java
+    sb.reverse();
+    System.out.println("After reverse: " + sb); // Output: dlrowolle
+    ```
+
+10. **`public void setLength(int newLength)`**
+  - Sets the length of the StringBuffer object to the specified new length.
+
+    ```java
+    sb.setLength(5);
+    System.out.println("After setLength: " + sb); // Output: dlrow
+    ```
+
+11. **`public void ensureCapacity(int minimumCapacity)`**
+  - Ensures that the capacity of the StringBuffer object is at least equal to the specified minimum capacity.
+
+    ```java
+    sb.ensureCapacity(50);
+    System.out.println("Capacity after ensureCapacity: " + sb.capacity()); // Output: 50
+    ```
+
+12. **`public void trimToSize()`**
+  - Reduces the capacity of the StringBuffer object to its current length.
+
+    ```java
+    sb.trimToSize();
+    System.out.println("Capacity after trimToSize: " + sb.capacity()); // Output: 5
+    ```
+
+
+# Need  of StringBuilder and difference with StringBuffer
+
+| StringBuffer | StringBuilder |
+| --- | --- |
+| Each method present in StringBuffer is synchronized, allowing only one thread to operate on the StringBuffer object at a time, making it thread-safe. | No method present in StringBuilder is synchronized, allowing multiple threads to operate on the StringBuilder object simultaneously, but making it not thread-safe. |
+| Threads are required to wait to operate on StringBuffer objects, resulting in relatively slower performance due to thread contention. | Threads are not required to wait to operate on StringBuilder objects, leading to relatively higher performance as there is no thread contention. |
+| Introduced in Java 1.0 | Introduced in Java 1.5 |
+| StringBuffer uses synchronized methods, which are denoted with the 'buffer' keyword. | StringBuilder uses unsynchronized methods, denoted with the 'builder' keyword. |
+| StringBuffer is ideal for scenarios where thread safety is a concern, at the expense of performance. | StringBuilder is preferred in situations where thread safety is not critical, and performance is a priority. |
+
+Java introduced StringBuilder as an alternative to StringBuffer, removing synchronization where it was not needed. This enhancement improved performance, especially in multi-threaded environments where StringBuffer's thread-safe behavior could lead to performance bottlenecks.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/31e9e415-573f-4b24-af21-dff408689727/Untitled.jpeg)
+
+**Shared Functionality:**
+
+- Constructors and methods you learned for `StringBuffer` are mostly applicable to `StringBuilder` as well, with the exception of synchronization.
+
+**Choosing Between StringBuffer and StringBuilder:**
+
+- Use `StringBuffer` when thread safety is essential for concurrent access to the string object in a multithreaded environment.
+- Use `StringBuilder` when performance is a priority and thread safety is not a concern. In most single-threaded scenarios, `StringBuilder` is the preferred choice.
+
+Remember that even though `StringBuilder` is faster, it's crucial to use `StringBuffer` if multiple threads need to access and modify the string data concurrently without corrupting the object's state.
+
+# When to choose among String, StringBuilder and StringBuffer
+
+| String | StringBuffer | StringBuilder |
+| --- | --- | --- |
+| When to Use | When to Use | When to Use |
+| Use when the content is fixed or rarely changes. Strings are immutable, meaning their content cannot be altered after creation. | Use when the content changes frequently, and thread safety is a concern. StringBuffer provides synchronized methods, ensuring thread safety in multi-threaded environments. | Use when the content changes frequently, and thread safety is not a concern. StringBuilder offers better performance than StringBuffer as it is not synchronized, allowing multiple threads to operate simultaneously without the overhead of synchronization. |
+| Thread Safety | Thread Safety | Thread Safety |
+| String objects are inherently thread-safe because they are immutable. Once a string object is created, its content cannot be changed. | StringBuffer is thread-safe because it provides synchronized methods, ensuring that only one thread can operate on the StringBuffer object at a time. | StringBuilder is not thread-safe by default, as it does not provide synchronization. Multiple threads can operate on a StringBuilder object simultaneously, making it suitable for single-threaded scenarios or situations where thread safety is not required. |
+| Additional Information |  |  |
+| All immutable objects, including String, are thread-safe by default. |  |  |
+
+# Method Chaining
+
+In method chaining, all methods are executed from left to right.
+
+```java
+public class MethodChaining
+{
+    public static void main(String[] args){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("durga").append("solutions").reverse().insert(2,"xyz").delete(3,7);
+
+        System.out.println(sb);  // snxtulosagrud
+    }
+}
+
+```
+
+[Example Codes]
