@@ -397,7 +397,8 @@ Immutability : Once object is created, we cannot change it’s content. If we pe
 - While assigning value to S2 String, the content changed from lowercase to Uppercase, so internally s2 will point to new content in the heap area.
 - While assigning value to s3, there is no change in content of s1 since it’s already in small case so both will refer to same memory address.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/85b8e7d7-60d5-4b74-a553-8eed2f171536/Untitled.png)
+![s7](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/ca71c668-3637-4146-929b-f4c8bc58626d)
+
 
 # Creating Our won immutable class
 
@@ -487,7 +488,8 @@ What will be the output?
 ABCC
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/7a1f0093-4fe8-4485-8a28-ed4c5bdbc976/Untitled.jpeg)
+![s8](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/40206fe8-7e39-4e2b-90ae-fc6cf0fd1fe4)
+
 
 Code 2:
 
@@ -579,7 +581,8 @@ Ans - > B
 
 ## StringBuffer Constructor
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/6f46472d-b2f2-4820-8fe4-863f61ce368b/Untitled.jpeg)
+![s9](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/45f53b76-8158-4d4c-bf7e-ed17f50d003d)
+
 
 1. Default Capacity: 16
 
@@ -764,4 +767,4 @@ public class MethodChaining
 
 ```
 
-[Example Codes]
+[Example Codes](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/JavaCore/src)
