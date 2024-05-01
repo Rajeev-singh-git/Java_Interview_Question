@@ -767,4 +767,4 @@ public class MethodChaining
 
 ```
 
-[Example Codes](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/JavaCore/src)
+[Example Codes](https://github.com/Rajeev-singh-git/Java_Interview_Question/tree/main/JavaCore/src/String)
