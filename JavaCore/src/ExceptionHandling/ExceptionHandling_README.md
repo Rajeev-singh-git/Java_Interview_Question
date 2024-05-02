@@ -59,7 +59,8 @@ Output:
 Hello
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/a6acedd3-5694-4dfb-9046-a5e517eeb629/Untitled.png)
+![t1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/5bf85a3f-6977-4043-af98-412eecb99caa)
+
 
 ## Default Exception Handling
 
@@ -109,11 +110,13 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 
 # Exception Hierarchy :
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/050395fe-7991-4d78-b404-0cc31914706d/Untitled.png)
+![t2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/84724293-fc49-4a99-995b-99a0af0b1c6d)
+
 
 Throwable acts as the root for the exception hierarchy. The Throwable class contains the following two child classes.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/1127dd6d-dc08-4f2f-9083-32a1b7de8a42/Untitled.png)
+![t3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f48a06ae-a9c9-4ffc-b2f1-d168c31ce4e0)
+
 
 1. Exception:
   - Most cases of exceptions are caused by our program and are recoverable.
@@ -166,7 +169,8 @@ Note:
 
 - The design choice for partially checked exceptions likely stems from the nature of certain exceptions. For example, `RuntimeException` and its children often represent unexpected runtime errors that might not be easily anticipated or prevented during development. Enforcing handling for all of them might be overly restrictive.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/6d23265e-a545-4825-91a7-c99ec5d68273/Untitled.png)
+
+![t4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b9da02d3-c420-4fb7-8022-5588e41624dd)
 
 # Customized Exception Handling by using try-catch :
 
@@ -753,7 +757,8 @@ Output :→
 Custom exception caught: This is a custom exception
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/c9918dea-a898-4aba-a55a-a0724e122e6f/Untitled.png)
+![t5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/29f76ab4-e651-4119-8cec-99a4a3faa0c0)
+
 
 The result of the following two programs is exactly the same:
 
