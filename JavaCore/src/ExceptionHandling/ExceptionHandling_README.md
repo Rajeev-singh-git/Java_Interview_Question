@@ -1196,3 +1196,75 @@ In summary, **`throws`** is used in method declarations to declare the types of 
 3. **finally**: Used to execute cleanup code that should run regardless of whether an exception is thrown or not.
 4. **throw**: Used to manually create and throw an exception object.
 5. **throws**: Used in method signatures to indicate that the method may throw certain types of exceptions, delegating the responsibility of exception handling to the caller method.
+
+
+# Various possible compile time errors in exception handling:
+
+1. Exception XXX has already been caught.
+2. Unreported exception XXX must be caught or declared to be thrown.
+3. Exception XXX is never thrown in body of corresponding try statement.
+4. Try without catch or finally.
+5. Catch without try.
+6. Finally without try.
+7. Incompatible types.
+
+```java
+found:Test
+requried:java.lang.Throwable;
+```
+
+8. Unreachable statement
+
+# Customized Exceptions (User defined Exceptions)
+
+Sometimes we can create our own exception to meet our programming requirements.
+Such type of exceptions are called customized exceptions (user defined exceptions).
+Example:
+
+1. InSufficientFundsException
+2. TooYoungException
+3. TooOldException
+
+```java
+
+import java.util.Scanner;
+
+class TooYoungException extends RuntimeException
+{
+    TooYoungException(String s){
+    super(s);
+    }
+}
+
+class TooOldException extends RuntimeException{
+    TooOldException(String s){
+        super(s);
+    }
+}
+
+public class CustomExceptionDemo {
+
+    public static void main(String[]args){
+        Scanner scn = new Scanner(System.in);
+        int age = scn.nextInt();
+        if(age>60){
+            throw new TooYoungException("Please wait sometime _ you will get best match");
+        }else if(age<18){
+            throw new TooOldException("You are late");
+        }else{
+            System.out.println("You will get match by e-mail");
+        }
+    }
+
+}
+
+```
+
+In java, It is highly recommended to maintain our customized exceptions as unchecked by extending RuntimeException.
+
+If we will extend exception then checked exception will take place
+
+We can catch any Throwable type including Errors also.
+
+- **Customized Unchecked Exceptions**: If the exception you are creating represents an error that the caller can't reasonably be expected to recover from, or if it represents a programming error, then making it unchecked might be appropriate. Extending RuntimeException for such exceptions allows them to be thrown without being declared in the method signature.
+- **Customized Checked Exceptions**: If the exception represents a condition from which the caller can recover, or if the exception is part of the method's contract, then it might be more appropriate to make it a checked exception by extending Exception. This forces callers to handle the exception explicitly.
