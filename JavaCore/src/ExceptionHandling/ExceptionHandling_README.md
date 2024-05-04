@@ -1268,3 +1268,412 @@ We can catch any Throwable type including Errors also.
 
 - **Customized Unchecked Exceptions**: If the exception you are creating represents an error that the caller can't reasonably be expected to recover from, or if it represents a programming error, then making it unchecked might be appropriate. Extending RuntimeException for such exceptions allows them to be thrown without being declared in the method signature.
 - **Customized Checked Exceptions**: If the exception represents a condition from which the caller can recover, or if the exception is part of the method's contract, then it might be more appropriate to make it a checked exception by extending Exception. This forces callers to handle the exception explicitly.
+
+# Top-10 Exceptions:
+
+We can divide  exceptions  based on whether they originate from the JVM or from the program itself.
+
+They are:
+
+1. JVM Exceptions:
+2. Programmatic exceptions:
+
+## JVM Exceptions :
+
+Exceptions that are automatically raised by the JVM in response to particular events or conditions, are called JVM exception.
+
+**Examples of JVM Exceptions:**
+
+- **OutOfMemoryError:** This occurs when your program tries to allocate more memory than the JVM can provide.
+- **StackOverflowError:** This happens when a method calls itself too many times, exceeding the JVM stack capacity.
+- **ClassFormatError:** This indicates an issue with the bytecode structure of a class file that the JVM can't understand.
+
+## Programmatic Exceptions:
+
+Programmatic exceptions are exceptions deliberately thrown by the programmer or API developer to handle specific error conditions or exceptional situations in the program.
+
+Ex :  1) IllegalArgumentException(IAE).
+
+## Top 10 exceptions
+
+### 1. ArrayIndexOutOfBoundsException:
+
+ArrayIndexOutOfBoundsException is a subclass of RuntimeException and is therefore unchecked. It is automatically raised by the JVM when attempting to access an array element with an out-of-range index.
+
+Example:
+
+```java
+class Test {
+    public static void main(String[] args) {
+        int[] x = new int[10];
+        System.out.println(x[0]);    // valid
+        System.out.println(x[100]);  // AIOOBE
+        System.out.println(x[-100]); // AIOOBE
+    }
+}
+```
+
+### 2. NullPointerException:
+
+NullPointerException is a subclass of RuntimeException and is therefore unchecked. It is automatically raised by the JVM when attempting to invoke a method on a null object.
+
+Example:
+
+```java
+class Test {
+    public static void main(String[] args) {
+        String s = null;
+        System.out.println(s.length()); // R.E: NullPointerException
+    }
+}
+```
+
+### 3. StackOverflowError:
+
+StackOverflowError is a subclass of Error and is therefore unchecked. It occurs automatically when the JVM detects excessive recursive method calls. Example:
+
+```java
+class Test {
+    public static void methodOne() {
+        methodTwo();
+    }
+
+    public static void methodTwo() {
+        methodOne();
+    }
+
+    public static void main(String[] args) {
+        methodOne();
+    }
+}
+
+```
+
+Output:
+
+```java
+
+Run time error: StackOverflowError
+
+```
+
+### 4. NoClassDefFoundError:
+
+NoClassDefFoundError is a subclass of Error and is therefore unchecked. It is raised automatically by the JVM when it cannot find the required .class file during runtime.
+
+Example:
+
+```java
+// If Test.class is not available
+java Test
+```
+
+This will result in a NoClassDefFoundError.
+
+### 5. ClassCastException :
+
+ClassCastException is a subclass of RuntimeException and is therefore unchecked. It is raised automatically by the JVM when we attempt to cast a parent object to a child type.
+
+Examples:
+
+```java
+// Valid
+class Test {
+    public static void main(String[] args) {
+        String s = new String("Rajeev");
+        Object o = (Object) s;
+    }
+}
+```
+
+```java
+// RuntimeException: ClassCastException
+class Test {
+    public static void main(String[] args) {
+        Object o = new Object();
+        String s = (String) o;
+    }
+}
+```
+
+### 6. ExceptionInInitializerError:
+
+**`ExceptionInInitializerError`** is a subclass of Error and is therefore unchecked. It is raised automatically by the JVM if any exception occurs during static variable initialization or static block execution. Here are examples:
+
+```java
+// Example 1:
+class Test {
+    static int i = 10 / 0;
+}
+// Output:
+// Runtime exception:
+// Exception in thread "main" java.lang.ExceptionInInitializerError
+
+```
+
+```java
+// Example 2:
+class Test {
+    static {
+        String s = null;
+        System.out.println(s.length());
+    }
+}
+// Output:
+// Runtime exception:
+// Exception in thread "main" java.lang.ExceptionInInitializerError
+
+```
+
+### 7. **IllegalArgumentException:**
+
+**`IllegalArgumentException`** is a subclass of RuntimeException and is therefore unchecked. It is raised explicitly by the programmer or by the API developer to indicate that a method has been invoked with inappropriate arguments. Here's an example:
+
+```java
+class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread();
+        t.setPriority(10);  // valid
+        t.setPriority(100); // invalid, IllegalArgumentException will be raised
+    }
+```
+
+### 8.NumberFormatException:
+
+NumberFormatException is a subclass of IllegalArgumentException and is therefore unchecked. It is raised explicitly by the programmer or by the API developer to indicate that an attempt has been made to convert a string to a number, but the string is not properly formatted. Here's an example:
+
+```java
+class Test {
+    public static void main(String[] args) {
+        int i = Integer.parseInt("10");   // valid
+        int j = Integer.parseInt("ten");  // invalid, NumberFormatException will be raised
+    }
+}
+```
+
+Output:
+
+```java
+
+Exception in thread "main" java.lang.NumberFormatException: For input string: "ten"
+```
+
+### 9. IllegalStateException :
+
+IllegalStateException is a subclass of RuntimeException and is therefore unchecked. It is raised explicitly by the programmer or by the API developer to indicate that a method has been invoked at an inappropriate time.
+
+Example:
+
+```java
+HttpSession session = req.getSession();
+System.out.println(session.getId());
+session.invalidate();
+System.out.println(session.getId()); // IllegalStateException will be raise
+```
+
+### 10. AssertionError
+
+AssertionError is a subclass of Error and is therefore unchecked. It is raised explicitly by the programmer or by API developer to indicate that an assert statement has failed.
+
+Example:
+
+```java
+assert false;
+```
+
+In this example, the assertion condition is false, so an AssertionError will be raised.
+
+| JVM Exceptions | Programmatic Exceptions |
+| --- | --- |
+| 1. AIOOBE (ArrayIndexOutOfBoundsException) | 1. IAE (IllegalArgumentException) |
+| 2. NPE (NullPointerException) | 2. NFE (NumberFormatException) |
+| 3. StackOverflowError | 3. ISE (IllegalStateException) |
+| 4. NoClassDefFoundError | 4. AE (AssertionError) |
+| 5. CCE (ClassCastException) |  |
+| 6. ExceptionInInitializerError |  |
+
+# 1.7 Version Enhancement :
+
+As part of 1.7 version enhancements in Exception Handling the following 2 concepts got introduced :
+
+1. try with resources
+2. multi catch block
+
+## 1.  try with resources
+
+**Pre-Java 7 Resource Handling:**
+
+- Traditionally, resources like files, network connections, and database connections needed to be closed explicitly using a `finally` block to ensure proper resource management and prevent leaks.
+- Example (as you provided):
+
+```java
+BufferedReader br = null;
+try {
+  br = new BufferedReader(new FileReader("abc.txt"));
+  // Use br based on our requirements
+} catch (IOException e) {
+  // Handling code
+} finally {
+  if (br != null)
+    br.close();
+}
+```
+
+**Problems with Pre-Java 7 Approach:**
+
+- **Increased complexity:** Manually checking for `null` before closing in the `finally` block adds complexity and boilerplate code.
+- **Verbosity:** Explicit `finally` blocks increase code length and can affect readability, especially when dealing with multiple resources.
+- **Risk of forgetting to close:** Omission of the `finally` block or a `null` check could lead to resource leaks.
+
+**`try-with-resources` in Java 7:**
+
+- Introduced in Java 7, this feature simplifies resource management by automatically closing resources declared within the parentheses of the `try` statement.
+- Resources must implement the `AutoCloseable` interface (which includes `Closeable`).
+- Example:
+
+```java
+try (BufferedReader br = new BufferedReader(new FileReader("abc.txt"))) {
+  // Use br based on our requirements (br will be closed automatically)
+} catch (IOException e) {
+  // Handling code
+}
+```
+
+**Benefits of `try-with-resources`:**
+
+- **Automatic resource closing:** Resources are closed automatically, even if an exception occurs within the `try` block or the program exits abruptly.
+- **Reduced complexity:** Eliminates the need for explicit `finally` blocks and `null` checks, making code cleaner and easier to maintain.
+- **Improved readability:** Shorter code with less boilerplate improves code clarity.
+- **Reduced risk of leaks:** Guarantees proper resource closure, preventing resource leaks.
+
+## Conclusions :
+
+**1. Multiple Resources:**
+
+- We can declare multiple resources within the parentheses of the `try` statement, separated by semicolons. The resources are closed in the reverse order of their creation.
+
+**Example:**
+
+```java
+try (BufferedReader br = new BufferedReader(new FileReader("abc.txt"));
+     PrintWriter writer = new PrintWriter(new File("output.txt"))) {
+  // Use br and writer for processing
+}
+```
+
+**2. AutoCloseable Resources:**
+
+- All resources used in a `try-with-resources` statement must implement the `AutoCloseable` interface (which extends `Closeable`). This interface defines a `close()` method for proper resource cleanup.
+- Common resource classes like `BufferedReader`, `FileReader`, `PrintWriter`, and database connection classes already implement `AutoCloseable`, making them compatible with `try-with-resources`.
+
+**3. Implicitly Final Variables:**
+
+- Resource reference variables declared within a `try-with-resources` statement are implicitly final. This prevents accidental reassignment within the `try` block, ensuring the resources are used consistently throughout the block.
+- Example :
+
+```java
+try (BufferedReader br = new BufferedReader(new FileReader("abc.txt"))) {
+  // br = new BufferedReader(new FileReader("abc.txt")); // This will cause a compile-time error
+}
+```
+
+**4. `try` with Resources Only (Java 7+):**
+
+- A significant improvement in Java 7 is the ability to use `try` with resources without an accompanying `catch` or `finally` block.
+- This is valid because `try-with-resources` guarantees automatic resource closure, eliminating the need for explicit handling in most scenarios.
+- Example:
+
+```java
+try (BufferedReader br = new BufferedReader(new FileReader("abc.txt"))) {
+  // Use br for processing
+}
+```
+
+**5. `finally` Block Becomes Optional:**
+
+- With `try-with-resources`, the `finally` block becomes largely unnecessary for resource closing. Exceptions are still handled through `catch` blocks if needed.
+- However, the `finally` block can still be used for other purposes like logging or cleanup operations unrelated to resource management.
+
+## Multi Catch Block
+
+**Pre-Java 7 Exception Handling:**
+
+- Before Java 7, you had to write a separate `catch` block for each exception you wanted to handle. This became cumbersome for scenarios where multiple exceptions required similar handling code.
+- Example :
+
+```java
+try {
+  // Code that might throw exceptions
+} catch (ArithmeticException e) {
+  e.printStackTrace();
+} catch (NullPointerException e) {
+  e.printStackTrace();
+} catch (ClassCastException e) {
+  System.out.println(e.getMessage());
+} catch (IOException e) {
+  System.out.println(e.getMessage());
+}
+```
+
+**Problems with Pre-Java 7 Approach:**
+
+- **Increased code length:** Repeated `catch` blocks can make code lengthy and less readable.
+- **Verbosity:** Duplication of handling logic for similar exceptions adds boilerplate code.
+
+**Multi-catch Block (Java 7+):**
+
+- Introduced in Java 7, this feature allows you to handle multiple exception types within a single `catch` block. The exception types are separated by the pipe (|) symbol.
+- Example:
+
+```java
+try {
+  // Code that might throw exceptions
+} catch (ArithmeticException | NullPointerException e) {
+  e.printStackTrace();
+} catch (ClassCastException | IOException e) {
+  System.out.println(e.getMessage());
+}
+```
+
+**Benefits of Multi-catch Blocks:**
+
+- **Reduced code length:** Combines handling of similar exceptions into one block, leading to more concise code.
+- **Improved readability:** Cleaner code structure enhances code maintainability.
+- **Flexibility:** Allows grouping of related exceptions for efficient handling.
+
+**Restrictions on Multi-catch Blocks:**
+
+- **No Inheritance Hierarchy:**  the exception types within a multi-catch block cannot be in an inheritance relationship (child-parent or parent-child). This is to avoid ambiguity in exception handling.
+- Example :
+
+```java
+try {
+  // Code...
+} catch (IOException | FileNotFoundException e) { // Compile-time error (FileNotFoundException is a subclass of IOException)
+  // ...
+}
+```
+
+- **Order Matters:** The order of exception types matters. More specific exceptions (subclasses) should come before more general exceptions (parent classes) to avoid accidentally catching the subclass exception when a broader exception might be thrown.
+
+## Rethrowing an Exception :
+
+- In exception handling, rethrowing an exception involves catching an exception within a `catch` block and then throwing a different exception (or the same one) using the `throw` keyword.
+- **Purpose:** Rethrowing is primarily used to propagate exceptions to a higher level in your code where it can be handled more appropriately. It allows you to signal a different kind of error based on the caught exception.
+
+```java
+class Test {
+  public static void main(String[] args) {
+    try {
+      System.out.println(10 / 0); // Throws ArithmeticException
+    } catch (ArithmeticException e) {
+      throw new RuntimeException("Error during calculation", e); // Wrap in a new exception
+    }
+  }
+}
+```
+
+Rethrowing an exception allows us to convert one exception type to another. In the example below, we catch an **`ArithmeticException`** and then throw a **`NullPointerException` .**
+
+- Rethrowing exceptions is for propagating exceptions, not necessarily converting them to different types.
+- Consider wrapping exceptions for better error handling if needed.

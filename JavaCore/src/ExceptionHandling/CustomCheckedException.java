@@ -1,8 +1,8 @@
 package ExceptionHandling;
 
-public class CustomException extends Exception{
+public class CustomCheckedException extends Exception{
 
-    public CustomException(String message) {
+    public CustomCheckedException(String message) {
         super(message);
     }
 }
@@ -14,8 +14,8 @@ class Test
    {
        try {
            // Manually throw an exception
-           throw new CustomException("This is a custom exception");
-       } catch (CustomException e) {
+           throw new CustomCheckedException("This is a custom exception");
+       } catch (CustomCheckedException e) {
            // Handle the custom exception
            System.out.println("Custom exception caught: " + e.getMessage());
        }

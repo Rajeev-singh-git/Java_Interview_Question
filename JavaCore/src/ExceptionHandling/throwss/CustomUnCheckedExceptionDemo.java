@@ -15,7 +15,7 @@ class TooOldException extends RuntimeException{
     }
 }
 
-public class CustomExceptionDemo {
+public class CustomUnCheckedExceptionDemo {
 
     public static void main(String[]args){
         Scanner scn = new Scanner(System.in);
