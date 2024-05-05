@@ -1,185 +1,265 @@
-# Multi_Threading
-
 # Multi Tasking
 
-Executing several tasks simultaneously is the concept of multitasking.
-There are two types of multitasking's.
+Multitasking is the ability of a computer system to execute several tasks apparently simultaneously. There are two primary ways to achieve multitasking:
 
-1. Process based multitasking.
-2. Thread based multitasking.
+1. Process-based multitasking.
+2. Thread-based multitasking.
 
-## Process based multitasking
+**Processes and Threads: The Workhorses of Multitasking**
 
-Executing several tasks simultaneously where each task is a separate independent process such type of multitasking is called process based multitasking.
+In the world of concurrent programming, two fundamental units of execution reign supreme: processes and threads. While Java focuses heavily on threads, understanding processes is also valuable.
 
-Example :
+## Processes
 
-- While typing a java program in the editor we can able to listen mp3 audio songs at the same time we can download a file from the net all these tasks are independent of each other and executing simultaneously and hence it is is Process based multitasking.
-- This type of multitasking is best suitable at "os level”.
+- **Processes:** Imagine a process as a self-contained workspace with its own private set of resources, most notably its own memory space. Processes are often synonymous with programs or applications. However, a single application might actually be a bunch of cooperating processes working together. Operating systems typically provide Inter-Process Communication (IPC) mechanisms like pipes and sockets to facilitate communication between processes, even on different systems. Notably, most Java virtual machines run as a single process, but a Java application can create additional processes using `ProcessBuilder`. Process-based multitasking is ideal for the operating system level, as it allows truly independent programs to run concurrently.
 
-## Thread based multitasking:
+**Example: Playing Music and Programming Simultaneously**
 
-Executing several tasks simultaneously where each task is a separate independent part of the same program, is called Thread based multitasking.
-And each independent part is called a "Thread".
+A classic example of process-based multitasking is playing music in a media player while writing code in an IDE (Integrated Development Environment). These are separate applications, each acting as an independent process with its own resources. You can pause the music, minimize the player, and continue coding without affecting the music player process.
 
-1.  This type of multitasking is best suitable for "programatic level".
-2. When compared with "C++", developing multithreading examples is very easy in java because java provides in built support for multithreading through a rich API (Thread, Runnable, ThreadGroup, ThreadLocal...etc).
-3. In multithreading on 10% of the work the programmer is required to do and 90% of the work will be down by java API.
-4. The main important application areas of multithreading are:
-- To implement multimedia graphics
-- To develop animations.
-- To develop video games etc.
-- To develop web and application server.
-1. Whether it is process based or Thread based the main objective of multitasking is to improve performance of the system by reducing response time.
+## Threads
+
+- **Threads:** Threads are often referred to as lightweight processes. While both provide an execution environment, creating a thread consumes fewer resources compared to a process. Threads reside within a process, meaning every process has at least one thread. Unlike processes, threads share the process's resources like memory and open files. This enables efficient communication but can also introduce potential complications. Java heavily leverages multithreading. Every Java application starts with at least one thread (the main thread) and can create additional ones using its rich threading API (Thread, Runnable, ThreadGroup, ThreadLocal, etc.). Thread-based multitasking excels at the programmatic level, allowing different parts of the same program to run concurrently. Compared to C++, Java offers much simpler multithreading development due to its built-in support.
+
+**Example: Writing Code and Changing Case Simultaneously**
+
+A common thread-based multitasking example can be found in text editors. While you're writing code in one thread (the main thread), another thread within the same editor process might be responsible for features like automatically changing the case of keywords as you type (e.g., automatically capitalizing keywords like "if", "else", or "while"). Both functionalities (writing and case-changing) happen within the same application (single process) but use separate threads to achieve a more responsive and efficient user experience.
+
+**Context Switching: The Balancing Act**
+
+To effectively juggle multiple processes or threads, the operating system employs a technique called context switching. When switching between tasks, the OS saves the state of the current task (registers, memory pointers, etc.) and restores the state of the task it's switching to. While context switching adds some overhead, it's essential for multitasking to function.
+
+**Multitasking vs. Parallel Processing: Not Quite the Same**
+
+It's important to distinguish between multitasking and parallel processing. While multitasking creates the illusion of simultaneous execution by rapidly switching between tasks, parallel processing involves true simultaneous execution on multiple cores. Imagine having multiple hands to truly work on things at the same time, as opposed to rapidly switching between a single pair of hands.
+
+**The Goal: Enhanced Performance and Responsiveness**
+
+Regardless of the method (process-based or thread-based), the core objective of multitasking remains the same: to improve system performance by reducing response time. By allowing seemingly concurrent execution of multiple tasks, users experience a smoother and more responsive computing experience.
 
 # The ways to define instantiate and start a new Thread
 
-1. By extending Thread class.  [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyThread.java)
-2. By implementing Runnable interface. [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyRunnable.java)
+1. By extending Thread class.
+2. By implementing Runnable interface.
 
-## Case 1: Thread Scheduler
-
-- If multiple Threads are waiting to execute then which Thread will execute 1st is  decided by "Thread Scheduler" which is part of JVM.
-- Which algorithm or behavior followed by Thread Scheduler we can't expect
-  exactly it is the JVM vendor dependent hence in multithreading examples we can't expect exact execution order and exact output
-
-## Case 2: Difference between t.start() and t.run() methods.
-
-- In the case of t.start() a new Thread will be created which is responsible for the execution of run() method.
-- But in the case of t.run() no new Thread will be created and run() method will be executed just like a normal method by the main Thread.
-
-## Case 3: importance of Thread class start() method.
-
-For every Thread the required mandatory activities like registering the Thread with
-Thread Scheduler will takes care by Thread class start() method and programmer is
-responsible just to define the job of the Thread inside run() method.
-That is start() method acts as best assistant to the programmer.
-Example:
+## Defining a Thread by extending thread class.
 
 ```java
-start()
+
+public class MyThread extends  Thread
 {
-1. `Register Thread with Thread Scheduler`
-2. `All other mandatory low level activities.`
-3. `Invoke or calling run() method.
+    public void run(){
+        for(int i=0;i<10;i++){
+            System.out.println("Child Thread");
+        }
+    }
+
+}
+
+class ThreadDemo{
+    public static void main(String[] args)
+    {
+        MyThread t = new MyThread();
+        t.start(); // a new thread will be created which is responsible for the execution of run() method.
+
+        for(int i=0;i<5;i++){
+            System.out.println("Main Thread");
+        }
+    }
+}
+
+```
+
+### Case 1: Thread Scheduler
+
+- When multiple threads are waiting to execute, the order in which they will execute first is determined by the "Thread Scheduler," which is part of the JVM.
+- The specific algorithm or behavior followed by the Thread Scheduler cannot be predicted precisely, as it is dependent on the JVM vendor.
+- Consequently, in multithreading examples, we cannot reliably expect an exact execution order or outcome.
+
+**Factors Influencing Scheduling:** While the exact algorithm is hidden, some common factors likely considered by the scheduler include:
+
+- **Thread Priority:** Threads have priorities (inherited from the thread group they belong to). Higher priority threads generally get better scheduling preference.
+- **Waiting State:** Threads waiting for I/O operations (like disk access) might be temporarily suspended, allowing other threads to run.
+- **Thread State:** Threads in the `Runnable` state are actively competing for CPU time. Threads in other states (like `Waiting` or `Sleeping`) aren't actively contenders.
+
+### Case 2: Difference between t.start() and t.run() methods.
+
+**t.start():**
+
+- Creates a new thread object.
+- The new thread starts executing the `run()` method of the object `t`.
+- The original thread (the one that called `start()`) continues its execution independently and concurrently with the newly created thread.
+- You can only call `start()` on a thread object once. Attempting to call it again throws an `IllegalThreadStateException`.
+
+**t.run():**
+
+- Simply executes the `run()` method of the object `t` on the **current thread**.
+- No new thread is created.
+- This behaves like a normal method call, and the current thread continues execution after `run()` finishes.
+- You can call `run()` on a thread object multiple times.
+
+**Key Points:**
+
+- Use `t.start()` when you want to create a new thread for concurrent execution.
+- Use `t.run()` only if you want to execute the `run()` method directly on the current thread, but typically this is not the intended use case for threads.
+
+### Case 3: importance of Thread class start() method.
+
+The **`start()`** method of the **`Thread`** class handles essential tasks required for thread execution, making it a vital component of multithreading in Java.
+
+Here's what the **`start()`** method accomplishes:
+
+1. **Registration with Thread Scheduler:** The **`start()`** method registers the thread with the thread scheduler, allowing it to be managed by the JVM's threading system.
+2. **Initialization:** It handles all other mandatory low-level activities necessary for thread initialization.
+3. **Invocation of `run()` method:** Finally, it invokes or calls the **`run()`** method of the thread, where the actual job or task of the thread is defined by the programmer.
+
+This sequence of actions performed by the **`start()`** method ensures the proper initiation and execution of a new thread in Java. Without executing the **`start()`** method, a thread cannot begin its execution. Therefore, the **`start()`** method is often regarded as the heart of multithreading in Java.
+
+```java
+start() {
+    1. Register Thread with Thread Scheduler
+    2. All other mandatory low-level activities
+    3. Invoke or call run() method
 }
 ```
 
-We can conclude that without executing Thread class start() method there is no chance of starting a new Thread in java. Due to this start() is considered as heart of multithreading.
+### **Case 4: Behavior When `run()` Method is Not Overridden**
 
-## Case 4: If we are not overriding run() method
+If the **`run()`** method is not overridden in a subclass of **`Thread`**, the default **`run()`** method provided by the **`Thread`** class will be executed. This default implementation of **`run()`** has no functionality, resulting in no observable output.
 
-If we are not overriding run() method then Thread class run() method will be executed
-which has empty implementation and hence we won't get any output.
-Example:
+Here's an example:
 
 ```java
-class MyThread extends Thread 
-{}
-class ThreadDemo
-{
-public static void main(String[] args)
-{
-MyThread t=new MyThread();
-t.start();
-}
+class MyThread extends Thread {}
+
+class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+    }
 }
 ```
 
-It is highly recommended to override run() method. Otherwise don't go for
-multithreading concept.
+In this scenario, since the **`run()`** method is not overridden in the **`MyThread`** class, the default **`run()`** method of the **`Thread`** class will be executed. As this default implementation does nothing, no output will be produced.
 
-## Case 5: Overloading of run() method.
+It's important to note that while it's technically possible to create threads without overriding the **`run()`** method, it is highly recommended to override **`run()`** with the desired functionality. Without a custom **`run()`** method, there is no real benefit to utilizing multithreading, as the threads would not perform any meaningful tasks.
 
-We can overload run() method but Thread class start() method always invokes no argument run() method the other overload run() methods we have to call explicitly then only it will be executed just like normal method.
+### Case 5: Overloading the **`run()`** method.
+
+In Java, it's possible to overload the **`run()`** method in a subclass of **`Thread`**. However, the **`start()`** method of the **`Thread`** class always invokes the no-argument **`run()`** method. Other overloaded versions of **`run()`** must be explicitly called like normal methods to execute.
 
 ```java
-class MyThread extends Thread
-{
-public void run()
-{
-System.out.println("no arg method");
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("no arg method");
+    }
+
+    public void run(int i) {
+        System.out.println("int arg method");
+    }
 }
-public void run(int i)
-{
-System.out.println("int arg method");
+
+class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+    }
 }
-}
-lass ThreadDemo
-{
-public static void main(String[] args)
-{
-MyThread t=new MyThread();
-t.start();
-}
-}
+```
+
 Output:
-No arg method
-```
-
-## Case 6: overriding of start() method:
-
-If we override start() method then our start() method will be executed just like a normal method call and no new Thread will be started.
 
 ```java
-class MyThread extends Thread
-{
-public void start()
-{
-System.out.println("start method");
+no arg method
+```
+
+In this example, even though there's an overloaded **`run(int i)`** method, it won't be invoked by **`start()`**. Only the no-argument **`run()`** method will be automatically invoked. To execute the overloaded **`run(int i)`** method, it must be called explicitly like any other method.
+
+### Case 6: overriding the **`start()`** method:
+
+If we override the **`start()`** method in a subclass of **`Thread`**, our overridden **`start()`** method will be executed like a normal method call, and no new thread will be started.
+
+```java
+class MyThread extends Thread {
+    public void start() {
+        System.out.println("start method");
+    }
+
+    public void run() {
+        System.out.println("run method");
+    }
 }
-public void run()
-{
-System.out.println("run method");
+
+class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+        System.out.println("main method");
+    }
 }
-}
-class ThreadDemo
-{
-public static void main(String[] args)
-{
-MyThread t=new MyThread();
-t.start();
-System.out.println("main method");
-}
-}
+```
+
 Output:
+
+```java
 start method
 main method
 ```
 
-Entire output produced by only main Thread.
-Note : It is never recommended to override start() method.
+In this example, the entire output is produced by the main thread, indicating that only the main thread is executed. It's important to note that it's never recommended to override the **`start()`** method.
 
-## Life Cycle of the Thread
+### Life Cycle of the Thread
 
-![Screenshot 2024-02-21 154125](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/681d86c3-7461-4613-a02e-e82e7df5ea24)
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/e9af192b-f39f-490b-8e65-0e55de46d363/Untitled.png)
 
-- Once we created a Thread object then the Thread is said to be in new state or born state.
-- Once we call start() method then the Thread will be entered into Ready or
-  Runnable state.
-- If Thread Scheduler allocates CPU then the Thread will be entered into running state.
-- Once run() method completes then the Thread will entered into dead state.
+1. **New State:** When a thread object is created, it enters the new state or born state.
+2. **Runnable State:** Upon calling the **`start()`** method, the thread transitions to the ready or runnable state, indicating it's ready to execute but waiting for the CPU to be allocated by the thread scheduler.
+3. **Running State:** If the thread scheduler assigns CPU resources to the thread, it enters the running state, where its **`run()`** method is executed.
+4. **Dead State:** Once the **`run()`** method completes execution, the thread transitions to the dead state, indicating the end of its lifecycle.
 
-## IllegalThreadStateException
+### IllegalThreadStateException
 
-After starting a Thread we are not allowed to restart the same Thread once again otherwise we will get runtime exception saying "IllegalThreadStateException”.
+After initiating a thread with the **`start()`** method, attempting to restart the same thread will result in a runtime exception known as "IllegalThreadStateException."
 
 ```java
-MyThread t=new MyThread();
-t.start();//valid
-;;;;;;;;
-t.start();//we will get R.E saying: IllegalThreadStateException
+MyThread t = new MyThread();
+t.start(); // Valid
+// Other code
+t.start(); // Results in Runtime Exception: IllegalThreadStateException
 ```
 
-# Defining a Thread by implementing Runnable interface
+## Defining a Thread by implementing Runnable interface
 
-We can define a Thread even by implementing Runnable interface also.
-Runnable interface present in java.lang.pkg and contains only one method run().
+Threads can also be defined by implementing the **`Runnable`** interface. This interface, found in the **`java.lang`** package, contains only one method: **`run()`**.
 
-![Screenshot 2024-02-21 154444](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/3f09f6cb-9812-4f8b-8bcd-76703f876c79)
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/1f70b3c0-1bd6-46ec-be09-eadd3e0ec7c4/Untitled.png)
 
+```java
+public class MyRunnable implements Runnable{
 
- [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyRunnable.java)
+    @Override
+    public void run() {
+        for(int i=0;i<10;i++){
+            System.out.println("Child Thread");
+        }
+    }
+}
+
+class ThreadDemo2
+{
+    public static void main(String[]args){
+        MyRunnable r = new MyRunnable();
+        Thread t = new Thread(r);
+        t.start();
+
+        for(int i=0;i<10;i++){
+            System.out.println("Main Thread");
+        }
+    }
+
+}
+
+```
 
 ```java
 MyRunnable r = new MyRunnable();
@@ -187,66 +267,35 @@ Thread t1 = new Thread()
 Thread t2 = new Thread(r);
 ```
 
-## Case 1: `t1.start();`
+### Case 1: `t1.start();`
 
-A new Thread will be created which is responsible for the execution of Thread class run()method.
-Output:
-main thread
-main thread
-main thread
-main thread
-main thread
+When **`t1.start();`** is called, a new thread is created which is responsible for executing the **`run()`** method of the **`Thread`** class.
 
-## Case 2: `t1.run();`
+### Case 2: `t1.run();`
 
 No new Thread will be created but Thread class run() method will be executed just like a normal method call.
-Output:
-main thread
-main thread
-main thread
 
-## Case 3: `t2.start():`
+### Case 3: `t2.start():`
 
 New Thread will be created which is responsible for the execution of MyRunnable run() method.
-Output:
-main thread
 
-## Case 4: `t2.run();`
+### Case 4: `t2.run();`
 
 No new Thread will be created and MyRunnable run() method will be executed just like a normal method call.
-Output:
-child Thread
-child Thread
-child Thread
-child Thread
-child Thread
 
-## Case 5: `r.start();`
+### Case 5: `r.start();`
 
-We will get compile time error saying start()method is not available in MyRunnable class.
-Output:
-Compile time error
-E:\SCJP>javac ThreadDemo.java
-ThreadDemo.java:18: cannot find symbol
-Symbol: method start()
-Location: class MyRunnable
+We will get compile time error saying start()method is not available in MyRunnable class
 
-## Case 6: `r.run();`
+### Case 6: `r.run();`
 
 No new Thread will be created and MyRunnable class run() method will be executed just like a normal method call.
 
-Output:
-child Thread
-child Thread
-child Thread
 
-# Best approach to define a Thread:
+## **Best Approach to Define a Thread:**
 
- Among the 2 ways of defining a Thread, implements Runnable approach is
-always recommended.
- In the 1st approach our class should always extends Thread class there is no
-chance of extending any other class hence we are missing the benefits of
-inheritance.
- But in the 2nd approach while implementing Runnable interface we can extend
-some other class also. Hence implements Runnable mechanism is recommended
-to define a Thread
+When defining a Thread in Java, it's important to consider the most effective approach. Among the two ways of defining a Thread, implementing the **`Runnable`** interface is always recommended over extending the **`Thread`** class directly.
+
+In the first approach, where our class extends the **`Thread`** class, we are limited in terms of inheritance. There is no flexibility to extend any other class, potentially missing out on the benefits of inheritance.
+
+However, in the second approach, by implementing the **`Runnable`** interface, we can extend other classes as needed. This provides greater flexibility and is considered the more versatile and recommended method for defining a Thread.
