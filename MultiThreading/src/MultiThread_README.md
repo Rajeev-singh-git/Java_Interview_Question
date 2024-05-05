@@ -40,7 +40,9 @@ Regardless of the method (process-based or thread-based), the core objective of 
 # The ways to define instantiate and start a new Thread
 
 1. By extending Thread class.
+   [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyThread.java)
 2. By implementing Runnable interface.
+    [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/src/MyRunnable.java)
 
 ## Defining a Thread by extending thread class.
 
@@ -210,7 +212,7 @@ In this example, the entire output is produced by the main thread, indicating th
 
 ### Life Cycle of the Thread
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/e9af192b-f39f-490b-8e65-0e55de46d363/Untitled.png)
+![m1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/6fae331c-7bc8-410d-ab52-64af75dda128)
 
 1. **New State:** When a thread object is created, it enters the new state or born state.
 2. **Runnable State:** Upon calling the **`start()`** method, the thread transitions to the ready or runnable state, indicating it's ready to execute but waiting for the CPU to be allocated by the thread scheduler.
@@ -232,7 +234,8 @@ t.start(); // Results in Runtime Exception: IllegalThreadStateException
 
 Threads can also be defined by implementing the **`Runnable`** interface. This interface, found in the **`java.lang`** package, contains only one method: **`run()`**.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/1f70b3c0-1bd6-46ec-be09-eadd3e0ec7c4/Untitled.png)
+![m2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/50b564bd-8372-4391-a2f3-ea805b0951c5)
+
 
 ```java
 public class MyRunnable implements Runnable{
