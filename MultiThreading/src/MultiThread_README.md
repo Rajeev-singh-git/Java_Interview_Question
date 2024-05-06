@@ -486,7 +486,8 @@ You can prevent or pause a thread's execution using the following methods:
 3. **Method Signature**:
     - **`public static native void yield()`**
 
-   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/e994c136-1647-46b5-bc3e-69629bf18160/Untitled.png)
+  ![m3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f410cf59-a47f-470c-9ddd-b5970bbf5a75)
+
 
    Example Thread Yield Demo Code:
 
@@ -526,7 +527,8 @@ You can prevent or pause a thread's execution using the following methods:
 - When **`t1`** executes **`t2.join()`**, **`t1`** will enter a waiting state until **`t2`** completes its execution.
 - Once **`t2`** finishes executing, **`t1`** will resume its execution.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/6893a6a4-ab1e-400e-8c94-6a35fdfb89af/Untitled.png)
+![m4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/43bb4211-aa2a-4c9b-9484-b6f9182cafdd)
+
 
 The **`join()`** method throws a checked exception **`InterruptedException`**, which indicates that the thread calling **`join()`** was interrupted while waiting for the target thread to finish.
 
@@ -678,6 +680,9 @@ The **`sleep()`** method in Java is used to pause the execution of the current t
 2. **`public static void sleep(long ms, int ns) throws InterruptedException`**
 
 Every invocation of the **`sleep()`** method throws an **`InterruptedException`**, which is a checked exception. Therefore, it is mandatory to handle this exception using either a try-catch block or by declaring it with the **`throws`** keyword; otherwise, a compile-time error will occur.
+
+![m5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4d521ecf-d99e-4c97-80c6-3677b61666d4)
+
 
 Example Code :→
 
