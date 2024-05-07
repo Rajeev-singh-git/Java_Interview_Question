@@ -708,3 +708,119 @@ R
 A
 J
 ```
+## Interrupting a Thread :
+
+1. **Interrupting a Thread**: A thread can be interrupted  by calling the **`interrupt()`** method on its instance.
+2. **Effect on Sleeping or Waiting Threads**: If the target thread is in a sleeping or waiting state, the interrupt will take effect immediately, causing an **`InterruptedException`** to be thrown if the sleeping or waiting thread is properly handling interruptions.
+3. **Waiting for Thread State Change**: If the target thread is not in a sleeping or waiting state, the interrupt call will wait until the thread enters such a state. Once the target thread enters a sleeping or waiting state, the interrupt will take effect immediately.
+4. **No Impact If Never in Sleeping or Waiting State**: If the target thread never enters a sleeping or waiting state during its lifetime, the interrupt call will have no effect and will be essentially wasted.
+
+**Example 1: Interrupting a Sleeping Thread**
+
+```java
+class MyThread extends Thread {
+  public void run() {
+    try {
+      for (int i = 0; i < 5; i++) {
+        System.out.println("I am lazy Thread :" + i);
+        Thread.sleep(2000);
+      }
+    } catch (InterruptedException e) {
+      System.out.println("I got interrupted");
+    }
+  }
+}
+
+class ThreadInterruptDemo {
+  public static void main(String[] args) {
+    MyThread t = new MyThread();
+    t.start();
+    t.interrupt(); // Interrupt the child thread
+    System.out.println("End of main thread");
+  }
+}
+```
+
+In this example, the `interrupt()` call in the `main` thread will likely interrupt the `MyThread` during its first `sleep()`, causing it to exit the loop and print "I got interrupted."
+
+**Example 2: Interrupting a Non-Sleeping Thread (Delayed Effect)**
+
+```java
+class MyThread extends Thread {
+  public void run() {
+    for (int i = 0; i < 5; i++) {
+      System.out.println("I am lazy thread");
+    }
+    System.out.println("I'm entered into sleeping stage");
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+      System.out.println("I got interrupted");
+    }
+  }
+}
+
+class ThreadInterruptDemo1 {
+  public static void main(String[] args) {
+    MyThread t = new MyThread();
+    t.start();
+    t.interrupt(); // Interrupt the child thread
+    System.out.println("End of main thread");
+  }
+}
+```
+
+Output :→
+
+```java
+I am lazy thread
+I am lazy thread
+I am lazy thread
+I am lazy thread
+I am lazy thread
+I'm entered into sleeping stage
+I got interrupted
+```
+
+Here, the `interrupt()` call in the `main` thread might not have an immediate effect because `MyThread` is not initially sleeping. However, once it enters the `sleep()` state, the interrupt flag will be checked, causing the `InterruptedException` and the "I got interrupted" message.
+
+**Key Points:**
+
+- `interrupt()` sets an interrupt flag, not a guaranteed stop.
+- Sleeping/waiting threads are more susceptible to interruption.
+- Interrupted threads need to check the interrupt flag themselves.
+- Interrupting is a cooperative mechanism, requiring the target thread to handle it.
+
+## Comparison of the **`yield()`**, **`join()`**, and **`sleep()`** methods in Java:
+
+| Property | yield() | join() | sleep() |
+| --- | --- | --- | --- |
+| Purpose | To pause current executing thread to allow other threads of the same priority to execute. | To make a thread wait until another thread completes its execution. | To make a thread pause its execution for a specific amount of time. |
+| Is it static? | Yes | No | Yes |
+| Is it final? | No | Yes | No |
+| Is it overloaded? | No | Yes | Yes |
+| Throws InterruptedException? | No | Yes | Yes |
+| Is it a native method? | Yes | No | sleep(long ms) is native, sleep(long ms, int ns) is non-native. |
+
+# Synchronization
+
+1. **Applicability of synchronized keyword**:
+    - It is applicable for methods and blocks but not for classes and variables.
+2. **Execution restriction**:
+    - When a method or block is declared as synchronized, only one thread at a time is allowed to execute that method or block on the given object.
+3. **Advantage of synchronized keyword**:
+    - The main advantage of the synchronized keyword is resolving data inconsistency problems, particularly in multi-threaded environments.
+4. **Disadvantage of synchronized keyword**:
+    - However, the main disadvantage is that it increases the waiting time of threads and can affect the performance of the system.
+5. **Recommendation on usage**:
+    - Hence, if there is no specific requirement for synchronization, it's not recommended to use the synchronized keyword to avoid unnecessary performance overhead.
+6. **Implementation**:
+    - Internally, synchronization is implemented using the concept of locks.
+7. **Lock concept**:
+    - Every object in Java has a unique lock. Synchronization comes into play when the synchronized keyword is used, and it operates based on these locks.
+8. **Acquiring and releasing lock**:
+    - When a thread wants to execute any synchronized method on a given object, it first needs to acquire the lock of that object. Once acquired, the thread can execute synchronized methods on that object. Upon completion, the lock is automatically released.
+9. **Concurrency behavior**:
+    - While a thread is executing any synchronized method on an object, other threads are not allowed to execute any synchronized method on the same object simultaneously. However, they are allowed to execute non-synchronized methods simultaneously. This behavior is based on the object's lock rather than the method itself.
+
+Finally, it's important to note that the acquisition and release of locks are managed by the JVM, and programmers are not responsible for these activities. This ensures consistency and reliability in multi-threaded programming.
