@@ -834,7 +834,8 @@ In Java multithreading, if a class has two synchronized methods, let's say **`m1
 - If **`thread t1`** is executing **`m1`** on object **`x`**, and **`thread t2`** attempts to execute **`m1`** on the same object **`x`**, it will have to wait because the lock on object **`x`** is held by **`thread t1`**. Therefore, **`thread t2`** will be in a waiting state until it can acquire the lock on object **`x`**.
 - Meanwhile, if **`thread t3`** attempts to execute **`m3`** on object **`x`**, it will be able to do so immediately because **`m3`** is a non-synchronized method. Non-synchronized methods can be executed by multiple threads simultaneously without waiting for a lock.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/d30d8243-d098-42cc-ad05-4b05711648f3/Untitled.png)
+![m1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/9f1110ed-c2bf-4733-ad0f-45d50346010c)
+
 
 - Non-synchronized methods don't acquire a separate lock.
 - They can access the object's state concurrently with a synchronized method on the same object, but only if they don't modify shared data.
@@ -842,7 +843,8 @@ In Java multithreading, if a class has two synchronized methods, let's say **`m1
 
 ## Synchronized vs. Non-Synchronized Areas
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/8195ceb3-df56-4429-b7cf-b7b119daeed2/Untitled.png)
+![m2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/7f7a1aef-447d-4ea7-8bf4-f43a96411de2)
+
 
 1. **Synchronized Area**: This is a portion of the code where access to shared resources or critical sections is synchronized using locks. Only one thread can access this area at a time, ensuring that updates to shared state are atomic and consistent.
 2. **Non-Synchronized Area**: This part of the code doesn't require synchronization. Multiple threads can access non-synchronized methods or sections concurrently without any risk of data corruption because these methods don't modify shared state.
@@ -937,7 +939,8 @@ t1.start();
 t2.start();
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/49789473-b534-4c5e-a8bf-f1b291f2cefb/Untitled.png)
+![m3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/5e793e5d-d76d-442c-b6b6-de197cdd42c6)
+
 
 1. When you have multiple threads operating on multiple objects (like in your case with **`d1`** and **`d2`**), even if the method is synchronized, each thread will acquire the lock for its respective object. Since the threads are operating on different objects, they won't block each other, and the synchronization won't have any impact on the execution order. This can result in irregular output because there's no coordination between the threads regarding access to shared resources.
 2. On the other hand, when multiple threads are operating on the same Java object, synchronization becomes crucial. If you have multiple threads operating on the same object and the methods they call are synchronized, then only one thread will be able to execute those methods at a time, ensuring proper coordination and avoiding data corruption or inconsistent behavior due to concurrent access.
@@ -1018,7 +1021,8 @@ When a Thread invokes methods like wait(), notify(), or notifyAll() on an object
 
 Additionally, every wait method throws the InterruptedException checked exception, so it's necessary to handle it properly using try-catch or the throws keyword when using wait().
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/0877afa8-4e8c-4595-94ab-8917b7417058/Untitled.png)
+![m4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/2c86bf1a-ec30-47d3-a62f-72f47b5e5c30)
+
 
 Example Code :→
 
@@ -1336,7 +1340,8 @@ It can also be used to define thread scopes similar to servlet scopes (page, req
 
 # Life Cycle of Thread
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/75bac174-52f5-4cd3-9b38-db06a78e16fe/Untitled.png)
+![m5](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/5dc02580-479d-4b7a-ac41-514d675cd475)
+
 
 # Questions
 
