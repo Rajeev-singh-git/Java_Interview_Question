@@ -44,7 +44,8 @@ Note:
 - Therefore, the System Group acts as the root for all ThreadGroups in Java.
 - The System ThreadGroup represents system-level threads such as ReferenceHandler, SignalDispatcher, Finalizer, AttachListener, etc.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/50275e5f-f398-4e94-8819-a790f268e7ef/Untitled.png)
+![m1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/b3c3d120-f634-4047-bad0-27c349392101)
+
 
 Code
 
@@ -76,7 +77,8 @@ Output :→
     Parent Group
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/275d7f91-05a7-4b5e-8c08-4bdf3513a451/Untitled.png)
+![m2](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f4921003-e34e-4b14-8789-dc4b5cd009fa)
+
 
 # Important methods available in the ThreadGroup class
 
@@ -237,7 +239,8 @@ java.lang.ThreadGroup[name=Parent Group,maxpri=10]
     java.lang.ThreadGroup[name=Child Group,maxpri=10]
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/fbe7c2aa-383e-451f-8e22-762489ec5f0c/Untitled.png)
+![m3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4375dfb4-09a6-49db-8df1-2bd333746797)
+
 
 Write a Program to Display All Thread Names belongs to System Group
 
