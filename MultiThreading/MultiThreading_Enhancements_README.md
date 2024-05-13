@@ -270,3 +270,12 @@ Common-Cleaner-------true
 Monitor Ctrl-Break-------true
 Notification Thread-------true
 ```
+# Java.util.concurrent.locks.package
+
+## Problems with Traditional  Synchronized Key Word
+
+- **Lack of Flexibility:** With `synchronized`, you can't attempt to acquire a lock without actually blocking the thread. This means you can't check if a lock is available before waiting.
+- **Indefinite Waiting:** There's no way to specify a maximum wait time for a thread trying to acquire a lock. This can lead to a thread waiting indefinitely, potentially causing deadlocks.
+- **Uncontrolled Lock Release:** When a thread releases a lock acquired with `synchronized`, there's no control over which waiting thread gets it next. This can be unpredictable and make debugging concurrency issues harder.
+- **Limited Scope:** You can only use `synchronized` at the method level, which can be too coarse-grained for some scenarios. You might need finer control over specific code blocks within a method.
+- **No Waiting Thread Information:** There's no built-in API to list all threads waiting for a particular lock acquired with `synchronized`.
