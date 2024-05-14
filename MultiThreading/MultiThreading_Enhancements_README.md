@@ -279,3 +279,48 @@ Notification Thread-------true
 - **Uncontrolled Lock Release:** When a thread releases a lock acquired with `synchronized`, there's no control over which waiting thread gets it next. This can be unpredictable and make debugging concurrency issues harder.
 - **Limited Scope:** You can only use `synchronized` at the method level, which can be too coarse-grained for some scenarios. You might need finer control over specific code blocks within a method.
 - **No Waiting Thread Information:** There's no built-in API to list all threads waiting for a particular lock acquired with `synchronized`.
+
+
+
+## Lock (Interface)
+
+- Similar to the implicit lock acquired by a thread in synchronized methods or blocks.
+- Provides more extensive operations than traditional implicit locks.
+
+### **Important Methods of Lock Interface**:
+
+- **`lock()`**: Locks the lock object, similar to the behavior of the synchronized keyword. Waits if the lock is already acquired by another thread.
+- **`tryLock()`**: Attempts to acquire the lock if it's available. Returns true if successful, false otherwise. Does not block the thread.
+- **`tryLock(long time, TimeUnit unit)`**: Attempts to acquire the lock, waiting for the specified amount of time if it's unavailable.
+- **`lockInterruptibly()`**: Acquires the lock unless the current thread is interrupted. Returns immediately if successful, otherwise waits until the lock is available.
+- **`unlock()`**: Releases the lock. The current thread must be the owner of the lock, otherwise, it throws **`IllegalMonitorStateException`**.
+
+## **ReentrantLock Class**:
+
+- Implements the **`Lock`** interface and is a direct subclass of **`Object`**.
+- Reentrant: A thread can acquire the same lock multiple times without issues.
+- Internally, it maintains a count of lock acquisitions by threads. Each call to **`lock()`** increments this count, and each call to **`unlock()`** decrements it. The lock is released when the count reaches zero.
+- `ReentrantLock` can be configured to be fair or non-fair. With fairness enabled, threads waiting for the lock acquire it in the order they requested it, reducing starvation.
+
+Using **`ReentrantLock`** provides more flexibility and control over locking compared to the synchronized keyword, especially with its additional methods like **`tryLock()`** and **`tryLock(long time, TimeUnit unit)`** which offer non-blocking and timed locking capabilities.
+
+### Constructors :
+
+1. `ReentrantLock rl = new ReentrantLock();` - This creates a new `ReentrantLock` instance with the default fairness policy, which is **non-fair**.
+2. `ReentrantLock rl = new ReentrantLock(boolean fairness);` - This allows you to specify the fairness behavior during lock creation.
+   - `fairness = true` - Creates a fair `ReentrantLock`. Threads waiting for the lock will acquire it in the order they requested it (First-In-First-Out).
+   - `fairness = false` (default) - Creates a non-fair `ReentrantLock`. There's no guarantee about which waiting thread acquires the lock once it's available.
+
+**Equivalent Constructors:**
+
+- `ReentrantLock rl = new ReentrantLock();` (default non-fair)
+- `ReentrantLock rl = new ReentrantLock(false);` (explicitly non-fair)
+
+These two lines are equivalent because both create a non-fair `ReentrantLock` instance. If you don't specify the fairness parameter, it defaults to non-fair behavior.
+
+**Key Points:**
+
+- Use fair locks when the order of thread acquisition matters and preventing starvation is crucial.
+- Non-fair locks can sometimes offer slightly better performance, but fairness guarantees are lost.
+- Choose the appropriate fairness policy based on your specific concurrency requirements.
+
