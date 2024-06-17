@@ -31,7 +31,8 @@ Table summarizing the key differences:
 
 Once a string object is created in Java, its content cannot be modified. Any attempt to modify the string results in the creation of a new string object with the modified content.
 
-![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/efcf1a75-0f6f-4f46-a12b-5b9493d78341)
+
+![s1](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/47c1f94c-d305-4391-911e-453f8b69526f)
 
 
 # == Operator vs equals method
