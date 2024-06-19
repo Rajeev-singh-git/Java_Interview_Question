@@ -595,8 +595,7 @@ Ans - > B
 
 ## StringBuffer Constructor
 
-![s9](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/45f53b76-8158-4d4c-bf7e-ed17f50d003d)
-
+![s11](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/5daa3ead-2275-43f1-b793-c7e380d528ae)
 
 1. Default Capacity: 16
 
@@ -739,7 +738,7 @@ System.out.println(sb.capacity());   // Output: 34
 
 Java introduced StringBuilder as an alternative to StringBuffer, removing synchronization where it was not needed. This enhancement improved performance, especially in multi-threaded environments where StringBuffer's thread-safe behavior could lead to performance bottlenecks.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/01bbf536-a533-419d-b567-d81390e807ad/31e9e415-573f-4b24-af21-dff408689727/Untitled.jpeg)
+![s12](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f7db9b1e-a0cd-46f9-b0ea-de2129dac6af)
 
 **Shared Functionality:**
 
