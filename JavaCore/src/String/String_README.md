@@ -53,7 +53,7 @@ Once a string object is created in Java, its content cannot be modified. Any att
 - The **`==`** operator in Java indeed returns **`true`** only when both references point to the exact same object in memory. It compares the memory addresses of the objects, ensuring they are identical. If the two references point to different objects, even if their contents are the same, **`==`** will return **`false` .**
 
 ```java
-  			String s1 = new String("Rajeev");
+  	String s1 = new String("Rajeev");
         String s2 = new String("Rajeev");
 
         System.out.println(s1==s2);             //false
@@ -65,7 +65,7 @@ Once a string object is created in Java, its content cannot be modified. Any att
 - The **`equals()`** method in the StringBuffer class is not overridden for content comparison.
 
 ```java
-    		StringBuffer sb1 = new StringBuffer("Rajeev");
+    	StringBuffer sb1 = new StringBuffer("Rajeev");
         StringBuffer sb2 = new StringBuffer("Rajeev");
 
         System.out.println(sb1==sb2);             //false
