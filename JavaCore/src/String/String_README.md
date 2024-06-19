@@ -135,9 +135,9 @@ Once a string object is created in Java, its content cannot be modified. Any att
 ### Example 1 :
 
 ```java
-	      String s1 = new String("Rajeev");
+	String s1 = new String("Rajeev");
         String s2 = new String("Rajeev");
-	      String s3 = "Rajeev";
+	String s3 = "Rajeev";
         String s4 = "Rajeev";
         
 
@@ -147,8 +147,8 @@ Once a string object is created in Java, its content cannot be modified. Any att
 
 In total, there are three objects created:
 
-- Two objects on the heap (**`s3`** and **`s4`**).
-- One object in the SCP (shared by **`s1`** and **`s2`**).
+- Two objects on the heap (**`s1`** and **`s2`**).
+- One object in the SCP (shared by **`s3`** and **`s4`**).
 
 
 ![s3](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/16ead566-572e-4698-bc2d-cdcdc2de1f24)
@@ -179,7 +179,7 @@ In total, there are three objects created:
 ## Example 3
 
 ```java
-	      String s1 = new String("You cannot change me");
+	String s1 = new String("You cannot change me");
         String s2 = new String("You cannot change me");
         System.out.println(s1==s2);             // false
         String s3 = "You cannot change me";
