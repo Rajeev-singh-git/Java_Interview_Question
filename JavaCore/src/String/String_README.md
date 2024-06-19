@@ -275,7 +275,7 @@ Certainly, here are the method names along with example code:
 1. **`isEmpty()`:** Checks whether the string is empty or not.
 
     ```java
-    javaCopy code
+
     String s = "";
     System.out.println(s.isEmpty()); // True
     
@@ -400,7 +400,7 @@ System.out.println(trimmed); // Output: Hello
 Immutability : Once object is created, we cannot change it’s content. If we perform any change with those changes a new object will be created.
 
 ```java
- 	      String s1 = new String("spring");
+ 	String s1 = new String("spring");
         String s2 = s1.toUpperCase();
         String s3 = s1.toLowerCase();
 
@@ -411,8 +411,7 @@ Immutability : Once object is created, we cannot change it’s content. If we pe
 - While assigning value to S2 String, the content changed from lowercase to Uppercase, so internally s2 will point to new content in the heap area.
 - While assigning value to s3, there is no change in content of s1 since it’s already in small case so both will refer to same memory address.
 
-![s7](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/ca71c668-3637-4146-929b-f4c8bc58626d)
-
+![s111](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/8abc0058-1035-44c9-ba76-1572e318f06d)
 
 # Creating Our won immutable class
 
@@ -502,7 +501,8 @@ What will be the output?
 ABCC
 ```
 
-![s8](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/40206fe8-7e39-4e2b-90ae-fc6cf0fd1fe4)
+
+![s112](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/a9bcd6a8-7a54-468f-a759-8b625975a60d)
 
 
 Code 2:
