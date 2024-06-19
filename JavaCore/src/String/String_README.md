@@ -637,7 +637,7 @@ System.out.println(sb.capacity());   // Output: 34
 
     ```java
     StringBuffer sb = new StringBuffer("Hello");
-    System.out.println("Length: " + sb.length()); // Output: 
+    System.out.println("Length: " + sb.length()); // Output: 5
     ```
 
 2. **`public int capacity()`**
