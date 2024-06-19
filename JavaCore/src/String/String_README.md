@@ -167,11 +167,24 @@ In total, there are three objects created:
 
 - Total 8 object will be created, but s1 will point to "Spring" in heap and
   "S2" will point to "SpringWinter" in heap.
-- **`String s2 = s1.concat("Winter")`**; and **`s2.concat("Summer");`**
-  This creates a new String object "SpringWinter" on the heap by concatenating the contents of s1 ("Spring") and "Winter".
-- new object is not assigned to any variable and is eligible for garbage collection. No change is made to s1.
-- `concat()`  creates a new String object and doesn't modify the original String.
-- However, like before, this new object is not assigned to any variable and is eligible for garbage collection. No change is made to s2.
+  
+1. **`String s1 = new String("Spring");`**
+    - This creates a new String object in memory with the value "Spring" and assigns it to the variable `s1`.
+2. **`s1.concat("Fall");`**
+    - This calls the `concat` method on `s1` with the argument "Fall".
+    - **Important:** The `concat` method in Java returns a **new** String object containing the combined value ("SpringFall") but **doesn't modify the original string (`s1`)**.
+    - In this case, the newly created String ("SpringFall") is discarded because it's not assigned to any variable.
+3. **`String s2 = s1.concat("Winter");`**
+    - Similar to step 2, this creates a new String object with "SpringWinter" and assigns it to `s2`.
+    - `s1` remains unchanged with the value "Spring".
+4. **`s2.concat("Summer");`**
+    - Again, this creates a new String object with "SpringWinterSummer" but it's discarded as it's not assigned.
+5. **`System.out.println(s1);`**
+    - This prints the value of `s1`, which is still "Spring" since it wasn't modified by the `concat` calls.
+6. **`System.out.println(s2);`**
+    - This prints the value of `s2`, which is "SpringWinter" as assigned in step 3.
+
+**Key takeaway:** The `concat` method in Java creates a new String object with the combined value but doesn't change the original string. If you want to modify the original string, you need to reassign the result of `concat` back to the same variable.
 
 ![s4](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/eec2faa9-3b8c-48e5-a93f-7509e297be17)
 
