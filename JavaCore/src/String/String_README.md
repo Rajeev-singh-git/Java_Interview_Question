@@ -622,10 +622,11 @@ System.out.println(sb.capacity());   // Output: 34
 
    Example:
 
+  
     ```java
     
     StringBuffer sb = new StringBuffer("Raj");
-    System.out.println(sb.capacity()); // Output: 21
+    System.out.println(sb.capacity()); // Output: 19
     ```
 
 
@@ -640,11 +641,11 @@ System.out.println(sb.capacity());   // Output: 34
     ```
 
 2. **`public int capacity()`**
-  - Returns the current capacity (allocated size) of the StringBuffer object.
+    - Returns the current capacity (allocated size) of the StringBuffer object.
 
-    ```java
-    System.out.println("Capacity: " + sb.capacity()); // Output: 2
-    ```
+     ```java
+     System.out.println("Capacity: " + sb.capacity()); // Output: 2
+     ```
 
 3. **`public char charAt(int index)`**
   - Returns the character at the specified index within the StringBuffer object.
