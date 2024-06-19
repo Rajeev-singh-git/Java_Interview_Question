@@ -644,7 +644,7 @@ System.out.println(sb.capacity());   // Output: 34
     - Returns the current capacity (allocated size) of the StringBuffer object.
 
      ```java
-     System.out.println("Capacity: " + sb.capacity()); // Output: 2
+     System.out.println("Capacity: " + sb.capacity()); // Output: 21
      ```
 
 3. **`public char charAt(int index)`**
