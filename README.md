@@ -1,5 +1,4 @@
-# Java Interview Questions
-
+# Java Basic
 ![Designer](https://github.com/user-attachments/assets/2e9eccd5-a1e3-4756-beae-d2cf3bb86799)
 
 ## Table of Content ... 
