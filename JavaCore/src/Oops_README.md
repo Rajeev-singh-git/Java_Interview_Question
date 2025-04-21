@@ -1,16 +1,18 @@
-# Oops 
+# Oops
+
 ## Table of Contents
+
 1. [Abstraction](#abstraction)
 2. [Encapsulation](#encapsulation)
 3. [Inheritance](#inheritance)
-    - [Why java won't provide support for multiple inheritance?](#why-java-wont-provide-support-for-multiple-inheritance)
+   - [Why java won't provide support for multiple inheritance?](#why-java-wont-provide-support-for-multiple-inheritance)
 4. [HAS-A Relationship](#has-a-relationship)
-    - [Composition:](#composition)
+   - [Composition:](#composition)
 5. [Aggregation](#aggregation)
 6. [Polymorphism concept](#polymorphism-concept)
-    - [Compile-time Polymorphism (Method Overloading):](#compile-time-polymorphism-method-overloading)
-    - [Runtime Polymorphism (Method Overriding):](#runtime-polymorphism-method-overriding)
-    - [Can we override static method in java explain with proper simple example?](#can-we-override-static-method-in-java-explain-with-proper-simple-example)
+   - [Compile-time Polymorphism (Method Overloading):](#compile-time-polymorphism-method-overloading)
+   - [Runtime Polymorphism (Method Overriding):](#runtime-polymorphism-method-overriding)
+   - [Can we override static method in java explain with proper simple example?](#can-we-override-static-method-in-java-explain-with-proper-simple-example)
 7. [Method Hiding](#method-hiding)
 8. [Overriding with respect to var-arg method.](#overriding-with-respect-to-var-arg-method)
 9. [Constructor](#constructor)
@@ -38,13 +40,13 @@
     - [Runtime Checking](#runtime-checking)
 24. [Cohesion](#cohesion)
 
+---
 
 ## Abstraction
 
 Abstraction is the process of hiding complex internal implementation details of a system and showing only the functionality to the user. Another way, it shows only essential things to the user and hides the internal details.
 
 Abstraction involves showing only the necessary features of an object or system while concealing the implementation details. It allows users to interact with high-level functionalities without needing to understand how those functionalities are implemented internally.
-
 
 Ex : An ATM graphical user interface (GUI) screen is an example of abstraction. It presents only the essential options and information to the user (such as balance inquiry, withdrawal, deposit) while hiding the complex processes happening behind the scenes.
 
@@ -76,8 +78,6 @@ An interface in Java is a collection of abstract methods. A class can implement 
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExampleUsingInterface.java)
 
-
-
 ## Encapsulation
 
 The binding of data and the methods that operate on that data into a single unit is called encapsulation. When a Java class follows the principles of data hiding and abstraction, it can be referred to as an encapsulated class.
@@ -93,8 +93,6 @@ Inheritance in object-oriented programming allows a child class  to access the p
 
 Inheritance in object-oriented programming establishes an "is-a" relationship between the subclass and the superclass. This relationship is implemented in Java using the **`extends`** keyword.
 
-
-
 - **`IS-A Relationship:`** Inheritance represents an "is-a" relationship, meaning that a subclass is a specialized version of its superclass.
 - **`extends` Keyword in Java:** The **`extends`** keyword is used to create a subclass that inherits from a superclass.
 
@@ -107,7 +105,6 @@ Inheritance in object-oriented programming establishes an "is-a" relationship be
 - Multiple inheritance introduces the "diamond problem," a situation where a class inherits from two classes that have a common ancestor. This creates ambiguity when the compiler tries to resolve which version of a method or field to use.
 - Resolving the diamond problem becomes complex and can lead to unpredictable behavior. Java's design emphasizes simplicity and avoiding such complexities.
 
-
 ## HAS-A Relationship
 
 In Java, a "HAS-A" relationship refers to a form of association between classes, where one class contains an instance of another class as a member or field. This relationship is based on composition, and it is often used to represent a stronger relationship than a simple "uses" or "knows" relationship.
@@ -115,6 +112,7 @@ In Java, a "HAS-A" relationship refers to a form of association between classes,
 Here are the key points about the HAS-A relationship:
 
 ### Composition:
+
     - The HAS-A relationship is achieved through composition, where one class contains an object of another class as a member variable.
     - The class that contains the object is often referred to as the "container" or "composite" class, and the class being contained is referred to as the "component" or "part" class.
     - Without Existing the container object if there is no chance of existing contained object. The relationship between container object and contained object is called composition which is a strong association.
@@ -150,9 +148,7 @@ Without an existing container object, if there is a chance of the existing conta
 
 In other words, the lifecycle of the contained object is not strictly tied to the lifecycle of the container object in aggregation. The contained object can exist on its own or be associated with multiple containers. This weaker relationship provides more flexibility and independence between the objects involved in the aggregation.
 
-
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Aggregation.java)
-
 
 ## Polymorphism concept
 
@@ -161,62 +157,65 @@ Polymorphism, meaning "many forms," is a powerful concept in Java that allows yo
 There are two main types of polymorphism in Java: compile-time polymorphism (also known as static or method overloading) and runtime polymorphism (also known as dynamic or method overriding).
 
 1. **Compile-time Polymorphism (Method Overloading):**
-    - Method overloading occurs when a class has multiple methods with the same name but different parameters (number, type, or order of parameters).
-    - The decision on which method to call is made at compile time based on the method signature.
-    - Example:
-
-    ```java
-    
-    public class Calculator {
-        public int add(int a, int b) {
-            return a + b;
-        }
-    
-        public double add(double a, double b) {
-            return a + b;
-        }
-    }
-    
-    ```
-
+   
+   - Method overloading occurs when a class has multiple methods with the same name but different parameters (number, type, or order of parameters).
+   
+   - The decision on which method to call is made at compile time based on the method signature.
+   
+   - Example:
+     
+     ```java
+     public class Calculator {
+       public int add(int a, int b) {
+           return a + b;
+       }
+     
+       public double add(double a, double b) {
+           return a + b;
+       }
+     }
+     ```
+   
    In this example, there are two **`add`** methods with different parameter types, allowing the same method name to be used for both integers and doubles.
-
+   
    Method resolution in method overloading is determined at compile-time based on the reference type of the object (also known as static or compile-time polymorphism). This means that the compiler decides which method to call by examining the reference type of the object at compile time.
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverloadingExample.java)
 
 2. **Runtime Polymorphism (Method Overriding):**
+   
    - Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
+   
    - The decision on which method to call is made at runtime based on the actual type of the object.
+   
    - To achieve runtime polymorphism, you use the **`@Override`** annotation in the subclass to indicate that the method is intended to override a method in the superclass.
+   
    - Example:
-
-    ```java
-    javaCopy code
-    class Animal {
+     
+     ```java
+     javaCopy code
+     class Animal {
         void sound() {
             System.out.println("Animal makes a sound");
         }
-    }
-    
-    class Dog extends Animal {
+     }
+     
+     class Dog extends Animal {
         @Override
         void sound() {
             System.out.println("Dog barks");
         }
-    }
-    
-    class Cat extends Animal {
+     }
+     
+     class Cat extends Animal {
         @Override
         void sound() {
             System.out.println("Cat meows");
         }
-    }
-    
-    ```
-
+     }
+     ```
+   
    In this example, both **`Dog`** and **`Cat`** classes override the **`sound`** method from the **`Animal`** class. The specific implementation is determined at runtime based on the actual object type.
-
 
 Polymorphism in Java helps achieve flexibility and extensibility in code, making it easier to work with diverse types of objects in a unified manner.
 
@@ -252,15 +251,12 @@ I2.methodOne();  // This calls the methodOne implementation in OopsConcept.Demo2
 
 ## Method Hiding
 
-| Method Overriding | Method Hiding |
-| --- | --- |
-| Both Parent and Child class method should be non-static. | Both Parent and Child class method should be static. |
-| Method Resolution is always taken care by JVM based on runtime objects. | Method Resolution is always taken care by compiler based on reference type. |
-| Overriding is also considered as Runtime Polymorphism (or) Dynamic Polymorphism (or) late binding. | Method hiding is also considered as compile time polymorphism (or) static polymorphism (or) early binding. |
+| Method Overriding                                                                                                                 | Method Hiding                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Both Parent and Child class method should be non-static.                                                                          | Both Parent and Child class method should be static.                                                                        |
+| Method Resolution is always taken care by JVM based on runtime objects.                                                           | Method Resolution is always taken care by compiler based on reference type.                                                 |
+| Overriding is also considered as Runtime Polymorphism (or) Dynamic Polymorphism (or) late binding.                                | Method hiding is also considered as compile time polymorphism (or) static polymorphism (or) early binding.                  |
 | [Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverloadingExample.java) | [Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/MethodHiding.java) |
-
-
-
 
 ## Overriding with respect to var-arg method.
 
@@ -268,10 +264,7 @@ A var-arg method should be overriden with  var-arg method only. If we are trying
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverridingVarAgMethod.java)
 
-
-
 ![Screenshot 2024-02-16 234543](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/1b23160d-d395-475f-adae-018124b4c748)
-
 
 # Constructor
 
@@ -360,7 +353,6 @@ class Test {
 
 ![Screenshot 2024-02-17 140907](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/c013800f-33dc-4136-b20e-fbf8620fc36b)
 
-
 ## Super() vs this()
 
 1. First line inside constructor should be either super() or this(), if we are not writing anything compiler will generate super().
@@ -409,7 +401,6 @@ class Test {
 
 ![Screenshot 2024-02-19 134501](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e33ea274-2ab6-4b4f-a152-9751fea1e7ec)
 
-
 ### We can't create object for abstract class but abstract class can contain constructor what is the need ?
 
 Abstract class constructor will be executed for every child class object creation to perform initialization of child class object only.
@@ -452,11 +443,11 @@ class Test {
     Test(int i) {
         this(); // Calls the no-argument constructor, leading to recursive invocation
     }
- 
+
     Test() {
         this(10); // Calls the parameterized constructor, leading to recursive invocation
     }
- 
+
     public static void main(String[] args) {
         System.out.println("hello");
     }
@@ -472,11 +463,11 @@ class Test {
     Test(int i) {
         this(); // Calls the no-argument constructor
     }
- 
+
     Test() {
         // No recursive constructor invocation here
     }
- 
+
     public static void main(String[] args) {
         System.out.println("hello");
     }
@@ -553,13 +544,12 @@ constructor will be executed but parent object won't be created.
 
 - Factory methods are typically invoked using the class name, rather than through the constructor. This allows for more flexibility in object creation and enables certain design patterns, like the Factory Method pattern.
 - **Examples**:
-    - **`Runtime.getRuntime()`**: Returns the current **`Runtime`** object, allowing access to the runtime environment.
-    - **`DateFormat.getInstance()`**: Returns a **`DateFormat`** object based on the default locale and time zone, providing a convenient way to obtain a date format instance.
+  - **`Runtime.getRuntime()`**: Returns the current **`Runtime`** object, allowing access to the runtime environment.
+  - **`DateFormat.getInstance()`**: Returns a **`DateFormat`** object based on the default locale and time zone, providing a convenient way to obtain a date format instance.
 - **Usage**:
-    - Factory methods are useful when object creation needs to adhere to certain constraints or conditions.
-    - They can encapsulate complex instantiation logic or enforce specific rules during object creation.
-    - Factory methods are often used in conjunction with design patterns such as the Factory Method pattern or the Singleton pattern.
-
+  - Factory methods are useful when object creation needs to adhere to certain constraints or conditions.
+  - They can encapsulate complex instantiation logic or enforce specific rules during object creation.
+  - Factory methods are often used in conjunction with design patterns such as the Factory Method pattern or the Singleton pattern.
 
 # Static Control Flow
 
@@ -612,7 +602,6 @@ class MyClass {
         System.out.println(value); // Output: 10
     }
 }
-
 ```
 
 **Key points to remember:**
@@ -651,18 +640,21 @@ Whenever we are executing a java class static control flow will be executed. In 
    Note: static control flow is one time activity and it will be executed at the time of class loading.
    But instance control flow is not one time activity for every object creation it will be executed.
 
-
 ## Instance control flow in Parent to Child relationship
 
 Whenever we are creating child class object the following sequence of events will be executed automatically.
 
 1. Identification of instance members from Parent to Child.
+
 2. Execution of instance variable assignments and instance block only in Parent class.
+
 3. Execution of Parent class constructor.
+
 4. Execution of instance variable assignments and instance blocks in Child class.
+
 5. Execution of Child class constructor.
    Note: Object creation is the most costly operation in java and hence if there is no specific requirement never recommended to crate objects.
-
+   
    [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/instanceControlFlow.java)
 
 We can't access instance variables directly from static area because at the time of execution of static area JVM may not identify those members.
@@ -684,25 +676,23 @@ System.out.println(o.length()); // Compile-time error
 To resolve this issue, you can either:
 
 1. Cast the **`o`** reference to the **`String`** type before calling the **`length()`** method:
-
-    ```java
-    System.out.println(((String) o).length());
-    ```
+   
+   ```java
+   System.out.println(((String) o).length());
+   ```
 
 2. Declare the **`o`** reference variable as a **`String`** type:
-
-    ```java
-    String o = new String("ashok");
-    System.out.println(o.length());
-    ```
-
+   
+   ```java
+   String o = new String("ashok");
+   System.out.println(o.length());
+   ```
+   
    ## Type Casting Syntax
-
+   
    ![Screenshot 2024-02-19 181822](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e3b60918-568d-4f28-8d98-ae1372eb9746)
-
-
+   
    Rule 1 : The type of "d" and "c" must have some relationship [either Child to Parent (or) Parent to Child (or) same type] otherwise we will get compile time error saying inconvertible types.
-
 
 ![Screenshot 2024-02-19 182020](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/0c9b1fed-f640-4314-88a1-c2f8d4340f82)
 
@@ -711,13 +701,11 @@ To resolve this issue, you can either:
    Required: A
 ![Screenshot 2024-02-19 182107](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f6567961-8393-415d-9ab1-2c5817d41875)
 
-
-   ## Runtime Checking
+## Runtime Checking
 
    The underlying object type of "d" must be either same (or) derived type of "C" otherwise we will get runtime exception saying ClassCastException.
 
   ![Screenshot 2024-02-19 182638](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/cc7637b2-23ad-46bf-8934-2fa1c8bec501)
-
 
    Through Type Casting we are not create any new objects for the existing objects we are providing another type of reference variable(mostly Parent type).
 
@@ -758,7 +746,7 @@ To resolve this issue, you can either:
     */
     ```
 
-   # Cohesion
+# Cohesion
 
    For every component we have to maintain a clear well defined functionality such type of component is said to be follow high cohesion.
 
