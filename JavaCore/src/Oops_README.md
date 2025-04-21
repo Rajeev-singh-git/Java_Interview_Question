@@ -1,4 +1,7 @@
 # Oops 
+## Table of Contents
+1. [Abstraction](#abstraction)
+2. [Encapsulation](#encapsulation)
 
 
 ## Abstraction
