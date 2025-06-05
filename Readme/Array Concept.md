@@ -154,7 +154,8 @@ a[0] = new int[3];
 a[1] = new int[2];
 ```
 
-![image.png](attachment:0e78c80d-37ba-439e-b3d1-5204b9ef6e91:image.png)
+![1](https://github.com/user-attachments/assets/6ea29749-27de-4626-8cb5-7b5f244c7431)
+
 
 🧠 **Advantage:** Better memory utilization (jagged arrays possible).
 
@@ -216,9 +217,10 @@ System.out.println(a[0]);    // [I@19821f
 System.out.println(a[0][0]); // 0
 ```
 
-🧠 **Diagram**:2
+🧠 **Diagram**:
 
-![image.png](attachment:f864ca8c-e462-49d0-acb3-c0b5c1f27438:image.png)
+![2](https://github.com/user-attachments/assets/370e5d8d-d198-4e7d-b770-d1dc9c9c6557)
+
 
 ---
 
@@ -233,9 +235,10 @@ System.out.println(a[0][0]); // ❌ Runtime Error
 
 ❌ **Runtime Error**: `NullPointerException`
 
-🧠 **Diagram**:3
+🧠 **Diagram**:
 
-![image.png](attachment:082fea42-ce0d-4945-9dcf-0c9d1a45ea84:image.png)
+![3](https://github.com/user-attachments/assets/3c066ea1-6bdc-42b1-af7f-19434bd2b163)
+
 
 ### 🔥 Core Concept:
 
@@ -294,9 +297,10 @@ String[] s = {"balayya", "venki", "nag", "chiru"};
 int[][] a = {{10, 20, 30},{40, 50}};
 ```
 
-🧠 **Diagram**:4
+🧠 **Diagram**:
 
-![image.png](attachment:dccc9ed9-3d81-4d9a-a50f-2ad35bb0c201:image.png)
+![4](https://github.com/user-attachments/assets/280ca01b-4c6b-46e6-9166-fec46adef213)
+
 
 ---
 
@@ -307,9 +311,10 @@ int[][][] a = {
 };
 ```
 
-🧠 **Diagram**: 5
+🧠 **Diagram**: 
 
-![image.png](attachment:a264adc8-341f-42d4-8c8a-3a0ab9ddcccd:image.png)
+![5](https://github.com/user-attachments/assets/dc17667e-74cb-44e6-a5e6-27e069b20e10)
+
 
 ### 🔍 Accessing Values + Errors
 
@@ -577,6 +582,6 @@ Because both `a` and `b` are of type `int[]`, the reference assignment is allowe
 
 ⚠️ **Note:** After `a = b;`, the original array `{10, 20, 30, 40, 50, 60, 70}` becomes **eligible for garbage collection** if no other reference is pointing to it.
 
-Diagram : 6
+Diagram :
 
-![image.png](attachment:31e32296-7a0e-402a-9c4e-b6cb2c6b8f65:image.png)
+![6](https://github.com/user-attachments/assets/82571f82-6267-4af4-9770-b417d60becb4)
