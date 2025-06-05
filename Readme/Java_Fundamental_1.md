@@ -1,6 +1,13 @@
-# Introduction
+# Java Fundamental 1
 
-This README covers all the fundamental concepts of the Java programming language. It includes essential topics such as syntax, data types, variables, operators, control flow statements, loops, and other core basics required to build a strong foundation in Java.
+## Table of Contents
+
+1. [Identifier](#Identifier)
+2. [Reserved Words](#Reserved-words)
+3. [Data Types](#Data-Types)
+4. [Literals](#Literals)
+
+---
 
 # 🆔 Identifier
 
@@ -127,7 +134,8 @@ Java has a total of **53 reserved words**, divided into:
 - **Keywords**: 50
 - **Reserved Literals**: 3
 
-![image.png](attachment:ea1e6a5e-21ce-473b-a133-0dea6d5798ed:image.png)
+![1](https://github.com/user-attachments/assets/d901b0b7-f430-473a-8574-3ec3fc47242c)
+
 
 ```java
 Reserved Words (53)
@@ -282,7 +290,8 @@ No. Java is **not** a pure object-oriented programming language because:
 
 Java provides 8 primitive data types, grouped into:
 
-![image.png](attachment:f609eac1-25ac-4489-87bd-fca459ed5087:image.png)
+![2](https://github.com/user-attachments/assets/b6587e9b-af65-43fb-8f46-3b7714154346)
+
 
 > All primitive types except char and boolean are signed, meaning they can represent both positive and negative values.
 >
@@ -697,4 +706,4 @@ System.out.println(f);     // 10.0
 | boolean | boolean | none | only `true`/`false` |
 | String | String | none | double quotes required |
 
-![image.png](attachment:dce0884e-7a47-4437-9632-6b60976f485d:image.png)
+![3](https://github.com/user-attachments/assets/36710667-c6e7-417b-840c-426d91526a3f)
