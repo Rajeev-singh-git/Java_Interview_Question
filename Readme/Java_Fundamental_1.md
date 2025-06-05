@@ -1,6 +1,13 @@
-# Introduction
+# Java Fundamental 1
 
-This README covers all the fundamental concepts of the Java programming language. It includes essential topics such as syntax, data types, variables, operators, control flow statements, loops, and other core basics required to build a strong foundation in Java.
+## Table of Contents
+
+1. [Identifier](#Identifier)
+2. [Reserved Words](#Reserved-words)
+3. [Data Types](#Data-Types)
+4. [Literals](#Literals)
+
+---
 
 # 🆔 Identifier
 
