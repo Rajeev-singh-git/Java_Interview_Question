@@ -155,7 +155,7 @@ a[1] = new int[2];
 ```
 
 
-<img src="https://github.com/user-attachments/assets/6ea29749-27de-4626-8cb5-7b5f244c7431" width="600" height="700">
+<img src="https://github.com/user-attachments/assets/6ea29749-27de-4626-8cb5-7b5f244c7431" width="550" height="600">
 
 
 
@@ -221,8 +221,8 @@ System.out.println(a[0][0]); // 0
 
 🧠 **Diagram**:
 
-![2](https://github.com/user-attachments/assets/370e5d8d-d198-4e7d-b770-d1dc9c9c6557)
 
+<img src="https://github.com/user-attachments/assets/370e5d8d-d198-4e7d-b770-d1dc9c9c6557" width="350" height="300">
 
 ---
 
@@ -239,8 +239,7 @@ System.out.println(a[0][0]); // ❌ Runtime Error
 
 🧠 **Diagram**:
 
-![3](https://github.com/user-attachments/assets/3c066ea1-6bdc-42b1-af7f-19434bd2b163)
-
+<img src="https://github.com/user-attachments/assets/3c066ea1-6bdc-42b1-af7f-19434bd2b163" width="350" height="300">
 
 ### 🔥 Core Concept:
 
@@ -301,7 +300,9 @@ int[][] a = {{10, 20, 30},{40, 50}};
 
 🧠 **Diagram**:
 
-![4](https://github.com/user-attachments/assets/280ca01b-4c6b-46e6-9166-fec46adef213)
+
+<img src="https://github.com/user-attachments/assets/280ca01b-4c6b-46e6-9166-fec46adef213" width="550" height="200">
+
 
 
 ---
@@ -315,7 +316,7 @@ int[][][] a = {
 
 🧠 **Diagram**: 
 
-![5](https://github.com/user-attachments/assets/dc17667e-74cb-44e6-a5e6-27e069b20e10)
+<img src="https://github.com/user-attachments/assets/dc17667e-74cb-44e6-a5e6-27e069b20e10" width="550" height="200">
 
 
 ### 🔍 Accessing Values + Errors
@@ -586,4 +587,6 @@ Because both `a` and `b` are of type `int[]`, the reference assignment is allowe
 
 Diagram :
 
-![6](https://github.com/user-attachments/assets/82571f82-6267-4af4-9770-b417d60becb4)
+<img src="https://github.com/user-attachments/assets/82571f82-6267-4af4-9770-b417d60becb4" width="600" height="400">
+
+
