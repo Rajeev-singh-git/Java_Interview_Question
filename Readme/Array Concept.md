@@ -155,7 +155,7 @@ a[1] = new int[2];
 ```
 
 
-<img src="https://github.com/user-attachments/assets/6ea29749-27de-4626-8cb5-7b5f244c7431" width="600" height="800">
+<img src="https://github.com/user-attachments/assets/6ea29749-27de-4626-8cb5-7b5f244c7431" width="600" height="700">
 
 
 
