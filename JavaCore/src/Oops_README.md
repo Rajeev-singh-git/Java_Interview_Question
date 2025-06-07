@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Abstraction](#abstraction)
-   - [Abstract Classes](#Abstract Classes)
+   - [Abstract Classes](#Abstract-Classes)
 3. [Encapsulation](#encapsulation)
 4. [Inheritance](#inheritance)
    - [Why java won't provide support for multiple inheritance?](#why-java-wont-provide-support-for-multiple-inheritance)
