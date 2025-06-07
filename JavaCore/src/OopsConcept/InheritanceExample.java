@@ -1,22 +1,20 @@
 package OopsConcept;
 
-// Parent class (superclass)
+
 class Animal {
-    // Public field
+
     public String species;
 
-    // Public method
     public void eat() {
         System.out.println("Animal is eating");
     }
 
-    // Additional method
     public void leg() {
         System.out.println("Animals generally have 4 legs");
     }
 }
 
-// Child class (subclass) inheriting from OopsConcept.Animal
+
 class Dog extends Animal {
     // Additional field specific to OopsConcept.Dog
     public String breed;

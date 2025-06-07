@@ -42,20 +42,50 @@
 
 ---
 
-## Abstraction
+# Abstraction
 
-Abstraction is the process of hiding complex internal implementation details of a system and showing only the functionality to the user. Another way, it shows only essential things to the user and hides the internal details.
+**Abstraction** is the process of hiding complex internal implementation details and exposing only the essential features to the user.  
+It allows users to interact with a system without needing to understand *how* it works internally — only *what* it does.
 
-Abstraction involves showing only the necessary features of an object or system while concealing the implementation details. It allows users to interact with high-level functionalities without needing to understand how those functionalities are implemented internally.
+> In simpler terms, abstraction shows **what** an object does, not **how** it does it.
 
-Ex : An ATM graphical user interface (GUI) screen is an example of abstraction. It presents only the essential options and information to the user (such as balance inquiry, withdrawal, deposit) while hiding the complex processes happening behind the scenes.
+###### Example:
 
-Abstraction can be achieved using
+> **ATM GUI:**  
+> An ATM screen shows essential options like *withdraw*, *deposit*, or *check balance* — while hiding the internal operations like database queries, network calls, or transaction processing logic.
 
-1.) Abstract Classes:
+This separation of **interface and implementation** helps in simplifying complex systems, improving usability, and promoting cleaner code architecture.
 
-An abstract class in Java is a class that cannot be instantiated directly (i.e., you cannot create objects of an abstract class). It may contain abstract methods (methods without a body) that must be implemented by its subclasses. Abstract classes provide a way to define common methods and properties that can be shared by multiple subclasses.
+#### ✅ Advantages of Abstraction
 
+1. **Simplifies Complexity**  
+   Users interact only with the **essential features**, not the internal workings.
+
+2. **Enhances Security**  
+   Hides internal implementation details, reducing the chance of misuse or errors.
+
+3. **Improves Code Maintainability**  
+   Changes to internal logic **don’t affect external code** that uses the abstraction.
+
+4. **Encourages Reusability**  
+   Abstract classes and interfaces can be reused across multiple implementations.
+
+5. **Supports Loose Coupling**  
+   Code becomes less dependent on concrete implementations, making it easier to extend and modify.
+
+Abstraction can be achieved using : Abstrcat classes and Interface
+
+## 🧱 **1.) Abstract Classes:**
+
+An **abstract class** in Java is a class that **cannot be instantiated directly**, meaning you cannot create objects from it.
+
+It may contain:
+
+- **Abstract methods** (methods without a body), which **must** be implemented by its subclasses.
+
+- **Concrete methods** (with a body), which provide **default behavior** shared by all subclasses.
+
+Abstract classes are used to define **common structure and behavior** across multiple related classes, serving as a partial blueprint.
 
 ```java
 abstract class Shape {
@@ -71,117 +101,684 @@ class Circle extends Shape {
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExample.java)
 
-2.) Using Interface:
+## 2.) Interface :
 
-Interfaces:
+An **interface** in Java is a blueprint of a class that defines a set of **abstract behaviors** (methods) that a class must implement. It provides a way to achieve **full abstraction** and supports **multiple inheritance of type**.
 
-An interface in Java is a collection of abstract methods. A class can implement multiple interfaces.
+> A class can **implement multiple interfaces**, allowing it to inherit behaviors from multiple sources — something not possible with classes alone.
+
+###### ✅ Interface Key Features:
+
+- All methods are **abstract by default** (until Java 7).
+
+- From **Java 8**, interfaces can also have:
+  
+  - `default` methods (with body)
+  
+  - `static` methods
+
+- From **Java 9**, interfaces can have:
+  
+  - `private` methods (to support reuse inside default methods)
+
+- All fields in an interface are **implicitly**:  
+  `public static final` (i.e., constants)
+
+- Interfaces **cannot have constructors or instance variables**.
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExampleUsingInterface.java)
 
-## Encapsulation
+# 🔐 Encapsulation
 
-The binding of data and the methods that operate on that data into a single unit is called encapsulation. When a Java class follows the principles of data hiding and abstraction, it can be referred to as an encapsulated class.
+Encapsulation is the act of bundling data (fields) and the methods that operate on that data into a single unit, usually a class, while restricting direct access to the data using access control modifiers like `private`, `protected`, and `public`.
 
-1. **`Private Fields:`** The attributes of a class are often declared as private, meaning they can only be accessed within the class itself.
+When a class follows the principles of data hiding and abstraction, it is called an **encapsulated class**.
+
+###### Analogy:
+
+> **Encapsulation is like a TV remote:**  
+> You don’t open the remote to press the buttons directly on its circuit board; instead, you press buttons on the outside to control the TV.  
+> The internal electronics (data) are hidden, but you have a controlled interface (methods) to operate the TV safely and easily.
+
+1. **`Private Fields:`** The attributes of a class are often declared as `private`, meaning they can only be accessed within the class itself.
 2. **`Public Methods` (Getters and Setters):** Public methods are provided to allow controlled access to the private attributes. These methods are often referred to as getter methods (for retrieving the values) and setter methods (for modifying the values).
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Encapsulation.java)
 
-## Inheritance
 
-Inheritance in object-oriented programming allows a child class  to access the properties (fields and methods) of a parent class.  This enables the child class to reuse, extend, and build upon the functionality provided by the parent class.
 
-Inheritance in object-oriented programming establishes an "is-a" relationship between the subclass and the superclass. This relationship is implemented in Java using the **`extends`** keyword.
+#### ⭐ Main Advantages of Encapsulation
 
-- **`IS-A Relationship:`** Inheritance represents an "is-a" relationship, meaning that a subclass is a specialized version of its superclass.
-- **`extends` Keyword in Java:** The **`extends`** keyword is used to create a subclass that inherits from a superclass.
+1. **Data Hiding**  
+   Protects internal state by restricting direct access to fields using access modifiers (`private`, `protected`).
 
-[Inheritance](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/InheritanceExample.java)
+2. **Improved Security**  
+   Prevents external interference and misuse by exposing only what’s necessary via controlled methods (getters/setters).
 
-### Why java won't provide support for multiple inheritance?
+3. **Code Maintainability**  
+   Internal changes don’t affect external code as long as the public interface remains the same.
 
-**Diamond Problem:**
+4. **Validation Control**  
+   Allows you to add logic in setters to validate data before updating fields.
 
-- Multiple inheritance introduces the "diamond problem," a situation where a class inherits from two classes that have a common ancestor. This creates ambiguity when the compiler tries to resolve which version of a method or field to use.
-- Resolving the diamond problem becomes complex and can lead to unpredictable behavior. Java's design emphasizes simplicity and avoiding such complexities.
+5. **Modularity and Reusability**  
+   Promotes well-defined, self-contained classes — easier to reuse, test, and debug.
 
-## HAS-A Relationship
 
-In Java, a "HAS-A" relationship refers to a form of association between classes, where one class contains an instance of another class as a member or field. This relationship is based on composition, and it is often used to represent a stronger relationship than a simple "uses" or "knows" relationship.
 
-Here are the key points about the HAS-A relationship:
+## 🔐 Tightly Encapsulated Class in Java
 
-### Composition:
+A class is said to be **tightly encapsulated** if **all its variables (fields) are declared as `private`** — regardless of whether getter and setter methods exist or not.
 
-    - The HAS-A relationship is achieved through composition, where one class contains an object of another class as a member variable.
-    - The class that contains the object is often referred to as the "container" or "composite" class, and the class being contained is referred to as the "component" or "part" class.
-    - Without Existing the container object if there is no chance of existing contained object. The relationship between container object and contained object is called composition which is a strong association.
+> ✅ The focus is only on **access modifiers of fields**, not on whether public accessors are provided.
 
-### **Code Example:**
+---
+
+✅ Key Rule:
+
+> **If even one field in the class (or any of its parent classes) is not private, the class is *not* tightly encapsulated.**
+
+This is because child classes inherit all **non-private** fields from parent classes — breaking encapsulation at the root.
+
+---
+
+##### 🧪 Example of a Tightly Encapsulated Class:
+
+```java
+class Account {
+    private double balance;
+
+    public double getBalance() {
+        return balance;
+    }
+}
+```
+
+- `balance` is private → ✅ tightly encapsulated
+
+- Whether a getter exists or not → doesn't matter
+
+---
+
+##### ❌ Examples (Not Tightly Encapsulated):
+
+```java
+class A {
+    int x = 10; // ❌ Not private
+}
+
+class B extends A {
+    private int y = 20; // ✅ private, but inherits x (non-private) → ❌
+}
+
+class C extends B {
+    private int z = 30; // ✅ private, but again inherits x → ❌
+}
+```
+
+📌 **None of these are tightly encapsulated** because class `A` has a non-private field, and all subclasses inherit it.
+
+---
+
+###### 📌 Summary:
+
+- ✅ All fields must be `private`.
+
+- 🚫 It doesn’t matter if the class has `public`/`protected` methods or not.
+
+- 🧬 If the **parent class is not tightly encapsulated**, **no subclass can be tightly encapsulated** either.
+
+---
+
+
+
+# Inheritance
+
+**Inheritance** in object-oriented programming allows a class (called the **child class** or **subclass**) to inherit the **properties** (fields) and **behaviors** (methods) of another class (called the **parent class** or **superclass**).  
+This enables **code reuse**, **extensibility**, and a natural hierarchy between types.
+
+---
+
+###### Inheritance Key Concepts:
+
+- **`IS-A Relationship:`**  
+  Inheritance models an *"is-a"* relationship.  
+  For example:  
+  `Dog extends Animal` → A Dog **is an** Animal.
+
+- **`extends` Keyword:**  
+  In Java, the `extends` keyword is used to create a subclass that inherits from a superclass.
+  
+  ---
+  
+  
+
+###### ⭐ Main Advantages of Inheritance :
+
+- **🔁 Code Reusability**  
+  Common code written in the parent class can be reused by child classes, reducing redundancy and development effort.
+
+- **🧬 Method Overriding**  
+  Child classes can redefine parent class methods to provide specific behavior, enabling runtime polymorphism.
+
+- **🧠 Polymorphism Support**  
+  Parent references can point to child objects, allowing flexible, scalable, and loosely coupled code.
+
+- **🧩 Logical Hierarchy**  
+  Establishes a clear and maintainable structure that reflects real-world relationships between entities.
+
+- **🛠️ Easier Maintenance & Scalability**  
+  Changes made in the parent class automatically apply to all child classes, streamlining updates.
+
+- **🌿 Extensibility**  
+  New features can be added to child classes without modifying existing code, supporting open/closed principle.
+
+- **🧱 Framework Foundation**  
+  Forms the basis for many frameworks and design patterns where base functionality is extended by subclasses.
+
+---
+
+###### 📺 Real-world Analogy:
+
+> **Inheritance is like a child inheriting traits from parents.**  
+> For example, a child may inherit eye color or language from their parents — but can also develop their own personality.  
+> Similarly, a subclass can use parent behavior **as-is**, or **override** it with its own version.
+
+[Inheritance Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/InheritanceExample.java)
+
+### ✅ Conclusion on Inheritance Behavior in Java
+
+1. **Child Inherits from Parent, Not the Other Way Around**
+   
+   - Whatever the parent class has is automatically available to the child.
+   
+   - But the child class's specific members are **not accessible** via the parent class.
+   
+   - So:
+     
+     - A **child reference** can access **both parent and child members**.
+     
+     - A **parent reference** can access **only parent members**, even if it holds a child object.
+
+2. **Parent Reference Can Hold Child Object**
+   
+   - This is called **upcasting**.
+   
+   - However, using the parent reference, we can **only access parent class methods** — not child-specific methods.
+
+3. **Child Reference Cannot Hold Parent Object**
+   
+   - This is not allowed — it's a **type mismatch** and results in a compile-time error.
+
+---
+
+🧪 Example: Loan System
+
+Let’s say multiple loan types (Housing, Vehicle, Education) share common operations. These shared methods should be defined in a base class, like this:
+
+```java
+class Loan {
+    // Common methods for all loan types
+}
+
+class HousingLoan extends Loan {
+    // Specific methods for housing loan
+}
+
+class EducationLoan extends Loan {
+    // Specific methods for education loan
+}
+
+```
+
+This structure promotes **code reuse** and aligns with the **“is-a” relationship** principle of inheritance:
+
+> `HousingLoan` **is a** `Loan`, `EducationLoan` **is a** `Loan`.
+
+
+
+#### Inheritance System-Wide Examples:
+
+- In Java, the most commonly required functionality for all classes is defined in the **`Object`** class. Hence, `Object` serves as the **root class** for all Java classes.
+
+- Similarly, for all exceptions and errors, the common functionality is defined in the **`Throwable`** class, making it the **root of the exception hierarchy** in Java.
+
+### Multiple Inheritance :
+
+**Multiple Inheritance** refers to a situation where a class inherits from **more than one parent class** at the same level.  
+In other words, a single subclass has **multiple direct superclasses**.
+
+### 💥 Why java won't provide support for multiple inheritance?
+
+Java **does not allow multiple inheritance with classes** to avoid ambiguity and complexity in method resolution — specifically to prevent the infamous **Diamond Problem**.
+
+---
+
+###### 🧱 The Diamond Problem:
+
+```java
+        A
+      /   \
+     B     C
+      \   /
+        D
+```
+
+- Imagine `Class B` and `Class C` both inherit from `Class A`.
+
+- Now, `Class D` inherits from both `B` and `C`.
+
+> ❓ If `Class A` has a method `display()`, and both `B` and `C` override it…  
+> Then `D.display()` — **which version should be called?**  
+> This is the **diamond problem**: **ambiguity** and **unpredictable behavior**.
+
+###### ✅ Interfaces to the Rescue:
+
+Java **does allow multiple inheritance via interfaces** because:
+
+- Interfaces (until Java 7) could only declare method signatures — **no implementation**, so no conflict.
+
+- From **Java 8 onwards**, default methods are allowed in interfaces, but Java still resolves conflicts **explicitly** using rules like:
+  
+  - Subclass overrides > implemented interface default > compiler error if ambiguous.
+
+# 🔗 HAS-A Relationship
+
+A **HAS-A relationship** represents an **association** between two classes, where **one class contains a reference to another class**. This is typically implemented through **composition**.
+
+---
+
+## 🔧 Composition
+
+> **Composition** is a design principle where one object is composed of one or more other objects.  
+> It represents a **strong association**, where the contained object **cannot exist independently** of the container.
+
+---
+
+##### ✅ HAS-A Relationship Key Points:
+
+- A HAS-A relationship means one class *"has"* another as a part of itself.
+
+- It is implemented using **member variables** that hold references to other objects.
+
+- The contained object’s **lifecycle is managed by** the container class.
+
+- This forms a strong bond: if the container is destroyed, so is the contained part.
+
+---
+
+### 🔍 Real-world Analogy:
+
+> A **Car** HAS-A **Engine**.  
+> You can’t have a working car without its engine, and the engine belongs to that specific car.  
+> The car controls the lifecycle of the engine.
+
+
+
+###### **HAS-A Relationship Code Example:**
 
 ```java
 class Engine {
-    // Engine-related code
+    / Engine behavior
 }
 
 class Car {
-    private Engine engine;  // OopsConcept.Composition: Car HAS-A relationship with Engine
+    private Engine engine;  // HAS-A relationship: Car HAS-A Engine
 
     public Car(Engine engine) {
         this.engine = engine;
     }
 
-    // Other car-related code
+   // Other car logic
 }
 ```
 
-- The **`Car`** class is the container object.
-- The **`Engine`** class is the contained object.
+- `Car` is the **composite** (container) class.
+- `Engine` is the **component** (contained) class.
 
 Without an existing car, the engine cannot exist. The **`Car`** manages the creation and destruction of the **`Engine`**, and the lifecycle of the **`Engine`** is tightly bound to the lifecycle of the **`Car`**. This is a clear example of a strong association through composition.
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Composition.java)
 
-# Aggregation
+## Aggregation
 
-Without an existing container object, if there is a chance of the existing contained object, such a type of relationship is called aggregation."
+**Aggregation** represents a *"HAS-A"* relationship where one class contains a reference to another class, **but the contained object can exist independently of the container**.
 
-In other words, the lifecycle of the contained object is not strictly tied to the lifecycle of the container object in aggregation. The contained object can exist on its own or be associated with multiple containers. This weaker relationship provides more flexibility and independence between the objects involved in the aggregation.
+> 🔄 In simpler terms:  
+> Even if the container is destroyed, the contained object **can still exist**.
+
+---
+
+###### 🔍 Aggregation Key Points:
+
+- Aggregation is a **weaker form of association** compared to composition.
+
+- The **lifecycle** of the contained object is **not tightly bound** to the container.
+
+- The contained object can be **shared** among multiple containers.
+
+- It promotes **flexibility** and **loose coupling** between classes.
+
+---
+
+###### 💡 Aggregation Analogy:
+
+> **A teacher and a department**:  
+> A `Teacher` can belong to a `Department`, but if the department is removed, the teacher still exists — possibly in another department.
+
+---
+
+###### ✅ Summary:
+
+> Use **aggregation** when:
+> 
+> - Objects have an ownership relationship,
+> 
+> - But **independent existence** is allowed and expected.
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Aggregation.java)
 
-## Polymorphism concept
+### 🔍 Core Difference: Composition vs Aggregation
 
-Polymorphism, meaning "many forms," is a powerful concept in Java that allows you to treat objects of different types in the same way. It enhances code flexibility and reusability, making your programs cleaner and more efficient.
+| Criteria                 | Composition 🧱                                   | Aggregation ⚙️                                |
+| ------------------------ | ------------------------------------------------ | --------------------------------------------- |
+| **Lifecycle Dependency** | Contained object **cannot** exist independently. | Contained object **can** exist independently. |
+| **Ownership**            | Strong ownership — container *owns* the part.    | Weak ownership — container *uses* the part.   |
+| **Used For**             | “Part-of” relationships with tight coupling.     | “Has-a” relationships with looser coupling.   |
+| **Example**              | Heart inside a human 🫀                          | Student in a university 🎓                    |
+
+# 🧾 Method Signature in Java
+
+In Java, the **method signature** is composed of:
+
+> 🔹 **Method name**  
+> 🔹 **Parameter types (in order)**
+
+```java
+public void methodOne() {}
+public int methodOne() { return 10; }  // ❌ Compile-time error
+```
+
+---
+
+###### 🚫 Return Type Is *Not* Part of the Signature
+
+Even if two methods differ only by return type, it causes a **compile-time error** — because their signatures are considered the same.
+
+```java
+public void methodOne() {}
+public int methodOne() { return 10; }  // ❌ Compile-time error
+```
+
+---
+
+###### 🔍 Why Is Signature Important?
+
+- The **compiler uses method signature** to **resolve method calls**.
+
+- Ensures **method overloading** is unambiguous.
+
+---
+
+### ✅ Valid Example
+
+```java
+class Test {
+    public void m1(double d) { }
+    public void m2(int i) { }
+
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.m1(10.5);   // OK
+        t.m2(10);     // OK
+        t.m3(10.5);   // ❌ Compile-time Error: m3 not defined
+    }
+}
+```
+
+---
+
+### 📌 Important Rule
+
+> **Within the same class**, you **cannot** define multiple methods with the same signature — even if their return types differ.
+
+
+
+# Polymorphism
+
+**Polymorphism** means *"many forms."*  
+It allows the same name or reference to represent different behaviors or objects, depending on context.
+
+---
+
+### ✅ Examples of Polymorphism:
+
+- **Same method name, with different parameter types**  
+  👉 *(Compile-Time Polymorphism / Method Overloading)*
+
+```java
+Math.abs(int i);
+Math.abs(long l);
+Math.abs(float f);
+Math.abs(double d);
+```
+
+We can use the same `abs()` method name for different data types.  
+The compiler resolves which version to call based on the argument types.
+
+---
+
+- **Same parent reference used for different object types**  
+  👉 *(Runtime Polymorphism / Interface or Inheritance-based)*
+
+```java
+List l;
+
+l = new ArrayList<>();
+l = new LinkedList<>();
+l = new Vector<>();
+l = new Stack<>();
+```
+
+We can use the same `List` reference to hold different child class objects.  
+This enables flexibility and decoupling in code design.
+
+###### Polymorphism Analogy
+
+> A **boy begins love** with the word **“friendship”**,  
+> while a **girl ends love** with the same word — **“friendship.”**
+> 
+> The **word is the same**, but the **intention is different**.  
+> That, my friend, is the **essence of Polymorphism** —  
+> **Same name, different behavior.** 💔➡️❤️
+
+---
+
+
 
 There are two main types of polymorphism in Java: compile-time polymorphism (also known as static or method overloading) and runtime polymorphism (also known as dynamic or method overriding).
 
-1. **Compile-time Polymorphism (Method Overloading):**
-   
-   - Method overloading occurs when a class has multiple methods with the same name but different parameters (number, type, or order of parameters).
-   
-   - The decision on which method to call is made at compile time based on the method signature.
-   
-   - Example:
-     
-     ```java
-     public class Calculator {
-       public int add(int a, int b) {
-           return a + b;
-       }
-     
-       public double add(double a, double b) {
-           return a + b;
-       }
-     }
-     ```
-   
-   In this example, there are two **`add`** methods with different parameter types, allowing the same method name to be used for both integers and doubles.
-   
-   Method resolution in method overloading is determined at compile-time based on the reference type of the object (also known as static or compile-time polymorphism). This means that the compiler decides which method to call by examining the reference type of the object at compile time.
+
+
+```java
+                         
+                           Polymorphism 
+                               / \
+                              /   \    
+                             /     \
+                            /       \
+                           /         \
+                          /           \
+                         /             \
+                        /               \
+                       /                 \
+                      /                   \
+ Compiletime/static/earlybinding        Runtime/dynmic/latebinding 
+              / \                                  |
+             /   \                                 |
+            /     \                                |
+           /       \                               |
+          /         \                              |  
+   Overloading   Methodhiding                  Overiding
+
+
+
+```
+
+
+
+## ** 1.) ⚡Compile-time Polymorphism (Method Overloading):**
+
+- Method **overloading** occurs when a class defines **multiple methods with the same name** but with **different parameter lists** (type, number, or order).
+
+- In **method overloading**, the **compiler** is responsible for method resolution (decision) based on the **reference type** — **not** the runtime object.  
+  Hence, **overloading** is also known as:
+  
+  - **Compile-time Polymorphism**
+  
+  - **Static Polymorphism**
+  
+  - **Early Binding**
+
+- Example:
+  
+  ```java
+  public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+  
+    public double add(double a, double b) {
+        return a + b;
+    }
+  }
+  ```
+
+- In this example, both methods are named `add` but handle different data types (int vs. double).
+
+- The compiler chooses the appropriate version based on the argument types used during the method call.
+
+> ✅ This form of polymorphism improves **readability**, supports **method specialization**, and avoids the need for different method names for similar logic.
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverloadingExample.java)
+
+---
+
+### Overloading key concepts :-->
+
+- Return type **is not** part of method signature.
+
+- Overloaded methods must differ by **argument types/order/number**, not return type.
+
+- If an exact match isn’t found, Java performs **automatic type promotion**.
+
+```java
+byte -> short 
+             \
+              int -> long -> float -> double
+            /
+         char               
+```
+
+- Method resolution is always based on the **reference type**, not the runtime object.
+
+
+
+### 🧪 CASES in Method Overloading
+
+### ⚡ Case 1: **Automatic Type Promotion**
+
+```java
+class Test {
+  public void methodOne(int i) { System.out.println("int"); }
+  public void methodOne(float f) { System.out.println("float"); }
+
+  public static void main(String[] args) {
+    Test t = new Test();
+    t.methodOne('a');     // char → int → int method
+    t.methodOne(10L);     // long → float → float method
+    t.methodOne(10.5);    // double → no match → ❌ Compile-Time Error
+  }
+}
+
+```
+
+> Java tries to promote types step by step to match a method.  
+> If no match even after all promotions, it gives a compile-time error.
+
+---
+
+### 🧊 Case 2: **Object vs String Overload**
+
+```java
+class Test {
+  public void methodOne(int i) { System.out.println("int"); }
+  public void methodOne(float f) { System.out.println("float"); }
+
+  public static void main(String[] args) {
+    Test t = new Test();
+    t.methodOne('a');     // char → int → int method
+    t.methodOne(10L);     // long → float → float method
+    t.methodOne(10.5);    // double → no match → ❌ Compile-Time Error
+  }
+}
+```
+
+> - ✅ **Exact match always gets the highest priority** during method resolution.
+> 
+> - ✅ **If an exact match isn't found**, Java will look for **compatible types**—but:
+>   
+>   - **Child class types are preferred over parent class types** during this resolution.
+
+---
+
+### ❗ Case 3: **Ambiguity with Same Level Types**
+
+```java
+class Test {
+  public void methodOne(String s) { System.out.println("String"); }
+  public void methodOne(StringBuffer sb) { System.out.println("SB"); }
+
+  public static void main(String[] args) {
+    Test t = new Test();
+    t.methodOne(null);   // ❌ Compile-Time Error — ambiguous
+  }
+}
+```
+
+> If both candidates are equally specific, Java throws **ambiguity error**.
+
+```java
+                            Object
+                             /  \
+                            /    \
+                           /      \
+                          /        \   
+                      String    StringBuffer     
+                               
+```
+
+### 🔄 Case 4: **Same Number of Args, Different Types**
+
+```java
+class Test {
+  public void methodOne(int i, float f) { System.out.println("int-float"); }
+  public void methodOne(float f, int i) { System.out.println("float-int"); }
+
+  public static void main(String[] args) {
+    Test t = new Test();
+    t.methodOne(10, 10.5f);  // int-float
+    t.methodOne(10.5f, 10);  // float-int
+    t.methodOne(10, 10);     // ❌ Compile-Time Error — ambiguous
+  }
+}
+```
+
+If both candidates are equally specific, Java throws **ambiguity error**.
+
+
+
+---
 
 2. **Runtime Polymorphism (Method Overriding):**
    
