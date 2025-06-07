@@ -56,7 +56,8 @@ Abstraction can be achieved using
 
 An abstract class in Java is a class that cannot be instantiated directly (i.e., you cannot create objects of an abstract class). It may contain abstract methods (methods without a body) that must be implemented by its subclasses. Abstract classes provide a way to define common methods and properties that can be shared by multiple subclasses.
 
-``
+
+```java
 abstract class Shape {
     abstract void draw(); // Abstract method (does not have a body)
 }
@@ -66,7 +67,7 @@ class Circle extends Shape {
         System.out.println("Drawing Circle");
     }
 }
-``
+```
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExample.java)
 
