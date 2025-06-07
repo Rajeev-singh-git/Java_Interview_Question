@@ -3,8 +3,10 @@
 ## Table of Contents
 
 1. [Abstraction](#abstraction)
-      - [Abstract Classes:](##Abstract-Classes)
-3. [Encapsulation](#encapsulation)
+      - [Abstract Classes:](#-1-abstract-classes)
+      - [Interface](#2-interface-)
+2. [Encapsulation](#encapsulation)
+      - [Tightly Encapsulated Class](#-tightly-encapsulated-class-in-java)
 4. [Inheritance](#inheritance)
    - [Why java won't provide support for multiple inheritance?](#why-java-wont-provide-support-for-multiple-inheritance)
 5. [HAS-A Relationship](#has-a-relationship)
