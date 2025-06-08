@@ -1363,7 +1363,7 @@ This is powerful in large codebases or APIs where **you don’t care how the lis
 
 ---
 
-✨ **Checked vs Unchecked Exceptions**
+# ✨ **Checked vs Unchecked Exceptions**
 
 ---
 
