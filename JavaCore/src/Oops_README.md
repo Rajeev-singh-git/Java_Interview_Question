@@ -3,49 +3,49 @@
 ## Table of Contents
 
 1. [Abstraction](#abstraction)
-      - [Abstract Classes:](#-1-abstract-classes)
-      - [Interface](#2-interface-)
+   - [Abstract Classes:](#-1-abstract-classes)
+   - [Interface](#2-interface-)
 2. [Encapsulation](#-encapsulation)
-      - [Tightly Encapsulated Class](#-tightly-encapsulated-class-in-java)
+   - [Tightly Encapsulated Class](#-tightly-encapsulated-class-in-java)
 3. [Inheritance](#inheritance)
-      - [Inheritance Behaviour](#-conclusion-on-inheritance-behavior-in-java)
-      - [Multiple Inheritance](#multiple-inheritance-)
+   - [Inheritance Behaviour](#-conclusion-on-inheritance-behavior-in-java)
+   - [Multiple Inheritance](#multiple-inheritance-)
 4. [HAS-A Relationship](#-has-a-relationship)
-      - [Composition](#-composition)
-      - [Aggregation](#aggregation)
+   - [Composition](#-composition)
+   - [Aggregation](#aggregation)
 5. [Method Signature in Java](#-method-signature-in-java)
 6. [Polymorphism concept](#polymorphism)
-      - [Method Overloading (Compile-time Polymorphism) ](#1-overloading-compile-time-polymorphism)
-         - [Rules for Overloading](#-cases-in-method-overloading) 
-     - [Method Overriding (Runtime Polymorphism)](#2-overriding-runtime-polymorphism)
-         - [Rules for Overriding](#rules-for-overridng-)
-         - [Method Hiding](#-what-is-method-hiding)
+   - [Method Overloading (Compile-time Polymorphism) ](#1-overloading-compile-time-polymorphism)
+     - [Rules for Overloading](#-cases-in-method-overloading) 
+       - [Method Overriding (Runtime Polymorphism)](#2-overriding-runtime-polymorphism)
+     - [Rules for Overriding](#rules-for-overridng-)
+     - [Method Hiding](#-what-is-method-hiding)
 7. [Overloading vs Overriding](#-overloading-vs-overriding)
 8. [Different ways to create Object in Java](#-how-many-ways-can-we-create-an-object-in-java)
 9. [Constructor](#constructor)
-11. [Constructor vs Instance Block](#constructor-vs-instance-block)
-12. [Rules to write Constructor :→](#rules-to-write-constructor-→)
-13. [Default Constructor :→](#default-constructor-→)
+10. [Constructor vs Instance Block](#constructor-vs-instance-block)
+11. [Rules to write Constructor :→](#rules-to-write-constructor-→)
+12. [Default Constructor :→](#default-constructor-→)
     - [Prototype of Default Constructor :→](#prototype-of-default-constructor-→)
-14. [Super() vs this()](#super-vs-this)
-15. [Overloaded Constructors :→](#overloaded-constructors-→)
+13. [Super() vs this()](#super-vs-this)
+14. [Overloaded Constructors :→](#overloaded-constructors-→)
     - [We can't create object for abstract class but abstract class can contain constructor what is the need ?](#we-cant-create-object-for-abstract-class-but-abstract-class-can-contain-constructor-what-is-the-need-)
     - [Which of the following statement is true ?](#which-of-the-following-statement-is-true-)
     - [Note :→](#note-→)
-16. [Singleton Class](#singleton-class)
+15. [Singleton Class](#singleton-class)
     - [Creation of our own Singleton Class](#creation-of-our-own-singleton-class)
     - [We are not allowed to create child class but class is not final , How it is Possible ?](#we-are-not-allowed-to-create-child-class-but-class-is-not-final--how-it-is-possible-)
-17. [Factory Method](#factory-method)
-18. [Static Control Flow](#static-control-flow)
-19. [RIWO state](#riwo-state)
-20. [Static control flow parent to child relationship :→](#static-control-flow-parent-to-child-relationship-→)
-21. [Static block](#static-block)
-22. [Instance Control Flow](#instance-control-flow)
-23. [Instance control flow in Parent to Child relationship](#instance-control-flow-in-parent-to-child-relationship)
-24. [Type Casting :→](#type-casting-→)
+16. [Factory Method](#factory-method)
+17. [Static Control Flow](#static-control-flow)
+18. [RIWO state](#riwo-state)
+19. [Static control flow parent to child relationship :→](#static-control-flow-parent-to-child-relationship-→)
+20. [Static block](#static-block)
+21. [Instance Control Flow](#instance-control-flow)
+22. [Instance control flow in Parent to Child relationship](#instance-control-flow-in-parent-to-child-relationship)
+23. [Type Casting :→](#type-casting-→)
     - [Type Casting Syntax](#type-casting-syntax)
     - [Runtime Checking](#runtime-checking)
-25. [Cohesion](#cohesion)
+24. [Cohesion](#cohesion)
 
 ---
 
@@ -82,7 +82,7 @@ This separation of **interface and implementation** helps in simplifying complex
 
 Abstraction can be achieved using : Abstrcat classes and Interface
 
-## 🧱 **1.) Abstract Classes:**
+## 🧱 **1.) Abstract Class:**
 
 An **abstract class** in Java is a class that **cannot be instantiated directly**, meaning you cannot create objects from it.
 
@@ -135,6 +135,46 @@ An **interface** in Java is a blueprint of a class that defines a set of **abstr
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExampleUsingInterface.java)
 
+---
+
+## 🆚 Abstract Class vs Interface in Java
+
+| 🔹 **Feature**                    | 🧱 **Abstract Class**                               | 🧩 **Interface**                                                            |
+| --------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------- |
+| ✅ **Purpose**                     | Partial abstraction + shared behavior               | Full abstraction + multiple type inheritance                                |
+| 🧪 **Methods Support**            | Abstract + Concrete methods                         | Abstract (Java 7 and below) <br> + `default`, `static`, `private` (Java 8+) |
+| 📦 **Variables**                  | Instance, static, final, etc.                       | Only `public static final` (constants)                                      |
+| 🛠 **Constructors**               | ✅ Allowed                                           | ❌ Not allowed                                                               |
+| ♻️ **Multiple Inheritance**       | ❌ Not supported                                     | ✅ Supported                                                                 |
+| 🔒 **Access Modifiers (Methods)** | `public`, `protected`, `default`, `private`         | Implicitly `public` (until Java 8)                                          |
+| 🧬 **Code Reusability**           | ✅ Yes (via concrete methods)                        | ✅ From Java 8 (`default`, `static` methods only)                            |
+| ⚙️ **Use Case**                   | Shared base logic + partial abstraction             | Define a contract across unrelated classes                                  |
+| 🔁 **Inheritance Syntax**         | `extends` (only one class)                          | `implements` (multiple interfaces)                                          |
+| 🔑 **Keyword**                    | `abstract class`                                    | `interface`                                                                 |
+| 🔧 **Partial Implementation?**    | ✅ Yes                                               | ❌ Not before Java 8                                                         |
+| 🧱 **State Management**           | ✅ Supports instance/static fields                   | ❌ Only constants allowed                                                    |
+| ⏩ **Evolution Over Versions**     | More rigid, changes require inheritance or refactor | More flexible post-Java 8 & 9 (default, static, private methods)            |
+
+---
+
+## 🔍 When to Use Interface or Abstract class?
+
+| Situation                                                        | Best Choice       |
+| ---------------------------------------------------------------- | ----------------- |
+| You want to provide **common base logic** to subclasses          | 🧱 Abstract Class |
+| You want to **define a contract** for multiple unrelated classes | 🧩 Interface      |
+| You need to support **multiple inheritance**                     | 🧩 Interface      |
+| You want to evolve your class in a controlled hierarchy          | 🧱 Abstract Class |
+
+---
+
+### 🚫 Why Interfaces Don't Have Constructors?
+
+Because interfaces **cannot hold instance state** — and constructors are meant to **initialize instance variables**.  
+But **methods in interfaces** can still accept parameters and use them **at the time of method call**, not at the time of object construction.
+
+
+
 # 🔐 Encapsulation
 
 Encapsulation is the act of bundling data (fields) and the methods that operate on that data into a single unit, usually a class, while restricting direct access to the data using access control modifiers like `private`, `protected`, and `public`.
@@ -152,8 +192,6 @@ When a class follows the principles of data hiding and abstraction, it is called
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Encapsulation.java)
 
-
-
 #### ⭐ Main Advantages of Encapsulation
 
 1. **Data Hiding**  
@@ -170,8 +208,6 @@ When a class follows the principles of data hiding and abstraction, it is called
 
 5. **Modularity and Reusability**  
    Promotes well-defined, self-contained classes — easier to reuse, test, and debug.
-
-
 
 ## 🔐 Tightly Encapsulated Class in Java
 
@@ -237,8 +273,6 @@ class C extends B {
 
 ---
 
-
-
 # Inheritance
 
 **Inheritance** in object-oriented programming allows a class (called the **child class** or **subclass**) to inherit the **properties** (fields) and **behaviors** (methods) of another class (called the **parent class** or **superclass**).  
@@ -257,8 +291,6 @@ This enables **code reuse**, **extensibility**, and a natural hierarchy between 
   In Java, the `extends` keyword is used to create a subclass that inherits from a superclass.
   
   ---
-  
-  
 
 ###### ⭐ Main Advantages of Inheritance :
 
@@ -335,14 +367,11 @@ class HousingLoan extends Loan {
 class EducationLoan extends Loan {
     // Specific methods for education loan
 }
-
 ```
 
 This structure promotes **code reuse** and aligns with the **“is-a” relationship** principle of inheritance:
 
 > `HousingLoan` **is a** `Loan`, `EducationLoan` **is a** `Loan`.
-
-
 
 #### Inheritance System-Wide Examples:
 
@@ -419,8 +448,6 @@ A **HAS-A relationship** represents an **association** between two classes, wher
 > A **Car** HAS-A **Engine**.  
 > You can’t have a working car without its engine, and the engine belongs to that specific car.  
 > The car controls the lifecycle of the engine.
-
-
 
 ###### **HAS-A Relationship Code Example:**
 
@@ -549,8 +576,6 @@ class Test {
 
 > **Within the same class**, you **cannot** define multiple methods with the same signature — even if their return types differ.
 
-
-
 # Polymorphism
 
 **Polymorphism** means *"many forms."*  
@@ -601,14 +626,9 @@ This enables flexibility and decoupling in code design.
 
 ---
 
-
-
 There are two main types of polymorphism in Java: compile-time polymorphism (also known as static or method overloading) and runtime polymorphism (also known as dynamic or method overriding).
 
-
-
 ```java
-                         
                            Polymorphism 
                                / \
                               /   \    
@@ -627,12 +647,7 @@ There are two main types of polymorphism in Java: compile-time polymorphism (als
            /       \                               |
           /         \                              |  
    Overloading   Methodhiding                  Overiding
-
-
-
 ```
-
-
 
 ## 1.) ⚡Overloading (Compile-time Polymorphism)
 
@@ -689,8 +704,6 @@ byte -> short
 
 - Method resolution is always based on the **reference type**, not the runtime object.
 
-
-
 ### 🧪 CASES in Method Overloading
 
 ### ⚡ Case 1: **Automatic Type Promotion**
@@ -707,7 +720,6 @@ class Test {
     t.methodOne(10.5);    // double → no match → ❌ Compile-Time Error
   }
 }
-
 ```
 
 > Java tries to promote types step by step to match a method.  
@@ -762,7 +774,6 @@ class Test {
                            /      \
                           /        \   
                       String    StringBuffer     
-                               
 ```
 
 ### 🔄 Case 4: **Same Number of Args, Different Types**
@@ -807,8 +818,6 @@ class Test {
 > 
 > - It behaves **almost like the `default` case in a `switch` statement** — used as a *fallback*
 
-
-
 ---
 
 ### 🧬 Case 6: **Parent vs Child References**
@@ -830,7 +839,6 @@ class Test {
     t.methodOne(a);                  // Animal (based on ref type)
   }
 }
-
 ```
 
 > In **overloading**, **reference type** is used for method resolution, not the actual object.
@@ -882,7 +890,6 @@ class Test {
           p1.marry(); // Trisha / Nayanthara / Anushka
       }
   }
-  
   ```
 
 - ✅ Method resolution is **based on runtime object**, not reference type.  
@@ -893,8 +900,6 @@ class Test {
 ### 🧩Rules for Overridng :
 
 ---
-
-
 
 ### 1.)   Signature Must Match
 
@@ -923,7 +928,6 @@ class Parent {
 class Child extends Parent {
     public String getData() { return null; }
 }
-
 ```
 
 > ❌ Not allowed for primitives. Only applicable for reference types.
@@ -960,7 +964,6 @@ class Parent {
 class Child extends Parent {
     public final void show() {} // ✅ Legal
 }
-
 ```
 
 ---
@@ -991,12 +994,9 @@ class Parent {
 abstract class Child extends Parent {
     public abstract void show(); // ✅ Legal
 }
-
 ```
 
 ---
-
-
 
 ### 🔐 Access Modifier Restrictions While Overriding in Java
 
@@ -1051,8 +1051,6 @@ Runtime Object → JVM decides at runtime
 
 ---
 
-
-
 ### 🔚 Overiding Summary
 
 - ✅ Method Signature must match
@@ -1070,8 +1068,6 @@ Runtime Object → JVM decides at runtime
 - ✅ JVM handles method resolution based on runtime object
 
 - ✅ Enables runtime polymorphism (dynamic dispatch)
-
-
 
 ## ⚠️ Overriding vs  static method
 
@@ -1208,13 +1204,9 @@ public class Test {
 
 > 🔑 **Static methods are class-level. Overriding works only with instance methods.**
 
-
-
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/MethodHiding.java)
 
 [Complete Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Interf.java)
-
-
 
 ## Overriding with respect to var-arg method.
 
@@ -1239,7 +1231,6 @@ class Child extends Parent {
         System.out.println("Child var-arg method");
     }
 }
-
 ```
 
 🟢 **This is valid overriding** — method signatures match (var-arg to var-arg).
@@ -1282,8 +1273,6 @@ class Child extends Parent {
 > 🔑 Always match var-arg with var-arg to achieve **true overriding**.
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverridingVarAgMethod.java)
-
-
 
 ## Method Hiding
 
@@ -1339,8 +1328,6 @@ Which of the following in Child are valid?
 | `public static void methodOne(int i)`            | ❌ Invalid | Tries to override non-static method with static |
 | `public static abstract void methodOne(float f)` | ❌ Invalid | abstract + static not allowed                   |
 
-
-
 ### ✅ Difference Between List vs ArrayList
 
 ```java
@@ -1372,7 +1359,6 @@ You're not locking yourself to `ArrayList`. You can easily switch to `LinkedList
 List l = new ArrayList();
 // Later...
 l = new LinkedList();  // No change needed in rest of the code
-
 ```
 
 This is powerful in large codebases or APIs where **you don’t care how the list is implemented**, only that it behaves like a `List`.
@@ -1485,35 +1471,19 @@ You can say:
 
 > There are **five primary ways** to create objects in Java: using `new`, reflection, cloning, factory methods, and deserialization. Each suits different use cases — from general instantiation to restoring serialized state.
 
+---
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 
 
 # Constructor
 
-Whenever an object is created in java, some piece of code will be automatically executed to perform initialization of the object. This piece of code which did initialization is called Constructor.
+In Java, whenever an object is created, a special block of code runs automatically to initialize the new object. This block of code is called a **constructor**.
 
-Main Objective of constructor is to perform initialization.
+The primary purpose of a constructor is to initialize the object’s state.
 
 ```java
 class Student {
@@ -1526,7 +1496,6 @@ class Student {
         this.rollno = rollno;
     }
 
-    // Main method where objects are created
     public static void main(String[] args) {
         // Creating student objects with different names and roll numbers
         Student s1 = new Student("vijayabhaskar", 101);
@@ -1537,20 +1506,23 @@ class Student {
 
 ## Constructor vs Instance Block
 
-Both Constructor and instance block will be executed automatically for every object creation, but instance block 1st followed by the constructor.
+- Both **instance blocks** and **constructors** execute automatically every time an object is created. The instance block runs **first**, followed by the constructor.
 
-Other than initialization, if we want to perform any activity for each created object, we should define that in instance block.
+- Instance blocks are typically used to perform common initialization or actions for all constructors, without duplicating code.
 
-Instance blocks can take arguments, whereas constructor can not take arguments, so we can not replace one concept by other.
+- **Important:** Instance blocks **cannot take arguments**, while constructors can. Therefore, constructors and instance blocks serve different purposes and cannot replace each other.
 
 Code Example :→
 
 ```java
 class Test {
-    static int count = 0; // Static variable to count instances of Test
 
+    // Static variable to count instances of Test
+    static int count = 0; 
+
+    // Instance initialization block: runs before every constructor
     {
-        count++; // Instance initialization block increments count whenever an instance is created
+        count++;
     }
 
     Test() {
@@ -1561,8 +1533,7 @@ class Test {
         // Parameterized constructor
     }
 
-    public static void main(String[] args) {
-        // Creating instances of Test class
+   public static void main(String[] args) {
         Test t1 = new Test();
         Test t2 = new Test(10);
         Test t3 = new Test();
@@ -1575,111 +1546,330 @@ class Test {
 
 ## Rules to write Constructor :→
 
-1. Name of the Constructor and Name of the class must be same.
-2. Return type concept is not applicable for constructor. If we are declaring return type for constructor we won’t get compile time or Runtime error simply it will be treated as a method.
-3. Although having the same name for a method and a class is allowed, it is not recommended.
-4. The only applicable modifier for constructor are public, default, private, protected.
+1. The **constructor name must exactly match the class name** (case-sensitive).
+2. Constructors **do not have a return type**, not even `void`. If you declare a return type, the compiler treats it as a **regular method**, not a constructor. This means the class will have no constructor matching that signature, which can lead to errors when creating objects.
+3. Although Java allows you to write a **method with the same name as the class**, this is discouraged because it can cause confusion—such a method is **not a constructor**.
+4. The only modifiers allowed for constructors are the access modifiers: **`public`**, **default** (no modifier), **`private`**, and **`protected`**. Other modifiers like `static`, `final`, `abstract` are **not allowed** for constructors.
 
 ## Default Constructor :→
 
-- For every class in java including abstract class constructor concept is applicable.
-- If we are not writing constructor, then compiler will generate default constructor.
-- Hence every class either contain compiler generated constructor or programmer written constructor but not both simultaneously.
+- Every class in Java, including abstract classes, can have constructors. Although abstract classes cannot be instantiated directly, their constructors are called during the creation of subclass objects.
+
+- If **no constructor** is explicitly written in a class, the Java compiler automatically generates a **default (no-argument) constructor** for that class.
+
+- If the programmer **writes any constructor** (with or without parameters), the compiler **does not** generate a default constructor. Hence, a class contains either the compiler-generated default constructor or the programmer-defined constructor(s), but **not both simultaneously**.
 
 ### Prototype of Default Constructor :→
 
-1. It is always no argument constructor.
-2. The access modifier of the default constructor is same as class modifier. (This
-   rule is applicable only for public and default).
-3. Default constructor contains only one line. super(); it is a no argument call to
-   super class constructor.
+1. The default constructor is always a **no-argument constructor**.
+2. The access modifier of the default constructor **matches the access modifier of the class**. This applies only if the class is either `public` or has default (package-private) access.
+3. The default constructor contains a single statement:  
+   `super();` — a no-argument call to the superclass constructor.
 
-![Screenshot 2024-02-17 140907](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/c013800f-33dc-4136-b20e-fbf8620fc36b)
 
-## Super() vs this()
 
-1. First line inside constructor should be either super() or this(), if we are not writing anything compiler will generate super().
-2. We should take super() or this() only in first line of Constructor, if we are taking anywhere else it will cause compile time error.
-3. Super() or this() can be used only inside constructor ,using them anywhere else will result in a compile-time error
-4. We can call a constructor directly from other constructor only.
+![Screenshot 2024-02-17 140907](C:\Users\rajee\Downloads\wmremove-transformed.png)
+
+## 🔄 `super()` vs `this()`
+
+- **First line rule:**  
+  The first statement inside any constructor must be either `super()` or `this()`.  
+  If neither is written explicitly, the compiler inserts `super()` by default.
+
+- **Position constraint:**  
+  `super()` or `this()` **must be the first line** inside the constructor.  
+  Placing them anywhere else results in a **compile-time error**.
+
+- **Usage restriction:**  
+  Both `super()` and `this()` can **only be used within constructors**.  
+  Using them in methods, blocks, or elsewhere leads to a **compile-time error**.
+
+- **Constructor-to-constructor call:**  
+  `this()` is used to **call one constructor from another within the same class**,  
+  while `super` is used to **call a constructor from the parent class**.
+
+---
 
 ![Screenshot 2024-02-17 143913](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/deb1dafc-2f29-4a02-a010-f6a4091b143a)
 
-![Screenshot 2024-02-17 143532](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4bd6c50c-e5b8-4b29-bfda-b22ebade5701)
+![Screenshot 2024-02-17 143532](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4bd6c50c-e5b8-4b29-bfda-b22ebade5701) 
 
-## Overloaded Constructors :→
 
-A class can contain more than one constructor and all these constructors having the same name but different arguments and hence these constructors are considered as overloaded constructors.
 
-```java
-class Test { 
-    Test(double d) { 
-        System.out.println("double-argument constructor"); 
-    } 
+---
 
-    Test(int i) { 
-        this(10.5); // Calls the double-argument constructor
-        System.out.println("int-argument constructor"); 
-    } 
+### Constructor Code Example
 
-    Test() { 
-        this(10); // Calls the int-argument constructor
-        System.out.println("no-argument constructor"); 
-    } 
+---
 
-    public static void main(String[] args) { 
-        Test t1 = new Test(); // Calls no-argument constructor, int-argument constructor, and double-argument constructor
-        Test t2 = new Test(10); // Calls int-argument constructor and double-argument constructor
-        Test t3 = new Test(10.5); // Calls double-argument constructor
-    } 
-}
-```
-
-1. Parent class constructor by default won't available to the Child. Hence
-   Inheritance concept is not applicable for constructors and hence overriding
-   concept also not applicable to the constructors. But constructors can be
-   overloaded.
-2. We can take constructor in any java class including abstract class also but we
-   can't take constructor inside interface.
-
-![Screenshot 2024-02-19 134501](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e33ea274-2ab6-4b4f-a152-9751fea1e7ec)
-
-### We can't create object for abstract class but abstract class can contain constructor what is the need ?
-
-Abstract class constructor will be executed for every child class object creation to perform initialization of child class object only.
-
-### Which of the following statement is true ?
-
-1. Whenever we are creating child class object then automatically parent class
-   object will be created.(false)
-2. Whenever we are creating child class object then parent class constructor will be executed.(true)
+#### Constructor Chaining code
 
 ```java
-abstract class Parent {
+class Parent {
     Parent() {
-        System.out.println(this.hashCode()); // Outputs hash code of Child object
+        System.out.println("Parent constructor");
     }
 }
 
 class Child extends Parent {
     Child() {
-        System.out.println(this.hashCode()); // Outputs hash code of Child object
+        this(10); // Calls another constructor in the same class
+        System.out.println("Child no-arg constructor");
+    }
+
+    Child(int x) {
+        super(); // Calls the constructor of Parent class
+        System.out.println("Child int-arg constructor: " + x);
+    }
+
+    public static void main(String[] args) {
+        Child c = new Child();
+    }
+}
+```
+
+**Output**
+
+```java
+Parent constructor
+Child int-arg constructor: 10
+Child no-arg constructor
+```
+
+---
+
+### Code
+
+> If you don’t explicitly call `super()` or `this()` in the first line of a constructor, the **compiler automatically inserts a call to the no-arg `super()` constructor**.
+
+```java
+class Parent {
+    Parent() {
+        System.out.println("Parent constructor");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        this(10);
+        System.out.println("Child no-arg constructor");
+    }
+
+    Child(int x) {
+        // super(); ← even if you don’t write this, Java will insert it
+        System.out.println("Child int-arg constructor: " + x);
+    }
+
+    public static void main(String[] args) {
+        Child c = new Child();
+    }
+}
+```
+
+**Output**
+
+```java
+Parent constructor
+Child int-arg constructor: 10
+Child no-arg constructor
+```
+
+---
+
+**Example that causes error**
+
+```java
+class Parent {
+    Parent(int x) {
+        System.out.println("Parent constructor: " + x);
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        // Compiler tries to insert super(); but there's no no-arg constructor in Parent
+        System.out.println("Child constructor");
+    }
+
+    public static void main(String[] args) {
+        Child c = new Child(); // ❌ Compile-time error
+    }
+}
+
+```
+
+**Output : ❌ Error:**
+
+```java
+constructor Parent in class Parent cannot be applied to given types;
+  required: int
+  found: no arguments
+```
+
+---
+
+**Example: No explicit `super()` in `Child(int x)`**
+
+```java
+class Parent {
+    Parent() {
+        System.out.println("Parent constructor");
+    }
+}
+
+class Child extends Parent {
+    Child(int x) {
+        // No super() or this() → compiler will insert super()
+        System.out.println("Child int-arg constructor: " + x);
+    }
+
+    public static void main(String[] args) {
+        Child c = new Child(42);
+    }
+}
+```
+
+Output :-->
+
+```java
+Parent constructor
+Child int-arg constructor: 42
+```
+
+---
+
+## Overloaded Constructors :→
+
+A class can define multiple constructors with the same name but different parameter lists—these are known as **overloaded constructors**.
+
+Constructor overloading provides flexibility to initialize objects in different ways based on passed arguments.
+
+In Java, we can call one constructor from another using `this(...)`, and this is known as **constructor chaining**. It must always be the first statement inside a constructor.
+
+```java
+class Test {
+
+    Test(double d) {
+        System.out.println("double-argument constructor");
+    }
+
+    Test(int i) {
+        this(10.5); // Calls double-arg constructor
+        System.out.println("int-argument constructor");
+    }
+
+    Test() {
+        this(10); // Calls int-arg constructor
+        System.out.println("no-argument constructor");
+    }
+
+    public static void main(String[] args) {
+        Test t1 = new Test();       // Calls: no-arg → int-arg → double-arg
+        Test t2 = new Test(10);     // Calls: int-arg → double-arg
+        Test t3 = new Test(10.5);   // Calls: double-arg
+    }
+}
+
+```
+
+Output : ->
+
+```java
+double-argument constructor
+int-argument constructor
+no-argument constructor
+double-argument constructor
+int-argument constructor
+double-argument constructor
+```
+
+---
+
+### 🧱 Key Rules About Constructors
+
+1. **Constructors Are Not Inherited**
+   
+   - In Java, constructors are **not inherited** from the parent class.
+   
+   - This means **constructor overriding is not possible**.
+   
+   - However, constructors **can be overloaded** within the same class.
+
+2. **Constructors Exist in Classes, Not Interfaces**
+   
+   - We can define constructors in any class, including **abstract classes**.
+   
+   - But interfaces **cannot have constructors**, because they are not intended for object instantiation.
+
+![Screenshot 2024-02-19 134501](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e33ea274-2ab6-4b4f-a152-9751fea1e7ec)
+
+---
+
+##### 🚫 Why Do Abstract Classes Have Constructors?
+
+We **cannot create objects** of an abstract class directly, but an **abstract class can have constructors**.
+
+### 🤔 Why?
+
+Whenever we create an object of a subclass that extends an abstract class, **the constructor of the abstract class is automatically invoked**—**not to create an abstract object**, but to perform **initialization for the abstract part of the child object**.
+
+---
+
+##### ✅ Which of the following statements is true?
+
+| Statement                                                                              | True / False |
+| -------------------------------------------------------------------------------------- | ------------ |
+| 1. Whenever we create a child class object, a separate parent class object is created. | ❌ False      |
+| 2. Whenever we create a child class object, the parent class constructor is executed.  | ✅ True       |
+
+```java
+
+abstract class Parent {
+    Parent() {
+        System.out.println(this.hashCode()); // Refers to the Child object
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println(this.hashCode()); // Same hashCode as above
     }
 }
 
 class Test {
     public static void main(String[] args) {
-        Child c = new Child();
-        System.out.println(c.hashCode()); // Outputs hash code of Child object
+        Child c = new Child();               // Triggers Parent and Child constructors
+        System.out.println(c.hashCode());    // All print same hashCode
     }
 }
+
 ```
 
-### Note :→
+**Output ->**
 
-1. Compiler will check whether the programmer wrote any constructor or not. If he didn't write at least one constructor then compiler will generate default constructor.
-2. If the programmer wrote any constructor then compiler will check whether he wrote super() or this() in the 1st line or not. If his not writing any of these compiler will always write (generate) super().
-3. Compiler will check is there any chance of recursive constructor invocation. If there is a possibility then compiler will raise compile time error.
+```java
+1072408673
+1072408673
+1072408673
+```
+
+### 🧠 Key Insight:
+
+- All three `hashCode()` calls print the **same value**, because **only one object is created**—an instance of `Child`, which includes the state of its `Parent`.
+
+
+
+### 📝 Constructor Behavior in Java
+
+- **Compiler-generated constructor:**  
+  If the programmer does **not define any constructor**, then the compiler **automatically inserts a default no-argument constructor**.
+
+- **Implicit `super()` call:**  
+  If the programmer defines a constructor **but does not explicitly call `super()` or `this()` in the first line**, the compiler **automatically inserts `super()`** as the first statement.
+
+- **Recursive constructor invocation check:**  
+  The compiler checks for **any possibility of recursive constructor calls** (e.g., `this()` calling itself directly or indirectly).  
+  If such a loop is detected, it throws a **compile-time error** to prevent infinit
 
 ```java
 class Test {
@@ -1717,11 +1907,15 @@ class Test {
 }
 ```
 
-- If the Parent class contains any argument constructors while writing Child
-  classes we should takes special care with respect to constructors.
-- Whenever we are writing any argument constructor it is highly recommended to write no argument constructor also.
-- If the Parent class contains any argument constructors while writing Child
-  classes we should takes special care with respect to constructors.
+---
+
+### ⚠️ Constructor Inheritance Caveat
+
+- If the **parent class defines only parameterized constructors** (i.e., no default constructor), then the **child class must explicitly call** one of them using `super(args...)` — otherwise, the code will not compile.
+
+- Hence, it is **highly recommended** that whenever you define a **parameterized constructor** in the parent class, you **also provide a no-argument constructor**, unless you’re certain all subclasses will always call a specific constructor.
+
+---
 
 ```java
 class Parent {
@@ -1736,9 +1930,54 @@ class Child extends Parent {
 }
 ```
 
-# Singleton Class
+### ✅ **Is This Code Valid?**
 
-If the requirement is same then instead of creating a separate object for every person we will create only one object and we can share that object for every required person we can achieve this by using singleton classes. That is the main advantages of singleton classes are Performance will be improved and memory utilization will be improved.
+Yes — this code compiles and runs just fine **because**:
+
+- `Exception` is the **superclass** of `IOException`.
+
+- Java allows the child constructor to declare a **broader checked exception** than the parent constructor.
+
+---
+
+If the `Parent` constructor had declared a **narrower** checked exception than the one in `Child`, like:
+
+```java
+class Parent {
+    Parent() throws IOException {}
+}
+
+class Child extends Parent {
+    Child() throws SQLException { // ❌ Invalid
+        super();
+    }
+}
+
+```
+
+This would cause a **compile-time error**, because the child constructor would be declaring an exception that the parent doesn't throw.
+
+
+
+
+
+
+
+
+
+
+
+# 🧱 Singleton Class
+
+A **Singleton Class** ensures that **only one instance** of the class exists throughout the application lifecycle. It also provides a **global access point** to this single instance.
+
+### 🎯 Why Use Singleton?
+
+- ✅ To control access to **shared resources** like database connections, file systems, or logging services
+
+- ✅ To save memory and processing by avoiding unnecessary object creation
+
+- ✅ To maintain a **consistent state** or configuration across the system
 
 ### Creation of our own Singleton Class
 
