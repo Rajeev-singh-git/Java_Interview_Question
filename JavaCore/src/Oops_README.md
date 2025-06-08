@@ -1567,8 +1567,8 @@ class Test {
    `super();` — a no-argument call to the superclass constructor.
 
 
+![wmremove-transformed](https://github.com/user-attachments/assets/1731e5ac-bf6f-4d38-9df4-e31b585a25ca)
 
-![Screenshot 2024-02-17 140907](C:\Users\rajee\Downloads\wmremove-transformed.png)
 
 ## 🔄 `super()` vs `this()`
 
