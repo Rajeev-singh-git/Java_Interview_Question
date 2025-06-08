@@ -173,8 +173,6 @@ An **interface** in Java is a blueprint of a class that defines a set of **abstr
 Because interfaces **cannot hold instance state** — and constructors are meant to **initialize instance variables**.  
 But **methods in interfaces** can still accept parameters and use them **at the time of method call**, not at the time of object construction.
 
-
-
 # 🔐 Encapsulation
 
 Encapsulation is the act of bundling data (fields) and the methods that operate on that data into a single unit, usually a class, while restricting direct access to the data using access control modifiers like `private`, `protected`, and `public`.
@@ -1365,6 +1363,94 @@ This is powerful in large codebases or APIs where **you don’t care how the lis
 
 ---
 
+✨ **Checked vs Unchecked Exceptions**
+
+---
+
+### ✅ What are Checked Exceptions?
+
+- **Checked exceptions** are those which the compiler checks at **compile-time** to ensure smooth execution at runtime.
+
+- These must be either caught using a `try-catch` block or declared in the method signature using `throws`.
+
+📝 **Examples:**  
+`IOException`, `SQLException`, `ClassNotFoundException`
+
+---
+
+### ❌ What are Unchecked Exceptions?
+
+- **Unchecked exceptions** are **not checked at compile time**. These typically indicate programming errors that occur at runtime.
+
+- All exceptions that are subclasses of `RuntimeException` and `Error` are unchecked.
+
+📝 **Examples:**  
+`NullPointerException`, `ArrayIndexOutOfBoundsException`, `ArithmeticException`, `StackOverflowError`
+
+---
+
+### 🔁 Overriding and Exception Rules
+
+**Rule (✅ for Checked Exceptions):**
+
+If a **child class overrides a method** that declares a checked exception, then:
+
+- The child method can throw:
+  
+  - The **same checked exception**, or
+  
+  - A **subclass of it**
+
+- It **cannot** throw:
+  
+  - A **broader checked exception**
+  
+  - A **new checked exception** if the parent method doesn’t declare one
+
+**Rule (✅ for Unchecked Exceptions):**
+
+No restrictions apply. You can throw any number of unchecked exceptions regardless of the parent method.
+
+---
+
+**💻 Example Code: Compile-Time Error with Checked Exception**
+
+```java
+class Parent {
+    public void methodOne() {} // Does not declare any checked exception
+}
+
+class Child extends Parent {
+    public void methodOne() throws Exception {} // ❌ Compile-time error
+}
+```
+
+🛑 **Error:**
+
+```java
+methodOne() in Child cannot override methodOne() in Parent;
+overridden method does not throw java.lang.Exception
+```
+
+---
+
+### 🔢 Overriding Examples: Valid vs Invalid
+
+| No. | Parent Method Signature               | Child Method Signature                                                               | ✅ Valid? | Reason                                                           |
+| --- | ------------------------------------- | ------------------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------- |
+| 1   | `void methodOne() throws Exception`   | `void methodOne()`                                                                   | ✅ Yes    | Child throws nothing (which is okay)                             |
+| 2   | `void methodOne()`                    | `void methodOne() throws Exception`                                                  | ❌ No     | Child throws new checked exception not declared by parent        |
+| 3   | `void methodOne() throws Exception`   | `void methodOne() throws Exception`                                                  | ✅ Yes    | Same exception                                                   |
+| 4   | `void methodOne() throws IOException` | `void methodOne() throws Exception`                                                  | ❌ No     | Exception is broader than IOException                            |
+| 5   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, FileNotFoundException`                        | ❌ No     | Declares multiple subclasses; ambiguous handling                 |
+| 6   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, InterruptedException`                         | ❌ No     | InterruptedException is unrelated                                |
+| 7   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, ArithmeticException`                          | ❌ No     | ArithmeticException (✅ unchecked), but EOFException is okay only |
+| 8   | `void methodOne()`                    | `void methodOne() throws NullPointerException, RuntimeException, ClassCastException` | ✅ Yes    | All are unchecked — no restriction                               |
+
+
+
+---
+
 # 🧱 **How Many Ways Can We Create an Object in Java?**
 
 There are **five main ways** to create or get an object in Java:
@@ -1477,8 +1563,6 @@ You can say:
 
 ---
 
-
-
 # Constructor
 
 In Java, whenever an object is created, a special block of code runs automatically to initialize the new object. This block of code is called a **constructor**.
@@ -1566,9 +1650,7 @@ class Test {
 3. The default constructor contains a single statement:  
    `super();` — a no-argument call to the superclass constructor.
 
-
 ![wmremove-transformed](https://github.com/user-attachments/assets/1731e5ac-bf6f-4d38-9df4-e31b585a25ca)
-
 
 ## 🔄 `super()` vs `this()`
 
@@ -1593,8 +1675,6 @@ class Test {
 ![Screenshot 2024-02-17 143913](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/deb1dafc-2f29-4a02-a010-f6a4091b143a)
 
 ![Screenshot 2024-02-17 143532](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4bd6c50c-e5b8-4b29-bfda-b22ebade5701) 
-
-
 
 ---
 
@@ -1695,7 +1775,6 @@ class Child extends Parent {
         Child c = new Child(); // ❌ Compile-time error
     }
 }
-
 ```
 
 **Output : ❌ Error:**
@@ -1769,7 +1848,6 @@ class Test {
         Test t3 = new Test(10.5);   // Calls: double-arg
     }
 }
-
 ```
 
 Output : ->
@@ -1823,7 +1901,6 @@ Whenever we create an object of a subclass that extends an abstract class, **the
 | 2. Whenever we create a child class object, the parent class constructor is executed.  | ✅ True       |
 
 ```java
-
 abstract class Parent {
     Parent() {
         System.out.println(this.hashCode()); // Refers to the Child object
@@ -1842,7 +1919,6 @@ class Test {
         System.out.println(c.hashCode());    // All print same hashCode
     }
 }
-
 ```
 
 **Output ->**
@@ -1856,8 +1932,6 @@ class Test {
 ### 🧠 Key Insight:
 
 - All three `hashCode()` calls print the **same value**, because **only one object is created**—an instance of `Child`, which includes the state of its `Parent`.
-
-
 
 ### 📝 Constructor Behavior in Java
 
@@ -1952,8 +2026,6 @@ class Child extends Parent {
         super();
     }
 }
-
 ```
 
 This would cause a **compile-time error**, because the child constructor would be declaring an exception that the parent doesn't throw.
-
