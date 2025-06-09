@@ -103,15 +103,7 @@ Java supports abstraction via:
 
 Let’s break each one down.
 
-
-
 ---
-
-
-
----
-
-
 
 ## 🧱 **1.) Abstract Class:**
 
@@ -137,32 +129,92 @@ class Circle extends Shape {
 }
 ```
 
+---
+
+### 🧱 Abstract Class Key Features (JDK Timeline)
+
+| Since   | What Was Added / Enhanced                            | Quick Note                                                                    |
+| ------- | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Java 5  | **Generics support**                                 | Abstract classes can be generic and support type-safe hierarchies.            |
+| Java 8+ | **Functional-style usage**                           | Can be extended to support lambda-friendly designs via inheritance.           |
+| Java 17 | **Sealed abstract classes** (`sealed`, `non-sealed`) | Control subclassing and enable safer, exhaustive logic like pattern matching. |
+
+**🚫 Things Abstract Classes Cannot Do**
+
+| ❌ Not Allowed                   | Why?                                                                        |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| Instantiation directly          | They are incomplete by design. Must be subclassed.                          |
+| Multiple inheritance of classes | Java doesn't allow a class to extend more than one class (abstract or not). |
+
+---
+
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExample.java)
 
-## 2.) Interface :
+---
+
+## 🧩 2. Interface
 
 An **interface** in Java is a blueprint of a class that defines a set of **abstract behaviors** (methods) that a class must implement. It provides a way to achieve **full abstraction** and supports **multiple inheritance of type**.
 
-> A class can **implement multiple interfaces**, allowing it to inherit behaviors from multiple sources — something not possible with classes alone.
+A class can **implement multiple interfaces**, allowing it to inherit behaviors from multiple sources — something not possible with classes alone.
 
-###### ✅ Interface Key Features:
+> Think of it as a **contract** that all implementing classes must fulfill.
 
-- All methods are **abstract by default** (until Java 7).
+```java
+interface Greeter {
+    void sayHello();
+}
 
-- From **Java 8**, interfaces can also have:
-  
-  - `default` methods (with body)
-  
-  - `static` methods
+class EnglishGreeter implements Greeter {
+    @Override
+    public void sayHello() {
+        System.out.println("Hello!");
+    }
+}
+```
 
-- From **Java 9**, interfaces can have:
-  
-  - `private` methods (to support reuse inside default methods)
+---
 
-- All fields in an interface are **implicitly**:  
-  `public static final` (i.e., constants)
+### 🧩 Interface Key Features (JDK Timeline)
 
-- Interfaces **cannot have constructors or instance variables**.
+| Since      | What Was Added                                            | Quick Note                                                                                                         |
+| ---------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Java 1.0–7 | Abstract method declarations only                         | All methods are implicitly `public abstract`.                                                                      |
+| Java 8     | `default` methods  `static` methods                       | `default`: Has body; implementing classes may override. <br>`static`: Belongs to the interface, **not inherited**. |
+| Java 9     | `private` & `private static` methods                      | Internal utilities for reuse inside `default` or `static` methods.                                                 |
+| Java 15/17 | **Sealed interfaces** (`sealed`, `non-sealed`, `permits`) | Restrict which classes are allowed to implement the interface.                                                     |
+
+**🚫 Things Interfaces Cannot Have**
+
+| ❌ Not Allowed                          | Why?                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Constructors                           | Interfaces cannot be instantiated directly.                  |
+| Instance variables                     | Interfaces cannot hold per-object state.                     |
+| Mutable fields                         | All fields must be final constants.                          |
+| `protected` or package-private methods | Only `public`, `private`, and `static` methods are permitted |
+
+**🍒 Optional Extras (Modern Java Goodies)**
+
+- **Nested Types**  
+  Interfaces can contain nested interfaces, classes, enums, and records.  
+  Useful for grouping related contracts.
+
+- **Example – Private Helper in Interface**
+
+```java
+interface Calculator {
+    private static int clamp(int x, int y) {
+        return Math.max(x, y);
+    }
+
+    default int sum(int a, int b) {
+        return clamp(a, b) + clamp(b, a);
+    }
+}
+```
+
+- **Sealed Interfaces & Pattern Matching**  
+  Work seamlessly with **exhaustive switch expressions**, enabling safer and cleaner branching logic.**
 
 [Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExampleUsingInterface.java)
 
@@ -176,7 +228,7 @@ An **interface** in Java is a blueprint of a class that defines a set of **abstr
 | 🧪 **Methods Support**            | Abstract + Concrete methods                         | Abstract (Java 7 and below) <br> + `default`, `static`, `private` (Java 8+) |
 | 📦 **Variables**                  | Instance, static, final, etc.                       | Only `public static final` (constants)                                      |
 | 🛠 **Constructors**               | ✅ Allowed                                           | ❌ Not allowed                                                               |
-| ♻️ **Multiple Inheritance**       | ❌ Not supported                                     | ✅ Supported                                                                 |
+| ♻️ **Multiple Inheritance**       | ❌ Not supported(only one class can be extended)     | ✅ Supported(implements multiple interfaces)                                 |
 | 🔒 **Access Modifiers (Methods)** | `public`, `protected`, `default`, `private`         | Implicitly `public` (until Java 8)                                          |
 | 🧬 **Code Reusability**           | ✅ Yes (via concrete methods)                        | ✅ From Java 8 (`default`, `static` methods only)                            |
 | ⚙️ **Use Case**                   | Shared base logic + partial abstraction             | Define a contract across unrelated classes                                  |
@@ -198,11 +250,6 @@ An **interface** in Java is a blueprint of a class that defines a set of **abstr
 | You want to evolve your class in a controlled hierarchy          | 🧱 Abstract Class |
 
 ---
-
-### 🚫 Why Interfaces Don't Have Constructors?
-
-Because interfaces **cannot hold instance state** — and constructors are meant to **initialize instance variables**.  
-But **methods in interfaces** can still accept parameters and use them **at the time of method call**, not at the time of object construction.
 
 # 🔐 Encapsulation
 
@@ -1477,8 +1524,6 @@ overridden method does not throw java.lang.Exception
 | 6   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, InterruptedException`                         | ❌ No     | InterruptedException is unrelated                                |
 | 7   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, ArithmeticException`                          | ❌ No     | ArithmeticException (✅ unchecked), but EOFException is okay only |
 | 8   | `void methodOne()`                    | `void methodOne() throws NullPointerException, RuntimeException, ClassCastException` | ✅ Yes    | All are unchecked — no restriction                               |
-
-
 
 ---
 
