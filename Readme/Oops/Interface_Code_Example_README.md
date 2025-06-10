@@ -2,11 +2,9 @@
 
 ## Table of Contents
 
-1. [Abstraction](#abstraction)
-   - [Abstract Classes:](#-1-abstract-classes)
-   - [Interface](#2-interface-)
-2. [Encapsulation](#-encapsulation)
-   - [Tightly Encapsulated Class](#-tightly-encapsulated-class-in-java)
+1. [What is an Interface?](#-1-core-concept-what-is-an-interface)
+2. [Behavior Deep Dive: Default, Static, and Private Methods](#-2-behavior-deep-dive-default-static-and-private-methods)
+3. [Interview Pitfall: Conflicting Default Methods](#-3-interview-pitfall-conflicting-default-methods)
 
 ---
 
