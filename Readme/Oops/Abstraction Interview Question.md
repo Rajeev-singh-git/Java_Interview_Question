@@ -2,18 +2,10 @@
 
 ## Table of Contents
 
-1. [What exactly is abstraction in Java, and how is it different from encapsulation](#abstraction)
-   - [Abstract Classes:](#-1-abstract-classes)
-   - [Interface](#2-interface-)
-2. [RIWO state](#riwo-state)
-3. [Static control flow parent to child relationship :→](#static-control-flow-parent-to-child-relationship-→)
-4. [Static block](#static-block)
-5. [Instance Control Flow](#instance-control-flow)
-6. [Instance control flow in Parent to Child relationship](#instance-control-flow-in-parent-to-child-relationship)
-7. [Type Casting :→](#type-casting-→)
-   - [Type Casting Syntax](#type-casting-syntax)
-   - [Runtime Checking](#runtime-checking)
-8. [Cohesion](#cohesion)
+1. [What exactly is abstraction in Java, and how is it different from encapsulation](#-1-what-exactly-is-abstraction-in-java-and-how-is-it-different-from-encapsulation)
+2. [How does Java achieve abstraction? Why does Java need both abstract classes and interfaces?](#2-how-does-java-achieve-abstraction-why-does-java-need-both-abstract-classes-and-interfaces)
+3. [Suppose I create an abstract class with only concrete methods and no abstract method. Is that valid? Why would I do that?](#-3-suppose-i-create-an-abstract-class-with-only-concrete-methods-and-no-abstract-method-is-that-valid-why-would-i-do-that)
+4. [Can a constructor be present in an abstract class or an interface? If yes, how are they used or behave?](#-4-can-a-constructor-be-present-in-an-abstract-class-or-an-interface-if-yes-how-are-they-used-or-behave)
 
 ---
 
