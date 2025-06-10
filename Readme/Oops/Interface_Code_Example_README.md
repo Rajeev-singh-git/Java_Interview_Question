@@ -16,7 +16,7 @@ These examples illustrate what interfaces are, how they evolved, and what common
 
 ---
 
-### ✅ 1. Core Concept: What is an Interface?
+# ✅ 1. Core Concept: What is an Interface?
 
 ```java
 interface Greeter {
@@ -54,7 +54,7 @@ Hello!
 
 ---
 
-### 🧠 2. Behavior Deep Dive: Default, Static, and Private Methods
+# 🧠 2. Behavior Deep Dive: Default, Static, and Private Methods
 
 ```java
 interface Calculator {
@@ -119,7 +119,7 @@ Output :-->
 
 ---
 
-### 🚧 3. Interview Pitfall: Conflicting Default Methods
+# 🚧 3. Interview Pitfall: Conflicting Default Methods
 
 ```java
 interface A {
