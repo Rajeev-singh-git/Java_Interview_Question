@@ -3,7 +3,7 @@
 
 ## Table of Content ... 
 
-[Core Java](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/Oops_README.md)
+[Core Java](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Oops_README.md)
 
    [String](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/String/String_README.md)
 
