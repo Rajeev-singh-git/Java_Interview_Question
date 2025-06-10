@@ -36,7 +36,6 @@ public class Main {
         greeter.sayHello(); // Output: Hello!
     }
 }
-
 ```
 
 Output ->
@@ -159,5 +158,3 @@ public class Main {
 - 🚫 **Ambiguity**: Java forces the class to resolve which default to use.
 
 - ✅ **Resolution syntax**: Use `InterfaceName.super.method()` to resolve.
-
-
