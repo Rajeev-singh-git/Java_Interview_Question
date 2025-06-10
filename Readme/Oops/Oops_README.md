@@ -148,7 +148,7 @@ class Circle extends Shape {
 
 ---
 
-[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExample.java)
+[Abstract class code example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Abstract_Class_Code_Example_README.md)
 
 ---
 
@@ -216,7 +216,7 @@ interface Calculator {
 - **Sealed Interfaces & Pattern Matching**  
   Work seamlessly with **exhaustive switch expressions**, enabling safer and cleaner branching logic.**
 
-[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/AbstractionExampleUsingInterface.java)
+[Interface Code Examples](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Interface_Code_Example_README.md)
 
 ---
 
@@ -250,6 +250,8 @@ interface Calculator {
 | You want to evolve your class in a controlled hierarchy          | 🧱 Abstract Class |
 
 ---
+[Abstraction Interview Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Abstraction%20Interview%20Question.md)
+
 
 # 🔐 Encapsulation
 
