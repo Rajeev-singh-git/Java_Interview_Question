@@ -2,11 +2,9 @@
 
 ## Table of Contents
 
-1. [Abstraction](#abstraction)
-   - [Abstract Classes:](#-1-abstract-classes)
-   - [Interface](#2-interface-)
-2. [Encapsulation](#-encapsulation)
-   - [Tightly Encapsulated Class](#-tightly-encapsulated-class-in-java)
+1. [What is an Abstract Class?](#-1-core-concept-what-is-an-abstract-class)
+2. [Behavior Deep Dive: Constructor, Final Method, Polymorphism](#-2-behavior-deep-dive-constructor-final-method-polymorphism)
+3. [Interview Pitfall: Missing Abstract Method Implementation](#-3-interview-pitfall-missing-abstract-method-implementation)
 
 ---
 
