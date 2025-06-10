@@ -1,8 +1,8 @@
-# Oops
+# Abstraction Interview Questions
 
 ## Table of Contents
 
-1. [Abstraction](#abstraction)
+1. [What exactly is abstraction in Java, and how is it different from encapsulation](#abstraction)
    - [Abstract Classes:](#-1-abstract-classes)
    - [Interface](#2-interface-)
 2. [RIWO state](#riwo-state)
@@ -21,7 +21,7 @@
 
 ---
 
-#### ✅ 1. What exactly is abstraction in Java, and how is it different from encapsulation?
+# ✅ 1. What exactly is abstraction in Java, and how is it different from encapsulation?
 
 - Follow-up:
   
@@ -71,7 +71,7 @@ class Engine {
 
 ---
 
-#### 2. How does Java achieve abstraction? Why does Java need both **abstract classes** and **interfaces**?
+# 2. How does Java achieve abstraction? Why does Java need both **abstract classes** and **interfaces**?
 
 - Follow-up:
   
@@ -173,7 +173,7 @@ class Drone implements Flyable {
 
 ---
 
-#### ✅ 3. Suppose I create an abstract class with only concrete methods and no abstract method. Is that valid? Why would I do that?
+# ✅ 3. Suppose I create an abstract class with only concrete methods and no abstract method. Is that valid? Why would I do that?
 
 Yes, an abstract class with only concrete methods is valid.
 
@@ -195,7 +195,7 @@ Declaring a class as abstract **prevents it from being instantiated directly**, 
 
 ---
 
-### ✅ 4. Can a constructor be present in an abstract class or an interface? If yes, how are they used or behave?
+# ✅ 4. Can a constructor be present in an abstract class or an interface? If yes, how are they used or behave?
 
 > 🔍 **Intent**: Clarifies **constructor rules** — a frequent confusion in interviews.
 
