@@ -362,7 +362,7 @@ Even though `y` and `z` are private, the inherited `x` breaks encapsulation — 
 
 ---
 
-
+[Encapsulation Interview Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Encapsulation%20Interview%20Question.md)
 
 ---
 
