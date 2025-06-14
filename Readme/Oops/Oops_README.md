@@ -253,6 +253,8 @@ interface Calculator {
 
 [Abstraction Interview Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Abstraction%20Interview%20Question.md)
 
+---
+
 # 🔐 Encapsulation
 
 Encapsulation is the act of bundling data (fields) and the **methods** **that operate on that data** into a single unit, -- usually a class, while restricting direct access to the data using access control modifiers like `private`, `protected`, and `public`.
@@ -357,6 +359,10 @@ Even though `y` and `z` are private, the inherited `x` breaks encapsulation — 
 - 🚫 It doesn’t matter if the class has `public`/`protected` methods or not.
 
 - 🧬 If the **parent class is not tightly encapsulated**, **no subclass can be tightly encapsulated** either.
+
+---
+
+
 
 ---
 
