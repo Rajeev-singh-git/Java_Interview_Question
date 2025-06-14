@@ -296,7 +296,6 @@ class Car extends Vehicle {
         System.out.println("Car stopped");
     }
 }
-
 ```
 
 👉 Here:
@@ -555,8 +554,6 @@ public class Test {
 
 > 🎯 *Write an interface `RemoteControl` and an abstract class `ElectronicDevice`. Then create a concrete class `SmartTV` that uses both.*
 
-
-
 **Answer -- >**
 
 ---
@@ -663,7 +660,6 @@ public class Main {
         tv.turnOff();           // from interface
     }
 }
-
 ```
 
 ---
@@ -736,8 +732,6 @@ public class Main {
 
 > 🎯 *Create two interfaces with default methods of the same name. Then implement both in a class and resolve the conflict.*
 
-
-
 **Answer : -- >**
 
 ---
@@ -780,7 +774,7 @@ class Warrior implements InterfaceA, InterfaceB {
     @Override
     public void greet() {
         System.out.println("⚔️ Resolving conflict...");
-        
+
         // Choose which greet() to call
         InterfaceA.super.greet();  // or InterfaceB.super.greet();
     }

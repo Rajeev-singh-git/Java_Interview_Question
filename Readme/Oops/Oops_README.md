@@ -250,60 +250,65 @@ interface Calculator {
 | You want to evolve your class in a controlled hierarchy          | 🧱 Abstract Class |
 
 ---
-[Abstraction Interview Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Abstraction%20Interview%20Question.md)
 
+[Abstraction Interview Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/Abstraction%20Interview%20Question.md)
 
 # 🔐 Encapsulation
 
-Encapsulation is the act of bundling data (fields) and the methods that operate on that data into a single unit, usually a class, while restricting direct access to the data using access control modifiers like `private`, `protected`, and `public`.
+Encapsulation is the act of bundling data (fields) and the **methods** **that operate on that data** into a single unit, -- usually a class, while restricting direct access to the data using access control modifiers like `private`, `protected`, and `public`.
 
 When a class follows the principles of data hiding and abstraction, it is called an **encapsulated class**.
 
-###### Analogy:
+🧠 **In Simple Words:**
+
+> "Don't let outsiders touch your internal data directly — give them controlled access through methods."
+
+---
+
+**📺 Analogy:**
 
 > **Encapsulation is like a TV remote:**  
-> You don’t open the remote to press the buttons directly on its circuit board; instead, you press buttons on the outside to control the TV.  
-> The internal electronics (data) are hidden, but you have a controlled interface (methods) to operate the TV safely and easily.
+> You don’t open the remote and press its circuit board to change the channel.  
+> You use the buttons outside — a safe, limited interface — while the internal mechanics are hidden.
+> 
+> 👉 Just like the remote hides internal circuits, encapsulation hides internal data.
 
-1. **`Private Fields:`** The attributes of a class are often declared as `private`, meaning they can only be accessed within the class itself.
-2. **`Public Methods` (Getters and Setters):** Public methods are provided to allow controlled access to the private attributes. These methods are often referred to as getter methods (for retrieving the values) and setter methods (for modifying the values).
+---
 
-[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Encapsulation.java)
+**🔑 Core Principles**
 
-#### ⭐ Main Advantages of Encapsulation
+1. **`Private Fields:`** Fields are usually marked `private` to prevent external access.
+2. **Public Method**  **(Getters and Setters)** :  Getters/setters allow safe access or updates to private fields.
 
-1. **Data Hiding**  
-   Protects internal state by restricting direct access to fields using access modifiers (`private`, `protected`).
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Encapsulation.java)
 
-2. **Improved Security**  
-   Prevents external interference and misuse by exposing only what’s necessary via controlled methods (getters/setters).
+---
 
-3. **Code Maintainability**  
-   Internal changes don’t affect external code as long as the public interface remains the same.
+### ⭐ **Advantages of Encapsulation**
 
-4. **Validation Control**  
-   Allows you to add logic in setters to validate data before updating fields.
+| Benefit             | Description                                                               |
+| ------------------- | ------------------------------------------------------------------------- |
+| 🔒 Data Protection  | Prevents unauthorized access or accidental modification of internal data. |
+| 🔁 Easy Maintenance | Internal implementation can change without affecting outside code.        |
+| 📦 Logical Grouping | Keeps related data and methods together.                                  |
+| ✅ Validation Logic  | Allows validation before modifying the data.                              |
 
-5. **Modularity and Reusability**  
-   Promotes well-defined, self-contained classes — easier to reuse, test, and debug.
+---
+
+### ⚙️ **Access Modifiers Recap**
+
+| Modifier    | Scope                                                                   |
+| ----------- | ----------------------------------------------------------------------- |
+| `private`   | Accessible only within the class.                                       |
+| `default`   | (No modifier) — Accessible within the same package.                     |
+| `protected` | Accessible in the same package and subclasses (even in other packages). |
+| `public`    | Accessible from anywhere.                                               |
+
+---
 
 ## 🔐 Tightly Encapsulated Class in Java
 
 A class is said to be **tightly encapsulated** if **all its variables (fields) are declared as `private`** — regardless of whether getter and setter methods exist or not.
-
-> ✅ The focus is only on **access modifiers of fields**, not on whether public accessors are provided.
-
----
-
-✅ Key Rule:
-
-> **If even one field in the class (or any of its parent classes) is not private, the class is *not* tightly encapsulated.**
-
-This is because child classes inherit all **non-private** fields from parent classes — breaking encapsulation at the root.
-
----
-
-##### 🧪 Example of a Tightly Encapsulated Class:
 
 ```java
 class Account {
@@ -315,13 +320,17 @@ class Account {
 }
 ```
 
-- `balance` is private → ✅ tightly encapsulated
+- `balance` is `private` → ✅ tightly encapsulated
 
-- Whether a getter exists or not → doesn't matter
+- Getter presence doesn't affect encapsulation status.
 
 ---
 
-##### ❌ Examples (Not Tightly Encapsulated):
+### ❌ Not Tightly Encapsulated Examples
+
+> **If even one field in the class (or any of its parent classes) is not private, the class is *not* tightly encapsulated.**
+
+This is because child classes inherit all **non-private** fields from parent classes — breaking encapsulation at the root.
 
 ```java
 class A {
@@ -329,19 +338,19 @@ class A {
 }
 
 class B extends A {
-    private int y = 20; // ✅ private, but inherits x (non-private) → ❌
+    private int y = 20; // ✅ But inherits x → ❌
 }
 
 class C extends B {
-    private int z = 30; // ✅ private, but again inherits x → ❌
+    private int z = 30; // ✅ But still inherits x → ❌
 }
 ```
 
-📌 **None of these are tightly encapsulated** because class `A` has a non-private field, and all subclasses inherit it.
+Even though `y` and `z` are private, the inherited `x` breaks encapsulation — none of these classes are tightly encapsulated.
 
 ---
 
-###### 📌 Summary:
+## 📌 Encapsulation Summary:
 
 - ✅ All fields must be `private`.
 
