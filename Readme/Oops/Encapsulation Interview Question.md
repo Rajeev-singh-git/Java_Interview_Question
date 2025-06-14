@@ -1,4 +1,4 @@
-# Abstraction Interview Questions
+# Encapsulation Interview Questions
 
 ## Table of Contents
 
