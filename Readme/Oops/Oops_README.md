@@ -857,6 +857,8 @@ Method Overloading   Method Hiding          Method Overriding
 
 ## 1.) ⚡Overloading (Compile-time Polymorphism)
 
+---
+
 - **Method overloading** occurs when a class defines **multiple methods with the same name** but with **different parameter lists** (type, number, or order).
 
 - In **method overloading**, the **compiler** determines which method to call based on the **reference type** and **method signature**. The runtime object is irrelevant in this case.
@@ -1079,80 +1081,97 @@ class Test {
 
 ---
 
-## 2. Overriding (Runtime Polymorphism):
+## 2. 🔁 Method Overriding (Runtime Polymorphism)
 
-- **Method Overriding** is a feature in Java that allows a **subclass (child class)** to provide its **own specific implementation** of a method that is already defined in its **superclass (parent class)**.
+---
+
+##### 🧠 What is Method Overriding ?
+
+- **Method Overriding**  allows a **subclass (child class)** to provide its **own specific implementation** of a method that is already defined in its **superclass (parent class)**.
 
 - The method in the **parent class** that is being redefined is called the **overridden method**.
 
 - The method in the **child class** that redefines the parent’s method is called the **overriding method**.
 
-- The **method call is resolved at runtime** based on the **actual (runtime) type of the object**, not the reference type. This behavior is known as **runtime polymorphism**.
+- The **overriding method** in the child class must have the **same signature** as the method in the parent class.
+
+- It enables **runtime polymorphism**: the **method call is resolved at runtime**, based on the **actual object**, not the reference type.
 
 - To explicitly indicate that a method in the subclass is intended to **override** a method in the superclass, we use the **`@Override`** annotation.  
   This helps the compiler catch mistakes like mismatched method signatures or typos.
 
-- Example:
-  
-  ```java
-  class Parent {
-      public void property() {
-          System.out.println("Cash + Land + Gold");
-      }
-  
-      public void marry() {
-          System.out.println("Subbalakshmi");
-      }
-  }
-  
-  class Child extends Parent {
-      @Override
-      public void marry() {
-          System.out.println("Trisha / Nayanthara / Anushka");
-      }
-  }
-  
-  public class Test {
-      public static void main(String[] args) {
-          Parent p = new Parent();
-          p.marry(); // Subbalakshmi
-  
-          Child c = new Child();
-          c.marry(); // Trisha / Nayanthara / Anushka
-  
-          Parent p1 = new Child();
-          p1.marry(); // Trisha / Nayanthara / Anushka
-      }
-  }
-  ```
+---
 
-- ✅ Method resolution is **based on runtime object**, not reference type.  
-  This is why `p1.marry()` invokes the **child's** method.
+**📦Basic Example:**
+
+```java
+class Parent {
+    public void property() {
+        System.out.println("Cash + Land + Gold");
+    }
+
+    public void marry() {
+        System.out.println("Arrange marriage");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    public void marry() {
+        System.out.println("Love marriage");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Parent p = new Parent();
+        p.marry(); // Arrange marriage
+
+        Child c = new Child();
+        c.marry(); // Love marriage
+
+        Parent p1 = new Child();
+        p1.marry(); // Love marriage
+    }
+}
+```
+
+> In **method overriding**, method resolution is based on the **runtime object**, not the reference type.  
+> This is why `p1.marry()` (where `p1` is a parent reference pointing to a child object) invokes the **child’s overridden method**.
+
+However, when using a **parent reference to hold a child object**:
+
+- ✅ You can call **overridden methods** — this is resolved at **runtime** (dynamic method dispatch).
+
+- ✅ You can call **parent-exclusive methods** — resolved at **compile-time** using the **reference type**.
+
+- ❌ You **cannot call child-exclusive methods** — i.e., methods that exist only in the child class and are not declared in the parent class.
+
+- ❌ You **cannot access private methods** of the parent using the parent reference — because private methods are not visible outside their own class and are **not inherited**.
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverridingExample.java)
+
+---
 
 ### 🧩Rules for Overridng :
 
 ---
 
-### 1.)   Signature Must Match
+#### 1.)   Signature Must Match
 
-- Method **name and parameter types** must match exactly.
+- Method **name and parameter types** must match exactly in parent and child class.
 
 ```java
-// Valid overriding
-void display(int x)
+void display(int x) // Valid overriding
 
-// Invalid (different signature)
-int display(float x)
-###
+int display(float x) // ❌ not overriding — different signature
 ```
 
 ---
 
-### 2. ✅ Covariant Return Types (Since Java 1.5)
+#### 2. ✅ Covariant Return Types (Since Java 1.5)
 
-- Allowed: Child class method returns a **subtype** of parent method's return type.
+- Overriding method can return a **subtype** of parent’s return type.
 
 ```java
 class Parent {
@@ -1164,17 +1183,50 @@ class Child extends Parent {
 }
 ```
 
-> ❌ Not allowed for primitives. Only applicable for reference types.
+> ❌ Only for reference types — not allowed for primitives.
 
 ---
 
-### 3. ❌ Private Methods Cannot Be Overridden
+#### 3. ❌ Private Methods Cannot Be Overridden
 
-- They're not inherited → re-declaring creates a **new method**, not overriding.
+- Not inherited by subclass.
+
+- A same-signature method in subclass is a **new, unrelated method**, not overriding or hiding.
+
+```java
+class Parent {
+    private void show() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+    private void show() {
+        System.out.println("Child");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.show(); // ✅ Works: calls Child's private method → Output: "Child"
+
+        Parent p = new Child();
+        p.show(); // ❌ Compile-time error: show() has private access in Parent
+    }
+}
+```
+
+> ✅ `Child.show()` is unrelated to `Parent.show()` — no overriding or hiding.  
+> ❌ `Parent.show()` is private and not accessible via reference, even if object is Child.
+
+
 
 ---
 
-### 4. ❌ Final Methods Cannot Be Overridden
+#### 4. ❌ Final Methods Cannot Be Overridden
+
+**Example 1 : -- >**
 
 ```java
 class Parent {
@@ -1186,9 +1238,39 @@ class Child extends Parent {
 }
 ```
 
+Example 2 : -- >
+
+```java
+class Parent {
+    public final void show() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+    public final void show() { // ❌ Compile-time error: cannot override final method from Parent
+        System.out.println("Child");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.show(); // ❌ Won’t compile
+
+        Parent p = new Child();
+        p.show(); // ❌ Won’t compile
+    }
+}
+
+```
+
+> ❌ `final` method in parent **cannot be overridden**, even with `final` keyword in child.  
+> ✅ To fix it, either **remove the `final`** from the parent method, or **don’t redeclare** the method in child.
+
 ---
 
-### 5. ✅ You Can Override a Non-final Method as Final
+#### 5. ✅ Non-final Method can be overriden as Final
 
 ```java
 class Parent {
@@ -1202,7 +1284,7 @@ class Child extends Parent {
 
 ---
 
-### 6. ✅ You Must Override Abstract Methods
+#### 6. ✅  Abstract Methods must be Overriden
 
 ```java
 abstract class Parent {
@@ -1216,7 +1298,7 @@ class Child extends Parent {
 
 ---
 
-### 7. ⚠️ You Can Make a Concrete Method Abstract in Subclass
+#### 7. ⚠️ Concrete Method can be made Abstract in Subclass
 
 - Useful when **blocking further access** to parent method in next-level subclasses.
 
@@ -1232,7 +1314,45 @@ abstract class Child extends Parent {
 
 ---
 
-### 🔐 Access Modifier Restrictions While Overriding in Java
+#### 8. Var-arg Method can only be overriden with Another Var-arg Method
+
+```java
+class Parent {
+    public void show(int... x) {
+        System.out.println("Parent var-arg method");
+    }
+}
+class Child extends Parent {
+    public void show(int... x) {
+        System.out.println("Child var-arg method");
+    }
+}
+```
+
+🟢 This is valid overriding.
+
+---
+
+##### ⚠️ Not Overriding: Var-arg vs Regular Method
+
+```java
+class Child extends Parent {
+    public void show(int x) {
+        System.out.println("Child regular method");
+    }
+}
+```
+
+❌ This is **overloading**, not overriding — the signatures differ (`int...` vs `int`).
+
+| Parent Method      | Child Method       | Result        |
+| ------------------ | ------------------ | ------------- |
+| `void m(int... x)` | `void m(int... x)` | ✅ Overriding  |
+| `void m(int... x)` | `void m(int x)`    | ❌ Overloading |
+
+---
+
+### 🔐 Access Modifier Rules in Overriding
 
 When overriding a method, the access modifier in the child class **cannot be more restrictive** than in the parent class.
 
@@ -1243,85 +1363,118 @@ When overriding a method, the access modifier in the child class **cannot be mor
 | `protected`     | `protected`, `public`            | ✅     | Wider visibility allowed               |
 | `public`        | `public` only                    | ✅     | Already the widest access              |
 
----
-
-### 💡 Key Notes
-
-- A `private` method is **not inherited**, so **overriding is not possible** — defining a method with the same name in the child is **method hiding**, not overriding.
-
-- You can **increase visibility** (e.g., `protected` → `public`), but you **cannot decrease** it (e.g., `public` → `protected`).
-  
-  ```java
-   // scope of access modifier
-   private < default < protected < public
-  ```
-
-- The compiler enforces this to maintain **Liskov Substitution Principle** — anywhere a parent class is used, the child class should seamlessly fit in.
-
-#### Other Modifiers
-
-- ✅ `synchronized`, `strictfp`, `native`, etc. — **do not affect** overriding.
-
-- ✅ Overriding **native methods** is allowed.
-
-#### 🔄 Dynamic Method Dispatch
-
-> The process where method call is resolved at runtime **based on actual object**, not reference type.
+You can **increase visibility** (e.g., `protected` → `public`), but you **cannot decrease** it (e.g., `public` → `protected`).
 
 ```java
-Parent p = new Child();
-p.show(); // Child's method called at runtime
-```
-
-### Overriding vs Overloading Behavior
-
-```java
-// Overloading
-Reference Type → Compiler decides at compile time
-
-// Overriding
-Runtime Object → JVM decides at runtime
+ // scope of access modifier
+ private < default < protected < public
 ```
 
 ---
 
-### 🔚 Overiding Summary
+### Example : -- >
 
-- ✅ Method Signature must match
+#### ✅ Overriding with respect to list
 
-- ✅ Return type can be covariant
+```java
+ArrayList al = new ArrayList();    // Like: Child c = new Child();
+List list = new ArrayList();       // Like: Parent p = new Child();
+```
 
-- ❌ Can't override private/final methods
-
-- ✅ Must override abstract methods
-
-- ✅ Can override concrete method as abstract
-
-- ✅ Overridden method's visibility can't be reduced
-
-- ✅ JVM handles method resolution based on runtime object
-
-- ✅ Enables runtime polymorphism (dynamic dispatch)
-
-## ⚠️ Overriding vs  static method
-
-###### ❌ Can We Override Static Methods?
-
-**No. Static methods cannot be overridden in Java.**
+| **Aspect**         | `ArrayList al = new ArrayList();`                         | `List l = new ArrayList();`                                        |
+| ------------------ | --------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Reference Type** | `ArrayList` (Concrete class)                              | `List` (Interface)                                                 |
+| **Runtime Object** | `ArrayList`                                               | `ArrayList`                                                        |
+| **Flexibility**    | ❌ Tight coupling to `ArrayList`                           | ✅ Flexible: can change to `LinkedList`, `Vector`, etc.             |
+| **Access**         | ✅ Can access both `List` and `ArrayList` specific methods | ❌ Can only access methods declared in `List` interface             |
+| **Best Use Case**  | When you **know** you'll use only `ArrayList` features    | When you **program to interface**, for flexibility and abstraction |
 
 ---
 
-**✅ Why?**
+##### 🤔 Why Use: `List l = new ArrayList();`
 
-- **Overriding** is based on **runtime polymorphism**, which depends on the **object**.
+If we’re creating an `ArrayList`, but limiting ourselves to List methods — **what’s the point?**
 
-- **Static methods** belong to the **class**, not the object. So they are **resolved at compile time**.
+##### ✅ The Benefit Comes From: **Polymorphism and Flexibility**
 
-- Therefore, **static methods can’t be overridden**, but they **can be hidden**.
+##### ✅ 1. **Easier to Switch Implementations**
+
+You're not locking yourself to `ArrayList`. You can easily switch to `LinkedList`, `Vector`, or any other `List` implementation **without changing the variable type**.
+
+```java
+List l = new ArrayList();
+// Later...
+l = new LinkedList();  // No change needed in rest of the code
+```
+
+This is powerful in large codebases or APIs where **you don’t care how the list is implemented**, only that it behaves like a `List`.
+
+
 
 ---
 
-###### 🔍 CASE 1: Trying to Override a Static Method as Non-static ❌
+## ⏬ Overriding vs Overloading
+
+| 🔧 **Property**                          | ⚙️ **Overloading**                                      | 🔄 **Overriding**                                            |
+| ---------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| 1️⃣ Method Name                          | Must be same                                            | Must be same                                                 |
+| 2️⃣ Argument Types                       | Must differ (type, number, or order)                    | Must be exactly same                                         |
+| 3️⃣ Method Signature                     | Must be different                                       | Must be same                                                 |
+| 4️⃣ Return Type                          | No restriction                                          | Must be same until Java 1.4, <br>Co-variant allowed from 1.5 |
+| 5️⃣ `private`, `static`, `final` methods | Can be overloaded                                       | **Cannot** be overridden                                     |
+| 6️⃣ Access Modifier                      | No restriction                                          | Can't weaken the access modifier                             |
+| 7️⃣ Throws Clause                        | No restriction                                          | Checked exceptions must match or be a subclass               |
+| 8️⃣ Method Resolution                    | Done by **compiler** at compile-time based on reference | Done by **JVM** at runtime based on object                   |
+| 9️⃣ Also Known As                        | Compile-time / Static / Early Binding                   | Runtime / Dynamic / Late Binding                             |
+
+---
+
+## 🧱 Method Hiding
+
+> In Java, when a **static method** in a subclass has the **same signature** as one in its superclass, it's called **method hiding**, not overriding.
+
+---
+
+### ⚠️ Static Methods and Overriding
+
+---
+
+#### ❌  Can We Override Static Methods?
+
+**No.** Static methods **cannot** be overridden — they are **class-level**, not object-level.
+
+- Instead, if you define a static method with the **same signature**, it’s called **method hiding**.
+
+- Resolution is done at **compile time**, based on the **reference type**.
+
+---
+
+###### 🧪 Method Hiding Example
+
+```java
+class Parent {
+    public static void methodOne() {
+        System.out.println("Parent static");
+    }
+}
+class Child extends Parent {
+    public static void methodOne() {
+        System.out.println("Child static");
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        p.methodOne(); // Output: Parent static (⚠️ based on reference)
+    }
+}
+```
+
+> Even though `p` refers to a `Child`, static method is **not overridden** — so **Parent's** version runs.
+
+---
+
+###### 🔍 CASE 1:  Static Method cannot be overriden as Non-static ❌
 
 ```java
 class Parent {
@@ -1346,7 +1499,7 @@ overridden method is static
 
 ---
 
-###### 🔍 CASE 2: Trying to Override a Non-static Method as Static ❌
+###### 🔍 CASE 2:  Non-static Method can be overriden as Static ❌
 
 ```java
 class Parent {
@@ -1366,180 +1519,27 @@ class Child extends Parent {
 
 ---
 
-###### ✅ CASE 3: Defining Static Method in Both Parent and Child (No Error)
+#### 🔬 Method Hiding vs Method Overriding
 
-```java
-class Parent {
-    public static void methodOne() {
-        System.out.println("Parent static method");
-    }
-}
-
-class Child extends Parent {
-    public static void methodOne() {
-        System.out.println("Child static method");
-    }
-}
-```
-
-🟢 This is **valid**.  
-But this is **not overriding** — it is **method hiding**.
+| Feature       | Overriding               | Method Hiding             |
+| ------------- | ------------------------ | ------------------------- |
+| Method Type   | Instance methods         | Static methods            |
+| Resolved By   | JVM at runtime           | Compiler at compile time  |
+| Polymorphism  | Runtime Polymorphism     | Compile-time polymorphism |
+| Required?     | Must be inherited        | Inheritance not mandatory |
+| Real Use Case | Enables dynamic behavior | Not polymorphic           |
 
 ---
 
-### 🤔 What is Method Hiding?
+[Code Example 1](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/MethodHiding.java)
 
-If a static method is **redefined** in a child class (with the same signature), it's called **method hiding**, not overriding.
+[Code Example 2](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Interf.java)
 
-📌 Resolution is based on **reference type**, not the runtime object.
-
----
-
-###### 🧪 Example: Method Hiding Behavior
-
-```java
-class Parent {
-    public static void methodOne() {
-        System.out.println("Parent static");
-    }
-}
-
-class Child extends Parent {
-    public static void methodOne() {
-        System.out.println("Child static");
-    }
-}
-
-public class Test {
-    public static void main(String[] args) {
-        Parent p = new Parent();
-        p.methodOne(); // Output: Parent static
-
-        Child c = new Child();
-        c.methodOne(); // Output: Child static
-
-        Parent ref = new Child();
-        ref.methodOne(); // Output: Parent static ❗
-    }
-}
-```
-
-> 🔎 Even though `ref` refers to a `Child` object, static method is resolved using **reference type** → so `Parent.methodOne()` gets called.
+[Code Example 3](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverridingVarAgMethod.java) 
 
 ---
 
-###### 🧠 Conclusion
 
-| Static Method Behavior                                                    | Is It Overriding? | Resolved At          |
-| ------------------------------------------------------------------------- | ----------------- | -------------------- |
-| Child defines static with same signature                                  | ❌ Method Hiding   | Compile Time (Class) |
-| Child defines instance method with same signature as static parent method | ❌ Error           | Compile Error        |
-| Child defines static method with same signature as instance parent method | ❌ Error           | Compile Error        |
-
-> 🔑 **Static methods are class-level. Overriding works only with instance methods.**
-
-[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/MethodHiding.java)
-
-[Complete Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Interf.java)
-
-## Overriding with respect to var-arg method.
-
-A **var-arg method** must be **overridden with another var-arg method** only.
-
-❌ If you override a var-arg method with a **normal method**, it becomes **method overloading**, **not overriding**.
-
----
-
-🔍 Example 1: **Valid Overriding** (Both are var-arg)
-
-```java
-class Parent {
-    public void show(int... x) {
-        System.out.println("Parent var-arg method");
-    }
-}
-
-class Child extends Parent {
-    @Override
-    public void show(int... x) {
-        System.out.println("Child var-arg method");
-    }
-}
-```
-
-🟢 **This is valid overriding** — method signatures match (var-arg to var-arg).
-
----
-
-🔍 Example 2: **Not Overriding** (Var-arg vs Regular Method)
-
-```java
-class Parent {
-    public void show(int... x) {
-        System.out.println("Parent var-arg method");
-    }
-}
-
-class Child extends Parent {
-    public void show(int x) {
-        System.out.println("Child normal method");
-    }
-}
-```
-
-⚠️ **This is overloading**, not overriding.
-
-- `show(int x)` is a normal method with a single `int` argument.
-
-- `show(int... x)` is a var-arg method (internally treated as `int[]`).
-
-- Since their parameter types differ, **no overriding happen.
-
----
-
-###### 🧠 Summary
-
-| Parent Method      | Child Method       | Result        |
-| ------------------ | ------------------ | ------------- |
-| `void m(int... x)` | `void m(int... x)` | ✅ Overriding  |
-| `void m(int... x)` | `void m(int x)`    | ❌ Overloading |
-
-> 🔑 Always match var-arg with var-arg to achieve **true overriding**.
-
-[Code](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverridingVarAgMethod.java)
-
-## Method Hiding
-
-| Method Overriding                                                                                                                 | Method Hiding                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Both Parent and Child class method should be non-static.                                                                          | Both Parent and Child class method should be static.                                                                        |
-| Method Resolution is always taken care by JVM based on runtime objects.                                                           | Method Resolution is always taken care by compiler based on reference type.                                                 |
-| Overriding is also considered as Runtime Polymorphism (or) Dynamic Polymorphism (or) late binding.                                | Method hiding is also considered as compile time polymorphism (or) static polymorphism (or) early binding.                  |
-| [Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverloadingExample.java) | [Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/MethodHiding.java) |
-
----
-
-# 🔁 Overloading vs Overriding
-
-| 🔧 **Property**                          | ⚙️ **Overloading**                                      | 🔄 **Overriding**                                            |
-| ---------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| 1️⃣ Method Name                          | Must be same                                            | Must be same                                                 |
-| 2️⃣ Argument Types                       | Must differ (type, number, or order)                    | Must be exactly same                                         |
-| 3️⃣ Method Signature                     | Must be different                                       | Must be same                                                 |
-| 4️⃣ Return Type                          | No restriction                                          | Must be same until Java 1.4, <br>Co-variant allowed from 1.5 |
-| 5️⃣ `private`, `static`, `final` methods | Can be overloaded                                       | **Cannot** be overridden                                     |
-| 6️⃣ Access Modifier                      | No restriction                                          | Can't weaken the access modifier                             |
-| 7️⃣ Throws Clause                        | No restriction                                          | Checked exceptions must match or be a subclass               |
-| 8️⃣ Method Resolution                    | Done by **compiler** at compile-time based on reference | Done by **JVM** at runtime based on object                   |
-| 9️⃣ Also Known As                        | Compile-time / Static / Early Binding                   | Runtime / Dynamic / Late Binding                             |
-
----
-
-## 🧠 **Key Conceptual Difference**
-
-- **Overloading** = Same method name, different arguments (focus on parameter list).
-
-- **Overriding** = Redefining the **same method** of the parent class **in child class** to change behavior.
 
 #### ✅ **Practice: Validity of Methods in Child Class**
 
@@ -1562,40 +1562,7 @@ Which of the following in Child are valid?
 | `public static void methodOne(int i)`            | ❌ Invalid | Tries to override non-static method with static |
 | `public static abstract void methodOne(float f)` | ❌ Invalid | abstract + static not allowed                   |
 
-### ✅ Difference Between List vs ArrayList
 
-```java
-ArrayList al = new ArrayList();    // Like: Child c = new Child();
-List list = new ArrayList();       // Like: Parent p = new Child();
-```
-
-| **Aspect**         | `ArrayList al = new ArrayList();`                         | `List l = new ArrayList();`                                        |
-| ------------------ | --------------------------------------------------------- | ------------------------------------------------------------------ |
-| **Reference Type** | `ArrayList` (Concrete class)                              | `List` (Interface)                                                 |
-| **Runtime Object** | `ArrayList`                                               | `ArrayList`                                                        |
-| **Flexibility**    | ❌ Tight coupling to `ArrayList`                           | ✅ Flexible: can change to `LinkedList`, `Vector`, etc.             |
-| **Access**         | ✅ Can access both `List` and `ArrayList` specific methods | ❌ Can only access methods declared in `List` interface             |
-| **Best Use Case**  | When you **know** you'll use only `ArrayList` features    | When you **program to interface**, for flexibility and abstraction |
-
----
-
-##### 🤔 Why Use: `List l = new ArrayList();`
-
-If we’re creating an `ArrayList`, but limiting ourselves to List methods — **what’s the point?**
-
-### ✅ The Benefit Comes From: **Polymorphism and Flexibility**
-
-#### ✅ 1. **Easier to Switch Implementations**
-
-You're not locking yourself to `ArrayList`. You can easily switch to `LinkedList`, `Vector`, or any other `List` implementation **without changing the variable type**.
-
-```java
-List l = new ArrayList();
-// Later...
-l = new LinkedList();  // No change needed in rest of the code
-```
-
-This is powerful in large codebases or APIs where **you don’t care how the list is implemented**, only that it behaves like a `List`.
 
 ---
 
@@ -1625,7 +1592,7 @@ This is powerful in large codebases or APIs where **you don’t care how the lis
 
 ---
 
-### 🔁 Overriding and Exception Rules
+### 🔁 Exception Rules with respect to overriding
 
 **Rule (✅ for Checked Exceptions):**
 
@@ -1672,16 +1639,16 @@ overridden method does not throw java.lang.Exception
 
 ### 🔢 Overriding Examples: Valid vs Invalid
 
-| No. | Parent Method Signature               | Child Method Signature                                                               | ✅ Valid? | Reason                                                           |
-| --- | ------------------------------------- | ------------------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------- |
-| 1   | `void methodOne() throws Exception`   | `void methodOne()`                                                                   | ✅ Yes    | Child throws nothing (which is okay)                             |
-| 2   | `void methodOne()`                    | `void methodOne() throws Exception`                                                  | ❌ No     | Child throws new checked exception not declared by parent        |
-| 3   | `void methodOne() throws Exception`   | `void methodOne() throws Exception`                                                  | ✅ Yes    | Same exception                                                   |
-| 4   | `void methodOne() throws IOException` | `void methodOne() throws Exception`                                                  | ❌ No     | Exception is broader than IOException                            |
-| 5   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, FileNotFoundException`                        | ❌ No     | Declares multiple subclasses; ambiguous handling                 |
-| 6   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, InterruptedException`                         | ❌ No     | InterruptedException is unrelated                                |
-| 7   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, ArithmeticException`                          | ❌ No     | ArithmeticException (✅ unchecked), but EOFException is okay only |
-| 8   | `void methodOne()`                    | `void methodOne() throws NullPointerException, RuntimeException, ClassCastException` | ✅ Yes    | All are unchecked — no restriction                               |
+| No. | Parent Method Signature               | Child Method Signature                                                               | ✅ Valid?                                                           | Reason                                                                                                                 |
+| --- | ------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| 1   | `void methodOne() throws Exception`   | `void methodOne()`                                                                   | ✅ Yes                                                              | Child throws nothing (which is okay)                                                                                   |
+| 2   | `void methodOne()`                    | `void methodOne() throws Exception`                                                  | ❌ No                                                               | Child throws new checked exception not declared by parent                                                              |
+| 3   | `void methodOne() throws Exception`   | `void methodOne() throws Exception`                                                  | ✅ Yes                                                              | Same exception                                                                                                         |
+| 4   | `void methodOne() throws IOException` | `void methodOne() throws Exception`                                                  | ❌ No                                                               | Exception is broader than IOException                                                                                  |
+| 5   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, FileNotFoundException`                        | ❌ No      ⚠️ Technically valid, but discouraged unless necessary.* | Declares multiple subclasses — though valid in Java, it introduces ambiguity and complicates exception handling logic. |
+| 6   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, InterruptedException`                         | ❌ No                                                               | InterruptedException is unrelated                                                                                      |
+| 7   | `void methodOne() throws IOException` | `void methodOne() throws EOFException, ArithmeticException`                          | ❌ No                                                               | ArithmeticException (✅ unchecked), but EOFException is okay only                                                       |
+| 8   | `void methodOne()`                    | `void methodOne() throws NullPointerException, RuntimeException, ClassCastException` | ✅ Yes                                                              | All are unchecked — no restriction                                                                                     |
 
 ---
 
