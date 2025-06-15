@@ -366,111 +366,160 @@ Even though `y` and `z` are private, the inherited `x` breaks encapsulation — 
 
 ---
 
-# Inheritance
+# 🧬 Inheritance (is-a)
 
-**Inheritance** in object-oriented programming allows a class (called the **child class** or **subclass**) to inherit the **properties** (fields) and **behaviors** (methods) of another class (called the **parent class** or **superclass**).  
-This enables **code reuse**, **extensibility**, and a natural hierarchy between types.
+Inheritance allows a class (child/subclass) to **acquire the fields and methods** of another class (parent/superclass). It helps in **code reuse, logical hierarchy**, and supports **runtime polymorphism**.
 
----
-
-###### Inheritance Key Concepts:
-
-- **`IS-A Relationship:`**  
-  Inheritance models an *"is-a"* relationship.  
-  For example:  
-  `Dog extends Animal` → A Dog **is an** Animal.
-
-- **`extends` Keyword:**  
-  In Java, the `extends` keyword is used to create a subclass that inherits from a superclass.
-  
-  ---
-
-###### ⭐ Main Advantages of Inheritance :
-
-- **🔁 Code Reusability**  
-  Common code written in the parent class can be reused by child classes, reducing redundancy and development effort.
-
-- **🧬 Method Overriding**  
-  Child classes can redefine parent class methods to provide specific behavior, enabling runtime polymorphism.
-
-- **🧠 Polymorphism Support**  
-  Parent references can point to child objects, allowing flexible, scalable, and loosely coupled code.
-
-- **🧩 Logical Hierarchy**  
-  Establishes a clear and maintainable structure that reflects real-world relationships between entities.
-
-- **🛠️ Easier Maintenance & Scalability**  
-  Changes made in the parent class automatically apply to all child classes, streamlining updates.
-
-- **🌿 Extensibility**  
-  New features can be added to child classes without modifying existing code, supporting open/closed principle.
-
-- **🧱 Framework Foundation**  
-  Forms the basis for many frameworks and design patterns where base functionality is extended by subclasses.
+> Inheritance means *child classes automatically get the features of their parents*.
 
 ---
 
-###### 📺 Real-world Analogy:
+###### 🔑 Inheritance Key Concepts:
 
-> **Inheritance is like a child inheriting traits from parents.**  
-> For example, a child may inherit eye color or language from their parents — but can also develop their own personality.  
-> Similarly, a subclass can use parent behavior **as-is**, or **override** it with its own version.
-
-[Inheritance Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/InheritanceExample.java)
-
-### ✅ Conclusion on Inheritance Behavior in Java
-
-1. **Child Inherits from Parent, Not the Other Way Around**
-   
-   - Whatever the parent class has is automatically available to the child.
-   
-   - But the child class's specific members are **not accessible** via the parent class.
-   
-   - So:
-     
-     - A **child reference** can access **both parent and child members**.
-     
-     - A **parent reference** can access **only parent members**, even if it holds a child object.
-
-2. **Parent Reference Can Hold Child Object**
-   
-   - This is called **upcasting**.
-   
-   - However, using the parent reference, we can **only access parent class methods** — not child-specific methods.
-
-3. **Child Reference Cannot Hold Parent Object**
-   
-   - This is not allowed — it's a **type mismatch** and results in a compile-time error.
+| Concept                | Description                                                                                    |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| **IS-A Relationship**  | Models a real-world **"is-a"** relationship. <br>🧪 `Dog extends Animal` → Dog *is an* Animal. |
+| **`extends` Keyword**  | Used to inherit from a class in Java.                                                          |
+| **Single Inheritance** | Java supports only single inheritance with classes (but multiple with interfaces).             |
 
 ---
 
-🧪 Example: Loan System
+###### 📺 Analogy
 
-Let’s say multiple loan types (Housing, Vehicle, Education) share common operations. These shared methods should be defined in a base class, like this:
+> Inheritance is like a child inheriting genes from parents.  
+> The child may inherit features like eye color, but can also develop their own personality (method overriding).
+
+---
+
+### ⭐ Advantages of Inheritance :
+
+| Benefit                 | Description                                                     |
+| ----------------------- | --------------------------------------------------------------- |
+| 🔁 Code Reuse           | Common methods written in the parent class can be reused.       |
+| 🧬 Method Overriding    | Subclasses can redefine parent methods for specific behavior.   |
+| 🧠 Polymorphism         | Parent references can point to child objects for flexible code. |
+| 🧩 Logical Hierarchy    | Organizes classes in a structured, real-world way.              |
+| 🌿 Extensibility        | Add features via subclasses without changing existing code.     |
+| 🧱 Framework Foundation | Powers major OOP frameworks and design patterns.                |
+
+---
+
+**🔀 Behavior in Java**
 
 ```java
-class Loan {
-    // Common methods for all loan types
+class Animal {
+    void eat() { System.out.println("eating..."); }
 }
-
-class HousingLoan extends Loan {
-    // Specific methods for housing loan
-}
-
-class EducationLoan extends Loan {
-    // Specific methods for education loan
+class Dog extends Animal {
+    void bark() { System.out.println("barking..."); }
 }
 ```
 
-This structure promotes **code reuse** and aligns with the **“is-a” relationship** principle of inheritance:
+🔼 Upcasting (Parent Ref = Child Obj)
 
-> `HousingLoan` **is a** `Loan`, `EducationLoan` **is a** `Loan`.
+```java
+Animal a = new Dog(); 
+a.eat();      // ✅ allowed
+a.bark();     // ❌ not allowed — reference type rules
+```
 
-#### Inheritance System-Wide Examples:
+🔽 Downcasting (Child Ref = Parent Obj)
+
+```java
+Dog d = new Animal();  // ❌ Compile-time error
+```
+
+[Inheritance Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/InheritanceExample.java)
+
+---
+
+### ✅ Conclusion on Inheritance Behavior
+
+##### 1. **Child Inherits from Parent — Not the Other Way Around**
+
+- Everything in the parent class is automatically available to the child.
+
+- But child-specific members are **not accessible via the parent class**.
+
+🔍 So:
+
+- ✅ A **child reference** can access **both** parent and child members.
+
+- ⚠️ A **parent reference** can access **only** parent members, even if it refers to a child object.
+
+---
+
+##### 2. **Parent Reference Can Hold Child Object**
+
+- ✅ This is called **upcasting**.
+
+- ⚠️ Only the methods and variables defined in the parent class are accessible via the parent reference.
+
+- 🧠 **However**, if a **parent method is overridden** by the child class, and we invoke that method through the parent reference, **the child’s version is executed**.  
+  This is because of **dynamic method dispatch** (covered in detail in point 4).
+
+```java
+class Animal {
+    void sound() { System.out.println("Animal sound"); }
+}
+
+class Dog extends Animal {
+    void sound() { System.out.println("Dog barks"); }
+}
+
+Animal a = new Dog();  
+a.sound();  // Output: Dog barks ✅ (child method runs due to overriding)
+
+```
+
+- ❗ But **child-specific methods** (not present in the parent class) are **not accessible** through the parent reference.
+
+```java
+a.bark();  // ❌ Compile-time error: bark() not in Animal
+```
+
+---
+
+##### 3. **Child Reference Cannot Hold Parent Object**
+
+- ❌ This causes a **compile-time error** — it's a **type mismatch**.
+
+```java
+Dog d = new Animal();  // ❌ Not allowed
+```
+
+---
+
+##### 4. **Dynamic Method Dispatch (Runtime Polymorphism)**
+
+- 🧠 When you call a **non-static, non-final, non-private** method using a **parent reference**, Java checks:
+  
+  - ✅ **If the method is overridden in the child**, the **child’s version** is executed.
+  
+  - 🔁 If not overridden, the **parent's version** is used.
+
+```java
+class Animal {
+    void sound() { System.out.println("Generic animal sound"); }
+}
+
+class Dog extends Animal {
+    void sound() { System.out.println("Bark"); }
+}
+
+Animal a = new Dog();
+a.sound();  // Output: Bark → ✅ Child method called
+```
+
+---
+
+##### Inheritance System-Wide Examples:
 
 - In Java, the most commonly required functionality for all classes is defined in the **`Object`** class. Hence, `Object` serves as the **root class** for all Java classes.
 
 - Similarly, for all exceptions and errors, the common functionality is defined in the **`Throwable`** class, making it the **root of the exception hierarchy** in Java.
+
+---
 
 ### Multiple Inheritance :
 
@@ -501,6 +550,8 @@ Java **does not allow multiple inheritance with classes** to avoid ambiguity and
 > Then `D.display()` — **which version should be called?**  
 > This is the **diamond problem**: **ambiguity** and **unpredictable behavior**.
 
+---
+
 ###### ✅ Interfaces to the Rescue:
 
 Java **does allow multiple inheritance via interfaces** because:
@@ -511,20 +562,26 @@ Java **does allow multiple inheritance via interfaces** because:
   
   - Subclass overrides > implemented interface default > compiler error if ambiguous.
 
-# 🔗 HAS-A Relationship
+---
 
-A **HAS-A relationship** represents an **association** between two classes, where **one class contains a reference to another class**. This is typically implemented through **composition**.
+## 🔗 HAS-A Relationship (Composition & Aggregation)
+
+A **HAS-A relationship** models **association** between two classes, where **one class holds a reference to another**. It’s used to represent **ownership or usage**, and is commonly implemented via:
+
+- 🧱 **Composition** – strong association (tight coupling)
+
+- ⚙️ **Aggregation** – weak association (loose coupling)
 
 ---
 
-## 🔧 Composition
+### 🧱 Composition – Strong HAS-A
 
-> **Composition** is a design principle where one object is composed of one or more other objects.  
-> It represents a **strong association**, where the contained object **cannot exist independently** of the container.
+> **Composition** means one class is **composed of** one or more other classes.  
+> It models a **strong "part-of" relationship**, where the contained object’s **existence depends** on the container.
 
 ---
 
-##### ✅ HAS-A Relationship Key Points:
+##### ✅ HAS-A Relationship Key Points :
 
 - A HAS-A relationship means one class *"has"* another as a part of itself.
 
@@ -539,24 +596,32 @@ A **HAS-A relationship** represents an **association** between two classes, wher
 ### 🔍 Real-world Analogy:
 
 > A **Car** HAS-A **Engine**.  
-> You can’t have a working car without its engine, and the engine belongs to that specific car.  
-> The car controls the lifecycle of the engine.
+> The engine is part of the car. If the car is destroyed, the engine loses purpose.
+> 
+> The **car controls** when the engine is created and destroyed.
+
+---
 
 ###### **HAS-A Relationship Code Example:**
 
 ```java
 class Engine {
-    / Engine behavior
+    void start() {
+        System.out.println("Engine started.");
+    }
 }
 
 class Car {
-    private Engine engine;  // HAS-A relationship: Car HAS-A Engine
+    private Engine engine; // HAS-A relationship
 
-    public Car(Engine engine) {
-        this.engine = engine;
+    public Car() {
+        this.engine = new Engine(); // Car owns Engine
     }
 
-   // Other car logic
+    public void drive() {
+        engine.start();
+        System.out.println("Car is moving.");
+    }
 }
 ```
 
@@ -565,13 +630,14 @@ class Car {
 
 Without an existing car, the engine cannot exist. The **`Car`** manages the creation and destruction of the **`Engine`**, and the lifecycle of the **`Engine`** is tightly bound to the lifecycle of the **`Car`**. This is a clear example of a strong association through composition.
 
-[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Composition.java)
+[👉 Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Composition.java)
 
-## Aggregation
+---
+
+### ⚙️ Aggregation – Weak HAS-A
 
 **Aggregation** represents a *"HAS-A"* relationship where one class contains a reference to another class, **but the contained object can exist independently of the container**.
 
-> 🔄 In simpler terms:  
 > Even if the container is destroyed, the contained object **can still exist**.
 
 ---
@@ -590,12 +656,46 @@ Without an existing car, the engine cannot exist. The **`Car`** manages the crea
 
 ###### 💡 Aggregation Analogy:
 
-> **A teacher and a department**:  
-> A `Teacher` can belong to a `Department`, but if the department is removed, the teacher still exists — possibly in another department.
+> A **Teacher** belongs to a **Department**,  
+> but the teacher exists even if the department is dissolved.  
+> A new department can reuse the same teacher.
 
 ---
 
 ###### ✅ Summary:
+
+```java
+class Department {
+    String name;
+
+    Department(String name) {
+        this.name = name;
+    }
+}
+
+class Teacher {
+    private Department department; // Aggregated object
+
+    public Teacher(Department department) {
+        this.department = department; // Department is passed in, not created inside
+    }
+
+    public void showDetails() {
+        System.out.println("Belongs to Department: " + department.name);
+    }
+}
+
+```
+
+- `Teacher` doesn’t own `Department`.
+
+- `Department` can be shared by multiple `Teacher` instances.
+
+[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Aggregation.java)
+
+---
+
+**✅ Summary:**
 
 > Use **aggregation** when:
 > 
@@ -603,51 +703,73 @@ Without an existing car, the engine cannot exist. The **`Car`** manages the crea
 > 
 > - But **independent existence** is allowed and expected.
 
-[Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/Aggregation.java)
+---
 
-### 🔍 Core Difference: Composition vs Aggregation
+##### 🧠 Composition vs Aggregation – Key Differences
 
-| Criteria                 | Composition 🧱                                   | Aggregation ⚙️                                |
-| ------------------------ | ------------------------------------------------ | --------------------------------------------- |
-| **Lifecycle Dependency** | Contained object **cannot** exist independently. | Contained object **can** exist independently. |
-| **Ownership**            | Strong ownership — container *owns* the part.    | Weak ownership — container *uses* the part.   |
-| **Used For**             | “Part-of” relationships with tight coupling.     | “Has-a” relationships with looser coupling.   |
-| **Example**              | Heart inside a human 🫀                          | Student in a university 🎓                    |
+| Feature               | Composition 🧱                  | Aggregation ⚙️                  |
+| --------------------- | ------------------------------- | ------------------------------- |
+| **Dependency**        | Part cannot exist without whole | Part can exist independently    |
+| **Lifecycle Control** | Container manages part          | Part is managed externally      |
+| **Coupling**          | Tight                           | Loose                           |
+| **Ownership**         | Strong (has full control)       | Weak (only references)          |
+| **Example**           | Heart in a body 🫀              | Student in a university 🎓      |
+| **Instantiation**     | Container creates the part      | Part is passed to the container |
+
+---
+
+##### ✅ When to Use What?
+
+| Scenario                                                     | Use                 |
+| ------------------------------------------------------------ | ------------------- |
+| The part is **exclusive and tightly bound** to the container | Use **Composition** |
+| The part is **shared, reusable, or independent**             | Use **Aggregation** |
+
+---
 
 # 🧾 Method Signature in Java
 
-In Java, the **method signature** is composed of:
+In Java, the **method signature** is made up of:
 
-> 🔹 **Method name**  
-> 🔹 **Parameter types (in order)**
+> 🔹 The method’s **name**  
+> 🔹 The **parameter types**, in order
 
 ```java
 public void methodOne() {}
-public int methodOne() { return 10; }  // ❌ Compile-time error
+public int methodOne() { return 10; } // ❌ Error: Same signature, only return type differs
+
 ```
+
+> ❗**Within the same class**, you cannot define two methods with the **same name and parameter types**, even if their **return types differ**.
 
 ---
 
 ###### 🚫 Return Type Is *Not* Part of the Signature
 
-Even if two methods differ only by return type, it causes a **compile-time error** — because their signatures are considered the same.
+In Java, **return type is ignored** when resolving method signatures.
 
-```java
-public void methodOne() {}
-public int methodOne() { return 10; }  // ❌ Compile-time error
+Even if two methods differ **only** by return type, it's a **compile-time error** because the compiler sees them as **duplicate signatures**.
+
+```mathematica
+Signature = MethodName + ParameterTypes
+NOT INCLUDED: Return Type, Parameter Names, Access Modifiers
 ```
 
 ---
 
 ###### 🔍 Why Is Signature Important?
 
-- The **compiler uses method signature** to **resolve method calls**.
+- It’s how the **compiler identifies which method to call**.
 
-- Ensures **method overloading** is unambiguous.
+- It forms the basis for **method overloading resolution**.
+
+- Ensures clarity and **prevents ambiguity**.
+
+> 🧠 Think of method signature like a person’s *full name and birthday* — not just the name. The return type is like their favorite color — nice to know, but not used to identify them in legal paperwork.
 
 ---
 
-### ✅ Valid Example
+### ✅ Valid Overloading Example
 
 ```java
 class Test {
@@ -656,12 +778,15 @@ class Test {
 
     public static void main(String[] args) {
         Test t = new Test();
-        t.m1(10.5);   // OK
-        t.m2(10);     // OK
-        t.m3(10.5);   // ❌ Compile-time Error: m3 not defined
+        t.m1(10.5);   // ✅ OK: matches m1(double)
+        t.m2(10);     // ✅ OK: matches m2(int)
+        t.m3(10.5);   // ❌ Error: m3 doesn't exist
     }
 }
 ```
+
+> Notice: **Different method names or parameter types = valid.**  
+> But **same name + same parameter types** = compile error, regardless of return type.
 
 ---
 
@@ -669,49 +794,30 @@ class Test {
 
 > **Within the same class**, you **cannot** define multiple methods with the same signature — even if their return types differ.
 
-# Polymorphism
+---
+
+# 🧬 Polymorphism
 
 **Polymorphism** means *"many forms."*  
-It allows the same name or reference to represent different behaviors or objects, depending on context.
+It enables the same method or interface to exhibit **different behaviors** depending on the context — such as **parameter types** (compile-time) or **object type** (runtime).
+
+> ✅ In Java, polymorphism is **achieved via:**
+> 
+> - **Method Overloading** (Compile-Time Polymorphism)
+> 
+> - **Method Overriding** (Runtime Polymorphism)
 
 ---
 
-### ✅ Examples of Polymorphism:
+###### 🧠 Real-World Analogy
 
-- **Same method name, with different parameter types**  
-  👉 *(Compile-Time Polymorphism / Method Overloading)*
+> 🧑 A person named "Alex" can be a teacher at school, a father at home, and a customer at a store.  
+> Same name, different roles. That’s **polymorphism**.
 
-```java
-Math.abs(int i);
-Math.abs(long l);
-Math.abs(float f);
-Math.abs(double d);
-```
-
-We can use the same `abs()` method name for different data types.  
-The compiler resolves which version to call based on the argument types.
-
----
-
-- **Same parent reference used for different object types**  
-  👉 *(Runtime Polymorphism / Interface or Inheritance-based)*
-
-```java
-List l;
-
-l = new ArrayList<>();
-l = new LinkedList<>();
-l = new Vector<>();
-l = new Stack<>();
-```
-
-We can use the same `List` reference to hold different child class objects.  
-This enables flexibility and decoupling in code design.
-
-###### Polymorphism Analogy
+**Polymorphism Analogy**
 
 > A **boy begins love** with the word **“friendship”**,  
-> while a **girl ends love** with the same word — **“friendship.”**
+> while a **girl ends love** with the same word — **“friendship.**
 > 
 > The **word is the same**, but the **intention is different**.  
 > That, my friend, is the **essence of Polymorphism** —  
@@ -719,7 +825,12 @@ This enables flexibility and decoupling in code design.
 
 ---
 
-There are two main types of polymorphism in Java: compile-time polymorphism (also known as static or method overloading) and runtime polymorphism (also known as dynamic or method overriding).
+### 🔀 Types of Polymorphism
+
+| Type             | Also Known As          | Resolved When?     | How?                               |
+| ---------------- | ---------------------- | ------------------ | ---------------------------------- |
+| **Compile-Time** | Static / Early Binding | During Compilation | Method Overloading,  Method Hiding |
+| **Runtime**      | Dynamic / Late Binding | During Execution   | Method Overriding                  |
 
 ```java
                            Polymorphism 
@@ -733,59 +844,68 @@ There are two main types of polymorphism in Java: compile-time polymorphism (als
                         /               \
                        /                 \
                       /                   \
- Compiletime/static/earlybinding        Runtime/dynmic/latebinding 
+ Compile-time/Static/Early binding        Runtime/Dynamic/Late binding 
               / \                                  |
              /   \                                 |
             /     \                                |
            /       \                               |
           /         \                              |  
-   Overloading   Methodhiding                  Overiding
+Method Overloading   Method Hiding          Method Overriding
 ```
+
+---
 
 ## 1.) ⚡Overloading (Compile-time Polymorphism)
 
-- Method **overloading** occurs when a class defines **multiple methods with the same name** but with **different parameter lists** (type, number, or order).
+- **Method overloading** occurs when a class defines **multiple methods with the same name** but with **different parameter lists** (type, number, or order).
 
-- In **method overloading**, the **compiler** is responsible for method resolution (decision) based on the **reference type** — **not** the runtime object.  
-  Hence, **overloading** is also known as:
-  
-  - **Compile-time Polymorphism**
-  
-  - **Static Polymorphism**
-  
-  - **Early Binding**
+- In **method overloading**, the **compiler** determines which method to call based on the **reference type** and **method signature**. The runtime object is irrelevant in this case.
 
-- Example:
-  
-  ```java
-  public class Calculator {
-    public int add(int a, int b) {
-        return a + b;
-    }
-  
-    public double add(double a, double b) {
-        return a + b;
-    }
+Hence, method overloading is also called:
+
+- **Compile-time Polymorphism**
+
+- **Static Polymorphism**
+
+- **Early Binding**
+
+---
+
+**✅ Example:**
+
+```java
+public class Calculator {
+  public int add(int a, int b) {
+      return a + b;
   }
-  ```
 
-- In this example, both methods are named `add` but handle different data types (int vs. double).
+  public double add(double a, double b) {
+      return a + b;
+  }
+}
+```
 
-- The compiler chooses the appropriate version based on the argument types used during the method call.
+- Both methods are named `add` but operate on different data types.
 
-> ✅ This form of polymorphism improves **readability**, supports **method specialization**, and avoids the need for different method names for similar logic.
+- During compilation, Java selects the correct version based on the arguments used.
+
+> ✅ This improves **readability**, supports **method specialization**, and avoids the need for creating multiple method names for logically similar behavior
 
 [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/OverloadingExample.java)
 
 ---
 
-### Overloading key concepts :-->
+### 🔑 Key Concepts of Overloading :
 
-- Return type **is not** part of method signature.
+- The **return type is not** part of the method signature.
 
-- Overloaded methods must differ by **argument types/order/number**, not return type.
+- Overloading requires a difference in **number**, **type**, or **order** of parameters.
+
+- Method resolution is based on the **reference type**, not the object type.
 
 - If an exact match isn’t found, Java performs **automatic type promotion**.
+
+**🔄 Type Promotion Chain in Java:**
 
 ```java
 byte -> short 
@@ -795,32 +915,15 @@ byte -> short
          char               
 ```
 
-- Method resolution is always based on the **reference type**, not the runtime object.
-
-### 🧪 CASES in Method Overloading
-
-### ⚡ Case 1: **Automatic Type Promotion**
-
-```java
-class Test {
-  public void methodOne(int i) { System.out.println("int"); }
-  public void methodOne(float f) { System.out.println("float"); }
-
-  public static void main(String[] args) {
-    Test t = new Test();
-    t.methodOne('a');     // char → int → int method
-    t.methodOne(10L);     // long → float → float method
-    t.methodOne(10.5);    // double → no match → ❌ Compile-Time Error
-  }
-}
-```
-
-> Java tries to promote types step by step to match a method.  
-> If no match even after all promotions, it gives a compile-time error.
+*Java automatically promotes smaller types to match a method signature when needed.*
 
 ---
 
-### 🧊 Case 2: **Object vs String Overload**
+### 🧪 Overloading Case Studies
+
+---
+
+#### ⚡ Case 1: **Automatic Type Promotion**
 
 ```java
 class Test {
@@ -836,15 +939,36 @@ class Test {
 }
 ```
 
-> - ✅ **Exact match always gets the highest priority** during method resolution.
+> Java promotes smaller types step by step to find a matching method.  
+> If none matches even after all promotions → **Compile-Time Error**.
+
+---
+
+#### 🧊 Case 2: **Match Priority – Exact vs Compatible**
+
+```java
+class Test {
+  public void methodOne(Object o) { System.out.println("Object"); }
+  public void methodOne(String s) { System.out.println("String"); }
+
+  public static void main(String[] args) {
+    Test t = new Test();
+    t.methodOne("Hello");  // ✅ Exact match: String
+    t.methodOne(new Object()); // ✅ Exact match: Object
+  }
+}
+
+```
+
+> - ✅ **Exact match always has the highest priority.**
 > 
-> - ✅ **If an exact match isn't found**, Java will look for **compatible types**—but:
->   
->   - **Child class types are preferred over parent class types** during this resolution.
+> - ✅ If no exact match, Java looks for the closest compatible match.
+> 
+> - ✅ **Child types** are preferred over **parent types**.
 
 ---
 
-### ❗ Case 3: **Ambiguity with Same Level Types**
+#### ❗ Case 3: **Ambiguity with Same Level Types**
 
 ```java
 class Test {
@@ -869,7 +993,9 @@ class Test {
                       String    StringBuffer     
 ```
 
-### 🔄 Case 4: **Same Number of Args, Different Types**
+---
+
+#### 🔄 Case 4: Same Count, Different Order (Ambiguity)
 
 ```java
 class Test {
@@ -885,11 +1011,11 @@ class Test {
 }
 ```
 
-> Same number of arguments but type order causes ambiguity if both are applicable.
+> Overloading by **reordering argument types** can cause ambiguity when both combinations are valid.
 
 ---
 
-### 🌌 Case 5: **Var-Args vs Fixed Args**
+#### 🌌 Case 5: **Var-Args vs Fixed Args**
 
 ```java
 class Test {
@@ -905,7 +1031,7 @@ class Test {
 }
 ```
 
-> - In general, **var-arg methods have the *lowest* priority** during method resolution.
+> - **Var-arg** methods have the *lowest* priority** during method resolution.
 > 
 > - If **no other method matches**, **only then** the var-arg method will be chosen.
 > 
@@ -913,7 +1039,7 @@ class Test {
 
 ---
 
-### 🧬 Case 6: **Parent vs Child References**
+#### 🧬 Case 6: **Parent vs Child References**
 
 ```java
 class Animal {}
@@ -935,6 +1061,21 @@ class Test {
 ```
 
 > In **overloading**, **reference type** is used for method resolution, not the actual object.
+
+---
+
+### 📊 Summary Table – Overloading Case Highlights
+
+| Case | Focus                       | Key Takeaway                                                 |
+| ---- | --------------------------- | ------------------------------------------------------------ |
+| 1    | Type Promotion              | Smaller types promoted to match method                       |
+| 2    | Exact Match Priority        | Exact > Compatible; child type preferred over parent         |
+| 3    | Null Ambiguity              | Ambiguity with sibling types like `String` vs `StringBuffer` |
+| 4    | Same Count, Different Order | Ambiguity when both overloads match by argument count        |
+| 5    | Var-Args Fallback           | Var-arg used only when no fixed match is found               |
+| 6    | Ref vs Object Type          | Overload resolution is based on reference type               |
+
+
 
 ---
 
