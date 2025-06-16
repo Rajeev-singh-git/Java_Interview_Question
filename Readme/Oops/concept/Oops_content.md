@@ -3,8 +3,8 @@
 ## Table of Contents
 
 1. [Abstraction and Encapsulation](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/concept/1.%20Encapsulation%20and%20Abstraction.md)
-2. [Types of Class Relationships in OOP (IS-A vs HAS-A)](#https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/concept/2.%20Class_Relationship.md)
-3. [Polymorphism](#https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/concept/3.%20Polymorphism.md)
+2. [Types of Class Relationships in OOP (IS-A vs HAS-A)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/concept/2.%20Class_Relationship.md)
+3. [Polymorphism](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/concept/3.%20Polymorphism.md)
 
 
 4. [Polymorphism](#https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/concept/3.%20Polymorphism.md)
