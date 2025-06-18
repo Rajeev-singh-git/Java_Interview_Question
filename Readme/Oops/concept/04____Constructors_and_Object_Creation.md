@@ -6,6 +6,8 @@
 8. [Different ways to create Object in Java](#-how-many-ways-can-we-create-an-object-in-java)
 9. [Constructor](#constructor)
 10. [Constructor vs Instance Block](#constructor-vs-instance-block)
+    
+    
 
 ---
 
@@ -39,6 +41,7 @@ Test t = new Test();
 
 ```java
 Test t = (Test) Class.forName("Test").newInstance(); // Deprecated in Java 9+
+
 ```
 
 📝 *From Java 9 onwards, `newInstance()` is deprecated.*
@@ -158,16 +161,6 @@ class Student {
 
 ---
 
-## Rules to write Constructor :→
-
-1. The **constructor name must match the class name** (case-sensitive).
-2. Constructors **do not have a return type**, not even `void`. If you declare a return type, the compiler treats it as a **regular method**, not a constructor. This means the class will have no constructor matching that signature, which can lead to errors when creating objects.
-3. Although Java allows you to write a **method with the same name as the class**, this is discouraged because it can cause confusion—such a method is **not a constructor**.
-4. Allowed modifiers: `public`, `protected`, default (no-modifier), `private`.
-5. **Not allowed**: `static`, `final`, `abstract`.
-
----
-
 ## Constructor vs Instance Block
 
 - Both **instance blocks** and **constructors** execute automatically every time an object is created. The instance block runs **first**, followed by the constructor.
@@ -204,6 +197,16 @@ class Test {
 | Executes when?       | On object creation               | Before constructor, every time |
 | Can take parameters? | ✅ Yes                            | ❌ No                           |
 | Purpose              | Initialize object-specific state | Shared/common initialization   |
+
+---
+
+## Rules to write Constructor :→
+
+1. The **constructor name must  match the class name** (case-sensitive).
+2. Constructors **do not have a return type**, not even `void`. If you declare a return type, the compiler treats it as a **regular method**, not a constructor. This means the class will have no constructor matching that signature, which can lead to errors when creating objects.
+3. Although Java allows you to write a **method with the same name as the class**, this is discouraged because it can cause confusion—such a method is **not a constructor**.
+4. Allowed modifiers: `public`, `protected`, default (no-modifier), `private`.
+5. **Not allowed**: `static`, `final`, `abstract`.
 
 ---
 
@@ -273,43 +276,9 @@ Inside any constructor:
 
 ---
 
-### What happens if you don’t explicitly call `super()` or `this()` in the first line of a constructor?
+![Screenshot 2024-02-17 143913](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/deb1dafc-2f29-4a02-a010-f6a4091b143a)
 
-> If you don’t explicitly call `super()` or `this()` in the first line of a constructor, the **compiler automatically inserts a call to the no-arg `super()` constructor**.
-
-```java
-class Parent {
-    Parent() {
-        System.out.println("Parent constructor");
-    }
-}
-
-class Child extends Parent {
-    Child() {
-        this(10);
-        System.out.println("Child no-arg constructor");
-    }
-
-    Child(int x) {
-        // super(); ← even if you don’t write this, Java will insert it
-        System.out.println("Child int-arg constructor: " + x);
-    }
-
-    public static void main(String[] args) {
-        Child c = new Child();
-    }
-}
-```
-
-Output : ->
-
-```java
-Parent constructor
-Child int-arg constructor: 10
-Child no-arg constructor
-```
-
---- 
+![Screenshot 2024-02-17 143532](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/4bd6c50c-e5b8-4b29-bfda-b22ebade5701) 
 
 ### `super()` vs `super` & `this()` vs `this`
 
@@ -396,135 +365,81 @@ class Child extends Parent {
 
 -----
 
-## 🔗 Constructor Chaining
-
-Constructor chaining refers to the process of calling one constructor from another within the same class or from a subclass constructor.
-
-- Within the **same class** using `this(...)`
-
-- From a **subclass to superclass** using `super(...)`
-
-It helps avoid code duplication and ensures consistent initialization.
-
----
-
-##### Why Use Constructor Chaining?
-
-- 🔁 **Code reuse** — centralize common logic.
-
-- 🔒 **Consistent initialization** — avoid errors.
-
-- 🧬 **Inheritance** — superclass constructors must run before subclass ones.
-
----
-
-### 🔄 **1. Within Same Class** — using `this()`
-
-```java
-class A {
-    A() {
-        this(10);                  // calls A(int)
-        System.out.println("Default Constructor");
-    }
-
-    A(int x) {
-        System.out.println("Parameterized Constructor: " + x);
-    }
-
-    public static void main(String[] args) {
-        new A();
-    }
-}
-```
-
-🟢 **Output:**
-
-```java
-Parameterized Constructor: 10
-Default Constructor
-```
-
-✅ `this()` must be the **first statement** in the constructor.
-
----
-
-### 🧬 **2. Across Class Hierarchy** — using `super()`
+### Constructor Chaining
 
 ```java
 class Parent {
     Parent() {
-        System.out.println("Parent Constructor");
+        System.out.println("Parent constructor");
     }
 }
 
 class Child extends Parent {
     Child() {
-        super();                    // calls Parent()
-        System.out.println("Child Constructor");
+        this(10); // Calls another constructor in the same class
+        System.out.println("Child no-arg constructor");
+    }
+
+    Child(int x) {
+        super(); // Calls the constructor of Parent class
+        System.out.println("Child int-arg constructor: " + x);
     }
 
     public static void main(String[] args) {
-        new Child();
+        Child c = new Child();
     }
 }
 ```
 
-🟢 **Output:**
+**Output**
 
 ```java
-Parent Constructor
-Child Constructor
-```
-
-✅ `super()` is used to call the **parent class constructor**, and is **implicitly added** if not specified.
-
----
-
-### 🧪Recursive Constructor Calls
-
-###### 🔂 Common Mistake
-
-```java
-class A {
-    A() {
-        this(); // ❌ Infinite recursion
-    }
-}
-```
-
-🚫 ❌ **Compile-time error**: Constructor is calling itself — leads to **recursive call without termination**, which is illegal.
-
-**🔁 Indirect Recursion**
-
-```java
-class Test {
-    Test(int i) {
-        this(); // calls Test()
-    }
-
-    Test() {
-        this(10); // calls Test(int)
-    }
-
-    // ❌ Compile-Time Error: Recursive constructor invocation
-}
-```
-
-> 🔁 Java detects infinite constructor calls **at compile time**, not runtime.
-
-✅ Fix:
-
-```java
-Test() {
-    // no this() here
-}
+Parent constructor
+Child int-arg constructor: 10
+Child no-arg constructor
 ```
 
 ---
 
-### 🚫 Missing No-Arg Parent Constructor
+#### What happens if you don’t explicitly call `super()` or `this()` in the first line of a constructor?
 
-##### What happens if parent class lacks a no-arg constructor?
+> If you don’t explicitly call `super()` or `this()` in the first line of a constructor, the **compiler automatically inserts a call to the no-arg `super()` constructor**.
+
+```java
+class Parent {
+    Parent() {
+        System.out.println("Parent constructor");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        this(10);
+        System.out.println("Child no-arg constructor");
+    }
+
+    Child(int x) {
+        // super(); ← even if you don’t write this, Java will insert it
+        System.out.println("Child int-arg constructor: " + x);
+    }
+
+    public static void main(String[] args) {
+        Child c = new Child();
+    }
+}
+```
+
+**Output**
+
+```java
+Parent constructor
+Child int-arg constructor: 10
+Child no-arg constructor
+```
+
+---
+
+#### What happens if parent class lacks a no-arg constructor?
 
 ```java
 class Parent {
@@ -545,12 +460,42 @@ class Child extends Parent {
 }
 ```
 
-Output : ⛔ Compile-time Error:
+**Output : ⛔ Compile-time Error:
 
 ```java
 constructor Parent in class Parent cannot be applied to given types;
   required: int
   found: no arguments
+```
+
+---
+
+**Example: No explicit `super()` in `Child(int x)`**
+
+```java
+class Parent {
+    Parent() {
+        System.out.println("Parent constructor");
+    }
+}
+
+class Child extends Parent {
+    Child(int x) {
+        // No super() or this() → compiler will insert super()
+        System.out.println("Child int-arg constructor: " + x);
+    }
+
+    public static void main(String[] args) {
+        Child c = new Child(42);
+    }
+}
+```
+
+Output :-->
+
+```java
+Parent constructor
+Child int-arg constructor: 42
 ```
 
 ---
@@ -601,115 +546,66 @@ double-argument constructor
 
 ---
 
-## Constructor rule with respect to Inheritance
+### Recursive Constructor Calls
 
-###### ✅ Constructors Are Not Inherited
+```java
+class Test {
+    Test(int i) {
+        this(); // calls Test()
+    }
 
-- Constructors are **not inherited** from parent classes in Java.
+    Test() {
+        this(10); // calls Test(int)
+    }
 
-- Therefore, **constructor overriding is not possible**.
+    // ❌ Compile-Time Error: Recursive constructor invocation
+}
+```
 
-- However, constructors **can be overloaded** within the same class.
+> 🔁 Java detects infinite constructor calls **at compile time**, not runtime.
 
-###### ✅ Constructors Exist in Classes, Not Interfaces
+✅ **Fix:**
 
-- You can define constructors in any class, including **abstract classes**.
-
-- But **interfaces cannot have constructors** — because they aren’t meant for object instantiation.
+```java
+Test() {
+    // no this() here
+}
+```
 
 ---
 
-### 🚫 Why Do Abstract Classes Have Constructors?
+### 👨‍👧 Constructor Behavior in Inheritance
 
-We **cannot directly create objects** of an abstract class.  
-But abstract classes **can have constructors** to initialize the **inherited part** of a subclass object.
+- A **child class object** does **not** create a separate parent object.
 
-#### 🧠 Example: `hashCode()` shows only one object is created
+- Instead, it includes the **parent’s state**.
+
+- Hence, **parent constructor always runs first**.
 
 ```java
 abstract class Parent {
     Parent() {
-        System.out.println(this.hashCode()); // Refers to Child object
+        System.out.println(this.hashCode()); // refers to Child
     }
 }
 
 class Child extends Parent {
     Child() {
-        System.out.println(this.hashCode()); // Same as above
+        System.out.println(this.hashCode()); // same as above
     }
 }
 
-class Test {
+public class Demo {
     public static void main(String[] args) {
         Child c = new Child();
-        System.out.println(c.hashCode()); // All three same
+        System.out.println(c.hashCode()); // all 3 values same
     }
 }
 ```
 
-Output →
-
-```java
-1072408673
-1072408673
-1072408673
-```
-
-###### ✅ Key Insight:
-
-- All three `hashCode()` calls print the **same value**, proving that **only one object (of `Child`) is created**.
-
-- The abstract class constructor executes to **initialize the Parent part** of the `Child` object.
-
 ---
 
-#### 🔍 Why is it the *Child’s* hashCode?
-
-- When you call `new Child()`, Java starts creating an object of **type `Child`**.
-
-- Before the `Child` constructor runs, Java **first calls the `Parent` constructor** (via implicit `super()`).
-
-- Inside the `Parent` constructor, you're calling `this.hashCode()` — but `this` refers to the actual object being created, which is of type `Child`.
-
-```java
-abstract class Parent {
-    Parent() {
-        System.out.println(this.hashCode());  // 👈 this is a Child object
-    }
-}
-```
-
-Even though the call is in the `Parent` class, it’s **executing on the Child object**, because **Java constructs only one object** — the most-derived type (`Child` in this case).
-
----
-
-🔁 All 3 Calls Use the Same Object
-
-```java
-Child c = new Child();
-
-System.out.println(this.hashCode()); // in Parent() → Child object
-System.out.println(this.hashCode()); // in Child()  → Child object
-System.out.println(c.hashCode());    // in main     → Child object
-```
-
-They all print the **same number**, because it's all the **same object in memory**.
-
----
-
-#### 🔐 Side Note on `hashCode()`
-
-- `Object.hashCode()` by default returns a **memory-based value (object identity)**.
-
-- If you don't override `hashCode()` in `Child`, the default one is used.
-
-- So when you print `this.hashCode()` in any constructor, you're printing the **JVM identity hashCode** for the same object.
-
----
-
-### Exception Handling in Constructors
-
-❗ Constructor Exception Rule
+#### ❗ Constructor Exception Rule
 
 ```java
 class Parent {
@@ -718,7 +614,7 @@ class Parent {
 
 class Child extends Parent {
     Child() throws Exception {
-        super(); // ✅ Valid: Exception is broader than IOException
+        super(); // valid: Exception is broader than IOException
     }
 }
 ```
@@ -734,36 +630,98 @@ class Child extends Parent {
 }
 ```
 
-###### ✅ Summary:
+---
 
-| Rule                                                          | Allowed? |
-| ------------------------------------------------------------- | -------- |
-| Child throws broader checked exception (e.g., Exception)      | ✅ Yes    |
-| Child throws unrelated checked exception (e.g., SQLException) | ❌ No     |
-| Child throws narrower exception                               | ❌ No     |
+### 🧱 Key Rules About Constructors
+
+1. **Constructors Are Not Inherited**
+   
+   - In Java, constructors are **not inherited** from the parent class.
+   
+   - This means **constructor overriding is not possible**.
+   
+   - However, constructors **can be overloaded** within the same class.
+
+2. **Constructors Exist in Classes, Not Interfaces**
+   
+   - We can define constructors in any class, including **abstract classes**.
+   
+   - But interfaces **cannot have constructors**, because they are not intended for object instantiation.
+
+![Screenshot 2024-02-19 134501](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e33ea274-2ab6-4b4f-a152-9751fea1e7ec)
 
 ---
 
-## Constructor Behavior (Compiler Logic)
+#### 🚫 Why Do Abstract Classes Have Constructors?
 
-### 🧱 What the Java Compiler Does Automatically
+We **cannot create objects** of an abstract class directly, but an **abstract class can have constructors**.
 
-- ✅ If **no constructor** is defined → inserts a **default no-arg constructor**
+##### 🤔 Why?
 
-- ✅ If a constructor is defined and doesn’t call `super()` or `this()` → inserts **`super()` automatically**
+Whenever we create an object of a subclass that extends an abstract class, **the constructor of the abstract class is automatically invoked**—**not to create an abstract object**, but to perform **initialization for the abstract part of the child object**.
 
-- ❌ Detects and prevents **recursive constructor calls** (direct or indirect)
+---
 
-###### ❌ Invalid Example: Recursive Constructor Invocation
+##### ✅ Which of the following statements is true?
+
+| Statement                                                                              | True / False |
+| -------------------------------------------------------------------------------------- | ------------ |
+| 1. Whenever we create a child class object, a separate parent class object is created. | ❌ False      |
+| 2. Whenever we create a child class object, the parent class constructor is executed.  | ✅ True       |
+
+```java
+abstract class Parent {
+    Parent() {
+        System.out.println(this.hashCode()); // Refers to the Child object
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println(this.hashCode()); // Same hashCode as above
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        Child c = new Child();               // Triggers Parent and Child constructors
+        System.out.println(c.hashCode());    // All print same hashCode
+    }
+}
+```
+
+**Output ->**
+
+```java
+1072408673
+1072408673
+1072408673
+```
+
+### 🧠 Key Insight:
+
+- All three `hashCode()` calls print the **same value**, because **only one object is created**—an instance of `Child`, which includes the state of its `Parent`.
+
+### 📝 Constructor Behavior in Java
+
+- **Compiler-generated constructor:**  
+  If the programmer does **not define any constructor**, then the compiler **automatically inserts a default no-argument constructor**.
+
+- **Implicit `super()` call:**  
+  If the programmer defines a constructor **but does not explicitly call `super()` or `this()` in the first line**, the compiler **automatically inserts `super()`** as the first statement.
+
+- **Recursive constructor invocation check:**  
+  The compiler checks for **any possibility of recursive constructor calls** (e.g., `this()` calling itself directly or indirectly).  
+  If such a loop is detected, it throws a **compile-time error** to prevent infinit
 
 ```java
 class Test {
     Test(int i) {
-        this(); // Calls no-arg constructor
+        this(); // Calls the no-argument constructor, leading to recursive invocation
     }
 
     Test() {
-        this(10); // Calls parameterized constructor → infinite loop
+        this(10); // Calls the parameterized constructor, leading to recursive invocation
     }
 
     public static void main(String[] args) {
@@ -771,19 +729,19 @@ class Test {
     }
 }
 
-// CE: Recursive constructor invocation
+//CE : recursive constructor invocation
 ```
 
-**✅ Corrected Version:**
+Correct Code : →
 
 ```java
 class Test {
     Test(int i) {
-        this(); // OK: Calls no-arg constructor
+        this(); // Calls the no-argument constructor
     }
 
     Test() {
-        // No recursion
+        // No recursive constructor invocation here
     }
 
     public static void main(String[] args) {
@@ -794,21 +752,13 @@ class Test {
 
 ---
 
-## Caveat: Parameterized Parent Constructors
+### ⚠️ Constructor Inheritance Caveat
 
-#### ⚠️ Constructor Inheritance Caveat
+- If the **parent class defines only parameterized constructors** (i.e., no default constructor), then the **child class must explicitly call** one of them using `super(args...)` — otherwise, the code will not compile.
 
-If the **parent class defines only parameterized constructors**, then:
-
-- The **child class must explicitly call** a matching constructor using `super(args...)`.
-
-- ❌ If no call is made, and the parent has **no no-arg constructor**, the code **will not compile**.
-
-> ✅ **Best practice**: Always define a **default constructor** if there’s a parameterized one — unless you're absolutely sure subclasses will always pass arguments.
+- Hence, it is **highly recommended** that whenever you define a **parameterized constructor** in the parent class, you **also provide a no-argument constructor**, unless you’re certain all subclasses will always call a specific constructor.
 
 ---
-
-#### 💡 Recap of Exception Example:
 
 ```java
 class Parent {
@@ -818,23 +768,33 @@ class Parent {
 
 class Child extends Parent {
     Child() throws Exception {
-        super(); // Valid
+        super(); // Calls the parent class constructor
     }
 }
 ```
 
-- ✅ This works because `Exception` is the **superclass of IOException**
+### ✅ **Is This Code Valid?**
 
-- ✅ Java permits **broader checked exceptions** in child constructors
+Yes — this code compiles and runs just fine **because**:
+
+- `Exception` is the **superclass** of `IOException`.
+
+- Java allows the child constructor to declare a **broader checked exception** than the parent constructor.
 
 ---
 
-#### ✅ Summary Table: Validity Rules
+If the `Parent` constructor had declared a **narrower** checked exception than the one in `Child`, like:
 
-| Case                                                               | Valid? | Why                                |
-| ------------------------------------------------------------------ | ------ | ---------------------------------- |
-| Child throws broader exception (e.g., Exception)                   | ✅      | Covers IOException                 |
-| Child throws narrower exception                                    | ❌      | Parent may not throw it            |
-| Child throws unrelated exception (e.g., SQLException)              | ❌      | Parent doesn't declare it          |
-| Child doesn't call `super()` and parent has no default constructor | ❌      | Compiler requires an explicit call |
-| Recursive constructor call via `this()`                            | ❌      | Compiler error                     |
+```java
+class Parent {
+    Parent() throws IOException {}
+}
+
+class Child extends Parent {
+    Child() throws SQLException { // ❌ Invalid
+        super();
+    }
+}
+```
+
+This would cause a **compile-time error**, because the child constructor would be declaring an exception that the parent doesn't throw.
