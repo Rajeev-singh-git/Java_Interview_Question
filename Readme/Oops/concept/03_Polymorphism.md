@@ -2,13 +2,21 @@
 
 ## Table of Contents
 
-6. [Polymorphism concept](#polymorphism)
-   - [Method Overloading (Compile-time Polymorphism) ](#1-overloading-compile-time-polymorphism)
-     - [Rules for Overloading](#-cases-in-method-overloading) 
-       - [Method Overriding (Runtime Polymorphism)](#2-overriding-runtime-polymorphism)
-     - [Rules for Overriding](#rules-for-overridng-)
-     - [Method Hiding](#-what-is-method-hiding)
-7. [Overloading vs Overriding](#-overloading-vs-overriding)
+1. [Polymorphism concept](#-polymorphism)
+          - [Types of Polymorphism](#-types-of-polymorphism)
+     - [Overloading](#1-overloading-compile-time-polymorphism)
+          - [Key Concepts of Overloading](#-key-concepts-of-overloading-)
+          - [Overloading Rules](#overloading-resolution-rules-in-java)
+          - [Overloading Rules Cheat Sheet](#-overloading-rules-cheat-sheet)
+     - [Method Overriding](#2--method-overriding-runtime-polymorphism)
+          - [Rules for Overridng](#rules-for-overridng-)
+          - [Overriding system wide example](#-overriding-with-respect-to-list)
+      - [Overriding vs Overloading](#-overriding-vs-overloading)
+      - [Method Hiding](#-method-hiding)
+          - [Static Methods and Overriding](#%EF%B8%8F-static-methods-and-overriding)
+          - [Method Hiding vs Method Overriding](#-method-hiding-vs-method-overriding)
+      - [Checked vs Unchecked Exceptions](#checked-vs-unchecked-exceptions)
+           - [ Overriding Example WRT Exception Handling](#-overriding-examples-valid-vs-invalid)
 
 ---
 
