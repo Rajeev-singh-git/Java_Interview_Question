@@ -2,11 +2,29 @@
 
 ## Table of Contents
 
-7. [Overloading vs Overriding](#-overloading-vs-overriding)
-8. [Different ways to create Object in Java](#-how-many-ways-can-we-create-an-object-in-java)
-9. [Constructor](#constructor)
-10. [Constructor vs Instance Block](#constructor-vs-instance-block)
-
+1. [Object creation in Java](#-object-creation-in-java)
+     - [Number of ways to create an object](#-how-many-ways-can-we-create-an-object-in-java)
+     - [Object creation summary](#-summary-table)
+  
+2. [Constructor](#-constructor)
+     - [Rules to write Constructor](#rules-to-write-constructor-)
+     - [Constructor vs Instance Block](#constructor-vs-instance-block)
+     - [Default Constructor](#default-constructor-)
+         - [Prototype of Default Constructor](#prototype-of-default-constructor-)
+     - [super() vs this()](#-super-vs-this)
+         - [super() vs super & this() vs this](#super-vs-super--this-vs-this)
+     - [Constructor Chaining](#-constructor-chaining)
+          - [1. Within Same Class — using this()](#-1-within-same-class--using-this)
+          - [2. Across Class Hierarchy — using super()](#-2-across-class-hierarchy--using-super)
+          - [Recursive Constructor Calls](#recursive-constructor-calls)
+     - [Missing No-Arg Parent Constructor](#-missing-no-arg-parent-constructor)
+     - [Overloaded Constructors](#-overloaded-constructors-)
+     - [Constructor rule with respect to Inheritance](#constructor-rule-with-respect-to-inheritance)
+           - [Why Do Abstract Classes Have Constructors?](#-why-do-abstract-classes-have-constructors)
+           - [Exception Handling in Constructors](#exception-handling-in-constructors)
+      - [Constructor Behavior](#constructor-behavior-compiler-logic)
+      - [Parameterized Parent Constructors](#caveat-parameterized-parent-constructors)
+       
 ---
 
 # 🧱 Object creation in Java
