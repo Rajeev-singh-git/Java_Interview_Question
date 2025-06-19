@@ -2,21 +2,21 @@
 
 ## Table of Contents
 
-[Polymorphism](#-polymorphism)   
-          - [Types of Polymorphism](#-types-of-polymorphism)
-     - [Overloading](#1-overloading-compile-time-polymorphism)
-          - [Key Concepts of Overloading](#-key-concepts-of-overloading-)
-          - [Overloading Rules](#overloading-resolution-rules-in-java)
-          - [Overloading Rules Cheat Sheet](#-overloading-rules-cheat-sheet)
-     - [Overriding](#2--method-overriding-runtime-polymorphism)
-          - [Rules for Overridng](#rules-for-overridng-)
-          - [Overriding system wide example](#-overriding-with-respect-to-list)
-      - [Overriding vs Overloading](#-overriding-vs-overloading)
-      - [Method Hiding](#-method-hiding)
-          - [Static Methods and Overriding](#%EF%B8%8F-static-methods-and-overriding)
-          - [Method Hiding vs Method Overriding](#-method-hiding-vs-method-overriding)
-      - [Checked vs Unchecked Exceptions](#checked-vs-unchecked-exceptions)
-         - [ Overriding Example WRT Exception Handling](#-overriding-examples-valid-vs-invalid)
+- [Polymorphism](#-polymorphism)  
+  - [Types of Polymorphism](#-types-of-polymorphism)  
+  - [Overloading](#1-overloading-compile-time-polymorphism)  
+    - [Key Concepts of Overloading](#-key-concepts-of-overloading-)  
+    - [Overloading Rules](#overloading-resolution-rules-in-java)  
+    - [Overloading Rules Cheat Sheet](#-overloading-rules-cheat-sheet)  
+  - [Overriding](#2--method-overriding-runtime-polymorphism)  
+    - [Rules for Overriding](#rules-for-overriding-)  
+    - [Overriding System-Wide Example](#-overriding-with-respect-to-list)  
+  - [Overriding vs Overloading](#-overriding-vs-overloading)  
+  - [Method Hiding](#-method-hiding)  
+    - [Static Methods and Overriding](#%EF%B8%8F-static-methods-and-overriding)  
+    - [Method Hiding vs Method Overriding](#-method-hiding-vs-method-overriding)  
+  - [Checked vs Unchecked Exceptions](#checked-vs-unchecked-exceptions)  
+    - [Overriding Example WRT Exception Handling](#-overriding-examples-valid-vs-invalid)
 
 ---
 
