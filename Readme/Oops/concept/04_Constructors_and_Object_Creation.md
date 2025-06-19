@@ -20,8 +20,8 @@
      - [Missing No-Arg Parent Constructor](#-missing-no-arg-parent-constructor)
      - [Overloaded Constructors](#-overloaded-constructors-)
      - [Constructor rule with respect to Inheritance](#constructor-rule-with-respect-to-inheritance)
-           - [Why Do Abstract Classes Have Constructors?](#-why-do-abstract-classes-have-constructors)
-           - [Exception Handling in Constructors](#exception-handling-in-constructors)
+          - [Why Do Abstract Classes Have Constructors?](#-why-do-abstract-classes-have-constructors)
+          - [Exception Handling in Constructors](#exception-handling-in-constructors)
       - [Constructor Behavior](#constructor-behavior-compiler-logic)
       - [Parameterized Parent Constructors](#caveat-parameterized-parent-constructors)
        
