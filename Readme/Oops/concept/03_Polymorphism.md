@@ -2,13 +2,13 @@
 
 ## Table of Contents
 
-1. [Polymorphism concept](#-polymorphism)
+[Polymorphism](#-polymorphism)   
           - [Types of Polymorphism](#-types-of-polymorphism)
      - [Overloading](#1-overloading-compile-time-polymorphism)
           - [Key Concepts of Overloading](#-key-concepts-of-overloading-)
           - [Overloading Rules](#overloading-resolution-rules-in-java)
           - [Overloading Rules Cheat Sheet](#-overloading-rules-cheat-sheet)
-     - [Method Overriding](#2--method-overriding-runtime-polymorphism)
+     - [Overriding](#2--method-overriding-runtime-polymorphism)
           - [Rules for Overridng](#rules-for-overridng-)
           - [Overriding system wide example](#-overriding-with-respect-to-list)
       - [Overriding vs Overloading](#-overriding-vs-overloading)
@@ -16,7 +16,7 @@
           - [Static Methods and Overriding](#%EF%B8%8F-static-methods-and-overriding)
           - [Method Hiding vs Method Overriding](#-method-hiding-vs-method-overriding)
       - [Checked vs Unchecked Exceptions](#checked-vs-unchecked-exceptions)
-           - [ Overriding Example WRT Exception Handling](#-overriding-examples-valid-vs-invalid)
+         - [ Overriding Example WRT Exception Handling](#-overriding-examples-valid-vs-invalid)
 
 ---
 
