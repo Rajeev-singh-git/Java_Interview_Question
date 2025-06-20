@@ -37,6 +37,33 @@ Static control flow refers to the **order in which static variables and blocks a
 
 ##### **Static Control Flow Example :**
 
+```java
+public class staticControlFlow {
+
+    static int i = 10;
+
+    static {
+        methodOne();
+        System.out.println("First Static Block");
+    }
+
+    public static void main(String[] args) {
+        methodOne();
+        System.out.println("Main method");
+    }
+
+    private static void methodOne() {
+        System.out.println(j);
+    }
+
+    static {
+        System.out.println("Second Static Block");
+    }
+
+    static int j = 20;
+}
+```
+
 <img src="https://github.com/user-attachments/assets/161de626-0ade-4b47-9223-d0a8e8ecfe8c" width="600" height="650">
 ---
 
@@ -181,247 +208,475 @@ When  we execute a **child class**, the JVM loads and initializes classes in the
 
 * Whenever we load the **child class**, the **parent class is automatically loaded**.
 
-Whenever we load the **child class**, the **parent class is automatically loaded**.
+---
 
-
-<img src="https://github.com/user-attachments/assets/7bb51189-5516-4484-9787-2789b0b107ff" width="600" height="650">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## RIWO state
-
-RIWO concept (Read Indirectly Write Out) refers to a specific state that a static variable experiences during initialization. Here's what you need to know:
-
-**When does RIWO occur?**
-
-- RIWO arises when a static variable is declared but **before it is assigned a value**.
-- This typically happens within static blocks or before the declaration of the main method in a class.
-- During this phase, the variable exists in memory but cannot be directly accessed using its name.
-
-**Why is RIWO important?**
-
-- RIWO ensures initialization safety for static variables.
-- Without it, you could potentially read an uninitialized value, leading to unpredictable behavior or errors.
-- By restricting direct access, RIWO forces explicit initialization before usage.
-
-**How do you access a variable in RIWO state?**
-
-- Since direct access is not allowed, you need to use an **indirect method call** to initialize the variable.
-- This usually involves a method defined within the same class that assigns a value to the variable.
-
-**Example:**
-
-**Java**
+##### Static control flow  inheritance example
 
 ```java
-class MyClass {
-    static int value; // Declared but not yet initialized
+class Base {
+    static int i = 10;
 
-  static void initialize() {
-        value = 10; // Indirectly assigning a value
+    static {
+        methodOne();                    
+        System.out.println("base static block");
     }
 
     public static void main(String[] args) {
-        // RIWO state: accessing `value` directly here would cause an error
-        //System.out.println(value);
+        methodOne();                     
+        System.out.println("base main");
+    }
 
-        initialize(); // Indirectly write to the variable
+    public static void methodOne() {
+        System.out.println(j);
+    }
 
-        // Now, value can be accessed and used normally
-        System.out.println(value); // Output: 10
+    static int j = 20;
+}
+
+class Derived extends Base {
+    static int x = 100;
+
+    static {
+        methodTwo();                     
+        System.out.println("derived first static block");
+    }
+
+    public static void main(String[] args) {
+        methodTwo();                     
+        System.out.println("derived main");
+    }
+
+    public static void methodTwo() {
+        System.out.println(y);
+    }
+
+    static {
+        System.out.println("derived second static block");
+    }
+
+    static int y = 200;
+}
+
+
+```
+
+<img src="https://github.com/user-attachments/assets/7bb51189-5516-4484-9787-2789b0b107ff" width="600" height="650"> 
+
+---
+
+## 🧱 Static Blocks
+
+- A **static block** is executed **once** at the time of **class loading**.
+
+- Use it to perform **class-level initialization logic** that needs to run **before `main()` or object creation**.
+
+- A class can have **multiple static blocks**, which are executed in the order they appear (top to bottom).
+
+---
+
+### 💡 Common Use Cases
+
+- **Loading native libraries**
+
+- **JDBC driver registration**
+
+- **Printing without `main()` (up to Java 1.6)**
+
+---
+
+#### 🔧 Examples
+
+##### ✅ Example 1: Loading Native Library
+
+```java
+class Test {
+    static {
+        System.loadLibrary("native library path");
+    }
+}
+```
+
+##### ✅ Example 2: JDBC Driver Registration
+
+```java
+class Driver {
+    static {
+        // Register this driver with DriverManager
+    }
+}
+```
+
+---
+
+#### ❓Can we print to console without a `main()` method?
+
+**✅ Yes**, by using a static block.
+
+```java
+class Google {
+    static {
+        System.out.println("hello i can print");
+        System.exit(0);
+    }
+}
+```
+
+**Output:**
+
+```java
+hello i can print
+```
+
+📝 **Note:**  
+This works **only in Java 1.6 and earlier**.  
+From Java 1.7 onward, a `main()` method is **mandatory** for execution.
+
+---
+
+# 🧬 Instance Control Flow
+
+---
+
+Whenever we **create an object**, Java follows a strict order to initialize **instance-level data**.
+
+Unlike static control flow (which runs **once per class load**), **instance control flow runs every time** an object is created.
+
+---
+
+### 🚦 Order of Execution (Single Class)
+
+---
+
+When we create an object:
+
+1. JVM **identifies all instance members** (variables, blocks, methods) — *top to bottom*
+
+2. **Execution of instance variable assignments and instance blocks** — *top to bottom*
+
+3. **Execution of constructor**
+
+🔁 These steps happen **every time** an object is created.
+
+🧠 **Note**: During method calls in instance blocks, variables not yet initialized show `0`
+
+> 🔔 This sequence repeats for **each object** (unlike static control flow which happens once at class loading).
+
+---
+
+#### ✅ Example: Single Class
+
+```java
+class Parent {
+    int i = 10;
+
+    {
+        methodOne();
+        System.out.println("first instance block");
+    }
+
+    Parent() {
+        System.out.println("Parent class constructor");
+    }
+
+    public void methodOne() {
+        System.out.println(j);
+    }
+
+    {
+        System.out.println("second instance block");
+    }
+
+    int j = 20;
+
+    public static void main(String[] args) {
+        Parent p = new Parent();
+        System.out.println("main method");
+    }
+}
+```
+
+## 🔍 Output:
+
+```java
+0
+first instance block
+second instance block
+Parent class constructor
+main method
+```
+
+---
+
+## 👨‍👩‍👧 Instance Control Flow in Parent-Child Classes
+
+---
+
+When we create a **child object**, this is the order:
+
+---
+
+### 🚦 **Execution Flow (Parent → Child):**
+
+- **Identify instance members** (top to bottom — Parent first, then Child)
+
+- **Execute instance blocks and variable assignments** in **Parent**
+
+- **Call Parent constructor**
+
+- **Execute instance blocks and variable assignments** in **Child**
+
+- **Call Child constructor**
+
+---
+
+#### ✅ Example: Parent → Child
+
+```java
+class Parent {
+    int x = 10;
+
+    {
+        methodOne();
+        System.out.println("Parent first instance block");
+    }
+
+    Parent() {
+        System.out.println("Parent class constructor");
+    }
+
+    public void methodOne() {
+        System.out.println(y);  // prints 0 (not initialized yet)
+    }
+
+    int y = 20;
+}
+
+class Child extends Parent {
+    int i = 100;
+
+    {
+        methodTwo();
+        System.out.println("Child first instance block");
+    }
+
+    {
+        System.out.println("Child second instance block");
+    }
+
+    Child() {
+        System.out.println("Child class constructor");
+    }
+
+    public void methodTwo() {
+        System.out.println(j);  // prints 0 (not initialized yet)
+    }
+
+    int j = 200;
+
+    public static void main(String[] args) {
+        Child c = new Child();
+        System.out.println("Child class main method");
+    }
+}
+
+```
+
+---
+
+##### 🔍 Output:
+
+```java
+0
+Parent first instance block
+Parent class constructor
+0
+Child first instance block
+Child second instance block
+Child class constructor
+Child class main method
+```
+
+> 🔸 Both `methodOne()` and `methodTwo()` access instance variables **before they're initialized**, so output is `0`.
+
+---
+
+## 💡 Static vs Instance Control Flow
+
+| Aspect     | Static Control Flow      | Instance Control Flow                   |
+| ---------- | ------------------------ | --------------------------------------- |
+| When?      | At class loading time    | At every object creation                |
+| What?      | Static variables, blocks | Instance variables, blocks, constructor |
+| Runs once? | ✅ Yes                    | ❌ No (runs for every object)            |
+
+---
+
+#### 🧪 Examples with Execution Order
+
+---
+
+✅ **Example 1:**
+
+```java
+public class Initialization {
+    private static String methodOne(String msg) {
+        System.out.println(msg);
+        return msg;
+    }
+
+    public Initialization() {  // constructor
+        m = methodOne("1");
+    }
+
+    {
+        m = methodOne("2");
+    }
+
+    String m = methodOne("3");
+
+    public static void main(String[] args) {
+        Object obj = new Initialization();
     }
 }
 
 
 ```
 
-**Key points to remember:**
-
-- RIWO is a temporary state for static variables during initialization.
-- Avoid directly accessing static variables before they are assigned a value.
-- Use indirect methods within the class to properly initialize them.
-- Understanding RIWO ensures safe and correct use of static variables in Java.
-
-## Static control flow parent to child relationship :→
-
-Whenever we are executing Child class the following sequence of events will be
-performed automatically.
-
-1. Identification of static members from Parent to Child.
-2. Execution of static variable assignments and static blocks from Parent to
-   Child
-3. Execution of Child class main() method.
-   Note : When ever we are loading child class automatically the parent class will be loaded but when ever we are loading parent class the child class won't be loaded automatically.
-
-## Static block
-
-- **Execution Time**: Static blocks are executed at the time of class loading. This makes them suitable for performing activities that need to be done during class initialization.
-- **Multiple Static Blocks**: Within a class, you can have multiple static blocks, and they will be executed in the order they appear, from top to bottom.
-- **Example 1**: Loading native libraries is a common activity that needs to be done at the time of class loading. Defining this activity inside a static block ensures it's executed when the class is loaded.
-- **Example 2**: JDBC driver classes often contain a static block to register the driver with the **`DriverManager`**. This registration is essential for JDBC functionality and is typically done automatically without the programmer needing to explicitly register the driver.
-
-## Instance Control Flow
-
-Whenever we are executing a java class static control flow will be executed. In the Static control flow whenever we are creating an object the following sequence of events will be performed automatically.
-
-1. Identification of instance members from top to bottom.
-2. Execution of instance variable assignments and instance blocks from top to
-   bottom.
-3. Execution of constructor.
-   Note: static control flow is one time activity and it will be executed at the time of class loading.
-   But instance control flow is not one time activity for every object creation it will be executed.
-
-## Instance control flow in Parent to Child relationship
-
-Whenever we are creating child class object the following sequence of events will be executed automatically.
-
-1. Identification of instance members from Parent to Child.
-
-2. Execution of instance variable assignments and instance block only in Parent class.
-
-3. Execution of Parent class constructor.
-
-4. Execution of instance variable assignments and instance blocks in Child class.
-
-5. Execution of Child class constructor.
-   Note: Object creation is the most costly operation in java and hence if there is no specific requirement never recommended to crate objects.
-   
-   [Code Example](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/OopsConcept/instanceControlFlow.java)
-
-We can't access instance variables directly from static area because at the time of execution of static area JVM may not identify those members.
-
- But from the instance area we can access instance members directly.
- Static members we can access from anywhere directly because these are
-identified already at the time of class loading only.
-
-# Type Casting :→
-
-In java, Parent class reference can be used to hold Child class object but by using that reference we can't call Child specific methods.
+###### Output
 
 ```java
-Object o = new String("ashok"); // Valid
-System.out.println(o.hashCode()); // Valid
-System.out.println(o.length()); // Compile-time error
+2
+3
+1
 ```
 
-To resolve this issue, you can either:
+**Why?**
 
-1. Cast the **`o`** reference to the **`String`** type before calling the **`length()`** method:
-   
-   ```java
-   System.out.println(((String) o).length());
-   ```
+| Element                      | Meaning                                                                |
+| ---------------------------- | ---------------------------------------------------------------------- |
+| `public Initialization()`    | Constructor (executes after instance blocks and field initializations) |
+| `{ m = methodOne("2"); }`    | Instance block (runs first)                                            |
+| `String m = methodOne("3");` | Instance variable initializer (runs after block)                       |
 
-2. Declare the **`o`** reference variable as a **`String`** type:
-   
-   ```java
-   String o = new String("ashok");
-   System.out.println(o.length());
-   ```
-   
-   ## Type Casting Syntax
-   
-   ![Screenshot 2024-02-19 181822](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/e3b60918-568d-4f28-8d98-ae1372eb9746)
-   
-   Rule 1 : The type of "d" and "c" must have some relationship [either Child to Parent (or) Parent to Child (or) same type] otherwise we will get compile time error saying inconvertible types.
+- **Instance blocks** execute **before** variable initializations — **regardless of their textual position in code**
 
-![Screenshot 2024-02-19 182020](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/0c9b1fed-f640-4314-88a1-c2f8d4340f82)
+- The **constructor body** always runs **last**
 
-   Rule 2: "C" must be either same (or) derived type of "A" otherwise we will get compile time error saying incompatible types.
-   Found: C
-   Required: A
-![Screenshot 2024-02-19 182107](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/f6567961-8393-415d-9ab1-2c5817d41875)
+---
 
-## Runtime Checking
+### ✅ **Example 2 (Static Control Flow Focus)**
 
-   The underlying object type of "d" must be either same (or) derived type of "C" otherwise we will get runtime exception saying ClassCastException.
-
-  ![Screenshot 2024-02-19 182638](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/cc7637b2-23ad-46bf-8934-2fa1c8bec501)
-
-   Through Type Casting we are not create any new objects for the existing objects we are providing another type of reference variable(mostly Parent type).
-
-    ```java
-    package OopsConcept;
-    
-    public class TypeCasting {
+```java
+public class Initialization {
+    private static String methodOne(String msg) {
+        System.out.println(msg);
+        return msg;
     }
-    
-    class Parent1{
-    
-        public void methodOne(){
-            System.out.println("Parent Class : A");
-        }
+
+    static String m = methodOne("1");
+
+    static {
+        m = methodOne("3");
     }
-    
-    class Child1 extends Parent1{
-        public void methodOne(){
-            System.out.println("Child Class : B");
-        }
-    
-        public void methodTwo(){
-            System.out.println("Child Class : C");
-        }
-    
-        public static void main(String[] args){
-            Child1 c1 = new Child1();
-            c1.methodOne();  //Child Class : B
-            c1.methodTwo();  //Child Class : C
-            ((Parent1)c1).methodOne(); //Child Class : B
-        }
+
+    {
+        m = methodOne("2");
     }
-    
-    /*
-    Child Class : B
-    Child Class : C
-    Child Class : B
-    */
-    ```
 
-# Cohesion
+    public static void main(String[] args) {
+        Object obj = new Initialization();
+    }
+}
 
-   For every component we have to maintain a clear well defined functionality such type of component is said to be follow high cohesion.
+```
 
-![Screenshot 2024-02-19 183928](https://github.com/Rajeev-singh-git/Java_Interview_Question/assets/87664048/7085dc39-adcb-4335-9714-0665167569eb)
+**🔍 Output:**
 
-   High cohesion is always good programming practice because it has several advantages.
+```java
+1
+3
+2
+```
 
-    1. Without effecting remaining components we can modify any component hence enhancement will become very easy.
-    2. It improves maintainability of the application.
-    3. It promotes reusability of the application.(where ever validation is required we can reuse the same validate servlet without rewriting )
+> 🔸 Static variables and static blocks execute at class loading  
+> 🔸 Instance block runs when object is created
 
-   Note: It is highly recommended to follow loosely coupling and high cohesion
+---
+
+### 🧠 Static vs Instance Access Rules (Quick Note)
+
+- ❌ **Static context** (like `main` or static blocks) **cannot access instance variables/methods directly**  
+  → Because **no object may exist yet** when static code runs.
+
+- ✅ **Instance context** (like non-static methods or blocks) **can access both static and instance members**  
+  → Because static members are already loaded, and `this` refers to the object.
+
+- ✅ **Static members** can be accessed **from anywhere**, since they are loaded during **class loading time**.
+
+---
+
+##### 🧪 Example – Invalid Access from Static Context:
+
+```java
+class Example {
+    int x = 10; // instance variable
+
+    public static void main(String[] args) {
+        System.out.println(x); // ❌ Compile-time error
+    }
+}
+```
+
+**❌ Error:**
+
+```java
+non-static variable x cannot be referenced from a static context
+```
+
+---
+
+##### ✅ Correct Access – Use an Object:
+
+```java
+class Example {
+    int x = 10;
+
+    public static void main(String[] args) {
+        Example obj = new Example();
+        System.out.println(obj.x); // ✅ Works fine
+    }
+}
+```
+
+---
+
+##### 🧬 Instance Context Can Access Everything
+
+From an **instance method or block**, both static and instance members are accessible.
+
+```java
+class Example {
+    int a = 5;
+    static int b = 10;
+
+    void instanceMethod() {
+        System.out.println(a); // ✅ instance
+        System.out.println(b); // ✅ static
+    }
+}
+```
+
+---
+
+##### 🛠 Static Context Can Only Access Static Members Directly
+
+```java
+class Example {
+    int a = 5;
+    static int b = 10;
+
+    static void staticMethod() {
+        // System.out.println(a); ❌ Not allowed
+        System.out.println(b); // ✅ Allowed
+    }
+}
+```
