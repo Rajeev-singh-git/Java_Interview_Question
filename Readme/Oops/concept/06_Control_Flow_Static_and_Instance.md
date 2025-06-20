@@ -495,7 +495,8 @@ Child second instance block
 Child class constructor
 Child class main method
 ```
-<img src="https://github.com/user-attachments/assets/f8746c07-3387-4d9d-ad1c-1ee5560f3430" width="650" height="750"> 
+<img src="https://github.com/user-attachments/assets/d076c36b-9639-42ff-b217-474a9298a1b8" width="650" height="750"> 
+
 
 > 🔸 Both `methodOne()` and `methodTwo()` access instance variables **before they're initialized**, so output is `0`.
 
