@@ -37,7 +37,7 @@ Static control flow refers to the **order in which static variables and blocks a
 
 ##### **Static Control Flow Example :**
 
-<img src="https://github.com/user-attachments/assets/161de626-0ade-4b47-9223-d0a8e8ecfe8c" width="550" height="600">
+<img src="https://github.com/user-attachments/assets/161de626-0ade-4b47-9223-d0a8e8ecfe8c" width="600" height="650">
 ---
 
 ## Read Indirectly, Write Only (RIWO)
@@ -184,7 +184,7 @@ When  we execute a **child class**, the JVM loads and initializes classes in the
 Whenever we load the **child class**, the **parent class is automatically loaded**.
 
 
-<img src="https://github.com/user-attachments/assets/7bb51189-5516-4484-9787-2789b0b107ff" width="550" height="600">
+<img src="https://github.com/user-attachments/assets/7bb51189-5516-4484-9787-2789b0b107ff" width="600" height="650">
 
 
 
