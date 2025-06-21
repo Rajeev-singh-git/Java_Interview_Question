@@ -404,7 +404,7 @@ second instance block
 Parent class constructor
 main method
 ```
-
+<img src="https://github.com/user-attachments/assets/9d4a143a-103d-4802-aa92-ddcd0b963cf1" width="650" height="750"> 
 ---
 
 ## 👨‍👩‍👧 Instance Control Flow in Parent-Child Classes
@@ -495,6 +495,8 @@ Child second instance block
 Child class constructor
 Child class main method
 ```
+<img src="https://github.com/user-attachments/assets/d076c36b-9639-42ff-b217-474a9298a1b8" width="650" height="750"> 
+
 
 > 🔸 Both `methodOne()` and `methodTwo()` access instance variables **before they're initialized**, so output is `0`.
 
