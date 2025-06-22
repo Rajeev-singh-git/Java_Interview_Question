@@ -3,7 +3,7 @@
 
 ## Table of Content ... 
 
-[Java Fundametal](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/Fundamental_content.md)
+[Java Fundametal](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/00_Fundamental_Overview.md)
 
 [Core Java](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/concept/Oops_content.md)
 
