@@ -1,3 +1,29 @@
+# Java Variables & Execution Fundamentals
+
+## Table of Contents
+
+1. [Variable Classification Overview](#-java-variable-types)
+2. [Primitive vs Reference Variables](#-division-1-based-on-the-type-of-value-they-store)
+3. [Scope-Based Variable Types](d#-division-2-based-on-scope-lifetime-and-position-of-declaration)
+
+    - [Instance Variables](#1-instance-variables)
+    - [Static Variables](#2-static-variables)
+    - [Local Variables](#3-local-variables)
+      
+4. [Default Values and Uninitialized Arrays](#uninitialized-arrays)
+5. ️[Variable Argument Methods (Var-Args)](#-var-arg-methods-variable-number-of-arguments--java-15)
+6. ️[main() Method Rules & JVM Behavior  ](#main-method)
+     - [Method Overloading](#main-method-overloading)
+     - [Inheritance Behavior](#inheritance-and-the-main-method)
+     - [Java 1.7 Enhancements](#-17-version-enhancements-with-respect-to-main-method)
+7. [Command Line Arguments](#-command-line-arguments-in-java)
+8. [Java Coding Standards](#-java-coding-standards)
+9. [Java Bean Naming Conventions](#-java-bean-naming-conventions)
+10. [JVM Memory Model](#-jvm-memory-areas)
+    
+  
+---
+
 # 🧠 Java Variable Types
 
 In Java, variables can be classified in **two major divisions**:
