@@ -7,3 +7,5 @@
 3. [Variables & Execution Fundamentals](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/03_Variables_Types_Operators_ControlFlow.md)
 
 ---
+
+1.[Array Interview Question](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/interview/Array%20Question.md)
