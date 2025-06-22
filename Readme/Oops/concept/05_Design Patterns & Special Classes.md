@@ -29,7 +29,7 @@ A **Singleton class** is a design pattern that ensures **only one instance** of 
 
 ---
 
-## Singleton Classes in Java
+## Singleton Classes Example
 
 ---
 
