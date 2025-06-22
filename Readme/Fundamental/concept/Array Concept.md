@@ -5,11 +5,13 @@
 1. [Introduction to Arrays](#1%EF%B8%8F%E2%83%A3-introduction-to-arrays)
 2. [Array Declaration](#2%EF%B8%8F%E2%83%A3-array-declaration)
 3. [Array Construction and Internal Class Names](#3%EF%B8%8F%E2%83%A3-array-construction)
-   
-4. [Reserved Words](#2%EF%B8%8F%E2%83%A3-array-declaration)
-5. [Data Types](#Data-Types)
-6. [Literals](#Literals)
-
+4. [Multi-Dimensional Arrays and Memory Layout](#4%EF%B8%8F%E2%83%A3-multi-dimensional-array-construction)
+5. [Array Initialization and Default Values](#array-initialization)
+6. ️[Declaration + Construction + Initialization in One Line](#5%EF%B8%8F%E2%83%A3-declaration-construction--initialization-in-one-line)
+7. [length vs length()](#6%EF%B8%8F%E2%83%A3-length-vs-length)
+8. [Anonymous Arrays](#7%EF%B8%8F%E2%83%A3--anonymous-arrays)
+9. [Array Element Assignment Rules](#8%EF%B8%8F%E2%83%A3-array-element-assignments)
+10. [Array Reference Assignments and Covariance](#-array-variable-assignments)
 ---
 
 # 1️⃣ Introduction to Arrays
