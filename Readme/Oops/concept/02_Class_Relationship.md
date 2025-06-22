@@ -11,14 +11,15 @@
       - [Why Java disallows it with classes](#-why-java-wont-provide-support-for-multiple-inheritance)
       - [Diamond Problem](#-the-diamond-problem)
       - [How Interfaces Solve It](#-interfaces-to-the-rescue)
-3. [HAS-A Relationship (Composition & Aggregation)](#-has-a-relationship)
+2. [HAS-A Relationship (Composition & Aggregation)](#-has-a-relationship)
    - [Composition (Strong Association)](#-composition)
    - [Aggregation (Weak Association)](#aggregation)
    - [Composition vs Aggregation](#-composition-vs-aggregation--key-differences)
    - [When to use what](#-when-to-use-what)
-4. [Method Signature in Java](#-method-signature-in-java)
+3. [Method Signature in Java](#-method-signature-in-java)
    - [Overloading Rules](#-valid-overloading-example)
-5. [Interview Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/interview/Class%20Relationship%20Interview%20Question.md)
+     
+4. [Interview Questions](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Oops/interview/Class%20Relationship%20Interview%20Question.md)
 ---
 
 
