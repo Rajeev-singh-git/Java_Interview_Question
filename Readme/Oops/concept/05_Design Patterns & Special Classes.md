@@ -13,7 +13,7 @@
 
 ---
 
-A **Singleton class** is a design pattern that ensures **only one instance** of the class exists **throughout the application**  lifecycle. It also provides a global access point to this single instance.**
+A **Singleton class** is a design pattern that ensures **only one instance** of the class exists **throughout the application**  lifecycle. It also provides a global access point to this single instance.
 
 ---
 
