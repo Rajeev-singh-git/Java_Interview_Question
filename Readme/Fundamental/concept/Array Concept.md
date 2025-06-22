@@ -2,14 +2,15 @@
 
 ## Table of Contents
 
-1. [Identifier](#Identifier)
-2. [Reserved Words](#Reserved-words)
-3. [Data Types](#Data-Types)
-4. [Literals](#Literals)
+1. [1️⃣ Introduction to Arrays  ](#Identifier)
+1️⃣. [Introduction to Arrays  ](#Identifier)
+3. [Reserved Words](#Reserved-words)
+4. [Data Types](#Data-Types)
+5. [Literals](#Literals)
 
 ---
 
-# 1️⃣ Introduction
+# 1️⃣ Introduction to Arrays
 
 An **array** is an indexed collection of a **fixed number of homogeneous data elements**.
 
