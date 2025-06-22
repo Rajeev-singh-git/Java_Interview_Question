@@ -3,11 +3,12 @@
 ## Table of Contents
 
 1. [Introduction to Arrays](#1%EF%B8%8F%E2%83%A3-introduction-to-arrays)
+2. [Array Declaration](#2%EF%B8%8F%E2%83%A3-array-declaration)
+3. [Array Construction and Internal Class Names](#3%EF%B8%8F%E2%83%A3-array-construction)
    
-1️⃣ [Introduction to Arrays](#1%EF%B8%8F%E2%83%A3-introduction-to-arrays)
-3. [Reserved Words](#2%EF%B8%8F%E2%83%A3-array-declaration)
-4. [Data Types](#Data-Types)
-5. [Literals](#Literals)
+4. [Reserved Words](#2%EF%B8%8F%E2%83%A3-array-declaration)
+5. [Data Types](#Data-Types)
+6. [Literals](#Literals)
 
 ---
 
