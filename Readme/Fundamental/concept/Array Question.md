@@ -14,7 +14,7 @@
 9. [ What does System.out.println(a) print after int[][] a = new int[2][];?](#-q9-what-does-systemoutprintlna-print-after-int-a--new-int2)
 10. [Why isn’t the output something like ClassName@hashcode?](#-q10-why-isnt-the-output-something-like-classnamehashcode)
 
-            - [Set 2](#set-2)
+      - [Set 2](#set-2)
 
 1.[How many objects are created in total during the execution of below code snippet?](#1-how-many-objects-are-created-in-total-during-the-execution-of-this-code-snippet)   
 
