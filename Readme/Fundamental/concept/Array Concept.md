@@ -1,3 +1,14 @@
+# 📚 Mastering Arrays in Java: From Basics to Deep Internals
+
+## Table of Contents
+
+1. [Identifier](#Identifier)
+2. [Reserved Words](#Reserved-words)
+3. [Data Types](#Data-Types)
+4. [Literals](#Literals)
+
+---
+
 # 1️⃣ Introduction
 
 An **array** is an indexed collection of a **fixed number of homogeneous data elements**.
