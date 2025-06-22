@@ -1,3 +1,13 @@
+# 📚 Java Array – Internal Memory Behavior (Interview Q&A)
+
+## Table of Contents
+
+1. [What happens internally when you initialize a[0] = new int[3];? Is there a default value for its elements? If yes, what is it?](#-q-1--what-happens-internally-when-you-initialize-a0--new-int3-is-there-a-default-value-for-its-elements-if-yes-what-is-it)
+
+
+
+---
+
 ## 📚 Java  Array – Internal Memory Behavior (Interview Q&A)
 
 ### **💬 Q 1 : What happens internally when you initialize `a[0] = new int[3];`? Is there a default value for its elements? If yes, what is it?"**
