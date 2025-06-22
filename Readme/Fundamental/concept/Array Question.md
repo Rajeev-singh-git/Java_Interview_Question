@@ -3,6 +3,17 @@
 ## Table of Contents
 
 1. [What happens internally when you initialize a[0] = new int[3];? Is there a default value for its elements? If yes, what is it?](#-q-1--what-happens-internally-when-you-initialize-a0--new-int3-is-there-a-default-value-for-its-elements-if-yes-what-is-it)
+2. [When we declare a 2D array like int[][] a = new int[2][];, what is the default value of a[0], and why?](#-q-2--when-we-declare-a-2d-array-like-int-a--new-int2-what-is-the-default-value-of-a0-and-why)
+3. [What happens internally when you initialize a[0] = new int[3];? Is there a default value for its elements?](#-q3-what-happens-internally-when-you-initialize-a0--new-int3-is-there-a-default-value-for-its-elements)
+4. [Before initializing a[0], what is its default value and why?](#-q4-before-initializing-a0-what-is-its-default-value-and-why)
+5. [Why does System.out.println(a[0][0]) throw a NullPointerException before initializing a[0]?](#-q5-why-does-systemoutprintlna00-throw-a-nullpointerexception-before-initializing-a0)
+6. [If a[0] is of type int[], and int has a default of 0, then why isn’t a[0] also 0 by default?](#-q6-if-a0-is-of-type-int-and-int-has-a-default-of-0-then-why-isnt-a0-also-0-by-default)
+7. [Can we initialize different rows of a 2D array with different sizes in Java?](#-q7-can-we-initialize-different-rows-of-a-2d-array-with-different-sizes-in-java)
+8. [What's the difference between int[][] a = new int[2][3]; and int[][] a = new int[2][];?
+](#-q8-whats-the-difference-between-int-a--new-int23-and-int-a--new-int2)
+9. [ What does System.out.println(a) print after int[][] a = new int[2][];?](#-q9-what-does-systemoutprintlna-print-after-int-a--new-int2)
+
+
 
 
 
