@@ -2,10 +2,21 @@
 
 ## Table of Contents
 
-1. [Abstraction](#abstraction)
-   - [Abstract Classes:](#-1-abstract-classes)
-   - [Interface](#2-interface-)
-2. [Encapsulation](#-encapsulation)(#constructor-vs-instance-block)
+1. [Singleton Classes](#--singleton-classes)
+   - [Singleton Classes Example](#singleton-classes-example)
+   - [Advantages of Singleton](#-advantages-of-singleton)
+   - [Types of Singleton Implementations](#-types-of-singleton-implementations-in-java)
+      - [Lazy Initialization](#-1-lazy-initialization)
+      - [Eager Initialization](#-2-eager-initialization)
+      - [Thread-Safe Singleton](#-3-thread-safe-singleton-synchronized-method)
+      - [Double-Checked Locking Singleton](#%EF%B8%8F-4-double-checked-locking-singleton)
+      - [Bill Pugh Singleton](#-5-bill-pugh-singleton-static-inner-class)
+      - [Enum Singleton](#-6-enum-singleton-best-practice)
+           
+2. [Doubleton Pattern](#-1-doubleton-pattern)
+3. [Tripleton Pattern](#-3-tripleton-pattern)
+4. [Prevent inheritance without using final](#-how-can-we-prevent-inheritance-without-using-final)
+5. [Factory Method](#-factory-method)
 
 --- 
 
