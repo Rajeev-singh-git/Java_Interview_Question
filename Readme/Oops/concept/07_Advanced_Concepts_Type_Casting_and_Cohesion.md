@@ -2,18 +2,22 @@
 
 ## Table of Contents
 
-1. [Abstraction](#abstraction)
-   - [Abstract Classes:](#-1-abstract-classes)
-   - [Interface](#2-interface-)
-2. [RIWO state](#riwo-state)
-3. [Static control flow parent to child relationship :→](#static-control-flow-parent-to-child-relationship-→)
-4. [Static block](#static-block)
-5. [Instance Control Flow](#instance-control-flow)
-6. [Instance control flow in Parent to Child relationship](#instance-control-flow-in-parent-to-child-relationship)
-7. [Type Casting :→](#type-casting-→)
-   - [Type Casting Syntax](#type-casting-syntax)
-   - [Runtime Checking](#runtime-checking)
-8. [Cohesion](#cohesion)
+1. [Static Control Flow](#static-control-flow)
+   - [Static Order of Execution](#-order-of-execution)
+   - [Read Indirectly, Write Only (RIWO)](#read-indirectly-write-only-riwo)
+   - [Illegal Forward Reference (Direct Read)](#-illegal-forward-reference-direct-read)
+   - [Indirect Read](#-indirect-read-is-allowed-riwo)
+   - [Write Access Before Declaration — Legal](#-write-access-before-declaration--legal)
+   - [Static Control Flow: Parent → Child](#-static-control-flow-parent--child)
+   - [Static control flow inheritance example](#static-control-flow--inheritance-example)
+   - [Static blocks](#-static-blocks)
+2. [Instance Control Flow](#-instance-control-flow)
+   - [Order of Execution (Single Class)](#-order-of-execution-single-class)
+   - [Instance Control Flow in Parent-Child Classes](#-instance-control-flow-in-parent-child-classes)
+   - [Execution Flow (Parent → Child):](#execution-flow-parent--child)
+3. [Static vs Instance Control Flow](#-static-vs-instance-control-flow)
+   - [Examples with Execution Order](#-examples-with-execution-order)
+   - [Static vs Instance Access Rules (Quick Note)](#-static-vs-instance-access-rules-quick-note)
 
 ---
 
