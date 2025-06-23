@@ -2,11 +2,17 @@
 
 ## Table of Contents
 
-1. [What exactly is abstraction in Java, and how is it different from encapsulation](#-1-what-exactly-is-abstraction-in-java-and-how-is-it-different-from-encapsulation)
-2. [How does Java achieve abstraction? Why does Java need both abstract classes and interfaces?](#2-how-does-java-achieve-abstraction-why-does-java-need-both-abstract-classes-and-interfaces)
-3. [Suppose I create an abstract class with only concrete methods and no abstract method. Is that valid? Why would I do that?](#-3-suppose-i-create-an-abstract-class-with-only-concrete-methods-and-no-abstract-method-is-that-valid-why-would-i-do-that)
-4. [Can a constructor be present in an abstract class or an interface? If yes, how are they used or behave?](#-4-can-a-constructor-be-present-in-an-abstract-class-or-an-interface-if-yes-how-are-they-used-or-behave)
-
+1. [What is the difference between a class and an encapsulated class in Java?](#q1-what-is-the-difference-between-a-class-and-an-encapsulated-class-in-java)
+2. [Can a class be considered encapsulated if it has only public fields?](#q2-can-a-class-be-considered-encapsulated-if-it-has-only-public-fields)
+3. [Does the presence of getters and setters affect whether a class is encapsulated?](#q3-does-the-presence-of-getters-and-setters-affect-whether-a-class-is-encapsulated)
+4. [Is it possible to achieve encapsulation without getters and setters?](#q4-is-it-possible-to-achieve-encapsulation-without-getters-and-setters)
+5. [What makes a class tightly encapsulated in Java? Why is this distinction important?](#q5-what-makes-a-class-tightly-encapsulated-in-java-why-is-this-distinction-important)
+6. [What makes a class tightly encapsulated in Java? Why is this distinction important?](#q6-is-it-possible-to-break-encapsulation-unintentionally-while-using-inheritance-how)
+7. [Why is private considered the cornerstone of encapsulation in Java? Can you achieve encapsulation without using it?](#q7-why-is-private-considered-the-cornerstone-of-encapsulation-in-java-can-you-achieve-encapsulation-without-using-it)
+8. [If encapsulation is about hiding data, how is it different from abstraction which also hides details?](#q8-if-encapsulation-is-about-hiding-data-how-is-it-different-from-abstraction-which-also-hides-details)
+9. [Does a class with private fields but public static global utility methods still follow encapsulation?](#q9-does-a-class-with-private-fields-but-public-static-global-utility-methods-still-follow-encapsulation)
+10. [How would you encapsulate a class that must allow read access but prevent write access from external classes?](#q10-how-would-you-encapsulate-a-class-that-must-allow-read-access-but-prevent-write-access-from-external-classes)
+   
 ---
 
 # 🎯 Encapsulation — Interview Questions (Conceptual + Edge-Case Aware)
