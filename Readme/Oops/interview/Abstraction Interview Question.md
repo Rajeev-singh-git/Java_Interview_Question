@@ -6,6 +6,17 @@
 2. [How does Java achieve abstraction? Why does Java need both abstract classes and interfaces?](#2-how-does-java-achieve-abstraction-why-does-java-need-both-abstract-classes-and-interfaces)
 3. [Suppose I create an abstract class with only concrete methods and no abstract method. Is that valid? Why would I do that?](#-3-suppose-i-create-an-abstract-class-with-only-concrete-methods-and-no-abstract-method-is-that-valid-why-would-i-do-that)
 4. [Can a constructor be present in an abstract class or an interface? If yes, how are they used or behave?](#-4-can-a-constructor-be-present-in-an-abstract-class-or-an-interface-if-yes-how-are-they-used-or-behave)
+5. [If a class implements multiple interfaces and those interfaces have default methods with the same signature — what happens?](#-5-if-a-class-implements-multiple-interfaces-and-those-interfaces-have-default-methods-with-the-same-signature--what-happens)
+6. [Can an abstract class implement an interface without implementing its methods? What does that mean for subclasses?](#-6-can-an-abstract-class-implement-an-interface-without-implementing-its-methods-what-does-that-mean-for-subclasses)
+7. [Difference between Abstract method, Default method](#-7-what-is-the-difference-between)
+8. [In which version(s) did Java enhance the interface's capabilities, and why was that needed?](#-8-in-which-versions-did-java-enhance-the-interfaces-capabilities-and-why-was-that-needed)
+9. [ How does abstraction relate to polymorphism? Can you give an example of runtime polymorphism using abstraction?](#-9-how-does-abstraction-relate-to-polymorphism-can-you-give-an-example-of-runtime-polymorphism-using-abstraction)
+
+   -[Conceptual Coding Questions](#recommended-coding-questions-conceptual-not-leetcode-ish)
+   
+1. [Design a contract using Interface + Abstract Class](#1-design-a-contract-using-interface--abstract-class)
+2. [ Demonstrate constructor chaining using abstract classes](#-2-demonstrate-constructor-chaining-using-abstract-classes)
+3. [Handle default method conflict](#%EF%B8%8F-3-handle-default-method-conflict)
 
 ---
 
