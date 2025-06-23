@@ -12,7 +12,7 @@
 8. [In which version(s) did Java enhance the interface's capabilities, and why was that needed?](#-8-in-which-versions-did-java-enhance-the-interfaces-capabilities-and-why-was-that-needed)
 9. [ How does abstraction relate to polymorphism? Can you give an example of runtime polymorphism using abstraction?](#-9-how-does-abstraction-relate-to-polymorphism-can-you-give-an-example-of-runtime-polymorphism-using-abstraction)
 
-   -[Conceptual Coding Questions](#recommended-coding-questions-conceptual-not-leetcode-ish)
+   - [Conceptual Coding Questions](#recommended-coding-questions-conceptual-not-leetcode-ish)
    
 1. [Design a contract using Interface + Abstract Class](#1-design-a-contract-using-interface--abstract-class)
 2. [ Demonstrate constructor chaining using abstract classes](#-2-demonstrate-constructor-chaining-using-abstract-classes)
