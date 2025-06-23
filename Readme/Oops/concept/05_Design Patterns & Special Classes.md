@@ -1,4 +1,4 @@
-# Design Patterns & Special Classes**
+# Design Patterns & Special Classes
 
 ## Table of Contents
 
