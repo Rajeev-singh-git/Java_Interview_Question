@@ -1,24 +1,26 @@
-# Oops
+# TypeCasting and COHESION
 
 ## Table of Contents
 
-1. [Static Control Flow](#static-control-flow)
-   - [Static Order of Execution](#-order-of-execution)
-   - [Read Indirectly, Write Only (RIWO)](#read-indirectly-write-only-riwo)
-   - [Illegal Forward Reference (Direct Read)](#-illegal-forward-reference-direct-read)
-   - [Indirect Read](#-indirect-read-is-allowed-riwo)
-   - [Write Access Before Declaration — Legal](#-write-access-before-declaration--legal)
-   - [Static Control Flow: Parent → Child](#-static-control-flow-parent--child)
-   - [Static control flow inheritance example](#static-control-flow--inheritance-example)
-   - [Static blocks](#-static-blocks)
-2. [Instance Control Flow](#-instance-control-flow)
-   - [Order of Execution (Single Class)](#-order-of-execution-single-class)
-   - [Instance Control Flow in Parent-Child Classes](#-instance-control-flow-in-parent-child-classes)
-   - [Execution Flow (Parent → Child):](#execution-flow-parent--child)
-3. [Static vs Instance Control Flow](#-static-vs-instance-control-flow)
-   - [Examples with Execution Order](#-examples-with-execution-order)
-   - [Static vs Instance Access Rules (Quick Note)](#-static-vs-instance-access-rules-quick-note)
-
+1. [Type Casting](#-type-casting)
+   - [Upcasting](#%EF%B8%8F-parent-reference-holding-child-object-upcasting)
+   - [Dynamic method dispatch](#dynamic-method-dispatch)
+   - [Accessing Child-Specific Methods](#-accessing-child-specific-methods)
+   - [Interface Reference Holding Child Object](#-interface-reference-holding-child-object)
+   - [Syntax of Type Casting](#syntax-of-type-casting)
+2. [Compile-Time Type Compatibility Rules](#-compile-time-type-compatibility-rules)
+   - [Actual Object Type and Target Cast Type Must Be Related](#-rule-1-actual-object-type-and-target-cast-type-must-be-related)
+   - [Target Cast Type Must Be Same or Subclass of Reference Variable's Type](#-rule-2-target-cast-type-must-be-same-or-subclass-of-reference-variables-type)
+3. [Runtime Type Compatibility Rule](#-runtime-type-compatibility-rule)
+   - [Type Casting Hierarchy Tree](#-type-casting-hierarchy-tree)
+4. [Type Casting ≠ Object Creation](#-clarification-type-casting--object-creation)
+5. [Method & Variable Resolution in Inheritance ](#-method--variable-resolution-in-inheritance-examples-14)
+   - [Parent Reference Limitation](#-example-1-parent-reference-limitation)
+   - [Instance Method Overriding](#-example-2-instance-method-overriding)
+   - [Static Method Hiding (NOT Overriding)](#%EF%B8%8F-example-3-static-method-hiding-not-overriding)
+6. [Coupling](#-coupling)
+7. [Cohesion](#-cohesion)
+   
 ---
 
 # 🌀 Type Casting
