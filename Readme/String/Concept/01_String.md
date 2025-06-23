@@ -8,7 +8,7 @@
    - [Why is String immutable in Java?](#why-is-string-immutable-in-java)
 2. [StringBuffer](#stringbuffer)
    - [String vs StringBuffer](#-string-vs-stringbuffer--key-differences)
-   - [Choosing Between String and StringBuffer](#-choosing-between-string-and-stringbuffer
+   - [Choosing Between String and StringBuffer](#-choosing-between-string-and-stringbuffer)
 3. [Immutability vs Mutability](#-immutability-vs-mutability)
 4. [== vs equals()](#--vs-equals-in-strings)
    - [equals() in String](#-in-string-equals-is-overridden-to-compare-characters)
