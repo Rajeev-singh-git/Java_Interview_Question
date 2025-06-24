@@ -2,16 +2,18 @@
 
 ## Table of Contents
 
-1. [String](#-type-casting)
-   - [Properties of `String`](#%EF%B8%8F-parent-reference-holding-child-object-upcasting)
-   - [Different ways to Create Strings](#dynamic-method-dispatch)
-   - [Accessing Child-Specific Methods](#-accessing-child-specific-methods)
-   - [Interface Reference Holding Child Object](#-interface-reference-holding-child-object)
-   - [Syntax of Type Casting](#syntax-of-type-casting)
-2. [Compile-Time Type Compatibility Rules](#-compile-time-type-compatibility-rules)
-   - [Actual Object Type and Target Cast Type Must Be Related](#-rule-1-actual-object-type-and-target-cast-type-must-be-related)
-   - [Target Cast Type Must Be Same or Subclass of Reference Variable's Type](#-rule-2-target-cast-type-must-be-same-or-subclass-of-reference-variables-type)(#-cohesion)
-
+1. [String](#string)
+   - [Properties of String](#special-properties-of-string)
+   - [Different ways to Create Strings](#different-ways-to-create-strings)
+   - [Why is String immutable in Java?](#why-is-string-immutable-in-java)
+2. [StringBuffer](#stringbuffer)
+   - [String vs StringBuffer](#-string-vs-stringbuffer--key-differences)
+   - [Choosing Between String and StringBuffer](#-choosing-between-string-and-stringbuffer)
+3. [Immutability vs Mutability](#-immutability-vs-mutability)
+4. [== vs equals()](#--vs-equals-in-strings)
+   - [equals() in String](#-in-string-equals-is-overridden-to-compare-characters)
+   - [equals() in StringBuffer](#-in-stringbuffer-equals-is-not-overridden)
+   - [==vsequals()](#vsequals--summary)
 ---
 
 # String
@@ -181,7 +183,7 @@ System.out.println(sb1); // Output: Rajeev Singh
 
 - `sb1.append(" Singh")` modifies the **original object**, so changes are visible directly.
 
-
+<img src="https://github.com/user-attachments/assets/99b43a18-10a2-4429-b726-98f484cbcb26" width="600" height="690">
 
 ---
 
