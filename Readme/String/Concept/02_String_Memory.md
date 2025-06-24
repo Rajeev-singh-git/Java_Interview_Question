@@ -81,7 +81,7 @@ String s1 = "hello";
 
 📌 This is the **most memory-efficient** way to create a string.
 
-
+-![1](https://github.com/user-attachments/assets/47686743-ffeb-4913-9c8d-1796086aeb40)
 
 ---
 
@@ -111,9 +111,7 @@ System.out.println(s1.equals(s2));   // ✅ true  (same content)
    
    - `s2` points to this new heap object, which is **independent** of the SCP object.
 
-
-
-
+![2](https://github.com/user-attachments/assets/4fc5c33a-4201-488b-9233-72c43f1a7f04)
 
 ---
 
@@ -145,9 +143,7 @@ s2.equals(s3) // ✅ true — same content
   → Another **new `String` object is created in the Heap**, again with the same content.  
   → `s3` points to a **separate heap object**, distinct from both `s1` and `s2`.
 
-
-
-
+![3](https://github.com/user-attachments/assets/07c05d3a-09ef-456c-87ad-72e15a9c1c43)
 
 ---
 
@@ -172,5 +168,7 @@ String s = new String("hello");
 - 🔁 **Heap can hold duplicate content**: Multiple distinct `String` objects in heap may contain the **same characters**, but occupy **separate memory locations**.
 
 - 🔒 **SCP enforces uniqueness**: Only one object per literal content is stored, and reused wherever needed.
+
+![4](https://github.com/user-attachments/assets/2b77cd0a-a980-40c3-bdd7-b344fdb1080a)
 
 ---
