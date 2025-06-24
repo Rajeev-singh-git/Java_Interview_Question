@@ -20,7 +20,7 @@
    - [Static Method Hiding (NOT Overriding)](#%EF%B8%8F-example-3-static-method-hiding-not-overriding)
 6. [Coupling](#-coupling)
 7. [Cohesion](#-cohesion)
-   
+
 ---
 
 # 🌀 Type Casting
@@ -28,8 +28,6 @@
 ---
 
 Type casting in Java is the process of converting a reference from one type to another. It is commonly used when dealing with **inheritance** or **interface implementation**.
-
-
 
 **Treat an object reference as a different type**, either **upcasting** (child → parent) or **downcasting** (parent → child). But Java enforces strict compile-time and runtime rules to prevent invalid usage.
 
@@ -163,12 +161,12 @@ A  b =(C)  d;
 ```
 
 ```java
-A           b         =      (C)         d;  
-↑           ↑                ↑           ↑  
-│           │                │           └ object being cast  
-│           │                └─ target type to cast into (class/interface)  
-│           └──── name of the new reference variable  
-└──── reference variable type (class/interface)  
+A           b      =     (C)       d;
+↑           ↑            ↑         ↑
+│           │            │         └── object being cast 
+│           │            └──────────── target type to cast into (class/interface)
+│           └───────────────────────── name of the new reference variable
+└───────────────────────────────────── reference variable type (class/interface)  
 ```
 
 | Element | Description                     |
