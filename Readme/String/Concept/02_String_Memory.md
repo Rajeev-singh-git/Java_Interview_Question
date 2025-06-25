@@ -1,4 +1,4 @@
-# Java Fundamental
+# 📦2. String Memory Model – Heap, SCP & Interning
 
 ## Table of Contents
 
@@ -224,7 +224,6 @@ System.out.println(s2); // SpringWinter
 
 ![2](https://github.com/user-attachments/assets/4404889d-b7ec-479c-b649-f65df491e82a)
 
-
 - `String s1 = new String("Spring");`  
   🔹 Creates **two objects**:
   
@@ -247,12 +246,6 @@ System.out.println(s2); // SpringWinter
   🔹 `"Summer"` (a string literal) is stored in the **SCP**  
   🔹 A **new Heap object** is created → `"SpringWinterSummer"`  
   ❌ Not assigned → becomes **unreferenced**
-
-
-
-
-
-
 
 ###### 🔑 Key Takeaways:
 
@@ -302,8 +295,6 @@ false
 true  
 true
 ```
-
-
 
 #### Memory Behavior:
 
@@ -583,7 +574,6 @@ System.out.println(s1 == s2);           // ❌ false — s1 is from heap, s2 is 
 String s3 = s1.intern();
 
 System.out.println(s3 == s2);           // ✅ true — both now refer to SCP object
-
 ```
 
 ---
@@ -640,3 +630,19 @@ if (s1.intern() == s2.intern()) {
 - You want to **optimize memory usage** deliberately
 
 ---
+
+# Summary --- Key Takeaways
+
+- `Heap` holds all regular objects created with `new`, including Strings.
+
+- `SCP` stores unique string literals and interned strings for memory efficiency.
+
+- `==` compares reference, `.equals()` compares content.
+
+- Avoid `new String(...)` unless necessary.
+
+- Use `.intern()` when optimizing memory in apps with many repeated strings.
+
+- Compile-time string concatenation results in SCP reuse, while runtime concatenation creates new heap objects.
+
+- Only immutable objects can live safely in SCP — hence no `StringBuffer` or `StringBuilder`.

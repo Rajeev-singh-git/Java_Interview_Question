@@ -1,4 +1,4 @@
-# 📘  String – Introduction & Core Concepts
+# 📘 1. String – Introduction & Core Concepts
 
 ## Table of Contents
 
@@ -14,6 +14,7 @@
    - [equals() in String](#-in-string-equals-is-overridden-to-compare-characters)
    - [equals() in StringBuffer](#-in-stringbuffer-equals-is-not-overridden)
    - [==vsequals()](#vsequals--summary)
+
 ---
 
 # String
@@ -158,38 +159,7 @@ Modifying a `String` creates **new objects each time**, leading to **memory inef
 
 ---
 
-# 🧪 Immutability vs Mutability
-
-#### Case 1: Once a string object is created in Java, its content cannot be modified. Any attempt to modify the string results in the creation of a new string object with the modified content.
-
-```java
-// String example (Immutable)
-String s1 = new String("Rajeev");
-s1.concat(" Singh");
-System.out.println(s1); // Output: Rajeev
-
-// StringBuffer example (Mutable)
-StringBuffer sb1 = new StringBuffer("Rajeev");
-sb1.append(" Singh");
-System.out.println(sb1); // Output: Rajeev Singh
-
-```
-
-##### 🔍 What happened here?
-
-- `s1.concat(" Singh")` returns a new object, but we didn’t assign it — so `s1` remains unchanged.
-
-- s1 is still pointing to original i.e.. Rajeev
-
-- `sb1.append(" Singh")` modifies the **original object**, so changes are visible directly.
-
-<img src="https://github.com/user-attachments/assets/99b43a18-10a2-4429-b726-98f484cbcb26" width="600" height="690">
-
----
-
 # 🔁 `==` vs `equals()` in Strings
-
----
 
 ## `==` Operator – Compares Memory Address
 
@@ -249,7 +219,7 @@ System.out.println(sb1.toString().equals(sb2.toString())); // ✅ true
 
 ---
 
-### 📝==`vs`equals()  Summary
+### 📝== `vs` equals() Summary
 
 | Comparison Type          | `==` Operator                                  | `equals()` in `String`           | `equals()` in `StringBuffer` |
 | ------------------------ | ---------------------------------------------- | -------------------------------- | ---------------------------- |
@@ -260,10 +230,338 @@ System.out.println(sb1.toString().equals(sb2.toString())); // ✅ true
 
 ---
 
-### ✅ Conclusion
-
-- Use `==` only when you want to check **object identity**.
+### ✅ Conclusion of `==` and equals()
 
 - Use `equals()` when you care about **actual content**.
 
 - For `StringBuffer`, convert to `String` before comparing values
+
+---
+
+# 🧪 Immutability vs Mutability
+
+---
+
+## 🔐 Immutable (String)
+
+Once a `String` object is created in Java, its **content cannot be modified**.  
+Any attempt to modify it results in the **creation of a new object** with the updated content.  
+The original object remains unchanged.
+
+```java
+String s1 = new String("Rajeev");
+s1.concat(" Singh");  // creates a new object, but we don’t assign it
+System.out.println(s1); // Output: Rajeev
+```
+
+**🔍 What’s Happening?**
+
+- `s1.concat(" Singh")` creates a **new `String` object** (`"Rajeev Singh"`), but we didn’t store the result.
+
+- `s1` still points to the original `"Rajeev"` object.
+
+- Hence, the output is `"Rajeev"` — the original string remains unchanged.
+
+---
+
+## 🔧 **StringBuffer (Mutable)**
+
+Unlike `String`, a `StringBuffer` object **can be modified** after creation.  
+All changes happen on the **same object** — no new object is created.
+
+```java
+StringBuffer sb1 = new StringBuffer("Rajeev");
+sb1.append(" Singh");
+System.out.println(sb1); // Output: Rajeev Singh
+```
+
+**🔍 What’s Happening?**
+
+- `sb1.append(" Singh")` modifies the **existing `StringBuffer` object** in place.
+
+- Since the object itself is updated, the result reflects the change immediately.
+
+- Output is `"Rajeev Singh"`.
+
+<img src="https://github.com/user-attachments/assets/99b43a18-10a2-4429-b726-98f484cbcb26" width="600" height="690">
+
+---
+
+## 🔄Immutable vs Mutable
+
+| Feature               | `String` (Immutable)           | `StringBuffer` (Mutable)    |
+| --------------------- | ------------------------------ | --------------------------- |
+| Can content change?   | ❌ No — creates new object      | ✅ Yes — updates same object |
+| Object behavior       | Fixed once created             | Can grow/modify dynamically |
+| Memory use            | Higher (new object per change) | Lower (same object reused)  |
+| Thread-safety         | ✅ Yes                          | ✅ Yes                       |
+| Performance (updates) | Slower                         | Faster                      |
+
+---
+
+## 🔒 Important Conclusions About String Immutability
+
+> **Immutability means** once an object is created, its internal state (content) **cannot be changed**. Any modification returns a **new object**, not a modified version of the original.
+
+```java
+String s1 = new String("spring");
+String s2 = s1.toUpperCase();
+String s3 = s1.toLowerCase();
+
+System.out.println(s1 == s2);  // false – new object created
+System.out.println(s1 == s3);  // true – content didn't change
+```
+
+✅ `s2` points to a **new object**, as `"spring"` was changed to `"SPRING"`.
+
+✅ `s3` **still points to the same object** as `s1` since the lowercase content was unchanged.
+
+---
+
+## 🛠️ Creating Custom Immutable Class
+
+You can build your own immutable class by:
+
+- Declaring it `final`
+
+- Making fields `private final`
+
+- Avoiding setters
+
+- Returning new instances on state changes
+
+```java
+final class ImmutableClass {
+    private final int i;
+
+    ImmutableClass(int i) {
+        this.i = i;
+    }
+
+    public ImmutableClass modify(int newI) {
+        if (this.i == newI) return this;
+        return new ImmutableClass(newI);
+    }
+
+    public static void main(String[] args) {
+        ImmutableClass i1 = new ImmutableClass(10);
+        ImmutableClass i2 = i1.modify(100);
+        ImmutableClass i3 = i1.modify(10);
+
+        System.out.println(i1 == i2);  // false
+        System.out.println(i1 == i3);  // true
+    }
+}
+```
+
+✅ This pattern ensures **no existing object is changed**, preserving immutability.
+
+---
+
+## 🔐 Final vs Immutability
+
+| Concept          | Purpose                                       | Behavior                                   |
+| ---------------- | --------------------------------------------- | ------------------------------------------ |
+| `final` keyword  | Prevents reassignment of a reference variable | Doesn't stop object mutation               |
+| **Immutability** | Prevents **modifying** object content         | New objects are created when state changes |
+
+###### Example:
+
+```java
+final StringBuffer sb = new StringBuffer("Durga");
+sb.append("Software");         // ✅ Works — content changed
+// sb = new StringBuffer("Ravi"); ❌ Error — can't reassign final reference
+```
+
+🧠 **Key Insight**:
+
+- `final` means the **reference can't change**,
+
+- **but** the object itself can be changed unless it's immutable.
+
+---
+
+##### 🎯 When to Use What
+
+✅ Use `final`:
+
+- To protect references from being reassigned (e.g., constants).
+
+- In method parameters or class members where reassignment is undesired.
+
+✅ Use **immutability**:
+
+- For objects that should **never be changed once created**.
+
+- For thread-safe, side-effect-free behavior (e.g., caching, logging, keys in collections).
+
+---
+
+## 🧪 Conceptual Questions
+
+---
+
+### 📌 Code 1 – `concat` and `replace`
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        String ta = "A";
+        ta = ta.concat("B");      // AB
+        String tb = "C";
+        ta = ta.concat(tb);       // ABC
+        ta.replace("C", "D");     // Has no effect — result not stored
+        ta = ta.concat(tb);       // ABCC
+        System.out.println(ta);   // Output: ABCC
+    }
+}
+```
+
+**Output :**
+
+```java
+ABCC
+```
+
+🧠 `.replace()` didn’t modify the object — a new one was created, but it wasn’t assigned.
+
+---
+
+### 📌 Code 2 – `trim` & `isEmpty`
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        String str = " ";
+        str.trim();  // Creates a new String, not assigned
+        System.out.println(str.equals(""));  
+        System.out.println(str.isEmpty());   
+    }
+}
+```
+
+**Output :** 
+
+```java
+false
+false
+```
+
+Even after `.trim()`, original `str` still has one space.
+
+---
+
+### 📌 Code 3 – `indexOf`
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        String str = "Hello World";
+        str.trim();  // Has no effect — string has no leading/trailing space
+        int i1 = str.indexOf(" ");
+        System.out.println(i1);  
+    }
+}
+```
+
+**Output :**
+
+```java
+5
+```
+
+✔ `indexOf(" ")` gives 5, which is the index of the space.
+
+---
+
+### 📌 Code 4 – Comparing String with case difference
+
+**To ensure the program prints `"Equal"` despite the difference in letter casing between `s1` and `s2`, which of the following options should replace `// Line 1`?**
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        String s1 = "Java";
+        String s2 = new String("java");
+
+        // Line 1 – Insert the correct condition here
+        {
+            System.out.println("Equal");
+        } else {
+            System.out.println("Not Equal");
+        }
+    }
+}
+```
+
+#### 📝 Options:
+
+**A.**  
+`String s3 = s2;`  
+`if (s1 == s3)`
+
+**B.**  
+`if (s1.equalsIgnoreCase(s2))`
+
+**C.**  
+`String s3 = s2;`  
+`if (s1.equals(s3))`
+
+**D.**  
+`if (s1.toLowerCase() == s2.toLowerCase())`
+
+---
+
+✅ **Correct Answer:** **B**
+
+> Because `equalsIgnoreCase()` compares content without considering case, making it the correct way to check if `"Java"` and `"java"` are equal textually, ignoring case.
+
+---
+
+# ✅ Part 1 Recap – Core String Concepts
+
+---
+
+- **`String` is a class**, not a primitive — and it's declared `final`, so it **cannot be extended**.
+
+- Every `String` is internally backed by a **character array (`char[]`)**, and its content is **immutable**.
+
+- When created using **literals** (`String s = "Java";`), strings are stored in the **String Constant Pool (SCP)** and **reused** if identical.
+
+- When created using `new String()`, a **new object is created in the Heap**, even if the same literal exists in the SCP — thus **bypassing the pool**.
+
+- Immutability means: **any modification creates a new object** instead of altering the original.
+  
+  - This ensures **security**, **thread safety**, and **hashcode stability** (for maps and sets).
+
+- `StringBuffer` was introduced as a **mutable** alternative to String — it's **synchronized**, so it’s **thread-safe**.
+
+- `StringBuilder` (introduced in Java 1.5) is **non-synchronized** and **faster** for **single-threaded use cases**.
+
+- When comparing strings:
+  
+  - Use `==` for **reference equality** (same memory location)
+  
+  - Use `equals()` for **content equality**
+  
+  - `StringBuffer` does not override `equals()`, so content must be compared using `.toString().equals()`
+
+- You learned how to **create a custom immutable class** — with `final` + encapsulation + controlled object creation.
+
+- `final` ≠ immutable: `final` prevents reference reassignment, not object mutation.
+  
+  - Example: a `final StringBuffer` can still be modified internally.
+
+---
+
+### 🔗 What’s Next in Part 2?
+
+In Part 2, we’ll go **deeper into memory**:
+
+- 🔍 Detailed understanding of **Heap vs String Constant Pool (SCP)**
+
+- 🔄 Internal behavior of **interning**, memory sharing, and object identity
+
+- 🤔 When and why you should (or shouldn’t) use `new String()`
+
+- 📘 More real-world examples and interview scenarios
