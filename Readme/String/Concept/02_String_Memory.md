@@ -187,6 +187,8 @@ System.out.println(s3 == s4); // ✅ true  — both point to the same SCP object
 
 ###### 🧠 Memory Behavior:
 
+![1](https://github.com/user-attachments/assets/acc81fe9-04b2-46f0-9f97-0ee39a9c24b4)
+
 - `s1` → Creates a **new object in the Heap**  
   Also triggers creation of `"Rajeev"` in the **String Constant Pool (SCP)** (if not already present).
 
@@ -219,6 +221,9 @@ System.out.println(s2); // SpringWinter
 ```
 
 ###### 🧠 Memory Behavior : Total Objects Created: 8
+
+![2](https://github.com/user-attachments/assets/4404889d-b7ec-479c-b649-f65df491e82a)
+
 
 - `String s1 = new String("Spring");`  
   🔹 Creates **two objects**:
@@ -301,6 +306,8 @@ true
 
 
 #### Memory Behavior:
+
+![3](https://github.com/user-attachments/assets/78bce15f-7254-4f3d-b1fd-52297a923847)
 
 #### 🔸 `String s1 = new String("You cannot change me");`
 
