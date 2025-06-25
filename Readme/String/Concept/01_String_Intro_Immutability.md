@@ -425,6 +425,8 @@ ABCC
 
 🧠 `.replace()` didn’t modify the object — a new one was created, but it wasn’t assigned.
 
+![11](https://github.com/user-attachments/assets/2dbd0bcd-0a6b-471a-802a-b9c2aa01c83f)
+
 ---
 
 ### 📌 Code 2 – `trim` & `isEmpty`
