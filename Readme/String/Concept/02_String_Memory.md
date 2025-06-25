@@ -28,11 +28,7 @@
 
 ---
 
-- The **SCP** is a **special area within the heap** reserved for **String literals**.
-
-- It stores **only one copy** of each distinct literal string to optimize memory usage.
-
-- String literals are sequences enclosed in **double quotes**, e.g., `"hello"`.
+The **String Constant Pool** is a special memory region within the heap where **Java stores unique string literals**. When a string literal appears in code, the JVM places it in the SCP to avoid creating duplicate objects, thus saving memory and improving performance.
 
 #### 🔍 How It Works
 
@@ -170,5 +166,470 @@ String s = new String("hello");
 - 🔒 **SCP enforces uniqueness**: Only one object per literal content is stored, and reused wherever needed.
 
 ![4](https://github.com/user-attachments/assets/2b77cd0a-a980-40c3-bdd7-b344fdb1080a)
+
+---
+
+### 📘 **Examples**
+
+---
+
+#### 📘 **Example 1: Heap vs SCP Behavior with String Literals and `new` Keyword**
+
+```java
+String s1 = new String("Rajeev");
+String s2 = new String("Rajeev");
+String s3 = "Rajeev";
+String s4 = "Rajeev";
+
+System.out.println(s1 == s2); // ❌ false — two separate heap objects
+System.out.println(s3 == s4); // ✅ true  — both point to the same SCP object
+```
+
+###### 🧠 Memory Behavior:
+
+- `s1` → Creates a **new object in the Heap**  
+  Also triggers creation of `"Rajeev"` in the **String Constant Pool (SCP)** (if not already present).
+
+- `s2` → Creates another **new object in the Heap**  
+  SCP is **reused** — `"Rajeev"` already exists, so no new SCP object is created.
+
+- `s3`, `s4` → **No new objects** are created  
+  Both directly point to the existing `"Rajeev"` in the **SCP**
+
+---
+
+###### 🧮 Total Objects Created: **3**
+
+- 🟡 **2 in Heap** → via `new String("Rajeev")`
+
+- 🔵 **1 in SCP** → `"Rajeev"` (shared by `s3` and `s4`)
+
+---
+
+#### ✅ Example 2: `concat()` and String Immutability
+
+```java
+String s1 = new String("Spring");
+s1.concat("Fall");
+String s2 = s1.concat("Winter");
+s2.concat("Summer");
+
+System.out.println(s1); // Spring
+System.out.println(s2); // SpringWinter
+```
+
+###### 🧠 Memory Behavior : Total Objects Created: 8
+
+- `String s1 = new String("Spring");`  
+  🔹 Creates **two objects**:
+  
+  - `"Spring"` in the **SCP** (since it's a string literal)
+  
+  - A **new object in the Heap** with content `"Spring"` → referenced by `s1`
+
+- `s1.concat("Fall");`  
+  🔹 `"Fall"` (a string literal) is stored in the **SCP**  
+  
+  🔹 It doesn't modify original string reference by s1.
+  🔹 A **new String object in the Heap** is created→ `"SpringFall"`  
+  ❌ Not assigned to any reference → becomes **unreferenced**
+
+- `String s2 = s1.concat("Winter");`  
+  🔹 `"Winter"` (a string literal) is stored in the **SCP**  
+  🔹 A **new Heap object** is created → `"SpringWinter"` → assigned to `s2`
+
+- `s2.concat("Summer");`  
+  🔹 `"Summer"` (a string literal) is stored in the **SCP**  
+  🔹 A **new Heap object** is created → `"SpringWinterSummer"`  
+  ❌ Not assigned → becomes **unreferenced**
+
+
+
+
+
+
+
+###### 🔑 Key Takeaways:
+
+- All **string literals** (`"Spring"`, `"Fall"`, `"Winter"`, `"Summer"`) are stored in the **SCP** — one copy per unique literal.
+
+- Every call to `.concat()` creates a **new Heap object**, not a modified version of the original string.
+
+- If the result of `.concat()` is **not assigned**, the object becomes **unreachable** and eligible for **garbage collection**.
+
+---
+
+#### ✅ Example 3: Compile-Time vs Runtime Concatenation
+
+```java
+String s1 = new String("You cannot change me");
+String s2 = new String("You cannot change me");
+System.out.println(s1 == s2); 
+
+String s3 = "You cannot change me";
+System.out.println(s1 == s3); 
+
+String s4 = "You cannot change me";
+System.out.println(s3 == s4); 
+
+String s5 = "You cannot " + "change me";
+System.out.println(s4 == s5); 
+
+String s6 = "You cannot ";
+String s7 = s6 + "change me";
+System.out.println(s4 == s7);
+
+final String s8 = "You cannot ";
+System.out.println(s6 == s8); 
+
+String s9 = s8 + "change me";
+System.out.println(s4 == s9); 
+```
+
+**Output : -->**
+
+```java
+false  
+false  
+true  
+true  
+false  
+true  
+true
+```
+
+
+
+#### Memory Behavior:
+
+#### 🔸 `String s1 = new String("You cannot change me");`
+
+Two objects created:
+
+- 1 in **SCP** for the literal `"You cannot change me"`
+
+- 1 in **Heap** due to `new`
+
+✅ **Created**: 1 SCP object + 1 Heap object
+
+---
+
+#### 🔸 `String s2 = new String("You cannot change me");`
+
+- `"You cannot change me"` already exists in SCP → reused
+
+- `new` creates another object in **Heap**
+
+✅ **Created**: 1 Heap object
+
+---
+
+#### 🔸 `String s3 = "You cannot change me";`
+
+- Reuses existing SCP literal
+
+✅ **Created**: None
+
+---
+
+#### 🔸 `String s4 = "You cannot change me";`
+
+- Same literal reused from SCP
+
+✅ **Created**: None
+
+---
+
+#### 🔸 `String s5 = "You cannot " + "change me";`
+
+- Both are **literals** → compiler performs **constant folding**
+
+- Folded result: `"You cannot change me"` → reused from SCP
+
+- `"You cannot "` and `"change me"` are **not** added to SCP here (unless used separately)
+
+✅ **Created**: None
+
+---
+
+#### 🔸 `String s6 = "You cannot ";`
+
+- Literal directly used → added to SCP
+
+✅ **Created**: 1 SCP object
+
+---
+
+#### 🔸 `String s7 = s6 + "change me";`
+
+- `"change me"` is a literal → added to SCP
+
+- `s6` is a variable → results in **runtime concatenation** (even if 1 variable is there then operation will be performed at runtime).
+
+- New object with content `"You cannot change me"` is created in **Heap**
+
+✅ **Created**: 1 SCP object + 1 Heap object
+
+---
+
+#### 🔸 `final String s8 = "You cannot ";`
+
+- Being `final`, it is a **compile-time constant** (final variable is replaced at compile time only as final variable are contant and can't be changed).
+
+- Reuses existing SCP literal
+
+✅ **Created**: None
+
+---
+
+#### 🔸 `String s9 = s8 + "change me";`
+
+- `s8` is `final` → compiler performs **compile-time concatenation**
+
+- Result is `"You cannot change me"` → already exists in SCP
+
+✅ **Created**: None
+
+---
+
+###### 📦 Object Creation Summary
+
+| Location | Objects Created                                                                           |
+| -------- | ----------------------------------------------------------------------------------------- |
+| **SCP**  | `"You cannot change me"` (L1), `"You cannot "` (L6), `"change me"` (L7) → ✅ **3 objects** |
+| **Heap** | `s1`, `s2`, runtime concat result (`s7`) → ✅ **3 objects**                                |
+
+---
+
+### 🚀 Importance of the String Constant Pool (SCP)
+
+Java provides a **String Constant Pool (SCP)** to optimize memory and performance for string handling. Here's why it's important:
+
+---
+
+###### 1. Memory Efficiency & Performance
+
+- The JVM stores only **one copy** of each string literal in the SCP.
+
+- Multiple variables referring to the same literal will **reuse the same memory**.
+
+✅ This saves memory and reduces garbage collection overhead.
+
+---
+
+###### 2. Immutability Enables Safe Sharing
+
+- Strings in SCP are **immutable** — they can’t be changed after creation.
+
+- Even if multiple references point to the same literal, **no one can modify it**.
+
+✅ Ensures safe sharing without side effects.
+
+---
+
+###### 3. Thread Safety
+
+- Since strings are immutable, they are **inherently thread-safe**.
+
+- Multiple threads can access the same SCP string safely **without synchronization**.
+
+---
+
+###### 4. String Interning
+
+- Java allows manual placement of a string into the SCP using `.intern()`:
+
+```java
+String s1 = new String("Java");
+String s2 = s1.intern(); // s2 now points to SCP
+```
+
+✅ Useful in large-scale applications (like compilers or parsers) with many duplicate strings.
+
+---
+
+### ⚖️ Advantages vs Disadvantages of SCP
+
+| ✅ Advantages                       | ⚠️ Disadvantages (Why Immutability is Needed)                          |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| Saves memory via reuse             | If strings were mutable, changes via one reference would affect others |
+| Improves performance               | Immutability prevents accidental or malicious updates                  |
+| Enables string sharing across code | Can’t store mutable objects like `StringBuffer`                        |
+| Simplifies thread-safe programming | SCP is effective **only for immutable** objects                        |
+
+---
+
+### Why SCP is Only for `String`, Not `StringBuffer`  ❓
+
+###### 🔐 1. Immutability
+
+- `String` is immutable → safe for reuse.
+
+- `StringBuffer` is mutable → unsafe to share across multiple references.
+
+If `StringBuffer` were in SCP, one thread’s modification would affect all others. ⚠️
+
+---
+
+###### 🚀 2. Use Case Difference
+
+- `String` is used for stable values like keys, messages, config.
+
+- `StringBuffer` is used for **dynamic, changeable** content.
+
+SCP is built for stability and reuse, **not for modification**.
+
+---
+
+###### 🧵 3. Thread Safety by Design
+
+- `String`: No sync needed due to immutability.
+
+- `StringBuffer`: Uses synchronized methods — SCP would be inefficient.
+
+---
+
+### Why `String` is Immutable but `StringBuffer` is Not ?
+
+###### 🔒 Why `String` is Immutable:
+
+1. **Shared References (SCP Safety)**:  
+   Multiple variables can point to the same String literal.  
+   ➤ If one could modify it, it would affect **all others**.  
+   ➤ Immutability **prevents unintended side effects**.
+
+2. **Security**:  
+   Used in sensitive APIs (e.g., file paths, class loaders).  
+   ➤ Prevents external code from modifying validated data.
+
+3. **Thread-Safety**:  
+   No sync needed — safe to use across threads.
+
+4. **HashCode Caching**:  
+   Once computed, safely reused (used in HashMap, Set).
+
+---
+
+###### ✏️ Why `StringBuffer` is Mutable:
+
+1. Built for **frequent string modifications**.
+
+2. Uses **internal char array** that can be changed.
+
+3. **Synchronized**, so safe for multithreading.
+
+4. More **memory and performance-efficient** for dynamic strings.
+
+---
+
+| Feature      | `String` (Immutable) | `StringBuffer` (Mutable) |
+| ------------ | -------------------- | ------------------------ |
+| Can change?  | ❌ No                 | ✅ Yes                    |
+| Thread-safe? | ✅ Yes                | ✅ Yes (via sync)         |
+| Performance  | ❌ Slower (new obj)   | ✅ Faster for changes     |
+| Use case     | Constants, keys      | Dynamic string ops       |
+
+---
+
+### 🔎 Are There Other Immutable Classes in Java?
+
+Yes — Java provides many immutable classes:
+
+- 🔢 **Wrapper classes**: `Integer`, `Double`, `Character`, etc.
+
+- 💰 **BigInteger**, **BigDecimal**
+
+- 🕒 **java.time** API: `LocalDate`, `LocalTime`, `Duration`, `Period`
+
+Immutability ensures **thread safety, caching, and predictability**, which is why many core Java APIs are designed this way.
+
+---
+
+## intern()
+
+---
+
+### 🧠 What is `intern()` in Java?
+
+The `intern()` method is a special method of the `String` class that tells the JVM:
+
+> “Please move or link this string to the **String Constant Pool (SCP)**, if not already present.”
+
+---
+
+###### 🔧 Syntax:
+
+```java
+String interned = str.intern();
+```
+
+---
+
+###### 🧪 Example:
+
+```java
+String s1 = new String("hello");
+String s2 = "hello";
+
+System.out.println(s1 == s2);           // ❌ false — s1 is from heap, s2 is from SCP
+
+String s3 = s1.intern();
+
+System.out.println(s3 == s2);           // ✅ true — both now refer to SCP object
+
+```
+
+---
+
+### 🔍 How it Works Internally:
+
+- When `.intern()` is called, JVM checks if the string content **already exists in SCP**:
+  
+  - ✅ If yes, returns reference to existing SCP object.
+  
+  - ❌ If not, adds it to SCP and returns the reference.
+
+---
+
+### 🔁 Use Case: When and Why to Use `intern()`
+
+###### Memory Optimization (Especially in Large Apps)
+
+In apps with many repeated strings (e.g., XML/JSON parsers, database keys, compilers):
+
+- Instead of storing many identical strings in heap,
+
+- Interned strings ensure **only one instance is stored in SCP**.
+
+###### Reference Equality Checks
+
+Sometimes you care whether two strings **point to the exact same object**, not just whether their content is equal:
+
+```java
+if (s1.intern() == s2.intern()) {
+    // Safe reference equality check via SCP
+}
+```
+
+---
+
+##### ⚠️ Points to Remember
+
+| Concept             | Explanation                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| Immutable required  | Only works with `String` (not `StringBuilder` or `StringBuffer`) due to immutability. |
+| Performance gain    | Saves memory by eliminating duplicate strings.                                        |
+| Not auto-interned   | `new String()` does NOT go to SCP unless `.intern()` is explicitly called.            |
+| SCP size is limited | Excessive interning can fill up Metaspace (before Java 8, PermGen).                   |
+
+---
+
+##### Use `intern()` when:
+
+- You're working with **many duplicate strings**
+
+- You need **reference equality**
+
+- You want to **optimize memory usage** deliberately
 
 ---
