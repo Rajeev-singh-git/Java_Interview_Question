@@ -9,11 +9,20 @@
 2. [StringBuffer](#stringbuffer)
    - [String vs StringBuffer](#-string-vs-stringbuffer--key-differences)
    - [Choosing Between String and StringBuffer](#-choosing-between-string-and-stringbuffer)
-3. [Immutability vs Mutability](#-immutability-vs-mutability)
-4. [== vs equals()](#--vs-equals-in-strings)
+3. [== vs equals()](#--vs-equals-in-strings)
    - [equals() in String](#-in-string-equals-is-overridden-to-compare-characters)
    - [equals() in StringBuffer](#-in-stringbuffer-equals-is-not-overridden)
-   - [==vsequals()](#vsequals--summary)
+   - [== vs equals()](#-vs-equals-summary)
+4. [Immutability vs Mutability](#-immutability-vs-mutability)
+   - [Immutable (String)](#-immutable-string)
+   - [Mutable (StringBuffer)](#-stringbuffer-mutable)
+   - [Immutable vs Mutable](#immutable-vs-mutable)
+   - [Important Conclusions About String Immutability](#-important-conclusions-about-string-immutability)
+   - [Creating Custom Immutable Class](#%EF%B8%8F-creating-custom-immutable-class)
+   - [Final vs Immutability](#-final-vs-immutability)
+   - [Conceptual Questions](#-conceptual-questions)
+5. [Recap – Core String Concepts](#-part-1-recap--core-string-concepts)
+
 
 ---
 
