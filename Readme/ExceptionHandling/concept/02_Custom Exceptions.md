@@ -3,8 +3,6 @@
 ## Table of Contents
 
 1. [Identifiers, Keywords and DataTypes](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/01_Java_Basics_Identifiers_Keywords_DataTypes.md)
-   
-   
 
 ---
 
@@ -94,8 +92,6 @@ public class Test {
 - In **Program 2**, the developer explicitly throws the same exception.
 
 - ✅ **Result is the same** — an exception is thrown and the program terminates.
-
-
 
 ---
 
@@ -529,7 +525,6 @@ class Test3 extends RuntimeException {
 
 ✔️ **Compiles and runs successfully**  
 
-
 Because `Test3` is a subclass of `RuntimeException`, which is a subclass of `Throwable`.
 
 ---
@@ -585,7 +580,7 @@ Exception in thread "main" java.lang.Error: Something went terribly wrong
 
 🧠 **Note:** You *can* throw an `Error`, but it’s discouraged unless absolutely necessary.
 
---- 
+---
 
 ### ✅ Case 4: Catch Block for Never-Thrown Exception (Checked Only)
 
@@ -709,8 +704,6 @@ throw new ExceptionType("Custom error message");
 - **`throw`** → actually throws an exception instance during execution.
 
 - **`throws`** → declares potential exceptions a method might throw, so that the **caller must handle them**.
-
-
 
 ---
 
@@ -859,101 +852,3 @@ try {
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
----
-
-### 🔧 Why Create Custom Exceptions?
-
-Custom exceptions help you represent **specific problems** in your application — with meaningful names and messages.
-
-> Example: `InsufficientBalanceException`, `InvalidAgeException`, etc.
-
-
-
-
-
-✅ Custom Checked Exception
-
-Checked exceptions **must be handled or declared**, because the compiler enforces it.
-
-```java
-// ✅ Creating a custom checked exception by extending Exception
-public class CustomException extends Exception {
-    public CustomException(String message) {
-        super(message);
-    }
-}
-```
-
-**Usage:**
-
-```java
-public class Test {
-    public static void main(String[] args) {
-        try {
-            throw new CustomException("This is a custom checked exception");
-        } catch (CustomException e) {
-            System.out.println("Custom exception caught: " + e.getMessage());
-        }
-    }
-}
-```
-
-**Output:**
-
-```java
-Custom exception caught: This is a custom checked exception
-```
-
----
-
-#### ✅ Custom Unhecked Exception
-
-Unchecked exceptions **don’t need to be declared or handled explicitly**. They are commonly used to represent **programming errors or invalid input conditions**.
-
-```java
-// ✅ Creating a custom unchecked exception by extending RuntimeException
-public class CustomUncheckedException extends RuntimeException {
-    public CustomUncheckedException(String message) {
-        super(message);
-    }
-}
-```
-
-**Usage:**
-
-```java
-public class Test {
-    public static void main(String[] args) {
-        validateAge(15);
-    }
-
-    public static void validateAge(int age) {
-        if (age < 18) {
-            throw new CustomUncheckedException("Age must be at least 18");
-        }
-        System.out.println("You are eligible to vote.");
-    }
-}
-```
-
-**Output:**
-
-```java
-Exception in thread "main" CustomUncheckedException:
-Age must be at least 18
-```
