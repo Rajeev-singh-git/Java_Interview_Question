@@ -3,16 +3,6 @@
 ## Table of Contents
 
 1.  [🚨 Top 10 Most Common Exceptions](#-top-10-most-common-exceptions)
-    - [✅ 1. `ArrayIndexOutOfBoundsException` (Unchecked)](#-1-arrayindexoutofboundsexception-unchecked)
-    - [✅ 2. `NullPointerException` (Unchecked)](#-2-nullpointerexception-unchecked)
-    - [✅ 3. `StackOverflowError` (Unchecked)](#-3-stackoverflowerror-unchecked)
-    - [✅ 4. `NoClassDefFoundError` (Unchecked)](#-4-noclassdeffounderror-unchecked)
-    - [✅ 5. `ClassCastException` (Unchecked)](#-5-classcastexception-unchecked)
-    - [✅ 6. `ExceptionInInitializerError` (Unchecked)](#-6-exceptionininitializererror-unchecked)
-    - [✅ 7. `IllegalArgumentException` (Unchecked)](#-7-illegalargumentexception-unchecked)
-    - [✅ 8. `NumberFormatException` (Unchecked)](#-8-numberformatexception-unchecked)
-    - [✅ 9. `IllegalStateException` (Unchecked)](#-9-illegalstateexception-unchecked)
-    - [✅ 10. `AssertionError` (Unchecked)](#-10-assertionerror-unchecked)
 2.  [📊 Categorization: JVM vs Programmatic Exceptions](#-categorization-jvm-vs-programmatic-exceptions)
 3.  [🔧 Java 1.7 Exception Handling Enhancements](#-java-17-exception-handling-enhancements)
     - [✅ 1. Try-With-Resources](#-1-try-with-resources)
