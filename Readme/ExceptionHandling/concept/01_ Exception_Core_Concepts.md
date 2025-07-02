@@ -1,10 +1,16 @@
-# Java Fundamental
+# Exception Core Concepts
 
 ## Table of Contents
 
-1. [Identifiers, Keywords and DataTypes](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/01_Java_Basics_Identifiers_Keywords_DataTypes.md)
-2. [Arrays in Java](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/02_Array_Concepts_Internal_Memory.md)
-3. [Variables & Execution Fundamentals](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/03_Variables_Types_Operators_ControlFlow.md)
+1. [💥Introduction to Exceptions](#-introduction-to-exceptions)
+   	- 1.1 [❗What is an Exception?](#-what-is-an-exception)
+   	- 1.2 [🛠️ What is Exception Handling?](#%EF%B8%8F-what-is-exception-handling)
+   	- 1.3 [💡 Why is Exception Handling Important?](#-why-is-exception-handling-important)
+   	  
+2. [Java Runtime Stack Mechanism](#-java-runtime-stack-mechanism)
+       - 2.1 [🧵 Per Thread Stack Creation](#-per-thread-stack-creation)
+   
+4. [🧰 Default Exception Handling ](#-default-exception-handling-in-java)
 
 --- 
 
