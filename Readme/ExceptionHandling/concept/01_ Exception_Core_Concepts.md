@@ -5,8 +5,7 @@
 1. [💥Introduction to Exceptions](#-introduction-to-exceptions)
    	- 1.1 [❗What is an Exception?](#-what-is-an-exception)
    	- 1.2 [🛠️ What is Exception Handling?](#%EF%B8%8F-what-is-exception-handling)
-   	- 1.3 [💡 Why is Exception Handling Important?](#-why-is-exception-handling-important)
-   	  
+   	- 1.3 [💡 Why is Exception Handling Important?](#-why-is-exception-handling-important)	  
 2. [Java Runtime Stack Mechanism](#-java-runtime-stack-mechanism)
         - 2.1 [🧵 Per Thread Stack Creation](#-per-thread-stack-creation)  
 3. [🧰 Default Exception Handling ](#-default-exception-handling-in-java)
