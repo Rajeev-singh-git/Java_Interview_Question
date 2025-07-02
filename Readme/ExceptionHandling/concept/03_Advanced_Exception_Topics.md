@@ -2,9 +2,39 @@
 
 ## Table of Contents
 
-1. [Identifiers, Keywords and DataTypes](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/01_Java_Basics_Identifiers_Keywords_DataTypes.md)
-2. [Arrays in Java](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/02_Array_Concepts_Internal_Memory.md)
-3. [Variables & Execution Fundamentals](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/03_Variables_Types_Operators_ControlFlow.md)
+1.  [🚨 Top 10 Most Common Exceptions](#-top-10-most-common-exceptions)
+    - [✅ 1. `ArrayIndexOutOfBoundsException` (Unchecked)](#-1-arrayindexoutofboundsexception-unchecked)
+    - [✅ 2. `NullPointerException` (Unchecked)](#-2-nullpointerexception-unchecked)
+    - [✅ 3. `StackOverflowError` (Unchecked)](#-3-stackoverflowerror-unchecked)
+    - [✅ 4. `NoClassDefFoundError` (Unchecked)](#-4-noclassdeffounderror-unchecked)
+    - [✅ 5. `ClassCastException` (Unchecked)](#-5-classcastexception-unchecked)
+    - [✅ 6. `ExceptionInInitializerError` (Unchecked)](#-6-exceptionininitializererror-unchecked)
+    - [✅ 7. `IllegalArgumentException` (Unchecked)](#-7-illegalargumentexception-unchecked)
+    - [✅ 8. `NumberFormatException` (Unchecked)](#-8-numberformatexception-unchecked)
+    - [✅ 9. `IllegalStateException` (Unchecked)](#-9-illegalstateexception-unchecked)
+    - [✅ 10. `AssertionError` (Unchecked)](#-10-assertionerror-unchecked)
+2.  [📊 Categorization: JVM vs Programmatic Exceptions](#-categorization-jvm-vs-programmatic-exceptions)
+3.  [🔧 Java 1.7 Exception Handling Enhancements](#-java-17-exception-handling-enhancements)
+    - [✅ 1. Try-With-Resources](#-1-try-with-resources)
+        - [📜 Pre-Java 7 Resource Handling (Manual Resource Handling)](#-pre-java-7-resource-handling-manual-resource-handling)
+        - [⚠️ Problems:](#-problems)
+    - [✅ Try-With-Resources (Java 7+)](#-try-with-resources-java-7)
+        - [📌Key Features:](#-key-features)
+        - [1. Multiple Resources Supported:](#-1-multiple-resources-supported)
+        - [✔️ Resources Must Implement `AutoCloseable`:](#-resources-must-implement-autocloseable)
+        - [✔️ Implicitly Final Variables](#-implicitly-final-variables)
+        - [✔️ `finally` Becomes Optional](#-finally-becomes-optional)
+    - [2️⃣ Multi-Catch Block](#-2-multi-catch-block)
+        - [🧱 Before Java 7](#-before-java-7)
+        - [✅ After Java 7: Multi-Catch](#-after-java-7-multi-catch)
+        - [✅ Benefits](#-benefits)
+        - [⚠️ Rules](#-rules)
+    - [3️⃣ Rethrowing an Exception](#-3-rethrowing-an-exception)
+        - [✅ Use Cases](#-use-cases)
+4.  [✅ Summary](#-summary)
+5.  [✅ Java 8+: Exception Handling in `CompletableFuture`](#-java-8-exception-handling-in-completablefuture)
+6.  [✅ Java 14+: Helpful `NullPointerException` Messages](#-java-14-helpful-nullpointerexception-messages)
+
 
 ---
 
