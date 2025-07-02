@@ -8,9 +8,9 @@
    	- 1.3 [💡 Why is Exception Handling Important?](#-why-is-exception-handling-important)
    	  
 2. [Java Runtime Stack Mechanism](#-java-runtime-stack-mechanism)
-       - 2.1 [🧵 Per Thread Stack Creation](#-per-thread-stack-creation)
-   
-4. [🧰 Default Exception Handling ](#-default-exception-handling-in-java)
+        - 2.1 [🧵 Per Thread Stack Creation](#-per-thread-stack-creation)  
+3. [🧰 Default Exception Handling ](#-default-exception-handling-in-java)
+        - 3.1 [⚙️ How Default Exception Handling works Internally?](#%EF%B8%8F-how-default-exception-handling-works-internally)
 
 --- 
 
