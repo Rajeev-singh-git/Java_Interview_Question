@@ -9,7 +9,7 @@
 
    [String](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/String/Concept/00_String_Overview.md)
 
-   [Exception Handling](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/ExceptionHandling/ExceptionHandling_README.md)
+   [Exception Handling](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/ExceptionHandling/concept/00_Overview_Exception_Handling.md)
 
 [1.) Serialization_Basic](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/Serialization.md)
 
