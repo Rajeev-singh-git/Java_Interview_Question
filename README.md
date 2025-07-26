@@ -11,9 +11,8 @@
 
    [Exception Handling](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/ExceptionHandling/concept/00_Overview_Exception_Handling.md)
 
-[1.) Serialization_Basic](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/Serialization.md)
+[Serialization](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Serialization/Concept/00_Serialization_Overview.md)
 
-[2.) Serialization](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/JavaCore/src/Serialization2.md)
 
 [Multithreading](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/MultiThread_README.md)
 
