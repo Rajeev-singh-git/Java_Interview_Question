@@ -1,4 +1,4 @@
-📘 Java String Deep Dive
+📘 Java Multi-Tasking
 
 ## Table of Contents
 
@@ -349,7 +349,7 @@ t.start(); // Results in Runtime Exception: IllegalThreadStateException
 
 ---
 
-### Life Cycle of the Thread
+## Life Cycle of the Thread
 
 [](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/MultiThreading/MultiThread_README.md#life-cycle-of-the-thread)
 
@@ -360,6 +360,387 @@ t.start(); // Results in Runtime Exception: IllegalThreadStateException
 3. **Running State:** If the thread scheduler assigns CPU resources to the thread, it enters the running state, where its **`run()`** method is executed.
 4. **Dead State:** Once the **`run()`** method completes execution, the thread transitions to the dead state, indicating the end of its lifecycle.
 
-![](https://private-user-images.githubusercontent.com/87664048/328011601-6fae331c-7bc8-410d-ab52-64af75dda128.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTM2Mjg1MjYsIm5iZiI6MTc1MzYyODIyNiwicGF0aCI6Ii84NzY2NDA0OC8zMjgwMTE2MDEtNmZhZTMzMWMtN2JjOC00MTBkLWFiNTItNjRhZjc1ZGRhMTI4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA3MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNzI3VDE0NTcwNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWFiMjI3MjE0ZDRmYzBjM2JiMWM4NDY3MmE1MGMyMTQ5NGRmZTc1Yjk1MWYyZWYyNTQ3NjE4YmRiNjE5NmFhNTImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.w6R_9b6uEkjIef9O_-GjuWfQDSDyn8EmQf6EKnNrxAE)
+---
+
+## 🧵 Defining a Thread by Implementing the `Runnable` Interface
+
+In Java, threads can also be created by implementing the `Runnable` interface, which is part of the `java.lang` package. This interface contains a single method:
+
+[![m2](https://private-user-images.githubusercontent.com/87664048/328011615-50b564bd-8372-4391-a2f3-ea805b0951c5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTM2Mjg1MjYsIm5iZiI6MTc1MzYyODIyNiwicGF0aCI6Ii84NzY2NDA0OC8zMjgwMTE2MTUtNTBiNTY0YmQtODM3Mi00MzkxLWEyZjMtZWE4MDViMDk1MWM1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA3MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNzI3VDE0NTcwNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTljMDQzZjg3ZDYxYWJjZDNjZjdjZTI2OTIwZDE1ZTgxNjQ3NDczNjAwY2Y0NjM3NGVmMzk0Yjc3YTEyZTcwMzQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.533swdFuLRUC5-xwRZwgWhbJ5bGPbbtG0r3CmfxssHg)](https://private-user-images.githubusercontent.com/87664048/328011615-50b564bd-8372-4391-a2f3-ea805b0951c5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTM2Mjg1MjYsIm5iZiI6MTc1MzYyODIyNiwicGF0aCI6Ii84NzY2NDA0OC8zMjgwMTE2MTUtNTBiNTY0YmQtODM3Mi00MzkxLWEyZjMtZWE4MDViMDk1MWM1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA3MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNzI3VDE0NTcwNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTljMDQzZjg3ZDYxYWJjZDNjZjdjZTI2OTIwZDE1ZTgxNjQ3NDczNjAwY2Y0NjM3NGVmMzk0Yjc3YTEyZTcwMzQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.533swdFuLRUC5-xwRZwgWhbJ5bGPbbtG0r3CmfxssHg)
+
+```java
+public class MyRunnable implements Runnable{
+
+    @Override
+    public void run() {
+        for(int i=0;i<10;i++){
+            System.out.println("Child Thread");
+        }
+    }
+}
+
+class ThreadDemo2
+{
+    public static void main(String[]args){
+        MyRunnable r = new MyRunnable();
+        Thread t = new Thread(r);
+        t.start();
+
+        for(int i=0;i<10;i++){
+            System.out.println("Main Thread");
+        }
+    }
+
+}
+```
+
+```java
+MyRunnable r = new MyRunnable();
+Thread t1 = new Thread()
+Thread t2 = new Thread(r);
+```
+
+---
+
+| Case       | Code          | Behavior                                                                               |
+| ---------- | ------------- | -------------------------------------------------------------------------------------- |
+| **Case 1** | `t1.start();` | ✅ Creates a new thread, runs `Thread` class's empty `run()` method (no output).        |
+| **Case 2** | `t1.run();`   | ❌ No new thread. `run()` called like a normal method on main thread.                   |
+| **Case 3** | `t2.start();` | ✅ Creates a new thread, executes `MyRunnable.run()` on that new thread.                |
+| **Case 4** | `t2.run();`   | ❌ No new thread. `MyRunnable.run()` called like a normal method on main thread.        |
+| **Case 5** | `r.start();`  | ❌ Compile-time error. `MyRunnable` has no `start()` method.                            |
+| **Case 6** | `r.run();`    | ❌ No new thread. `MyRunnable.run()` executed like a regular method on the main thread. |
+
+---
+
+### ✅ Best Practice: Use `Runnable` Over `Thread`
+
+| Aspect                    | Extending `Thread`               | Implementing `Runnable`              |
+| ------------------------- | -------------------------------- | ------------------------------------ |
+| Inheritance limitation    | Cannot extend any other class    | Can extend another class freely      |
+| Design flexibility        | Tightly coupled (Thread = logic) | Loosely coupled (Thread ≠ logic)     |
+| Reusability & testability | Less reusable                    | More reusable and testable           |
+| Recommended?              | ❌ Not recommended                | ✅ Preferred and recommended approach |
+
+---
+
+**Conclusion:**
+
+> Always prefer implementing `Runnable` over extending `Thread` when defining a thread. It promotes better design, allows flexibility with inheritance, and encourages separation of concern between the task and the thread itself.
+
+---
+
+# 🧵 Thread Class Constructors
+
+The `Thread` class in Java provides multiple constructors to give developers flexibility when creating threads. These constructors allow you to:
+
+- Specify a `Runnable` task
+
+- Assign a name to the thread
+
+- Place a thread in a specific thread group
+
+- (Rarely) Set stack size manually
+
+---
+
+## ✅ Commonly Used Constructors
+
+#### 1.**`Thread t = new Thread();`**
+
+```java
+Thread t = new Thread();
+```
+
+- Creates a new thread in the **default thread group** with an **auto-generated name**.
+
+- The `run()` method is empty by default.
+
+- You must override the `run()` method or use a subclass.
+
+---
+
+#### 2. **`Thread t = new Thread(Runnable r);`**
+
+```java
+ MyRunnable r = new MyRunnable();
+ Thread t = new Thread(r);
+ t.start();`
+```
+
+- Accepts a `Runnable` object.
+
+- When `start()` is called, `r.run()` is executed in a **new thread**.
+
+---
+
+#### 3. `Thread(String name)`
+
+```java
+`Thread t = new Thread("WorkerThread");
+```
+
+- Creates a thread with the specified name.
+
+- The `run()` method is still empty (not associated with any task).
+
+---
+
+#### 4. `Thread(Runnable r, String name)` ✅ **Recommended**
+
+```java
+MyRunnable r = new MyRunnable(); 
+Thread t = new Thread(r, "WorkerThread");`
+```
+
+- Combines the ability to **assign a task** and **name the thread**.
+
+- When `start()` is called, it executes `r.run()` in a new thread.
+
+---
+
+## ⚙️ Less Frequently Used Constructors
+
+#### 5. `Thread(ThreadGroup g, String name)`
+
+```java
+`ThreadGroup group = new ThreadGroup("MyGroup");
+ Thread t = new Thread(group, "NamedThread");
+```
+
+- Creates a new thread object with the specified `ThreadGroup` (`g`) and the specified name.
+
+- Thread groups are a way to manage hierarchies of threads, but they are not widely used in modern Java due to potential complexity. Consider using thread pools instead for managing groups of threads
+
+---
+
+#### 6. `Thread(ThreadGroup g, Runnable r)`
+
+```java
+Thread t = new Thread(group, new MyRunnable());`
+```
+
+- Like constructor 2, but in a custom thread group.
+
+---
+
+#### 7. `Thread(ThreadGroup g, Runnable r, String name)`
+
+```java
+Thread t = new Thread(group, new MyRunnable(), "NamedWorker");
+```
+
+- Combines group, task, and name.
+
+---
+
+#### 8. `Thread(ThreadGroup g, Runnable r, String name, long stackSize)`
+
+```java
+`Thread t = new Thread(group, new MyRunnable(), "CustomStackThread", 1_000_000);
+```
+
+- Adds control over stack size.
+
+- ⚠️ **Rarely used** — stack size is **platform-dependent** and generally managed well by the JVM.
+
+---
+
+### 📝 Summary of Constructors
+
+| Constructor Signature                                            | Common? | Description                            |
+| ---------------------------------------------------------------- | ------- | -------------------------------------- |
+| `Thread()`                                                       | ✅       | Default thread, empty run method       |
+| `Thread(Runnable r)`                                             | ✅       | Task-only constructor                  |
+| `Thread(String name)`                                            | ☑️      | Named thread, no task                  |
+| `Thread(Runnable r, String name)`                                | ✅✅      | Task + name (**Recommended**)          |
+| `Thread(ThreadGroup g, String name)`                             | ❌       | Assigns to a group with a name         |
+| `Thread(ThreadGroup g, Runnable r)`                              | ❌       | Task + group                           |
+| `Thread(ThreadGroup g, Runnable r, String name)`                 | ❌       | Task + group + name                    |
+| `Thread(ThreadGroup g, Runnable r, String name, long stackSize)` | ❌❌      | Adds manual stack control (least used) |
+
+---
+
+### 🔑 Key Takeaways
+
+- Use **`Thread(Runnable r, String name)`** when you need a named thread with a task.
+
+- Avoid directly using **ThreadGroups** unless you have a specific legacy or low-level need.
+
+- **Don't manually set stack size** unless absolutely required — JVM manages it efficiently.
+
+- Favor **thread pools** (`Executors`) over manual thread creation for scalable applications.
+
+---
+
+# 🧵 Getting and Setting the Name of a Thread
+
+Every thread in Java has a **name**, which may be:
+
+- Automatically assigned by the JVM (e.g., `"Thread-0"`, `"Thread-1"`, etc.)
+
+- Explicitly assigned by the programmer
+
+### 🔧 Methods from `Thread` class
+
+```java
+public final String getName(); // Returns the thread's name public
+final void setName(String name); // Sets a new name for the thread
+```
+
+##### ✅ Example
+
+```java
+class MyThread extends Thread {}
+
+class ThreadDemo {
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName()); // main
+
+        MyThread t = new MyThread();
+        System.out.println(t.getName()); // Thread-0
+
+        Thread.currentThread().setName("Bhaskar Thread");
+        System.out.println(Thread.currentThread().getName()); // Bhaskar Thread
+    }
+}
+```
+
+> 🧠 **Note:** Use `Thread.currentThread()` to get a reference to the **currently executing thread**.
+
+---
+
+# 🎚️ Thread Priorities in Java
+
+In Java, each thread has an associated **priority**, represented as an integer between **1 (lowest)** and **10 (highest)**. Thread priorities are **hints** to the JVM thread scheduler, influencing the order of thread execution—but not guaranteeing it.
+
+---
+
+## 🔢 Priority Basics
+
+- Every thread has a priority.
+
+- The default priority of the **main thread** is **5**.
+
+- A new thread inherits the priority of its **parent thread** by default.
+
+```java
+Thread.MIN_PRIORITY  = 1;  // Lowest priority
+Thread.NORM_PRIORITY = 5;  // Default priority
+Thread.MAX_PRIORITY  = 10; // Highest priority
+```
+
+---
+
+### 🔧 Setting and Getting Thread Priority
+
+```java
+public final int getPriority();              // Retrieves current thread's priority
+public final void setPriority(int priority); // Sets priority (must be in 1–10 range)
+
+
+```
+
+> ❗ Setting an invalid priority (e.g., 0 or 11) throws `IllegalArgumentException`.
+
+---
+
+## Default Priority
+
+The default priority for the main Thread is 5. However, for all other Threads, the default priority is inherited from parent to child. This means that the child Thread will have the same priority as its parent Thread by default.
+
+---
+
+### ✅ Example 1: Inheriting Priority from Parent
+
+```java
+class MyThread extends Thread {}
+
+public class ThreadPriorityDemo {
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getPriority()); // 5 (default)
+
+        Thread.currentThread().setPriority(9); // Change main thread priority
+
+        MyThread t = new MyThread(); // Inherits priority from main
+        System.out.println(t.getPriority()); // 9
+    }
+}
+```
+
+---
+
+### ✅ Example 2: Priority Affects Scheduling Order
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("child thread");
+        }
+    }
+}
+
+public class ThreadPriorityDemo {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+
+        // t.setPriority(10); // Uncomment to give child thread higher priority
+
+        t.start();
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("main thread");
+        }
+    }
+}
+```
+
+- If `setPriority(10)` is **commented out**, both threads have priority **5** → execution order is **unpredictable**.
+
+- If **child thread** has priority **10** and **main thread** has priority **5**, the JVM is **likely** to execute the child thread **first**.
+
+---
+
+#### ⚠️ Important Considerations
+
+| Aspect                                             | Detail                                                                       |
+| -------------------------------------------------- | ---------------------------------------------------------------------------- |
+| ✅ Priority Range                                   | 1 to 10 only                                                                 |
+| ❗ Invalid Priority                                 | Throws `IllegalArgumentException`                                            |
+| ❗ Constants like `LOW_PRIORITY` or `HIGH_PRIORITY` | ❌ Not available — use `MIN_PRIORITY`, `MAX_PRIORITY`                         |
+| 🔁 Inheritance Rule                                | Child thread inherits priority from parent thread                            |
+| 🤔 Scheduler Behavior                              | JVM **may** prefer higher-priority threads, but this is **not guaranteed**   |
+| 🛑 Overuse Consequence                             | Overusing high priorities can lead to **starvation** of low-priority threads |
+
+---
+
+##### 📝 Key Takeaways
+
+- **Use priorities sparingly**—they **influence** but **do not control** execution order.
+
+- Threads with the **same priority** may run in any order.
+
+- Avoid writing logic that depends strictly on thread priorities.
+
+- For better control over concurrency, use **thread pools** or **concurrency utilities** like `Executors`.
+
+---
+
+# ⏸️ Methods to Prevent or Pause Thread Execution
+
+Java provides several methods to **control** or **pause** a thread's execution. These are especially useful in managing concurrency and CPU resource allocation.
+
+### 🧩 Methods Covered:
+
+- `yield()`
+
+- `join()`
+
+- `sleep()`
+
+- `interrupt()`
+
+---
 
 
