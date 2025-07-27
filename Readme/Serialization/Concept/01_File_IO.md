@@ -42,19 +42,19 @@ Let's say the `Student` class is defined like this:
 
 ```java
 class Student {
-	private String sname;
-	private Integer sid;
-	private Integer sage;
+    private String sname;
+    private Integer sid;
+    private Integer sage;
 
-	Student(Integer sid, String sname, Integer sage){
-		this.sname = sname;
-		this.sid = sid;
-		this.sage = sage;
-	}
+    Student(Integer sid, String sname, Integer sage){
+        this.sname = sname;
+        this.sid = sid;
+        this.sage = sage;
+    }
 
-	public String toString(){
-		return "sid: "+sid+ "  sname: "+sname+ "  sage: "+sage;
-	}
+    public String toString(){
+        return "sid: "+sid+ "  sname: "+sname+ "  sage: "+sage;
+    }
 }
 ```
 
@@ -62,10 +62,10 @@ And the main class:
 
 ```java
 public class Test {
-	public static void main(String[] args){
-		Student s1 = new Student(1, "Raj", 21);
-		System.out.println(s1);
-	}
+    public static void main(String[] args){
+        Student s1 = new Student(1, "Raj", 21);
+        System.out.println(s1);
+    }
 }
 ```
 
