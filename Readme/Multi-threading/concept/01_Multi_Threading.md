@@ -743,4 +743,71 @@ Java provides several methods to **control** or **pause** a thread's execution. 
 
 ---
 
+## 1️⃣ `yield()` Method
+
+##### ✅ What It Does:
+
+- `yield()` **pauses the currently executing thread**, hinting to the scheduler that **other runnable threads of the same priority** can be given a chance to execute.
+
+- If a higher or equal priority thread is waiting, the scheduler may switch execution to it.
+
+##### 🔧 Signature:
+
+```java
+public static native void yield();
+```
+
+### 🧠 Clarifications:
+
+- It is **only a suggestion** to the thread scheduler, not a guarantee.
+
+- If no other thread is waiting or the scheduler ignores the hint, the **current thread continues immediately**.
+
+- Platform-dependent behavior; not reliable for predictable execution order.
+
+- **Rarely used in production code**, mainly for testing or avoiding CPU starvation in specific loops.
+
+![m3](https://private-user-images.githubusercontent.com/87664048/328074972-f410cf59-a47f-470c-9ddd-b5970bbf5a75.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTM2Mjg1MjYsIm5iZiI6MTc1MzYyODIyNiwicGF0aCI6Ii84NzY2NDA0OC8zMjgwNzQ5NzItZjQxMGNmNTktYTQ3Zi00NzBjLTlkZGQtYjU5NzBiYmY1YTc1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA3MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNzI3VDE0NTcwNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWM4YjMzMzA0MWIyMmI5ZDA5NDQ0NTg0ZjBkOWY0ZTBjM2VlMDQ4ODc2OGRmM2QyMWVlMTM5YzQ4NWEzYjhhMWQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.mU34w_abFWnasXNldEdr2gMbRLFGfWJSRLFgRu1v9DA)
+
+#### ✅ Example:
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            Thread.yield();
+            System.out.println("Child Thread");
+        }
+    }
+}
+
+public class ThreadYieldDemo {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Main Thread");
+        }
+    }
+}
+```
+
+### Expected Output (Non-deterministic):
+
+```java
+Main Thread
+Child Thread
+Main Thread
+Child Thread
+Main Thread
+Main Thread
+Child Thread
+Child Thread
+Child Thread
+Main Thread
+```
+
+> ℹ️ **Clarification:** The order of execution is **not guaranteed**. If the main thread is already running and has no competition, `yield()` may do nothing.
+
 
