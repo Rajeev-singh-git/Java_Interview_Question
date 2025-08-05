@@ -365,4 +365,116 @@ Good morning : Yuvaraj
 
 ---
 
+# 🔐 Class-Level Lock
 
+- Every class in Java has a **unique lock** associated with its **`Class` object**.
+
+- This lock is used when a thread executes a **static synchronized method** of that class.
+
+- **Behavior:**
+  
+  - Once a thread acquires the **class-level lock**, it can execute any static synchronized method of that class.
+  
+  - Other threads are **blocked from executing other static synchronized methods** of the same class until the lock is released.
+  
+  - **No conflict:**
+    
+    - Instance-level synchronized methods, normal methods, and normal static methods can still be accessed concurrently because they use **different locks**.
+
+- **Class-level lock** and **object-level lock** are **independent**:
+  
+  - Acquiring one does not affect the other.
+  
+  - Each object has its own monitor lock separate from the class lock.
+
+---
+
+### ✅ Example: Static Synchronized Method
+
+```java
+class Display {
+    public static synchronized void show(String msg) {
+        for (int i = 0; i < 3; i++) {
+            System.out.println(msg);
+            try { Thread.sleep(500); } catch (InterruptedException ignored) {}
+        }
+    }
+}
+
+public class ClassLockDemo {
+    public static void main(String[] args) {
+        new Thread(() -> Display.show("Thread A")).start();
+        new Thread(() -> Display.show("Thread B")).start();
+    }
+}
+
+```
+
+**Output:**
+
+```java
+Thread A
+Thread A
+Thread A
+Thread B
+Thread B
+Thread B
+```
+
+(Only one thread executes a static synchronized method at a time because of the class-level lock.)
+
+---
+
+# Synchronized Blocks
+
+Instead of synchronizing an entire method, you can **synchronize only the critical section of code**, improving performance and reducing thread contention.
+
+- Limits the scope of synchronization.
+
+- Allows other threads to execute non-critical parts concurrently.
+
+### ✅ Usage Patterns:
+
+---
+
+#### a) Synchronize on Current Object (`this`)
+
+```java
+synchronized(this) {
+    // critical section
+}
+```
+
+Ensures only one thread executes this block at a time for the **current object**.
+
+---
+
+#### b) Synchronize on a Specific Object (`obj`)
+
+```java
+synchronized(obj) {
+    // critical section
+}
+```
+
+Only threads holding the **lock on this specific object** can enter the block simultaneously.
+
+---
+
+#### c) Synchronize on Class-Level Lock
+
+```java
+synchronized(Display.class) {
+    // critical section
+}
+```
+
+Ensures only one thread executes this block for the **entire class**, using the **class-level lock**.
+
+---
+
+### ⚠️ Note:
+
+- The argument to `synchronized` **must be an object reference or a `.class` object**.
+
+- **Primitives cannot be used** for synchronization because locks are associated only with objects or classes.
