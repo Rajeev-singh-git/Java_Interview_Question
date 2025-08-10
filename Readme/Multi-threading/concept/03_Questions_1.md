@@ -28,4 +28,44 @@
 
 9. **What is a synchronized statement, and how is it used in Java?**
 
+---
 
+# Part 2
+
+---
+
+
+
+**1.** What is a thread?
+
+**2.* Which thread runs by default in every Java program?  
+
+**3.** What is the default priority of a thread?
+
+**4.** How can you change the priority of a thread?
+
+*5.* Which method is executed by any thread?  
+
+**6.** How can you stop a running thread?
+
+**7.** Explain the two types of multitasking.
+
+**8.** What is the difference between a process and a thread?
+
+**9.** What is a thread scheduler?
+
+**10.** Explain thread synchronization.
+
+**11.** What is the difference between a synchronized block and the synchronized keyword?
+
+**12.** What is thread deadlock? How can you resolve a deadlock situation?
+
+**13.** Which methods are used for thread communication?
+
+**14.** What is the difference between **notify()** and **notifyAll()** methods?
+
+**15.** What is the difference between **sleep()** and **wait()** methods?
+
+**16.** Explain the life cycle of a thread.
+
+**17.** What is a daemon thread?
