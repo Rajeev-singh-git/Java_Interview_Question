@@ -1,4 +1,4 @@
-# 📘 Java String Deep Dive
+📘 Java String Deep Dive
 
 ## Table of Contents
 
