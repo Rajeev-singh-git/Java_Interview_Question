@@ -1,7 +1,7 @@
 # Java Basic   
 ![Designer](https://github.com/user-attachments/assets/2e9eccd5-a1e3-4756-beae-d2cf3bb86799)
 
-## Table of Content ... 
+## Table of Content 
 
 [Java Fundametal](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Fundamental/concept/00_Fundamental_Overview.md)
 
