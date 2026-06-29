@@ -44,7 +44,8 @@ Java 8
 │   ├── BiPredicate.md
 │   ├── BiFunction.md
 │   ├── BiConsumer.md
-│   └── Revision.md
+│   └── Choosing the Right Functional Interface.md
+│   
 │
 ├── 04-Method-Constructor-References
 │
