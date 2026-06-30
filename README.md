@@ -1,17 +1,20 @@
 # 📘 Java Interview Handbook
 
-A complete Java interview preparation handbook that takes you from Java fundamentals to SDE-2/SDE-3 interview readiness through concept-first learning, real-world scenarios, coding problems, interview questions, and realistic mock interviews.
+A complete Java interview preparation handbook that takes you from Java fundamentals to **SDE-2/SDE-3 interview readiness** through concept-first learning, real-world scenarios, coding problems, interview questions, and realistic mock interviews.
 
-Designed for **Java Backend Developers** preparing for product-based companies and SDE interviews.
+Designed for **Java Backend Developers** preparing for product-based companies and high-quality technical interviews.
+
 ---
+
 <img width="1982" height="602" alt="java" src="https://github.com/user-attachments/assets/3f4b1f3e-f45d-4aa4-80ca-250cec012b06" />
+
 ---
 
 # ✨ What Makes This Repository Different?
 
-Unlike traditional Java interview repositories that simply list questions, this handbook follows a structured learning path:
+Unlike traditional Java interview repositories that simply list questions, this handbook follows a structured learning journey:
 
-```
+```text
 Learn Concept
       ↓
 Build Mental Model
@@ -49,15 +52,32 @@ Mock Interview
 
 - [Serialization](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Serialization/Concept/00_Serialization_Overview.md)
 
+- [Collections Framework](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Collection/01_Collection_Overview.md)
+
 - [Multithreading](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Multi-threading/concept/00_Multi_Threading_Overview.md)
 
-- [Collections Framework](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Collection/01_Collection_Overview.md)
+---
+
+## 🔴 JVM Internals *(Coming Soon)*
+
+- JVM Architecture
+- Class Loading Mechanism
+- JVM Memory Model
+- Garbage Collection
+- JIT Compiler
+- JVM Performance & Tuning
 
 ---
 
 ## 🟡 Modern Java
 
 - [☕ Java 8 Interview Handbook](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Java%208/Java%208%20Interview%20Handbook.md)
+
+- Java 9+ Features *(Coming Soon)*
+
+- Java 11 Features *(Coming Soon)*
+
+- Java 17 Features *(Coming Soon)*
 
 ---
 
@@ -66,7 +86,7 @@ Mock Interview
 - Java Backend Developers
 - Students preparing for placements
 - Software Engineers switching jobs
-- SDE-1 / SDE-2 Interview Preparation
+- SDE-1 / SDE-2 / SDE-3 Interview Preparation
 - Developers who want to strengthen Java fundamentals
 
 ---
@@ -78,9 +98,10 @@ This repository emphasizes:
 - Concept-first learning
 - Strong mental models
 - Interview-oriented explanations
+- Real-world scenarios
+- Carefully selected coding problems
 - Production best practices
 - Quality over quantity
-- Real-world scenarios
 - Progressive learning from Beginner to Advanced
 
 ---
