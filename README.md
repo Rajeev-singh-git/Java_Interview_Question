@@ -3,13 +3,7 @@
 A comprehensive interview preparation handbook for Java developers covering **Core Java**, **Java 8**, **Collections**, **Multithreading**, **JVM concepts**, **coding problems**, **interview questions**, and **mock interviews**.
 
 Designed for **Java Backend Developers** preparing for product-based companies and SDE interviews.
-
-![Designer](https://github.com/user-attachments/assets/2e9eccd5-a1e3-4756-beae-d2cf3bb86799)
-
-
-
-<img width="1983" height="793" alt="ChatGPT Image Jun 30, 2026, 05_26_51 PM" src="https://github.com/user-attachments/assets/c2a1852a-f397-46af-99a2-bf01273740d2" />
-
+<img width="1982" height="602" alt="java" src="https://github.com/user-attachments/assets/3f4b1f3e-f45d-4aa4-80ca-250cec012b06" />
 ---
 
 # ✨ What Makes This Repository Different?
