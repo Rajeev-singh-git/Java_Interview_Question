@@ -6,6 +6,10 @@ Designed for **Java Backend Developers** preparing for product-based companies a
 
 ![Designer](https://github.com/user-attachments/assets/2e9eccd5-a1e3-4756-beae-d2cf3bb86799)
 
+
+
+<img width="1983" height="793" alt="ChatGPT Image Jun 30, 2026, 05_26_51 PM" src="https://github.com/user-attachments/assets/c2a1852a-f397-46af-99a2-bf01273740d2" />
+
 ---
 
 # ✨ What Makes This Repository Different?
