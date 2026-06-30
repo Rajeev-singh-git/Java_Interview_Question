@@ -1,8 +1,9 @@
 # 📘 Java Interview Handbook
 
-A comprehensive interview preparation handbook for Java developers covering **Core Java**, **Java 8**, **Collections**, **Multithreading**, **JVM concepts**, **coding problems**, **interview questions**, and **mock interviews**.
+A complete Java interview preparation handbook that takes you from Java fundamentals to SDE-2/SDE-3 interview readiness through concept-first learning, real-world scenarios, coding problems, interview questions, and realistic mock interviews.
 
 Designed for **Java Backend Developers** preparing for product-based companies and SDE interviews.
+---
 <img width="1982" height="602" alt="java" src="https://github.com/user-attachments/assets/3f4b1f3e-f45d-4aa4-80ca-250cec012b06" />
 ---
 
