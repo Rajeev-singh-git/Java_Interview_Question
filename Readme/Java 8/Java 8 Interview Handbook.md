@@ -69,3 +69,10 @@ Master modern Java features introduced in Java 8 through concept-first explanati
 - [⚡ Java 8 Interview Cheat Sheet (10-Minute Revision)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Java%208/%F0%9F%8F%86%20Java%208%20Master%20Revision/%E2%9A%A1%20Java%208%20Interview%20Cheat%20Sheet%20(10-Minute%20Revision).md)
 
 - [🎤 Java 8 Mock Interview (FAANG & Top Product Companies)](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Readme/Java%208/%F0%9F%8F%86%20Java%208%20Master%20Revision/%F0%9F%8E%A4%20Java%208%20Mock%20Interview%20(FAANG%20%26%20Top%20Product%20Companies).md)
+
+---
+
+### Legacy Note
+
+- [Old Java 8 Note](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/Java%208_README.md)
+- [Predicate](https://github.com/Rajeev-singh-git/Java_Interview_Question/blob/main/Java%208/src/Code/Predicate/Predicates_README.md)
